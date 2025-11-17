@@ -1,5 +1,4 @@
-# Outline Driven Development
-The New Paradigm For The Augumented LLM Agents Workflows
+# Outline Driven Development: The whole new paradigm for the augumented LLM Code Agent workflows.
 
 ## `Vibe`s are too *shallow*, `Spec`s are too *complex*.
 ### Let there be the `outline`.
