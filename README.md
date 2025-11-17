@@ -4,15 +4,15 @@ The New Paradigm For The Augumented LLM Agents Workflows
 ## `Vibe`s are too *shallow*, `Spec`s are too *complex*.
 ### Let there be the `outline`.
 
-#### And Indeed... Here it is!
+### And Indeed... Here it is!
 
 - **Gemini CLI:** https://github.com/OutlineDriven/odin-gemini-cli-extension
 - **Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
 - **Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
 
-## Prerequisite CLI tools that are need to be installed:
+## Prerequisites
 
-`lsd` | `ast-grep` | `ripgrep` | `fd`
+`lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
 
 ### Install Various Rust-based CLI Tools with cargo
 
@@ -47,9 +47,9 @@ cargo install fd-find
 cargo uninstall ast-grep ripgrep fd-find
 ```
 
-## MCPs
+### MCPs
 
-### Crucial
+#### Crucial
 ```bash
 claude mcp add -s user ast-grep -- uvx --from git+https://github.com/ast-grep/ast-grep-mcp ast-grep-server
 claude mcp add -s user context7 npx @upstash/context7-mcp@latest
@@ -60,5 +60,5 @@ claude mcp add -s user actor-critic-thinking -- npx -y mcp-server-actor-critic-t
 claude mcp add -s user shannon-thinking -- npx -y server-shannon-thinking@latest
 ```
 
-### Additional
+#### Additional
 Tavily, Exa, Ref-tools, Consult-ll
