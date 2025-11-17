@@ -6,9 +6,9 @@ The New Paradigm For The Augumented LLM Agents Workflows
 
 #### And Indeed... Here it is!
 
-**Gemini CLI:** https://github.com/OutlineDriven/odin-gemini-cli-extension
-**Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
-**Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
+- **Gemini CLI:** https://github.com/OutlineDriven/odin-gemini-cli-extension
+- **Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
+- **Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
 
 ## Prerequisite CLI tools that are need to be installed:
 
