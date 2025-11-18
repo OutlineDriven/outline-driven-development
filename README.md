@@ -6,7 +6,9 @@
 ### And Indeed... Here it is!
 
 - **Gemini CLI:** https://github.com/OutlineDriven/odin-gemini-cli-extension
+  - `gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension`
 - **Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
+  - `claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace`
 - **Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
 
 ## Prerequisites
