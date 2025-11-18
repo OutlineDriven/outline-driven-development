@@ -26,6 +26,10 @@ cargo install lsd
 cargo install ast-grep
 cargo install ripgrep
 cargo install fd-find
+cargo install --locked bat
+cargo install git-delta
+cargo install tokei
+cargo install --locked --bin jj jj-cli
 ```
 
 #### Windows with cargo
@@ -38,12 +42,16 @@ cargo install lsd
 cargo install ast-grep
 cargo install ripgrep
 cargo install fd-find
+cargo install --locked bat
+cargo install git-delta
+cargo install tokei
+cargo install --locked --bin jj jj-cli
 ```
 
 #### Uninstall
 
 ```
-cargo uninstall ast-grep ripgrep fd-find
+cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
 ```
 
 ### MCPs
@@ -60,4 +68,4 @@ claude mcp add -s user shannon-thinking -- npx -y server-shannon-thinking@latest
 ```
 
 #### Additional
-Tavily, Exa, Ref-tools, Consult-ll
+Tavily, Exa, Ref-tools
