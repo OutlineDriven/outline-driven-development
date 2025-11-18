@@ -9,6 +9,59 @@
 - **Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
 - **Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
 
+## Prerequisites
+
+`lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
+
+### Install Various Rust-based CLI Tools with cargo
+
+#### Linux/macOS with cargo
+
+**Install**
+
+```bash
+export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
+
+cargo install lsd
+cargo install ast-grep
+cargo install ripgrep
+cargo install fd-find
+cargo install --locked bat
+cargo install git-delta
+cargo install tokei
+cargo install --locked --bin jj jj-cli
+```
+
+#### Windows with cargo
+
+**Install (run inside powershell)**
+```powershell
+$env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
+
+cargo install lsd
+cargo install ast-grep
+cargo install ripgrep
+cargo install fd-find
+cargo install --locked bat
+cargo install git-delta
+cargo install tokei
+cargo install --locked --bin jj jj-cli
+```
+
+#### Uninstall CLI Tools
+
+```
+cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
+```
+
+### Setting Up MCPs
+
+#### Crucial
+ast-grep | context7 | sequentialthinking-tools | actor-critic-thinking | shannon-thinking
+
+#### Additional
+Time, Tavily, Exa, Ref-tools
+
 ## Outline-Driven Development Philosophy
 
 > Deterministic scaffolds harness non-deterministic LLM creativity only when the outline stays the single source of truth and every downstream stage revalidates against it.
@@ -143,64 +196,3 @@ graph LR
 | Concurrency Δ | Preserve happens-before relationships | No circular waits; deadlock-free |
 | Memory Δ | Ensure ownership + persistence model | Leak-free caches, append-only audit |
 | Optimization Δ | Tie budgets to feedback loops | Regression triggers deterministic rollback |
-
-## Prerequisites
-
-`lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
-
-### Install Various Rust-based CLI Tools with cargo
-
-#### Linux/macOS with cargo
-
-**Install**
-
-```bash
-export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
-
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
-```
-
-#### Windows with cargo
-
-**Install (run inside powershell)**
-```powershell
-$env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
-
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
-```
-
-#### Uninstall
-
-```
-cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
-```
-
-### MCPs
-
-#### Crucial
-```bash
-claude mcp add -s user ast-grep -- uvx --from git+https://github.com/ast-grep/ast-grep-mcp ast-grep-server
-claude mcp add -s user context7 npx @upstash/context7-mcp@latest
-claude mcp add -s user deepwiki -- npx -y mcp-deepwiki@latest
-claude mcp add -s user time uvx mcp-server-time
-claude mcp add -s user sequentialthinking-tools npx mcp-sequentialthinking-tools
-claude mcp add -s user actor-critic-thinking -- npx -y mcp-server-actor-critic-thinking
-claude mcp add -s user shannon-thinking -- npx -y server-shannon-thinking@latest
-```
-
-#### Additional
-Tavily, Exa, Ref-tools
