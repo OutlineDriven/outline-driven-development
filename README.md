@@ -5,11 +5,12 @@
 
 ### And Indeed... Here it is!
 
-- **Gemini CLI:** https://github.com/OutlineDriven/odin-gemini-cli-extension
+- **Gemini CLI:** <https://github.com/OutlineDriven/odin-gemini-cli-extension>
   - Quick Install: `gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension`
-- **Claude Code:** https://github.com/OutlineDriven/odin-claude-plugin
+- **Claude Code:** <https://github.com/OutlineDriven/odin-claude-plugin>
   - Quick Install: `claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace`
-- **Codex CLI:** https://github.com/OutlineDriven/odin-codex-plugin
+- **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
+- **Prompt-only(Manual Use):** : [Prompt](BASE_PROMPT.md)
 
 ## Prerequisites
 
@@ -109,87 +110,7 @@ Time, Tavily, Exa, Ref-tools
 - **Property:** Fuzz differential between LLM-ready prompts and outline spec to prove no forbidden capability escapes.
 - **Resilience:** Chaos hooks that kill tools mid-run to ensure orchestrator retries respect outline orderings.
 
-### Diagram Suite
-
-#### Architecture Δ
-
-```mermaid
-flowchart LR
-    Intent[Human Intent] --> OutlineKernel[Outline Kernel]
-    OutlineKernel -->|hash + schema| ControlPlane[Deterministic Control Plane]
-    ControlPlane -->|delta contracts| LLMExecutors[LLM Executors]
-    LLMExecutors --> Toolchain[Batteries (lsd/ast-grep/fd/...)]
-    Toolchain --> Observability[Telemetry + Evidence Store]
-    Observability -->|feedback| OutlineKernel
-```
-
-#### Data-flow Δ
-
-```mermaid
-sequenceDiagram
-    participant H as Human Architect
-    participant O as Outline Kernel
-    participant L as LLM Executor
-    participant T as Toolchain
-    participant V as Verification Plane
-    H->>O: Describe intent + constraints
-    O->>L: Emit outline slice + success metrics
-    L->>T: Call batteries with deterministic args
-    T-->>L: Structured results + diffs
-    L-->>V: Candidate artifacts + traces
-    V-->>O: Verdict + delta noise score
-    O-->>H: Promotion request / revisions
-```
-
-#### Concurrency Δ
-
-```mermaid
-flowchart TD
-    subgraph Outline Runtime
-        Authoring[Authoring Thread]
-        Executor[Executor Thread]
-        Verifier[Verifier Thread]
-    end
-    Authoring -.≺-. Executor
-    Executor -.≺-. Verifier
-    Verifier -.≺-. Authoring
-    Authoring -->|lock: Outline Mutex| SharedState[(Outline Store)]
-    Executor -->|read-only snapshot| SharedState
-    Verifier -->|append-only logs| Telemetry[(Telemetry Log)]
-    Telemetry --> Governance[Governance Watchdog]
-```
-
-#### Memory Δ
-
-```mermaid
-graph TD
-    subgraph Heap
-        SnapshotCache[(Outline Snapshot Cache)]
-        TraceStore[(Trace Store)]
-    end
-    subgraph Stack
-        OutlineFrame[Outline Frame]
-        ToolFrame[Tool Invocation Frame]
-    end
-    OutlineFrame --> SnapshotCache
-    ToolFrame --> TraceStore
-    SnapshotCache --> Persistence[(Content Addressed Store)]
-    TraceStore --> Persistence
-    Persistence --> Auditor[Auditor]
-```
-
-#### Optimization Δ
-
-```mermaid
-graph LR
-    Budget[p95 latency < 120s\np95 diff noise < 2%\nMemory ceiling 1 GiB] --> Plan[Outline Optimization Plan]
-    Plan -->|measure| Telemetry
-    Telemetry -->|regression?| Guardrails{Guardrail Engine}
-    Guardrails -->|tighten outline| Plan
-    Guardrails -->|alert| Humans
-```
-
-#### Traceability Matrix
+### Traceability Matrix
 
 | Diagram | Goal | Associated Invariants |
 | --- | --- | --- |
