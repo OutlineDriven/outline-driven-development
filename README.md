@@ -13,7 +13,7 @@
   - ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
 - 
-- **Prompt-only (Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code):** : [Prompt](BASE_PROMPT.md)
+- **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](BASE_PROMPT.md)
 
 ## Prerequisites
 
