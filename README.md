@@ -9,7 +9,7 @@
 
 `lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
 
-### Install Various Rust-based CLI Tools with cargo
+### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 
 #### Linux/macOS with cargo
 
