@@ -11,7 +11,17 @@
 
 ### cargo를 사용한 다양한 Rust 기반 CLI 도구 설치
 
-#### cargo가 있는 Linux/macOS
+#### Install Cargo (if not installed)
+
+**Linux/macOS**
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+**Windows**
+<https://win.rustup.rs/x86_64>
+
+#### For Linux/macOS
 
 **설치**
 
@@ -28,7 +38,7 @@ cargo install tokei
 cargo install --locked --bin jj jj-cli
 ```
 
-#### cargo가 있는 Windows
+#### For Windows
 
 **설치 (powershell 내부에서 실행)**
 ```powershell
