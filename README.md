@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-`lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
+`lsd` | `ast-grep` | `ripgrep` | `fd` | `bat` | MCPs
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 
