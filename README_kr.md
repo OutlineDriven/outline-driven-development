@@ -1,9 +1,9 @@
 # Outline Driven Development: 증강된 LLM 코드 에이전트 워크플로우를 위한 완전히 새로운 패러다임.
 
-## `Vibe`(느낌)는 너무 *얕고*, `Spec`(명세)은 너무 *복잡합니다*.
-### `outline`(아웃라인)이 있으라.
+## `Vibe`s are too *shallow*, `Spec`s are too *complex*.
+### Let there be the `outline`.
 
-### 그리고 실제로... 여기 있습니다!
+### And Indeed... Here it is!
 
 ## 필요 도구들 (Prerequisites)
 
