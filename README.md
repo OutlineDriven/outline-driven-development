@@ -94,34 +94,12 @@ Time, Tavily, Exa, Ref-tools
 - **Quality gates:** Spec → outline → implementation is instrumented with lint/test/benchmark gates plus rollback hooks.
 - **Observability:** Outline nodes ship tracing IDs and contract assertions so failures are attributable to outline leaves rather than opaque LLM conversations.
 
-### Operational Contract
-
-| Interface | Inputs | Outputs | Invariants | Error Modes |
-| --- | --- | --- | --- | --- |
-| Outline compiler | Human intent, regulatory constraints, acceptance tests | Canonical outline graph | Outline hash is monotonic; schema version strictly increases | Rejects on schema drift or missing invariants |
-| Execution orchestrator | Outline slice, toolchain handles | Build/test artifacts, telemetry packets | Outline node IDs preserved end-to-end; tool invocations idempotent | Fails closed when telemetry missing or diff noise > threshold |
-| Governance loop | Telemetry, human review, audits | Updated outline deltas, risk reports | Approvals recorded before deployment; audit log append-only | Raises incident if approvals lag or audit trail corrupt |
-
-### Edge Cases & Adversarial Inputs
-
-1. **Tool drift:** If a battery (e.g., `ast-grep`) is missing/obsolete, fall back to stub mode and block promotion until tool parity restored.
-2. **Ambiguous intent:** Outline compiler enforces minimum specificity (actors, data boundaries, budgets) before allowing LLM execution.
-3. **Spec regression:** Any outline delta that removes invariants triggers manual review and chaos-test replay.
-4. **Long tail concurrency:** When asynchronous tools exceed budget, orchestrator escalates to serialized mode to preserve determinism.
-
-### Verification Plan
-
-- **Unit:** Outline schema lint + AST validation per node.
-- **Integration:** Deterministic replay harness that rehydrates outlines and compares filesystem/output digests.
-- **Property:** Fuzz differential between LLM-ready prompts and outline spec to prove no forbidden capability escapes.
-- **Resilience:** Chaos hooks that kill tools mid-run to ensure orchestrator retries respect outline orderings.
-
 ### Traceability Matrix
 
 | Diagram | Goal | Associated Invariants |
 | --- | --- | --- |
-| Architecture Δ | Map outline-to-toolchain interfaces | Outline hash monotonicity |
-| Data-flow Δ | Guarantee data never bypasses verification | Contract-bound IO only |
-| Concurrency Δ | Preserve happens-before relationships | No circular waits; deadlock-free |
-| Memory Δ | Ensure ownership + persistence model | Leak-free caches, append-only audit |
-| Optimization Δ | Tie budgets to feedback loops | Regression triggers deterministic rollback |
+| Architecture | Map outline-to-toolchain interfaces | Outline hash monotonicity |
+| Data-flow | Guarantee data never bypasses verification | Contract-bound IO only |
+| Concurrency | Preserve happens-before relationships | No circular waits; deadlock-free |
+| Memory | Ensure ownership + persistence model | Leak-free caches, append-only audit |
+| Optimization | Tie budgets to feedback loops | Regression triggers deterministic rollback |
