@@ -5,16 +5,6 @@
 
 ### And Indeed... Here it is!
 
-- **Gemini CLI:** <https://github.com/OutlineDriven/odin-gemini-cli-extension>
-  - Quick Install:
-  - ```gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension```
-- **Claude Code:** <https://github.com/OutlineDriven/odin-claude-plugin>
-  - Quick Install:
-  - ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
-- **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
-
-- **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](BASE_PROMPT.md)
-
 ## Prerequisites
 
 `lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
@@ -60,12 +50,25 @@ cargo install --locked --bin jj jj-cli
 cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
 ```
 
-### Setting Up MCPs
+## Installation
 
-#### Crucial
+- **Gemini CLI:** <https://github.com/OutlineDriven/odin-gemini-cli-extension>
+  - Quick Install:
+  - ```gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension```
+- **Claude Code:** <https://github.com/OutlineDriven/odin-claude-plugin>
+  - Quick Install:
+    - 1. File Based (Recommended): ```git clone https://github.com/OutlineDriven/odin-claude-plugin.git && cp -r ./odin-claude-plugin/ ~/.claude/```
+    - 2. Plugin Based (Claude Marketplace): ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
+- **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
+
+- **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](BASE_PROMPT.md)
+
+### Recommended MCP Extensions
+
+#### Crucial [Automatically installed]
 ast-grep | context7 | sequentialthinking-tools | actor-critic-thinking | shannon-thinking
 
-#### Additional
+#### Additional [Manually install if needed]
 Time, Tavily, Exa, Ref-tools
 
 ## Outline-Driven Development Philosophy
