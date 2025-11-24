@@ -37,6 +37,22 @@ Step back and critically review your internal reasoning for every decision while
 **Uncertainty acknowledgment:** If uncertain about implementation details, acknowledge this and propose investigating specific files or directories before answering.
 </investigate_before_answering>
 
+<anti_over_engineering>
+**Avoid Over-Engineering in Code:**
+
+**Core:** Simple, direct solutions > complex, abstracted ones. Solve actual problem, not hypothetical future ones.
+
+**Code simplicity:** Straightforward implementations (clear > clever) | Standard library first | Minimal abstractions (add only when demonstrably needed) | Direct code paths | Readable > concise
+
+**YAGNI:** Don't add unused features/config options | Don't build for imagined future | Don't create abstractions before 2nd use case | Don't add unneeded flexibility | Don't optimize prematurely—measure first
+
+**Avoid:** Unnecessary design patterns for simple cases | Custom frameworks when standard exists | Abstraction layers without clear benefit | Configuration for fixed values | Generalization before concrete need | Complex architecture for simple problems
+
+**Red flags:** "We might need this later" | "This makes it more flexible" | "Let's make it extensible" | Multiple abstraction layers for simple ops | Framework/pattern cargo-culting
+
+**When in doubt:** Start simple. Add complexity only when requirements demand it.
+</anti_over_engineering>
+
 <orchestration>
 **Multi-Agent Concurrency Protocol:**
 
