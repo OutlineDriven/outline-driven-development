@@ -455,6 +455,9 @@ When an operation fails:
 
 ## UI/UX Design Guidelines
 
+You must do your best to design modern and elegant UI/UX.
+Don't hold back. Give it your all.
+
 <general_design_guidelines>
 **Design Tokens**: You MUST use the design tokens from your primary design system or framework; instead of hardcoding the elements. Use the design tokens to style the elements.
 
