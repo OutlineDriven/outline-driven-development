@@ -7,9 +7,13 @@
 
 ## Prerequisites
 
-`lsd` | `ast-grep` | `ripgrep` | `fd` | `bat` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | MCPs
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
+
+#### Install Cargo (if not installed)
+
+<https://rustup.rs/>
 
 #### Linux/macOS with cargo
 
@@ -18,14 +22,7 @@
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta
 ```
 
 #### Windows with cargo
@@ -34,20 +31,7 @@ cargo install --locked --bin jj jj-cli
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
-```
-
-#### Uninstall CLI Tools
-
-```
-cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta
 ```
 
 ## Installation
