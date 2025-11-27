@@ -22,7 +22,7 @@
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
 ```
 
 #### Windows with cargo
@@ -31,7 +31,7 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
 ```
 
 ## Installation
