@@ -7,7 +7,7 @@
 
 ## 필요 도구들 (Prerequisites)
 
-`lsd` | `ast-grep` | `ripgrep` | `fd` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | MCPs
 
 ### cargo를 사용한 다양한 Rust 기반 CLI 도구 설치
 
@@ -28,14 +28,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
 ```
 
 #### For Windows
@@ -44,20 +37,7 @@ cargo install --locked --bin jj jj-cli
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install lsd
-cargo install ast-grep
-cargo install ripgrep
-cargo install fd-find
-cargo install --locked bat
-cargo install git-delta
-cargo install tokei
-cargo install --locked --bin jj jj-cli
-```
-
-#### CLI 도구 제거
-
-```
-cargo uninstall ast-grep ripgrep fd-find bat git-delta tokei jj
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
 ```
 
 ## 설치
