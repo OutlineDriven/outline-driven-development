@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | `jj` | MCPs
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 
@@ -22,7 +22,7 @@
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 #### Windows with cargo
@@ -31,7 +31,7 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just
+cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 ## Installation
