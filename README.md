@@ -45,7 +45,8 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tre
     - 2. Plugin Based (Claude Marketplace): ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
 
-- **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](BASE_PROMPT.md)
+- **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](GENERIC_PROMPT.md)
+- **Compact Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](COMPACTED_PROMPT.md)
 
 ### Recommended MCP Extensions
 

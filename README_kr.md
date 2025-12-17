@@ -51,7 +51,8 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tre
     - 2. Plugin Based (Claude Marketplace): ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
 
-- **프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](BASE_PROMPT.md)
+- **프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](GENERIC_PROMPT.md)
+- **컴팩트 프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](COMPACTED_PROMPT.md)
 
 ### MCP 확장 추천
 
