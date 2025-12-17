@@ -241,6 +241,7 @@ Human-like precision editing: locate precisely, copy minimal context, transform,
 - `git commit/add` - USE `jj describe` (snapshots automatic) INSTEAD
 - `git checkout/switch` - USE `jj new` or `jj edit` INSTEAD
 - `git rebase/merge` - USE `jj rebase` or `jj new <rev1> <rev2>` INSTEAD
+- `git stash` - USE `jj new @-` (changes remain as sibling, restore with `jj edit`) INSTEAD
 - `sed` for code EDITS (analyses OK); `find/ls`; `grep` (use AG/RG/FD); text-based search for code patterns
 
 **Workflow:** Preview → Validate → Apply (no blind edits)

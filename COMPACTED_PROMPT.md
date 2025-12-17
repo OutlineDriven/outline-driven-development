@@ -156,6 +156,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | `git commit` / `git add` | `jj describe` (snapshots automatic) |
 | `git checkout` / `git switch` | `jj new` or `jj edit` |
 | `git rebase` / `git merge` | `jj rebase` or `jj new <rev1> <rev2>` |
+| `git stash` | `jj new @-` (changes remain as sibling, restore with `jj edit`) |
 | `grep -r` / `grep -R` / `grep --recursive` | `rg` or `ast-grep` |
 | `sed -i` / `sed --in-place` | `ast-grep -U` or Edit tool |
 | `sed -e` for code transforms | `ast-grep` |
