@@ -53,21 +53,24 @@ Step back and critically review your internal reasoning for every decision while
 **When in doubt:** Start simple. Add complexity only when requirements demand it.
 </anti_over_engineering>
 
-<parallel_tool_execution>
-**Parallel Tool Execution Protocol:**
+<keep_it_simple>
+- Prefer the smallest viable change; reuse existing patterns before adding new ones.
+- Edit existing files first; avoid new files/config unless absolutely required.
+- Remove dead code and feature flags quickly to keep the surface minimal.
+- Choose straightforward flows; defer abstractions until the repeated need is proven.
+</keep_it_simple>
 
-MANDATORY: Launch all independent tasks simultaneously in a single message. Maximize parallelization—never execute sequentially what can run concurrently. Coordinate dependent tasks into sequential stages while maximizing concurrent execution within each stage.
+<orchestration>
+**Split before acting:** Split tasks into subtasks; act one by one. Batch related tasks; never batch dependent ops.
 
-**Tool execution model:** Tool calls within batch execute sequentially; "Parallel" means submit together; Never use placeholders; Order matters: respect dependencies and data flow
+**Parallelization [MANDATORY]:** Launch all independent tasks simultaneously in one message. Never execute sequentially what can run concurrently. Coordinate dependent tasks into sequential stages.
 
-**Batch patterns:** Independent ops (1 batch): `[read(F₁), read(F₂), ..., read(Fₙ)]` | Dependent ops (2+ batches): Batch 1 → Batch 2 → ... → Batch K
+**Tool execution:** Calls within batch execute sequentially; "parallel" = submit together; never use placeholders; respect dependencies. Patterns: Independent (1 batch) | Dependent (N batches: Batch 1 -> ... -> Batch K)
 
-**Context Isolation:** Create unique jj change per subtask: `jj new <base> -m '<Task>'` for isolated contexts.
+**Context Isolation:** Create unique jj change per agent/subtask: `jj new <base> -m 'Agent: <Task>'` for isolated contexts.
 
-**Decision rules:** Single batch for pure discovery/pre-known params/independent validations; Multiple batches when later ops need earlier results/workflow stages/validation checkpoints
-
-**FORBIDDEN:** Guessing parameters requiring other results; Ignoring logical order; Batching dependent operations
-</parallel_tool_execution>
+**FORBIDDEN:** Guessing params needing other results; ignoring logical order; batching dependent ops
+</orchestration>
 
 <confidence_driven_execution>
 **Adaptive Behavior Framework:**
@@ -104,9 +107,16 @@ scope:       How many things affected? (1.0 = narrow, 0.0 = broad)
 **Default to research over action.** Do not jump into implementation unless clearly instructed. When intent is ambiguous, default to providing information and recommendations. Action requires explicit instruction. Clarify when ambiguous.
 </do_not_act_before_instructions>
 
+<temporal_files_organization>
+**Outline-Driven Development:** ALL temporal artifacts for outline-driven development MUST use `.outline/` directory. [MANDATORY]
+
+**Non-Outline Files:** Use `/tmp` for temporary files unrelated to outline-driven development.
+
+**Rules:** NEVER create outline-related temporal files outside `.outline/` | Clean up after task completion | Use `/tmp` for scratch work not part of the outline workflow
+</temporal_files_organization>
+
 <jujutsu_vcs_strategy>
 **Jujutsu (jj) VCS Strategy:**
-
 **Core Philosophy:** "Everything is a Commit". The working copy is a commit (`@`). There is no staging area.
 **Mandate:** Use `jj` for ALL local version control operations.
 **Initialization:** `jj git init --colocate` (if jj is not initialized, use this command)
@@ -132,24 +142,20 @@ In colocated mode, jj and Git share the same backend. Every jj change IS a Git c
 **Human Git Workflow:** `git branch -a` | `git log --all --graph` | `git diff main..<branch>` | `git merge <branch>` | `git branch -d <branch>`
 
 **Workflow:**
-1. **Start:** `jj new <parent>` (default `@`) to start a new logical change.
-2. **Create Bookmark (Git Branch):** `jj bookmark create <branch-name> -r @` to create a Git-visible branch.
-   - MANDATORY for any work intended to be pushed or shared via Git.
-   - Bookmarks auto-move when commits are rewritten (rebase, amend, etc.).
-3. **Edit:** Modify files. `jj` automatically snapshots the working copy.
-4. **Verify:** `jj st` (status) and `jj diff` (review changes).
-5. **Describe:** `jj describe -m "<type>[scope]: <description>"` to set the commit message (Conventional Commits).
-   - This updates the Git commit message. The bookmark (branch) remains pointed at this change.
-6. **Refine:**
-   - `jj squash`: To fold working copy changes into the parent commit.
-   - `jj split`: To break a change into multiple changes.
-7. **Push:** `jj git push --bookmark <branch-name>` to push the specific bookmark (branch) to remote.
-   - Alternative: `jj git push --change @` pushes current change, auto-creating remote bookmark.
-
-**Recovery:**
-- **Undo:** `jj undo` (instant undo of ANY operation).
-- **Log:** `jj op log` (view operation history).
-- **Evolution:** `jj evolog` (view history of a specific change ID).
+1.  **Start:** `jj new <parent>` (default `@`) to start a new logical change.
+    *   *Multi-Agent/Parallel Tasks:* When executing multiple distinct subtasks or "agents", create a unique change for EACH task (`jj new <parent> -m "Agent: <Task>"`) to isolate contexts.
+2.  **Create Bookmark (Git Branch):** `jj bookmark create <branch-name> -r @` to create a Git-visible branch.
+    *   MANDATORY for any work intended to be pushed or shared via Git.
+    *   Bookmarks auto-move when commits are rewritten (rebase, amend, etc.).
+3.  **Edit:** Modify files. `jj` automatically snapshots the working copy.
+4.  **Verify:** `jj st` (status) and `jj diff` (review changes).
+5.  **Describe:** `jj describe -m "<type>[scope]: <description>"` to set the commit message (Conventional Commits).
+    *   This updates the Git commit message. The bookmark (branch) remains pointed at this change.
+6.  **Refine:**
+    *   `jj squash`: To fold working copy changes into the parent commit.
+    *   `jj split`: To break a change into multiple changes.
+7.  **Push:** `jj git push --bookmark <branch-name>` to push the specific bookmark (branch) to remote.
+    *   Alternative: `jj git push --change @` pushes current change, auto-creating remote bookmark.
 
 **Bookmark Management:**
 - `jj bookmark list` - List all bookmarks (local and remote)
@@ -158,62 +164,12 @@ In colocated mode, jj and Git share the same backend. Every jj change IS a Git c
 - `jj bookmark delete <name>` - Delete local bookmark
 - `jj bookmark track <name>@<remote>` - Track remote bookmark locally
 
-**Commit Types (Conventional Commits v1.0.0):**
-- **feat**: New feature (correlates with MINOR in SemVer)
-- **fix**: Bug fix (correlates with PATCH in SemVer)
-- **build**: Build system/dependencies
-- **chore**: Maintenance tasks
-- **ci**: CI configuration changes
-- **docs**: Documentation only
-- **perf**: Performance improvements
-- **refactor**: Code change without behavior change
-- **style**: Code formatting, linting
-- **test**: Test additions/modifications
+**Recovery:**
+*   **Undo:** `jj undo` (instant undo of ANY operation).
+*   **Log:** `jj op log` (view operation history).
+*   **Evolution:** `jj evolog` (view history of a specific change ID).
 
-**Separation Rules (NON-NEGOTIABLE):**
-- NEVER mix types (e.g., feat + fix in same change)
-- NEVER mix scopes (e.g., multiple unrelated features)
-- NEVER describe incomplete work (each change must build and pass tests)
-- ALWAYS separate features from fixes from refactors
-- ALWAYS commit logical units independently
-
-**Commit Message Format:**
-```
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer(s)]
-```
-
-**Structure Rules:**
-- **type**: Required (feat, fix, build, chore, ci, docs, perf, refactor, style, test)
-- **scope**: Optional, in parentheses, describes codebase section (e.g., `parser`, `api`)
-- **description**: Required, short summary, lowercase after colon, imperative mood, max 72 chars, NO emojis
-- **body**: Optional, begins one blank line after description, explains "why" not "what"
-- **footer(s)**: Optional, one blank line after body (e.g., `Reviewed-by: Name`, `Refs: #123`)
-- **BREAKING CHANGE**: Use `!` after type/scope OR `BREAKING CHANGE:` footer
-
-**Examples:**
-```bash
-# Simple change
-jj describe -m "feat(lang): add Polish language"
-
-# Breaking change
-jj describe -m "feat(api)!: send email to customer when product is shipped"
-
-# Multi-line with body
-jj describe -m "fix: prevent racing of requests
-
-Introduce a request id and reference to latest request.
-Dismiss incoming responses other than from latest request.
-
-Refs: #123"
-
-# BAD: Mixed types - FORBIDDEN
-jj describe -m "feat: add profile, fix login, refactor auth"
-```
-
+**Formatting:** `<type>[optional scope]: <description>` (e.g., `feat(ui): add button`).
 **Enforcement:**
 - Each change must be atomic, buildable, and testable
 - Each feature branch MUST have a corresponding bookmark (git visibility)
@@ -238,29 +194,30 @@ jj describe -m "feat: add profile, fix login, refactor auth"
 </quickstart_workflow>
 
 <surgical_editing_workflow>
-**Find → Copy → Paste Pattern:**
+**Find -> Copy -> Paste -> Verify:** Locate precisely, copy minimal context, transform, paste surgically, verify semantically.
 
-Human-like precision editing: locate precisely, copy minimal context, transform, paste surgically.
+**1. Find (Structural & Precise)**
+- **AST Pattern:** `ast-grep run -p 'function $N($$$A) { $$$B }' -l ts`
+- **Ambiguity:** `ast-grep scan --inline-rules 'rule: { pattern: { context: "fn f() { $A }", selector: "call_expression" } }' -l rust`
+- **Scope Limit:** `ast-grep scan --inline-rules 'rule: { pattern: "return $A", inside: { kind: "function", regex: "^test" } }'`
 
-**Step 1: Find** – Use right tool: ast-grep for code structure, rg for text, fd for files, awk for line ranges
+**2. Copy (Targeted Extraction)**
+- **Context:** `ast-grep run -p '$PAT' -C 3` (surrounding lines)
+- **Lines:** `sed -n '10,20p' file.ts` (when lines are known)
 
-**Step 2: Copy** – Extract minimal context: `Read(file.ts, offset=100, limit=10)`, `ast-grep -p 'pattern' -C 3`, `rg "pattern" -A 2 -B 2`
+**3. Paste (Atomic Transformation)**
+- **Rewrite:** `ast-grep run -p '$O.old($A)' -r '$O.new({ val: $A })' -U`
+- **Complex:** `ast-grep scan --inline-rules 'rule: { ... } transform: { ... } fix: "..."' -U`
+- **Manual:** `native-patch` (hunk-based) for non-pattern multi-file edits.
 
-**Step 3: Paste** – Apply surgically: `ast-grep -p 'old($A)' -r 'new($A)' -U`, `Edit(file.ts, line=105)`, `perl -i -pe 's/old/new/'`
+**4. Verify (Semantic Integrity)**
+- **Diff:** `difft --display inline original modified` (AST-aware, ignores whitespace)
+- **Check:** Re-run `ast-grep` or `rg` to ensure patterns are resolved.
 
-**📋 Clipboard Patterns:**
-
-**Multi-Location** - Store locations, copy context from each, paste independently
-**Single Change, Multiple Pastes** – Copy once, paste everywhere using ast-grep
-**Parallel Operations** – Execute multiple independent clipboard entries simultaneously
-**Staged (Dependencies)** – Sequential when operations depend on each other
-
-**Core Principles:**
-- **Precision > Speed**: Get the change right first, verify before applying
-- **Preview > Hope**: Always check what will change, use -C flags for context
-- **Surgical > Wholesale**: Edit only what needs changing, target specific locations
-- **Locate → Copy → Paste**: Always follow this disciplined workflow
-- **Minimal Context**: Extract only what's needed, not entire files
+**Tactics:**
+- **Rename:** `ast-grep run -p 'class $N { $$$ }' -r 'class ${N}V2 { $$$ }'`
+- **Delete:** `ast-grep run -p 'console.log($$$)' -r '' -U`
+- **Migrate:** `ast-grep run -p '$A.done($B)' -r 'await $A; $B()'`
 </surgical_editing_workflow>
 
 ## PRIMARY DIRECTIVES
@@ -464,6 +421,41 @@ Git-compatible VCS. **ALWAYS use `jj` over `git`.** In colocated mode, every jj 
 **Verification:** `difft --display inline original modified` | JSON: `DFT_UNSTABLE=yes difft --display json A B`
 </code_tools>
 
+<good_coding_paradigms>
+**Good Coding Paradigms:**
+
+**Verification & Correctness:**
+- **Formal Verification:** Prefer formal verification design before implementation. Tools: Idris2/(Flux - Rust) [Type-driven], Quint [Validation-first], Lean4 [Proof-driven]. Prove invariants, model-check state machines, verify concurrent protocols. Start with lightweight specs, escalate for critical paths.
+- **Contract-first Development:** Define preconditions, postconditions, and invariants explicitly. Use runtime assertions in dev, compile-time checks where possible. Document contracts in types/signatures. Enforce at module boundaries. [Design-by-contracts]
+- **Property-Based Testing (Optional):** Complement unit tests with generative testing (QuickCheck, Hypothesis, fast-check, jqwik). Test invariants across input space, not just examples. Shrink failing cases automatically.
+
+**Design & Architecture:**
+- **Design-first:** You MUST generate hard designs before any acts with UML-variant diagrams (*nomnoml* preferred). [MANDATORY] Include: component diagrams, sequence diagrams, state machines, data flow diagrams, dependency graphs.
+- **Type-driven Development:** Design types BEFORE implementation. Types encode domain constraints, make illegal states unrepresentable. Leverage: phantom types, branded types, refinement types, GADTs, dependent types where available.
+- **Data-Oriented Design:** Organize data for cache efficiency. Struct-of-arrays over array-of-structs for hot paths. Minimize pointer chasing. Profile memory access patterns.
+- **Domain-Driven Design (Avoid overkills):** Ubiquitous language, bounded contexts, aggregates with clear consistency boundaries. Separate domain logic from infrastructure. Anti-corruption layers at boundaries.
+
+**Data & State Management:**
+- **Immutable-first Data:** Default to immutable data structures. Mutations explicit and localized. Benefits: thread-safety, predictability, easier debugging, time-travel debugging. Use persistent data structures for efficient updates.
+- **Single Source of Truth:** One canonical location for each piece of state. Derive, don't duplicate. Normalize data, denormalize only for measured performance needs. Version state changes.
+- **Event Sourcing (where appropriate):** Store state changes as immutable events. Enables audit trails, temporal queries, replay, and debugging. Combine with CQRS for read/write optimization.
+
+**Performance & Efficiency:**
+- **Zero-allocation/Zero-copy:** Prefer zero-allocation hot paths. Use arena allocators, object pools, stack allocation. Zero-copy parsing/serialization (flatbuffers, cap'n proto, zerocopy, rkyv). Measure with profilers before and after.
+- **Lazy Evaluation:** Defer computation until needed. Use iterators/generators over materialized collections. Stream processing over batch where applicable. Beware of hidden allocations in lazy chains.
+- **Cache-Conscious Design:** Align data to cache lines. Minimize false sharing in concurrent code. Prefetch predictable access patterns. Measure cache misses with perf/VTune.
+
+**Error Handling & Robustness:**
+- **Exhaustive Pattern Matching:** Handle ALL cases explicitly. Compiler-enforced exhaustiveness. No default catch-alls that hide bugs. Treat warnings as errors. Review when adding enum variants.
+- **Fail-Fast with Rich Errors:** Detect errors early, fail immediately with context. Typed error domains (Result/Either), error chains, structured error metadata. Never swallow errors silently. Include recovery hints.
+- **Defensive Programming:** Validate inputs at boundaries. Assert invariants in debug builds. Graceful degradation where appropriate. Timeouts on all external calls.
+
+**Code Quality:**
+- **Separation of Concerns:** Single responsibility. Pure functions for logic, effects at edges. Dependency injection for testability. Hexagonal/ports-and-adapters architecture.
+- **Principle of Least Surprise:** Code should behave as readers expect. Explicit over implicit. Clear naming, consistent conventions. Document non-obvious decisions.
+- **Composition over Inheritance:** Prefer small, composable units. Traits/interfaces for polymorphism. Avoid deep inheritance hierarchies. Favor delegation.
+</good_coding_paradigms>
+
 ## Verification & Refinement
 
 <verification_refinement>
@@ -603,53 +595,9 @@ Don't hold back. Give it your all.
 **Code quality checklist:** Correctness, Performance, Security, Maintainability, Readability
 </always>
 
-<mandatory_design_process>
-**Six required stages before ANY code:** ARCHITECT -> FLOW -> CONCURRENCY -> MEMORY -> OPTIMIZE -> TIDINESS (complete in order; each builds on previous)
-
-**1) ARCHITECT:** Create full system design with component relationships. Show how pieces fit together. Define interfaces and contracts.
-
-**2) FLOW:** Document complete data pathways and state transitions. Show how data moves through the system. Identify transformations.
-
-**3) CONCURRENCY:** Design thread interaction and synchronization. Show happens-before relationships. Prove deadlock freedom.
-
-**4) MEMORY:** Create detailed object/resource lifecycle visualization. Document ownership and lifetimes. Prove memory safety.
-
-**5) OPTIMIZE:** Develop performance enhancement strategy blueprint. Identify bottlenecks. Set targets and budgets.
-
-**6) TIDINESS:** Plan for minimalism, elegance, readability, clarity. Design clean naming, structure simplicity, low complexity.
-
-**Process enforcement:** These stages must be completed in order. Each stage builds on the previous. Skipping stages leads to design defects.
-</mandatory_design_process>
-
 <design_validation>
-**Mandatory checklist before implementation:**
-
-- [ ] System Architecture Blueprint—components and interfaces defined
-- [ ] Data Flow Diagram—sources to sinks documented
-- [ ] Concurrency Pattern Map—synchronization proven correct
-- [ ] Memory Management Schema—lifetimes and ownership clear
-- [ ] Type Stable Design—type safety verified
-- [ ] Error Handling Strategy—all failure modes covered
-- [ ] Performance Optimization Plan—bottlenecks identified
-- [ ] Reliability Assessment—failure scenarios analyzed
-- [ ] Security Guards—boundaries defined (when applicable)
-
-**IMPLEMENTATION BLOCKED UNTIL ALL ITEMS CHECKED!**
-
-You cannot proceed with coding until every checkbox is marked. This prevents starting implementation with an incomplete design.
+**Six stages before code:** ARCHITECT -> FLOW -> CONCURRENCY -> MEMORY -> OPTIMIZE -> TIDINESS. **Checklist:** Architecture | Data Flow | Concurrency | Memory | Types | Errors | Performance | Reliability | Security. BLOCKED until all checked.
 </design_validation>
-
-<diagram_design_mandates>
-**Non-negotiable requirement:** DIAGRAMS ARE NON-NEGOTIABLE. No implementation proceeds without proper diagrams.
-
-**Required for:** Concurrency (thread interaction, synchronization), Memory (ownership, lifetimes, allocation), Data-flow (sources, transforms, sinks), Architecture (components, interfaces, data flow), Optimization (bottlenecks, targets, budgets), Tidiness (naming, coupling, readability, complexity)
-
-**Absolute prohibition:** NO IMPLEMENTATION WITHOUT DIAGRAMS—ZERO EXCEPTIONS
-
-**Consequences of violation:** IMPLEMENTATIONS WITHOUT DIAGRAMS WILL BE REJECTED
-
-This is not a suggestion; this is a hard requirement. Diagrams are foundational to correct implementation.
-</diagram_design_mandates>
 
 <decision_heuristics>
 **Decision-Making Framework:**
