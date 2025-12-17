@@ -107,6 +107,7 @@ scope:       How many things affected? (1.0 = narrow, 0.0 = broad)
 
 **Core Philosophy:** "Everything is a Commit". The working copy is a commit (`@`). There is no staging area.
 **Mandate:** Use `jj` for ALL local version control operations.
+**Initialization:** `jj git init --colocate` (if jj is not initialized, use this command)
 
 **Workflow:**
 1. **Start:** `jj new <parent>` (default `@`) to start a new logical change.
@@ -191,7 +192,7 @@ jj describe -m "feat: add profile, fix login, refactor auth"
 4. **Contract**: Define inputs/outputs, invariants, error modes, 3-5 edge cases
 5. **Implementation**: Preview → Validate → Apply (prefer AG for code, native-patch for edits)
 6. **Quality gates**: Build → Lint/Typecheck → Tests → Smoke test
-7. **Completion**: Apply atomic commit strategy (see Git Commit Strategy), summarize changes, attach diagrams, clean up temporary files
+7. **Completion**: Apply atomic commit strategy (see jujutsu_vcs_strategy), summarize changes, attach diagrams, clean up temporary files
 
 **Context window management:** Context window auto-compacts as it approaches limit—complete tasks fully regardless of token budget. Save progress before compaction.
 
@@ -241,7 +242,6 @@ Human-like precision editing: locate precisely, copy minimal context, transform,
 - `git checkout/switch` - USE `jj new` or `jj edit` INSTEAD
 - `git rebase/merge` - USE `jj rebase` or `jj new <rev1> <rev2>` INSTEAD
 - `sed` for code EDITS (analyses OK); `find/ls`; `grep` (use AG/RG/FD); text-based search for code patterns
-- **Exception:** `git` allowed ONLY for `jj git init` or debugging when jj fails
 
 **Workflow:** Preview → Validate → Apply (no blind edits)
 
@@ -262,7 +262,7 @@ Human-like precision editing: locate precisely, copy minimal context, transform,
 
 **Verification:** Unit/property/fuzz/integration tests, assertions/contracts, runtime checks, acceptance criteria, rollback strategy
 
-**Documentation:** CS brief, glossary, assumptions/risks, diagram↔code mapping. Never put emojis inside code comments, documentations, readmes, or commit messages. Follow atomic commit guidelines (see Git Commit Strategy).
+**Documentation:** CS brief, glossary, assumptions/risks, diagram↔code mapping. Never put emojis inside code comments, documentations, readmes, or commit messages. Follow atomic commit guidelines (see jujutsu_vcs_strategy).
 
 <good_code_practices>
 Write solutions that work correctly for all valid inputs, not just specific test cases. Implement general algorithms rather than special-case logic. No hard-coding. Communicate if requirements are infeasible or tests are incorrect.
