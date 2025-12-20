@@ -86,7 +86,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | Split Atom | `jj split` | Separate mixed concerns |
 | Stack | `jj new` | Create dependent revision |
 | Verify | `jj diff && jj st` | Review atom integrity |
-| Publish | `jj bookmark create <n> -r @` -> `jj git push` | Git Bridge |
+| Publish | `jj bookmark create <branch-name> -r @` -> `jj git push` | Git Bridge. Use Conventional Branch Conventions. |
 
 **Git Interoperability (Colocated):** Every jj change IS a Git commit. Bookmarks = Git branches. Auto-import/export on every command.
 
@@ -95,12 +95,12 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | Step | Command | Purpose |
 |------|---------|---------|
 | Start | `jj new <parent>` | Start new logical change |
-| Bookmark | `jj bookmark create <name> -r @` | Create Git branch [MANDATORY] |
+| Bookmark | `jj bookmark create <branch-name> -r @` | Create Git branch. Use Conventional Branch Conventions. [MANDATORY] |
 | Edit | (automatic) | jj snapshots working copy |
 | Verify | `jj st && jj diff` | Review changes |
 | Describe | `jj describe -m "<type>[scope]: <desc>"` | Set commit message (updates Git commit) |
 | Refine | `jj squash` / `jj split` | Amend or break apart |
-| Publish | Ask target -> `jj git fetch` -> `jj rebase -d <target>@origin` -> `jj bookmark create <type>/<scope>` -> `jj git push` | Target Branch Workflow |
+| Publish | Ask target -> `jj git fetch` -> `jj rebase -d <target>@origin` -> `jj bookmark create <branch-name>` -> `jj git push` | Target Branch Workflow. Use Conventional Branch Conventions. |
 
 **Bookmark Management:** `list` | `create <name> -r <rev>` | `move <name> --to <rev>` | `delete <name>` | `track <name>@<remote>`
 
