@@ -7,7 +7,7 @@
 
 ## 필요 도구들 (Prerequisites)
 
-`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | `jj` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `eza` | `tokei` | `bat` | `jj` | MCPs
 
 ### cargo를 사용한 다양한 Rust 기반 CLI 도구 설치
 
@@ -28,7 +28,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
+cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 #### For Windows
@@ -37,7 +37,7 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tre
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
+cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 ## 설치
@@ -81,7 +81,7 @@ Time, Tavily, Exa, Ref-tools
 ### 디자인 우선 / 모범 사례 배터리 포함 (Design-First / Best-Practices Batteries Included)
 
 - **Architecture-first (아키텍처 우선):** 각 아웃라인은 코드가 존재하기 전에 인터페이스, 사전/사후 조건, 오류 도메인, 대기 시간 및 메모리 예산을 포함해야 합니다.
-- **Tooling-first (도구 우선):** `lsd`, `ast-grep`, `ripgrep`, `fd`, LangGraph, MCP 스택은 필수 배터리로 취급되어 구조적 편집, 검색, 오케스트레이션이 재현 가능하도록 합니다.
+- **Tooling-first (도구 우선):** `eza`, `ast-grep`, `ripgrep`, `fd`, LangGraph, MCP 스택은 필수 배터리로 취급되어 구조적 편집, 검색, 오케스트레이션이 재현 가능하도록 합니다.
 - **Quality gates (품질 게이트):** 명세(Spec) → 아웃라인 → 구현 과정은 린트/테스트/벤치마크 게이트 및 롤백 훅으로 계측됩니다.
 - **Observability (관찰 가능성):** 아웃라인 노드는 추적 ID와 계약 어설션을 전송하므로, 실패의 원인을 불투명한 LLM 대화가 아닌 아웃라인 리프(leaf)로 귀속시킬 수 있습니다.
 
