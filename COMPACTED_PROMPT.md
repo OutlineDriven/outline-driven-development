@@ -71,15 +71,26 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 </temporal_files>
 
 <jj_vcs>
-**Jujutsu (jj) VCS Strategy:**
-
-**Core Philosophy:** "Everything is a Commit". Working copy = commit (`@`). No staging area.
+**Jujutsu (jj) Atomic State Management**
+**Philosophy:** Working Copy (`@`) = mutable commit. No staging area.
+**Golden Rule:** One Revision = One Logical Atomic Task (Code + Test + Docs).
 **Mandate:** Use `jj` for ALL local version control operations.
-**Initialization:** `jj git init --colocate` (if jj is not initialized, use this command)
+**Initialization:** `jj git init --colocate` (if jj is not initialized)
+
+**Atomic Commit Protocol:**
+| Step | Command | Purpose |
+|------|---------|---------|
+| Isolate | `jj new <base> -m "feat: <scope>"` | Fresh context |
+| Iterate | (automatic) | State auto-snapshots into `@` |
+| Grow Atom | `jj squash` | Merge edits into current revision |
+| Split Atom | `jj split` | Separate mixed concerns |
+| Stack | `jj new` | Create dependent revision |
+| Verify | `jj diff && jj st` | Review atom integrity |
+| Publish | `jj bookmark create <n> -r @` -> `jj git push` | Git Bridge |
 
 **Git Interoperability (Colocated):** Every jj change IS a Git commit. Bookmarks = Git branches. Auto-import/export on every command.
 
-**Role Separation:** Agents (jj): Create bookmarks, prepare merge-ready branches | Human (git): Reviews/merges via standard git | Bridge: Bookmarks = Git branches
+**Role Separation:** Create bookmarks, prepare merge-ready branches | Human reviews/merges via git
 
 | Step | Command | Purpose |
 |------|---------|---------|
@@ -93,7 +104,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 
 **Bookmark Management:** `list` | `create <name> -r <rev>` | `move <name> --to <rev>` | `delete <name>` | `track <name>@<remote>`
 
-**Recovery:** `jj undo` (instant undo) | `jj op log` (operation history) | `jj evolog` (change evolution)
+**Recovery:** `jj undo` (instant revert) | `jj abandon` (discard atom) | `jj op log` (operation history) | `jj evolog` (change evolution)
 
 **Types:** feat (MINOR), fix (PATCH), build, chore, ci, docs, perf, refactor, style, test
 
@@ -127,7 +138,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 2. **Context:** Gather only essential context, targeted searches
 3. **Design:** Sketch delta diagrams (architecture, data-flow, concurrency, memory, optimization, tidiness)
 4. **Contract:** Define inputs/outputs, invariants, error modes, 3-5 edge cases
-5. **Implementation:** Preview -> Validate -> Apply (prefer AG for code, native-patch for edits)
+5. **Implementation:** Search (`ast-grep` map injection points) -> Edit (`ast-grep`/`native-patch`) -> State (`jj squash` iteratively)
 6. **Quality gates:** Build -> Lint/Typecheck -> Tests -> Smoke test
 7. **Completion:** Apply atomic commit strategy, summarize changes, attach diagrams, clean up temp files
 
