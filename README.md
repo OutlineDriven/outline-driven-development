@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-`ast-grep` | `ripgrep` | `fd` | `lsd` | `tokei` | `bat` | `jj` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `eza` | `tokei` | `bat` | `jj` | MCPs
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 
@@ -22,7 +22,7 @@
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
+cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 #### Windows with cargo
@@ -31,7 +31,7 @@ cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tre
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install ast-grep ripgrep fd-find lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
+cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 ## Installation
@@ -75,7 +75,7 @@ Time, Tavily, Exa, Ref-tools
 ### Design-First / Best-Practices Batteries Included
 
 - **Architecture-first:** Each outline must include interfaces, pre/postconditions, error domains, latency and memory budgets before code exists.
-- **Tooling-first:** `lsd`, `ast-grep`, `ripgrep`, `fd`, LangGraph, and MCP stacks are treated as mandatory batteries so that structural edits, search, and orchestration are reproducible.
+- **Tooling-first:** `eza`, `ast-grep`, `ripgrep`, `fd`, LangGraph, and MCP stacks are treated as mandatory batteries so that structural edits, search, and orchestration are reproducible.
 - **Quality gates:** Spec → outline → implementation is instrumented with lint/test/benchmark gates plus rollback hooks.
 - **Observability:** Outline nodes ship tracing IDs and contract assertions so failures are attributable to outline leaves rather than opaque LLM conversations.
 

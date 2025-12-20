@@ -241,7 +241,7 @@ In colocated mode, jj and Git share the same backend. Every jj change IS a Git c
 <must>
 **Tool Selection (MANDATORY):**
 
-**Priorities:** 1) ast-grep (AG) [HIGHLY PREFERRED]: AST-based, 90% error reduction, 10x accurate. 2) native-patch: File edits, multi-file changes. 3) rg: Text/comments/strings. 4) fd: File discovery. 5) lsd: Directory listing. 6) tokei: Code metrics/scope. 7) jj: Version control (MANDATORY over git).
+**Priorities:** 1) ast-grep (AG) [HIGHLY PREFERRED]: AST-based, 90% error reduction, 10x accurate. 2) native-patch: File edits, multi-file changes. 3) rg: Text/comments/strings. 4) fd: File discovery. 5) eza: Directory listing (--git-ignore default). 6) tokei: Code metrics/scope. 7) jj: Version control (MANDATORY over git).
 
 **Selection guide:** Code pattern -> ast-grep | Simple line edit -> AG/native-patch | Multi-file atomic -> native-patch | Non-code -> native-patch | Text/comments -> rg | Scope analysis -> tokei
 
@@ -338,7 +338,7 @@ Use webfetch to recursively gather information from user-provided URLs and follo
 <code_tools>
 **ULTRA-CRITICAL MANDATES:**
 
-ALWAYS leverage AG/native-patch/fd/lsd/rg tools for any code edit/search/patch/replace/fix. **Highly prefer ast-grep (AG) for code operations to maximize accuracy and minimize errors.**
+ALWAYS leverage AG/native-patch/fd/eza/rg tools for any code edit/search/patch/replace/fix. **Highly prefer ast-grep (AG) for code operations to maximize accuracy and minimize errors.**
 
 **Scope control:** Targeted directory search with explicit path specifications, explicit file-type filtering, precise application of changes.
 
@@ -384,11 +384,11 @@ Workspace editing tools for applying precise changes to files. Excellent for str
 
 **Best practices:** Preview all edits before applying, ensure changes are well-scoped, verify file paths are correct.
 
-### 3) lsd (LSD) [MANDATORY DIRECTORY LISTING]
+### 3) eza [MANDATORY DIRECTORY LISTING]
 
-LSD (LSDeluxe) is a modern replacement for `ls` with rich features: color-coded file types/permissions, git integration, tree view, icons.
+eza is a modern replacement for `ls` with rich features: color-coded file types/permissions, git integration, tree view, icons.
 
-**Absolute mandate:** NEVER use `ls`—always use `lsd`.
+**Absolute mandate:** NEVER use `ls`—always use `eza --git-ignore`.
 
 ### 4) fd (FD) [MANDATORY FILE DISCOVERY]
 
@@ -430,7 +430,7 @@ Git-compatible VCS. **ALWAYS use `jj` over `git`.** In colocated mode, every jj 
 
 **File discovery:** `fd -e py`
 
-**Directory listing:** `lsd --tree --depth 3`
+**Directory listing:** `eza --tree --level 3 --git-ignore`
 
 **Code metrics:** `tokei src/` | JSON: `tokei --output json | jq '.Total.code'`
 

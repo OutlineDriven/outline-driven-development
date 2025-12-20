@@ -158,7 +158,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 2. native-patch: File edits, multi-file changes
 3. rg: Text/comments/strings
 4. fd: File discovery
-5. lsd: Directory listing
+5. eza: Directory listing (--git-ignore default)
 6. tokei: Code metrics/scope
 7. jj: Version control (Git-compatible, every change IS a Git commit)
 
@@ -187,7 +187,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | `grep -r` / `grep -R` / `grep --recursive` | `rg` or `ast-grep` |
 | `sed -i` / `sed --in-place` | `ast-grep -U` or Edit tool |
 | `sed -e` for code transforms | `ast-grep` |
-| `find` / `ls` | `fd` / `lsd` |
+| `find` / `ls` | `fd` / `eza` |
 | `cat` for file reading | Read tool |
 | Text-based grep for code patterns | `ast-grep` |
 | `perl` / `perl -i` / `perl -pe` | `ast-grep -U` or `awk` |
@@ -204,7 +204,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 - Code search: `ast-grep -p 'function $NAME($ARGS) { $$$ }' -l js -C 3`
 - Code editing: `ast-grep -p 'old($ARGS)' -r 'new($ARGS)' -l js -C 2` then `-U`
 - File discovery: `fd -e py`
-- Directory listing: `lsd --tree --depth 3`
+- Directory listing: `eza --tree --level 3 --git-ignore`
 - Code metrics: `tokei src/` | JSON: `tokei --output json | jq '.Total.code'`
 - Verification: `difft --display inline original modified`
 </tools>
