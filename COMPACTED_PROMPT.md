@@ -100,7 +100,7 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | Verify | `jj st && jj diff` | Review changes |
 | Describe | `jj describe -m "<type>[scope]: <desc>"` | Set commit message (updates Git commit) |
 | Refine | `jj squash` / `jj split` | Amend or break apart |
-| Push | `jj git push --bookmark <name>` | Push to remote |
+| Publish | Ask target -> `jj git fetch` -> `jj rebase -d <target>@origin` -> `jj bookmark create <type>/<scope>` -> `jj git push` | Target Branch Workflow |
 
 **Bookmark Management:** `list` | `create <name> -r <rev>` | `move <name> --to <rev>` | `delete <name>` | `track <name>@<remote>`
 
