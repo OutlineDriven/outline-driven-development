@@ -7,7 +7,7 @@
 
 ## 필요 도구들 (Prerequisites)
 
-`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `git-branchless` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs`
+`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `git-branchless` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs` (**context7**, **sequentialthinking-tools**, **actor-critic-thinking**, **shannon-thinking**, **repomix**)
 
 ### cargo를 사용한 다양한 Rust 기반 CLI 도구 설치
 
