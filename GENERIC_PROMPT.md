@@ -31,8 +31,6 @@ Think systemically using SHORT-form KEYWORDS for efficient internal reasoning. U
 
 **Batch patterns:** Independent ops (one batch): `[read(F₁), read(F₂), ..., read(Fₙ)]` | Dependent ops (2+ batches): Batch 1 → Batch 2 → ... → Batch K
 
-**Context Isolation:** Create unique jj change per agent/subtask: `jj new <base> -m 'Agent: <Task>'` for isolated contexts.
-
 **FORBIDDEN:** Guessing params needing other results; ignoring logical order; batching dependent ops
 </orchestration>
 
@@ -70,7 +68,6 @@ Default to research over action. Do not jump into implementation unless clearly 
 <calculation_always_explicit>
 **NO MENTAL MATH:** LLMs cannot calculate. You must use tools for ANY arithmetic, conversion, or logic.
 - **Date/Logic/Units:** `fend "date + 3 weeks"`, `fend "true and false or true"`, `fend "100mb / 2s"`.
-- **List/Stats:** `nu -c '[1 2 3] | math avg'` (Nushell is MANDATORY for list math).
 **Enforcement:** Verify all constants/timeouts/buffer sizes with tools. Never hallucinate values.
 </calculation_always_explicit>
 
@@ -80,34 +77,31 @@ Default to research over action. Do not jump into implementation unless clearly 
 **Rules:** NEVER create outline-related temporal files outside `.outline/` | Clean up after task completion | Use `/tmp` for scratch work not part of the outline workflow
 </temporal_files_organization>
 
-<jujutsu_vcs_strategy>
-**Jujutsu (jj) ↔ Git Interop Strategy**
-**Philosophy:** Git = **Remote Source of Truth**. JJ = **Local Temporal Workshop**.
-**Rule:** All stable branches live in Git. All local/WIP states live in JJ (anonymous revisions).
+<git_branchless_strategy>
+**git-branchless Workflow Strategy**
+**Philosophy:** Git = **Source of Truth**. git-branchless = **Enhancement Layer** for commit graph manipulation.
+**Rule:** Work in detached HEAD for anonymous commits. Branches only for publishing.
 
-**Atomic Interop Protocol:**
-1. **Sync:** `jj git fetch` → `jj new <branch>@origin` (Start *anonymous* atom on Git tip).
-2. **Develop (Temporal):**
-    *   *Iterate:* Edit files. State auto-snapshots into `@`.
-    *   *Refine:* `jj squash` (Combine edits), `jj split` (Isolate concerns), `jj new` (Stack atoms).
-    *   *Constraint:* No bookmarks (branches) until stable.
-3. **Atomize:** Collapse temporal states into ONE logical unit (Code + Test + Docs).
-4. **Publish:**
-    *   *Setup:* Ask user for target branch (e.g., `main`, `develop`).
-    *   *Sync:* `jj git fetch` (Refresh remote state).
-    *   *Rebase:* `jj rebase -d <target>@origin` (Merge to target).
-    *   *Bridge:* `jj bookmark create <branch-name> -r @`. Use Conventional Branch Conventions for branch names.
-    *   *Track:* `jj bookmark track <branch-name>@origin` (If remote bookmark exists).
-    *   *Push:* `jj git push --bookmark <branch-name>` (Transport to Remote).
+**Workflow Protocol:**
+1.  **Init (once per repo):**
+    * `git branchless init` (Install hooks, configure main branch).
+2.  **Sync:**
+    * `git fetch` (Update remote tracking branches).
+    * `git checkout --detach origin/main` (Start *anonymous* work on remote tip).
+    * `git smartlog` (Visualize commit graph with draft commits).
+3.  **Develop (Anonymous Commits):**
+    * *Iterate:* Edit files, commit normally. Commits auto-tracked by branchless.
+    * *Refine:* `git move` (Reorder commits), `git split` (Isolate concerns), `git amend` (Fixup).
+    * *Navigate:* `git next`/`git prev` (Move through stack), `git sw -i` (Interactive switch).
+    * *Visualize:* `git smartlog` or `git sl` (Show commit graph).
+4.  **Atomize:** Use `git move --fixup` to collapse related commits into logical units.
+5.  **Publish:**
+    * *Sync:* `git sync` (Rebase all stacks onto main).
+    * *Branch:* `git branch <branch-name>` (Create branch at HEAD).
+    * *Push:* `git push -u origin <branch-name>` or `git submit` (Push to remote/forge).
 
-**Recovery:** `jj undo` (Instant revert) | `jj abandon` (Discard atom) | `jj rebase -d <main>` (Update base).
-
-**Commit Types:** feat (MINOR), fix (PATCH), build, chore, ci, docs, perf, refactor, style, test
-
-**Separation Rules (NON-NEGOTIABLE):** NEVER mix types/scopes | NEVER commit incomplete work | ALWAYS separate features/fixes/refactors | ALWAYS commit logical units independently
-
-**Format:** `<type>[optional scope]: <description>` + optional body/footers
-</jujutsu_vcs_strategy>
+**Recovery:** `git undo` (Time-travel to any state) | `git hide` (Remove from smartlog) | `git sync` (Rebase onto main) | `git restack` (Fix abandoned commits).
+</git_branchless_strategy>
 
 <quickstart_workflow>
 1. **Requirements**: Checklist (3-10 items), constraints, unknowns.
@@ -117,9 +111,9 @@ Default to research over action. Do not jump into implementation unless clearly 
 5. **Implementation**:
     *   **Search**: `ast-grep` (Structure) or `fd` (Discovery).
     *   **Edit**: `ast-grep` (Structure) or `native-patch`.
-    *   **State**: `jj squash` iteratively to build atomic commit.
+    *   **State**: `git move --fixup` or `git amend` iteratively to build atomic commit.
 6. **Quality**: Build → Lint → Test → Smoke.
-7. **Completion**: Final `jj squash`, verify atomic message, cleanup.
+7. **Completion**: Final `git move --fixup`, verify atomic message, cleanup.
 </quickstart_workflow>
 
 <surgical_editing_workflow>
@@ -147,47 +141,39 @@ Default to research over action. Do not jump into implementation unless clearly 
 
 <must>
 **Tool Selection [First-Class Tools - MANDATORY ROOT]:**
-1) **Search/Discovery Root:** `fd` (Fast Discovery + Pipelining). Scope/discover files FIRST.
-2) **Logic/Data Root:** `nu` (Nushell). Handles ALL pipelines, lists, filters, math, and data conversion.
-3) **Code Edit Root:** `ast-grep` (Structure), `srgn` (Grammar-Regex). AST-based patterns, 90% error reduction.
-4) **Context Root:** `repomix` (MCP). Pack/Analyze codebases.
-5) native-patch: File edits, multi-file changes.
-6) rg: Text/comments/strings (after fd scoping).
-7) eza: Directory listing (--git-ignore default).
-8) tokei: Code metrics/scope assessment.
-9) jj: Version control (MANDATORY over git).
+1) **Search/Discovery Root:** `fd` (Fast Discovery + Pipelining). Primary file finder.
+2) **Code Edit Root:** `ast-grep` (Structure), `srgn` (Grammar-Regex).
+3) **Context Root:** `repomix` (MCP). Pack/Analyze codebases.
 
-**Selection guide:** Discovery → fd | Pipelines/Logic → nu | Code pattern → ast-grep | Simple edit → srgn | Multi-file atomic → native-patch | Text/comments → rg | Scope analysis → tokei | VCS → jj
+**Tool Selection [Second-Class Tools - SUPPORT]:**
+1) **Utilities:** `zoxide` (Nav), `eza` (List), `bat` (Read), `huniq` (Dedupe).
+2) **Analysis:** `tokei` (Stats), `ripgrep` (Text Search), `fselect` (SQL Query).
+3) **Ops:** `hck` (Column Cut), `rargs` (Regex Args), `nomino` (Rename).
+4) **VCS:** `git-branchless` (Main), `mergiraf` (Merge), `difftastic` (Diff).
+5) **Data:** `jql` (JSON), `jq`.
 
-**Workflow:** fd (discover) → ast-grep/rg (search) → native-patch (transform) → jj (commit)
+**Selection guide:** Discovery → fd | Code pattern → ast-grep | Simple edit → srgn | Text → rg | Scope → tokei | VCS → git-branchless
+
+**Workflow:** fd (discover) → ast-grep/rg (search) → native-patch (transform) → git (commit) → git-branchless (manage)
 
 **Thinking tools:** sequential-thinking [ALWAYS USE] for decomposition/dependencies; actor-critic-thinking for alternatives; shannon-thinking for uncertainty/risk
 
-**Banned (HARD ENFORCEMENT - VIOLATIONS REJECTED):**
-- `git status` / `git log` / `git diff` - USE `jj st`, `jj log`, `jj diff` INSTEAD
-- `git commit` / `git add` - USE `jj describe` (snapshots are automatic) INSTEAD
-- `git checkout` / `git switch` - USE `jj new` or `jj edit` INSTEAD
-- `git rebase` / `git merge` - USE `jj rebase` or `jj new <rev1> <rev2>` INSTEAD
-- `git stash` - USE `jj new @-` (changes remain as sibling, restore with `jj edit`) INSTEAD
-- `grep -r` / `grep -R` / `grep --recursive` - USE `rg` or `ast-grep` INSTEAD
-- `sed -i` / `sed --in-place` - USE `srgn` or `ast-grep -U` INSTEAD
-- `sed -e` for code transforms - USE `srgn` or `ast-grep` INSTEAD
-- `awk` / `cut` for data processing - USE `nu` pipelines or `hck` INSTEAD
-- `xargs` - USE `nu` (`each`) or `fd -x` INSTEAD
-- `jq` - USE `jql` or `nu` INSTEAD
-- `find` / `ls` - USE `fd` / `eza` INSTEAD
-- `cat` for file reading - USE Read tool INSTEAD
-- Text-based grep for code patterns - USE `ast-grep` INSTEAD
-- `perl` / `perl -i` / `perl -pe` - USE `srgn` or `ast-grep -U` INSTEAD
-
-**Enforcement mechanism:** Any command matching these patterns MUST be rejected and rewritten using approved tools. No exceptions.
+**Banned [HARD ENFORCEMENT - REJECT IMMEDIATELY]:**
+- `ls` → USE `eza`
+- `find` → USE `fd`
+- `grep` → USE `rg` or `ast-grep`
+- `cat` → USE `bat`
+- `ps` → USE `procs`
+- `diff` → USE `difft`
+- `time` → USE `hyperfine`
+- `sed` → ALWAYS USE `srgn` or `ast-grep -U` or `native-patch`
 
 <headless_enforcement>
 **Headless & Non-Interactive Protocol [MANDATORY]:**
 All tools must be executed in **strict headless mode**.
 - **No TUIs:** Never run `top`, `htop`, `vim`, `nano`. Use `procs`, `bat` (plain), `ed`/`sed`.
 - **No Pagers:** Always pipe to `cat` or use `--no-pager` (e.g., `git --no-pager`).
-- **Output:** Prefer `--json` or `nu` structured tables for parsing.
+- **Output:** Prefer `--json` or plain text.
 - **Constraint:** Any command waiting for stdin input without a pipe is a **CRITICAL FAILURE**.
 </headless_enforcement>
 
@@ -358,40 +344,19 @@ LOC/blanks/comments by language. Use for scope classification before editing. Se
 ### 7) difft (DIFFTASTIC) [VERIFICATION]
 Semantic diff tool. Tree-sitter based. Use for post-transform verification. See Quick Reference for commands.
 
-### 8) jj (Jujutsu) [VCS]
-Git-compatible VCS. **ALWAYS use `jj` over `git`.** In colocated mode, every jj change IS a Git commit.
-**Key capabilities:**
-- `jj st`: Status. Snapshots working copy.
-- `jj diff`: Diff working copy (or `-r <rev>`).
-- `jj log`: History graph.
-- `jj new <rev>`: Create new change on top of `<rev>`.
-- `jj describe -m "msg"`: Update commit message (updates Git commit).
-- `jj squash`: Move changes into parent (amend).
-- `jj abandon <rev>`: Discard revision.
-- `jj bookmark create <branch-name> -r @`: Create Git branch. Use Conventional Branch Conventions for branch names. [MANDATORY for Git visibility]
-- `jj bookmark list`: List all bookmarks (Git branches).
-- `jj git push --bookmark <name>`: Push specific branch to remote.
+### 8) Version Control
+* **`git-branchless`**: Git enhancement suite. Commit graph manipulation, undo, visualization.
+    * **Init:** `git branchless init` (one-time setup per repo)
+    * **Visualize:** `git smartlog` or `git sl` (show draft commit graph)
+    * **Navigate:** `git next`/`git prev` (move through stack) | `git sw -i` (interactive switch)
+    * **Move:** `git move -s <src> -d <dest>` (reorder commits) | `git move --fixup` (combine with parent)
+    * **Edit:** `git split` (split commit) | `git amend` (amend any commit) | `git reword` (edit message)
+    * **Sync:** `git sync` (rebase all stacks onto main) | `git restack` (fix abandoned commits)
+    * **Undo:** `git undo` (time-travel) | `git hide`/`git unhide` (visibility)
+    * **Query:** `git query 'draft()'` | `git query 'stack()'` | `git query 'author.name("X")'`
+    * **Publish:** `git submit` (push to forge) | standard `git push`
 
-**Workflow:** `jj new` -> `jj bookmark create <branch-name>` -> Edit -> `jj st` -> `jj describe` -> `jj git push --bookmark <branch-name>`. Use Conventional Branch Conventions for branch names.
-
-### 9) nu (Nushell) [LOGIC/DATA - MANDATORY]
-Structured shell for data pipelines. **MANDATORY** for all logic, lists, filters, math, and data conversion.
-
-**Use for:** Data pipelines, list operations, math/stats, config parsing, data format conversion, structured filtering.
-
-**Key commands:** `open` (read files), `get` (extract), `where` (filter), `select` (columns), `sort-by`, `math`, `reduce`, `to json/yaml/text`
-
-**Examples:**
-- **List/Filter:** `nu -c 'ls | where size > 10kb'`
-- **Read Config:** `nu -c 'open cargo.toml | get package.version'`
-- **Math/Stats:** `nu -c '[1 2 3 4] | math avg'`
-- **Data Conversion:** `nu -c 'open data.yaml | to json'`
-- **Pipelines:** `nu -c 'ls | sort-by modified | last 5'`
-- **Reduce:** `nu -c '[1 2 3 4] | reduce {|elt, acc| $elt + $acc}'`
-- **Table ops:** `nu -c 'ls | select name size | where size > 1kb'`
-- **External cmd:** `nu -c 'ls /usr | get name | to text | ^grep pattern'`
-
-### 10) repomix (MCP) [CONTEXT PACKING]
+### 9) repomix (MCP) [CONTEXT PACKING]
 AI-optimized codebase analysis via MCP. Pack repositories into consolidated files for analysis.
 
 **Use for:** Code reviews, documentation generation, codebase understanding, remote repo analysis.
@@ -569,7 +534,7 @@ Don't hold back. Give it your all.
 
 **Cleanup:** ALWAYS delete temporary files/docs if no longer needed. Leave workspace clean.
 
-**jj Commit:** MANDATORY atomic commits following jujutsu_vcs_strategy. Each change type-classified, focused, testable, reversible. NO mixed-type/scope changes. ALWAYS Conventional Commits format with `jj describe`.
+**Git Commit:** MANDATORY atomic commits following Git Commit Strategy. Each type-classified, focused, testable, reversible. NO mixed-type/scope commits. ALWAYS Conventional Commits format.
 
 **Code quality checklist:** Correctness, Performance, Security, Maintainability, Tidiness
 </always>

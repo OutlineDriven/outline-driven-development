@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `nu` | `jj` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs`
+`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `git-branchless` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs`
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 
@@ -21,7 +21,7 @@
 
 ```bash
 cargo install --locked cargo-binstall
-cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend nu sccache
+cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend nu sccache
 ```
 
 #### Linux/macOS with cargo
@@ -30,7 +30,7 @@ cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff
 
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
-cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
+cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
 cargo install -q --locked nu sccache
 
 ```
@@ -41,7 +41,7 @@ cargo install -q --locked nu sccache
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
+cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
 cargo install -q --locked nu sccache
 
 ```
