@@ -21,6 +21,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 **Windows**
 <https://win.rustup.rs/x86_64>
 
+#### Install with cargo-binstall
+
+**Install**
+
+```bash
+cargo install --locked cargo-binstall
+cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend nu sccache
+```
+
 #### For Linux/macOS
 
 **설치**

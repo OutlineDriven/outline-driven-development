@@ -135,6 +135,7 @@ Default to research over action. Do not jump into implementation unless clearly 
 
 **3. Paste (Atomic Transformation)**
 - **Rewrite**: `ast-grep run -p '$O.old($A)' -r '$O.new({ val: $A })' -U`
+- **Regex**: `srgn --python 'pattern' 'replacement'` (grammar-aware)
 - **Manual**: `native-patch` (hunk-based) for non-pattern multi-file edits.
 
 **4. Verify (Semantic)**
@@ -145,19 +146,20 @@ Default to research over action. Do not jump into implementation unless clearly 
 ## PRIMARY DIRECTIVES
 
 <must>
-**Tool Selection [HIGHEST TIER - use actively]:**
-1) fd + ast-grep [DUAL TOP TIER]:
-   - fd: Scope/discover files FIRST. Use before searches/edits.
-   - ast-grep (AG): AST-based patterns, 90% error reduction, 10x accurate.
-2) native-patch: File edits, multi-file changes.
-3) rg: Text/comments/strings (after fd scoping).
-4) eza: Directory listing (--git-ignore default).
-5) tokei: Code metrics/scope assessment.
-6) jj: Version control (MANDATORY over git).
+**Tool Selection [First-Class Tools - MANDATORY ROOT]:**
+1) **Search/Discovery Root:** `fd` (Fast Discovery + Pipelining). Scope/discover files FIRST.
+2) **Logic/Data Root:** `nu` (Nushell). Handles ALL pipelines, lists, filters, math, and data conversion.
+3) **Code Edit Root:** `ast-grep` (Structure), `srgn` (Grammar-Regex). AST-based patterns, 90% error reduction.
+4) **Context Root:** `repomix` (MCP). Pack/Analyze codebases.
+5) native-patch: File edits, multi-file changes.
+6) rg: Text/comments/strings (after fd scoping).
+7) eza: Directory listing (--git-ignore default).
+8) tokei: Code metrics/scope assessment.
+9) jj: Version control (MANDATORY over git).
 
-**Selection guide:** Scope/discover → fd | Code pattern → ast-grep | Simple line edit → AG/native-patch | Multi-file atomic → native-patch | Non-code → native-patch | Text/comments → rg | Scope analysis → tokei
+**Selection guide:** Discovery → fd | Pipelines/Logic → nu | Code pattern → ast-grep | Simple edit → srgn | Multi-file atomic → native-patch | Text/comments → rg | Scope analysis → tokei | VCS → jj
 
-**Workflow:** fd (scope first) → ast-grep/rg (search) → native-patch (transform) → jj (commit)
+**Workflow:** fd (discover) → ast-grep/rg (search) → native-patch (transform) → jj (commit)
 
 **Thinking tools:** sequential-thinking [ALWAYS USE] for decomposition/dependencies; actor-critic-thinking for alternatives; shannon-thinking for uncertainty/risk
 
@@ -168,12 +170,15 @@ Default to research over action. Do not jump into implementation unless clearly 
 - `git rebase` / `git merge` - USE `jj rebase` or `jj new <rev1> <rev2>` INSTEAD
 - `git stash` - USE `jj new @-` (changes remain as sibling, restore with `jj edit`) INSTEAD
 - `grep -r` / `grep -R` / `grep --recursive` - USE `rg` or `ast-grep` INSTEAD
-- `sed -i` / `sed --in-place` - USE `ast-grep -U` or Edit tool INSTEAD
-- `sed -e` for code transforms - USE `ast-grep` INSTEAD
+- `sed -i` / `sed --in-place` - USE `srgn` or `ast-grep -U` INSTEAD
+- `sed -e` for code transforms - USE `srgn` or `ast-grep` INSTEAD
+- `awk` / `cut` for data processing - USE `nu` pipelines or `hck` INSTEAD
+- `xargs` - USE `nu` (`each`) or `fd -x` INSTEAD
+- `jq` - USE `jql` or `nu` INSTEAD
 - `find` / `ls` - USE `fd` / `eza` INSTEAD
 - `cat` for file reading - USE Read tool INSTEAD
 - Text-based grep for code patterns - USE `ast-grep` INSTEAD
-- `perl` / `perl -i` / `perl -pe` - USE `ast-grep -U` or `awk` INSTEAD
+- `perl` / `perl -i` / `perl -pe` - USE `srgn` or `ast-grep -U` INSTEAD
 
 **Enforcement mechanism:** Any command matching these patterns MUST be rejected and rewritten using approved tools. No exceptions.
 
