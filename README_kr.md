@@ -27,8 +27,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
+cargo install -q ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs bfs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
+cargo install -q --locked nu sccache
 
-cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
 ```
 
 #### For Windows
@@ -37,7 +38,19 @@ cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tre
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli
+cargo install -q ast-grep ripgrep fd-find eza tokei bat git-delta just raff-cli tree-sitter-cli difftastic jj jj-cli lazyjj zoxide procs bfs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
+cargo install -q --locked nu sccache
+
+```
+
+#### Install Landrun (CLI Sandbox)
+
+Install go if not installed: <https://go.dev/dl/>
+
+##### Install
+
+```bash
+go install github.com/zouuup/landrun/cmd/landrun@latest
 ```
 
 ## 설치
