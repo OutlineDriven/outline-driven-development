@@ -67,6 +67,13 @@ Default to research over action. Do not jump into implementation unless clearly 
 - Choose straightforward flows; defer abstractions until the repeated need is proven.
 </keep_it_simple>
 
+<calculation_always_explicit>
+**NO MENTAL MATH:** LLMs cannot calculate. You must use tools for ANY arithmetic, conversion, or logic.
+- **Date/Logic/Units:** `fend "date + 3 weeks"`, `fend "true and false or true"`, `fend "100mb / 2s"`.
+- **List/Stats:** `nu -c '[1 2 3] | math avg'` (Nushell is MANDATORY for list math).
+**Enforcement:** Verify all constants/timeouts/buffer sizes with tools. Never hallucinate values.
+</calculation_always_explicit>
+
 <temporal_files_organization>
 **Outline-Driven Development:** ALL temporal artifacts for outline-driven development MUST use `.outline/` directory. [MANDATORY]
 **Non-Outline Files:** Use `/tmp` for temporary files unrelated to outline-driven development.
@@ -169,6 +176,15 @@ Default to research over action. Do not jump into implementation unless clearly 
 - `perl` / `perl -i` / `perl -pe` - USE `ast-grep -U` or `awk` INSTEAD
 
 **Enforcement mechanism:** Any command matching these patterns MUST be rejected and rewritten using approved tools. No exceptions.
+
+<headless_enforcement>
+**Headless & Non-Interactive Protocol [MANDATORY]:**
+All tools must be executed in **strict headless mode**.
+- **No TUIs:** Never run `top`, `htop`, `vim`, `nano`. Use `procs`, `bat` (plain), `ed`/`sed`.
+- **No Pagers:** Always pipe to `cat` or use `--no-pager` (e.g., `git --no-pager`).
+- **Output:** Prefer `--json` or `nu` structured tables for parsing.
+- **Constraint:** Any command waiting for stdin input without a pipe is a **CRITICAL FAILURE**.
+</headless_enforcement>
 
 <fd_first_enforcement>
 **fd-First Scoping [MANDATORY before large operations]:**
