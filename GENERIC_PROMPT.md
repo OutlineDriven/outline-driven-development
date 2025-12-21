@@ -88,19 +88,19 @@ Default to research over action. Do not jump into implementation unless clearly 
 2.  **Sync:**
     * `git fetch` (Update remote tracking branches).
     * `git checkout --detach origin/main` (Start *anonymous* work on remote tip).
-    * `git smartlog` (Visualize commit graph with draft commits).
+    * `git branchless smartlog` (Visualize commit graph with draft commits).
 3.  **Develop (Anonymous Commits):**
     * *Iterate:* Edit files, commit normally. Commits auto-tracked by branchless.
-    * *Refine:* `git move` (Reorder commits), `git split` (Isolate concerns), `git amend` (Fixup).
-    * *Navigate:* `git next`/`git prev` (Move through stack), `git sw -i` (Interactive switch).
-    * *Visualize:* `git smartlog` or `git sl` (Show commit graph).
+    * *Refine:* `git branchless move` (Reorder commits), `git branchless split` (Isolate concerns), `git branchless amend` (Fixup).
+    * *Navigate:* `git branchless next`/`git branchless prev` (Move through stack), `git branchless switch -i` (Interactive switch).
+    * *Visualize:* `git branchless smartlog` or `git branchless sl` (Show commit graph).
 4.  **Atomize:** Use `git move --fixup` to collapse related commits into logical units.
 5.  **Publish:**
-    * *Sync:* `git sync` (Rebase all stacks onto main).
+    * *Sync:* `git branchless sync` (Rebase all stacks onto main).
     * *Branch:* `git branch <branch-name>` (Create branch at HEAD).
-    * *Push:* `git push -u origin <branch-name>` or `git submit` (Push to remote/forge).
+    * *Push:* `git push -u origin <branch-name>` or `git branchless submit` (Push to remote/forge).
 
-**Recovery:** `git undo` (Time-travel to any state) | `git hide` (Remove from smartlog) | `git sync` (Rebase onto main) | `git restack` (Fix abandoned commits).
+**Recovery:** `git branchless undo` (Time-travel to any state) | `git branchless hide` (Remove from smartlog) | `git branchless sync` (Rebase onto main) | `git branchless restack` (Fix abandoned commits).
 </git_branchless_strategy>
 
 <quickstart_workflow>
@@ -111,7 +111,7 @@ Default to research over action. Do not jump into implementation unless clearly 
 5. **Implementation**:
     *   **Search**: `ast-grep` (Structure) or `fd` (Discovery).
     *   **Edit**: `ast-grep` (Structure) or `native-patch`.
-    *   **State**: `git move --fixup` or `git amend` iteratively to build atomic commit.
+    *   **State**: `git move --fixup` or `git branchless amend` iteratively to build atomic commit.
 6. **Quality**: Build → Lint → Test → Smoke.
 7. **Completion**: Final `git move --fixup`, verify atomic message, cleanup.
 </quickstart_workflow>
@@ -347,14 +347,14 @@ Semantic diff tool. Tree-sitter based. Use for post-transform verification. See 
 ### 8) Version Control
 * **`git-branchless`**: Git enhancement suite. Commit graph manipulation, undo, visualization.
     * **Init:** `git branchless init` (one-time setup per repo)
-    * **Visualize:** `git smartlog` or `git sl` (show draft commit graph)
-    * **Navigate:** `git next`/`git prev` (move through stack) | `git sw -i` (interactive switch)
+    * **Visualize:** `git branchless smartlog` or `git branchless sl` (show draft commit graph)
+    * **Navigate:** `git branchless next`/`git branchless prev` (move through stack) | `git branchless switch -i` (interactive switch)
     * **Move:** `git move -s <src> -d <dest>` (reorder commits) | `git move --fixup` (combine with parent)
-    * **Edit:** `git split` (split commit) | `git amend` (amend any commit) | `git reword` (edit message)
-    * **Sync:** `git sync` (rebase all stacks onto main) | `git restack` (fix abandoned commits)
-    * **Undo:** `git undo` (time-travel) | `git hide`/`git unhide` (visibility)
+    * **Edit:** `git branchless split` (split commit) | `git branchless amend` (amend any commit) | `git branchless reword` (edit message)
+    * **Sync:** `git branchless sync` (rebase all stacks onto main) | `git branchless restack` (fix abandoned commits)
+    * **Undo:** `git branchless undo` (time-travel) | `git branchless hide`/`git branchless unhide` (visibility)
     * **Query:** `git query 'draft()'` | `git query 'stack()'` | `git query 'author.name("X")'`
-    * **Publish:** `git submit` (push to forge) | standard `git push`
+    * **Publish:** `git branchless submit` (push to forge) | standard `git push`
 
 ### 9) repomix (MCP) [CONTEXT PACKING]
 AI-optimized codebase analysis via MCP. Pack repositories into consolidated files for analysis.

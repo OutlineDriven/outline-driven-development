@@ -85,16 +85,16 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 | Init | `git branchless init` | One-time setup per repo |
 | Sync | `git fetch` | Update remote tracking branches |
 | Start | `git checkout --detach origin/main` | Start anonymous work on remote tip |
-| Visualize | `git smartlog` or `git sl` | Show commit graph with draft commits |
+| Visualize | `git branchless smartlog` or `git branchless sl` | Show commit graph with draft commits |
 | Iterate | `git commit` | Normal commits, auto-tracked by branchless |
-| Refine | `git move` / `git split` / `git amend` | Reorder, isolate, fixup |
-| Navigate | `git next` / `git prev` / `git sw -i` | Move through stack |
+| Refine | `git branchless move` / `git branchless split` / `git branchless amend` | Reorder, isolate, fixup |
+| Navigate | `git branchless next` / `git branchless prev` / `git branchless switch -i` | Move through stack |
 | Atomize | `git move --fixup` | Collapse related commits into logical units |
-| Sync | `git sync` | Rebase all stacks onto main |
+| Sync | `git branchless sync` | Rebase all stacks onto main |
 | Branch | `git branch <branch-name>` | Create branch at HEAD |
-| Push | `git push -u origin <branch-name>` or `git submit` | Push to remote/forge |
+| Push | `git push -u origin <branch-name>` or `git branchless submit` | Push to remote/forge |
 
-**Recovery:** `git undo` (time-travel) | `git hide` (remove from smartlog) | `git sync` (rebase onto main) | `git restack` (fix abandoned commits)
+**Recovery:** `git branchless undo` (time-travel) | `git branchless hide` (remove from smartlog) | `git branchless sync` (rebase onto main) | `git branchless restack` (fix abandoned commits)
 
 **Query:** `git query 'draft()'` | `git query 'stack()'` | `git query 'author.name("X")'`
 
