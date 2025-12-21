@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-`ast-grep` | `ripgrep` | `fd` | `eza` | `tokei` | `bat` | `jj` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `nu` | `jj` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs`
 
 ### Install Various Rust-based CLI Tools with highest native optimizations through cargo
 

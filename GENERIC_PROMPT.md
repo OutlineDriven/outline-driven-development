@@ -307,15 +307,30 @@ AST-based search/transform. 90% error reduction, 10x accurate. Language-aware (J
 - **Inside:** `ast-grep scan --inline-rules 'rule: { pattern: "return $A", inside: { kind: "function", pattern: { regex: "^test" } } }'`
 - **Strict:** `ast-grep scan --inline-rules 'rule: { pattern: "$A + $B", constraints: { A: { kind: "string" } } }'`
 
-### 2) native-patch [FILE EDITING]
+### 2) srgn [GRAMMAR-AWARE REGEX]
+Surgical regex/grammar replacement. Understands source code syntax for precise manipulation.
+
+**Use for:** Language-aware regex replacement, comment manipulation, simple pattern edits.
+
+**Key flags:** `--python`, `--typescript`, `--rust`, `--go`, `--glob`, `--dry-run`, `-d` (delete), `-u` (upper), `-l` (lower)
+
+**Examples:**
+- **Basic replace:** `echo 'Hello World' | srgn 'World' -- 'Universe'`
+- **Delete pattern:** `echo 'Hello!' | srgn -d '!'`
+- **Python comments:** `cat file.py | srgn --python 'comments' 'TODO' -- 'DONE'`
+- **TypeScript scoped:** `cat file.ts | srgn --typescript 'comments' 'TODO(?=:)' -- 'TODO(@assignee)'`
+- **Glob files:** `srgn --glob '*.py' 'old_fn' -- 'new_fn'`
+- **Dry-run preview:** `srgn --dry-run --glob '*.rs' 'pattern' -- 'replacement'`
+
+### 3) native-patch [FILE EDITING]
 Workspace editing tools. Excellent for straightforward edits, multi-file changes, simple line mods.
 **When to use:** Simple line changes, add/remove sections, multi-file coordinated edits, atomic changes, non-code files.
 **Best practices:** Preview all edits, ensure well-scoped, verify file paths.
 
-### 3) eza [MANDATORY]
+### 4) eza [MANDATORY]
 Modern ls replacement. Color-coded file types/permissions, git integration, tree view, icons. **NEVER use ls—always eza --git-ignore.**
 
-### 4) fd [SCOPE FIRST - MANDATORY]
+### 5) fd [SCOPE FIRST - MANDATORY]
 Modern find replacement - use FIRST before large operations to scope target files.
 *   **Find files:** `fd -e py -E venv`
 *   **Find in directory:** `fd . src/ -e ts`
@@ -337,13 +352,13 @@ Modern find replacement - use FIRST before large operations to scope target file
 
 **NEVER use find—always fd.**
 
-### 5) tokei [CODE METRICS]
+### 6) tokei [CODE METRICS]
 LOC/blanks/comments by language. Use for scope classification before editing. See Quick Reference for commands.
 
-### 6) difft (DIFFTASTIC) [VERIFICATION]
+### 7) difft (DIFFTASTIC) [VERIFICATION]
 Semantic diff tool. Tree-sitter based. Use for post-transform verification. See Quick Reference for commands.
 
-### 7) jj (Jujutsu) [VCS]
+### 8) jj (Jujutsu) [VCS]
 Git-compatible VCS. **ALWAYS use `jj` over `git`.** In colocated mode, every jj change IS a Git commit.
 **Key capabilities:**
 - `jj st`: Status. Snapshots working copy.
@@ -358,6 +373,36 @@ Git-compatible VCS. **ALWAYS use `jj` over `git`.** In colocated mode, every jj 
 - `jj git push --bookmark <name>`: Push specific branch to remote.
 
 **Workflow:** `jj new` -> `jj bookmark create <branch-name>` -> Edit -> `jj st` -> `jj describe` -> `jj git push --bookmark <branch-name>`. Use Conventional Branch Conventions for branch names.
+
+### 9) nu (Nushell) [LOGIC/DATA - MANDATORY]
+Structured shell for data pipelines. **MANDATORY** for all logic, lists, filters, math, and data conversion.
+
+**Use for:** Data pipelines, list operations, math/stats, config parsing, data format conversion, structured filtering.
+
+**Key commands:** `open` (read files), `get` (extract), `where` (filter), `select` (columns), `sort-by`, `math`, `reduce`, `to json/yaml/text`
+
+**Examples:**
+- **List/Filter:** `nu -c 'ls | where size > 10kb'`
+- **Read Config:** `nu -c 'open cargo.toml | get package.version'`
+- **Math/Stats:** `nu -c '[1 2 3 4] | math avg'`
+- **Data Conversion:** `nu -c 'open data.yaml | to json'`
+- **Pipelines:** `nu -c 'ls | sort-by modified | last 5'`
+- **Reduce:** `nu -c '[1 2 3 4] | reduce {|elt, acc| $elt + $acc}'`
+- **Table ops:** `nu -c 'ls | select name size | where size > 1kb'`
+- **External cmd:** `nu -c 'ls /usr | get name | to text | ^grep pattern'`
+
+### 10) repomix (MCP) [CONTEXT PACKING]
+AI-optimized codebase analysis via MCP. Pack repositories into consolidated files for analysis.
+
+**Use for:** Code reviews, documentation generation, codebase understanding, remote repo analysis.
+
+**MCP Tools:**
+- **Pack local:** `pack_codebase(directory="src", compress=true)`
+- **Pack remote:** `pack_remote_repository(remote="https://github.com/user/repo")`
+- **Search packed:** `grep_repomix_output(outputId="id", pattern="pattern")`
+- **Read packed:** `read_repomix_output(outputId="id", startLine=1, endLine=100)`
+
+**Options:** `compress` (Tree-sitter compression, ~70% token reduction), `includePatterns`, `ignorePatterns`, `style` (xml/markdown/json/plain)
 
 ### Quick Reference
 **Code search:** `ast-grep -p 'function $NAME($ARGS) { $$$ }' -l js -C 3` (HIGHLY PREFERRED) | Fallback: `rg 'TODO' -A 5`

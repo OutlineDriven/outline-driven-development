@@ -7,7 +7,7 @@
 
 ## 필요 도구들 (Prerequisites)
 
-`ast-grep` | `ripgrep` | `fd` | `eza` | `tokei` | `bat` | `jj` | MCPs
+`ast-grep` | `ripgrep` | `fd` | `eza` | `lsd` | `tokei` | `bat` | `just` | `nu` | `jj` | `difftastic` | `procs` | `fend` | `hck` | `lemmeknow` | `hyperfine` | +`other tools` | `MCPs`
 
 ### cargo를 사용한 다양한 Rust 기반 CLI 도구 설치
 
