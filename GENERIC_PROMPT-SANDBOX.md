@@ -73,7 +73,12 @@ Default to research over action. Do not jump into implementation unless clearly 
 **Execution Protocol:** NEVER run raw `python -c` or `sh -c` for generated logic.
 **Mandatory Tool:** Use `landrun` for ALL ad-hoc script execution (Python, Node, Bash).
 - **Isolation:** `landrun` ensures filesystem scoping (repo-only) and resource limits.
-- **Syntax:** `landrun --lang python -- "print('hello')"`
+- **Syntax Examples:**
+  - **Python:** `landrun --add-exec --ldd python3 -c "print('hello')"`
+  - **Node.js:** `landrun --add-exec --ldd node -e "console.log('hello')"`
+  - **Bash:** `landrun --add-exec --ldd bash -c "echo 'hello'"`
+  - **With explicit paths:** `landrun --rox /usr/bin/python3,/usr/lib,/lib python3 -c "print('hello')"`
+- **Options:** `--add-exec` (auto-add executable), `--ldd` (auto-detect libs), `--ro/--rox/--rw/--rwx` (path permissions), `--env KEY=VALUE` (env vars)
 - **Prohibited:** `exec()`, `eval()`, un-sandboxed `subprocess`.
 - **Usage:** Configuration generation, complex logic verification, data processing, rapid prototyping.
 </sandboxed_scripts>
@@ -331,7 +336,7 @@ Always retrieve framework/library docs using: ref-tools, context7, webfetch. Use
 * **`nu`**: Lists/Stats.
 
 ### 8) Sandbox
-* **`landrun`**: Isolated execution environment. `landrun --lang python -- "print('hello')"`.
+* **`landrun`**: Isolated execution environment. Examples: `landrun --add-exec --ldd python3 -c "print('hello')"`, `landrun --add-exec --ldd node -e "console.log('hello')"`, `landrun --add-exec --ldd bash -c "echo 'hello'"`.
 
 ### 9) Context Packing (Repomix) [MCP]
 * **`pack_codebase`**: Consolidate local code. `pack_codebase(directory="src")`.
