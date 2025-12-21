@@ -513,6 +513,7 @@ Don't hold back. Give it your all.
 - NEVER `ls` - use `eza` instead
 - NEVER `cat` for reading - use Read tool instead
 - NEVER text-based search for code patterns - use `ast-grep` instead
+- NEVER `perl` / `perl -i` / `perl -pe` - use `ast-grep -U` or `awk` instead
 
 **Violation consequences:** Commands using banned tools will be REJECTED. Rewrite using approved alternatives.
 
