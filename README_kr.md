@@ -27,7 +27,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ```bash
 cargo install --locked cargo-binstall
-cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend nu sccache
+cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend sccache
 ```
 
 #### For Linux/macOS
@@ -37,8 +37,6 @@ cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
 cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs bfs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
-cargo install -q --locked nu sccache
-
 ```
 
 #### For Windows
@@ -48,8 +46,6 @@ cargo install -q --locked nu sccache
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
 cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs bfs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
-cargo install -q --locked nu sccache
-
 ```
 
 #### Install Landrun (CLI Sandbox)
