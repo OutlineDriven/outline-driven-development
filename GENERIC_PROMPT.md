@@ -94,7 +94,7 @@ Default to research over action. Do not jump into implementation unless clearly 
     * *Refine:* `git branchless move` (Reorder commits), `git branchless split` (Isolate concerns), `git branchless amend` (Fixup).
     * *Navigate:* `git branchless next`/`git branchless prev` (Move through stack), `git branchless switch -i` (Interactive switch).
     * *Visualize:* `git branchless smartlog` or `git branchless sl` (Show commit graph).
-4.  **Atomize:** Use `git move --fixup` to collapse related commits into logical units.
+4.  **Atomize:** Use `git branchless move --fixup` to collapse related commits into logical units.
 5.  **Publish:**
     * *Sync:* `git branchless sync` (Rebase all stacks onto main).
     * *Branch:* `git branch <branch-name>` (Create branch at HEAD).
@@ -111,9 +111,9 @@ Default to research over action. Do not jump into implementation unless clearly 
 5. **Implementation**:
     *   **Search**: `ast-grep` (Structure) or `fd` (Discovery).
     *   **Edit**: `ast-grep` (Structure) or `native-patch`.
-    *   **State**: `git move --fixup` or `git branchless amend` iteratively to build atomic commit.
+    *   **State**: `git branchless move --fixup` or `git branchless amend` iteratively to build atomic commit.
 6. **Quality**: Build → Lint → Test → Smoke.
-7. **Completion**: Final `git move --fixup`, verify atomic message, cleanup.
+7. **Completion**: Final `git branchless move --fixup`, verify atomic message, cleanup.
 </quickstart_workflow>
 
 <surgical_editing_workflow>
@@ -125,7 +125,7 @@ Default to research over action. Do not jump into implementation unless clearly 
 - **Scope**: `ast-grep scan --inline-rules 'rule: { pattern: "return $A", inside: { kind: "function", regex: "^handler" } }'`
 
 **2. Copy (Extraction)**
-- **Context**: `ast-grep run -p '$PAT' -C 3`
+- **Context**: `ast-grep run -p '$PAT' -C 3` or `bat --line-range 10:20`
 
 **3. Paste (Atomic Transformation)**
 - **Rewrite**: `ast-grep run -p '$O.old($A)' -r '$O.new({ val: $A })' -U`
@@ -180,9 +180,10 @@ All tools must be executed in **strict headless mode**.
 <fd_first_enforcement>
 **fd-First Scoping [MANDATORY before large operations]:**
 Before executing ast-grep scans, rg searches, or multi-file edits:
-1. **Scope with fd:** `fd -e <ext> [pattern]` to understand target file set
-2. **Validate scope:** Review file count—if >50 files, narrow with `-E`, `--max-depth`, or patterns
-3. **Then use ast-grep/rg:** Run on the identified scope/directories
+1. **Discovery:** Use `fd -e <ext> [pattern]` to discover relevant files.
+2. **Scoping:** Use `fd -E <exclude>` to filter noise (venv, node_modules, target).
+3. **Validate:** Review file count—if >50 files, narrow with patterns.
+4. **Execute:** Run ast-grep/rg on the identified scope, or pipe via `fd -x`/`fd -X`.
 
 **Enforcement triggers:**
 - Codebase-wide refactoring → fd scope check REQUIRED
@@ -323,13 +324,17 @@ Modern find replacement - use FIRST before large operations to scope target file
 *   **Glob pattern:** `fd -g '*.test.ts'`
 *   **Count scope:** `fd -e js | wc -l`
 *   **Limit depth:** `fd -e rs --max-depth 3`
+*   **Hidden files:** `fd -H pattern`
 
 **Surgical patterns:**
 *   **Execute per file:** `fd -e rs -x rustfmt {}`
 *   **Batch execute:** `fd -e py -X black`
+*   **Parallel execute:** `fd -j 4 -e rs -x cargo fmt`
 *   **With awk extraction:** `fd -e log -x awk '/ERROR/ {print FILENAME": "$0}' {}`
 *   **Recent files:** `fd -e ts --changed-within 1d`
 *   **Size filter:** `fd -e json -S +1k` (files >1KB)
+
+**Placeholders:** `{}` (full path), `{/}` (basename), `{//}` (parent dir), `{.}` (path no ext), `{/.}` (basename no ext)
 
 **fd + awk patterns:**
 *   **Extract from matched files:** `fd -e csv -x awk -F',' '{print $1, $3}' {}`
@@ -349,11 +354,11 @@ Semantic diff tool. Tree-sitter based. Use for post-transform verification. See 
     * **Init:** `git branchless init` (one-time setup per repo)
     * **Visualize:** `git branchless smartlog` or `git branchless sl` (show draft commit graph)
     * **Navigate:** `git branchless next`/`git branchless prev` (move through stack) | `git branchless switch -i` (interactive switch)
-    * **Move:** `git move -s <src> -d <dest>` (reorder commits) | `git move --fixup` (combine with parent)
+    * **Move:** `git branchless move -s <src> -d <dest>` (reorder commits) | `git branchless move --fixup` (combine with parent)
     * **Edit:** `git branchless split` (split commit) | `git branchless amend` (amend any commit) | `git branchless reword` (edit message)
     * **Sync:** `git branchless sync` (rebase all stacks onto main) | `git branchless restack` (fix abandoned commits)
     * **Undo:** `git branchless undo` (time-travel) | `git branchless hide`/`git branchless unhide` (visibility)
-    * **Query:** `git query 'draft()'` | `git query 'stack()'` | `git query 'author.name("X")'`
+    * **Query:** `git branchless query 'draft()'` | `git branchless query 'stack()'` | `git branchless query 'author.name("X")'`
     * **Publish:** `git branchless submit` (push to forge) | standard `git push`
 
 ### 9) repomix (MCP) [CONTEXT PACKING]
