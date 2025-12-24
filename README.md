@@ -20,8 +20,11 @@
 **Install**
 
 ```bash
+export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
+
 cargo install --locked cargo-binstall
-cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden grex mergiraf jql hck huniq lemmeknow hyperfine rargs eva fend sccache
+cargo install ast-grep ripgrep fd-find eza lsd tokei
+cargo binstall -y bat git-delta just raff-cli difftastic git-branchless zoxide procs bfs fselect tealdeer srgn nomino shellharden grex mergiraf jaq jql hck huniq lemmeknow hyperfine rargs eva fend rip2 sccache
 ```
 
 #### Linux/macOS with cargo
@@ -30,8 +33,7 @@ cargo binstall -y ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff
 
 ```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols"
-
-cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fendcargo install -q --locked sccache
+cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs bfs fselect tealdeer srgn nomino shellharden grex mergiraf jaq jql hck huniq lemmeknow hyperfine rargs eva fend
 ```
 
 #### Windows with cargo
@@ -40,7 +42,7 @@ cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-
 ```powershell
 $env:RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C codegen-units=1 -C strip=symbols -C link-arg=/LTCG -C link-arg=/OPT:REF"
 
-cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs fselect tealdeer srgn nomino shellharden treereduce grex mergiraf jql rq hck huniq lemmeknow hyperfine rargs eva numbat fend
+cargo install -q ast-grep ripgrep fd-find eza lsd tokei bat git-delta just raff-cli tree-sitter-cli difftastic git-branchless zoxide procs bfs fselect tealdeer srgn nomino shellharden grex mergiraf jaq jql hck huniq lemmeknow hyperfine rargs eva fend
 ```
 
 #### Install Landrun (CLI Sandbox)
