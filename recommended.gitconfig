@@ -1,0 +1,115 @@
+# Start
+[core]
+    autocrlf = input # Windows에서는 true로 설정할 것
+
+    #:별: delta를 페이저(less나 more 같은 것)로 사용 Diff
+    # Diff와 언어 하이라이팅 동시 지원
+    # 별도 설치 필요
+    # https://github.com/dandavison/delta?tab=readme-ov-file
+    pager = delta
+    quotepath = false
+
+#:별: 기본적으로 branch, tag 등 여러 항목이 나열 될 때 하나의 열로 출력된다.
+# column.ui=alwasy는 이를 여러 열로 보여준다.
+#
+# 다음 명령어를 실행해보고 차이를 보자.
+#
+#   git -c column.ui=never branch
+#   git -c column.ui=always branch
+#
+# https://git-scm.com/docs/git-config#Documentation/git-config.txt-columnui
+[column]
+    ui = always
+
+#:별: 기본적으로 `git branch` 명령은 브랜치를 알파벳 순으로 정렬하지만
+# -committerdate를 사용하면 최근 커밋 날짜 순으로 정렬해줌
+[branch]
+    sort = -committerdate
+
+#:별: 태그를 버전 번호 순으로 정렬(fieldname).
+#
+# 기본적으로 git은 tag를 알파뱃 순으로 정렬한다(refname).
+# 따라서 1.1 다음에 1.2가 아닌 1.10이 나오게된다.
+#
+# `version:refname`을 사용하면 1.1 다음에 1.2가 나오게 해준다.
+#
+# 이외에도 `authordate`, `taggerdate`을 사용할 수 있다.
+[tag]
+    sort = version:refname
+
+[diff]
+    # 더 나은 diff 알고리즘이라는데 잘 모르겠음.
+    algorithm = histogram
+
+    # 코드 이동은 단순 색상으로 표시함
+    # zdiff3와 사용시 파일간 코드 이동은 오히려 이상하게 보일 수 있음.
+    colorMoved = plain
+
+    # 접두사가 a/b 대신 i(index)/w(working tree)혹은 브렌치 이름등으로 설정됨
+    mnemonicPrefix = true
+
+    # diff시 파일 이름 변경을 감지함
+    renames = true
+
+    external = difft
+
+    # 서브모듈 변경 사항을 로그로 표시
+    submodule = log
+    
+    # Diff 주변 컨텍스트 라인 수 (기본값 3에서 10으로 증가)
+    context = 10
+
+[push]
+    #:별: 최초로 브랜치 push 시
+    #     git push --set-upstream origin mybranch 를 할 필요를 없애 줌
+    # remote가 여러개일 경우에는 사용하지 않도록 로컬 .gitconfig를 설정하는것이 좋음.
+    autoSetupRemote = true
+
+    #:별: push 할 때 해당 커밋에 annotated 태그가 있으면 같이 push함
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+    # 데이터 손상을 적극적으로 감지하여 팀을 몇 번 구한 설정
+    fsckObjects = true
+
+[transfer]
+    # 데이터 전송 시 손상 감지
+    fsckObjects = true
+
+[receive]
+    # 데이터 수신 시 손상 감지
+    fsckObjects = true
+
+# git 명령어가 오타로 보일경우 자동으로 고치고 그 명령을 실행할지 물어봄
+[help]
+    autocorrect = prompt
+
+[rebase]
+    # autoSquash = true
+    # autoStash = true
+    updateRefs = true
+    # Rebase 중 사라지는 커밋이 있을 경우 에러 발생
+    missingCommitsCheck = error
+
+[merge]
+    # 병합 충돌시 diff3의 개선판인 zdiff3를 사용
+	conflictStyle = zdiff3
+
+[status]
+    # git status 실행 시 서브모듈 요약 정보 표시
+    submoduleSummary = true
+
+[submodule]
+    # 서브모듈 재귀 업데이트
+    recurse = true
+
+[rerere]
+    # 'reuse recorded resolution' 활성화: 동일한 충돌 해결을 기억하고 자동 적용
+    enabled = true
+
+[merge "mergiraf"]
+	name = mergiraf
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
