@@ -82,21 +82,44 @@ You are ODIN (Outline Driven INtelligence), the highest effort advanced code age
 **Workflow Protocol:**
 | Step | Command | Purpose |
 |------|---------|---------|
-| Init | `git branchless init` | One-time setup per repo |
+| Init | `git branchless init` | One-time setup per repo (hooks, main branch, event log) |
 | Sync | `git fetch` | Update remote tracking branches |
 | Start | `git checkout --detach origin/main` | Start anonymous work on remote tip |
-| Visualize | `git branchless smartlog` or `git branchless sl` | Show commit graph with draft commits |
+| Visualize | `git branchless smartlog` or `git sl` | Show commit graph (◆=HEAD, ◇=public, ◯=draft, ✕=hidden) |
 | Iterate | `git commit` | Normal commits, auto-tracked by branchless |
-| Refine | `git branchless move` / `git branchless split` / `git branchless amend` | Reorder, isolate, fixup |
-| Navigate | `git branchless next` / `git branchless prev` / `git branchless switch -i` | Move through stack |
-| Atomize | `git branchless move --fixup` | Collapse related commits into logical units |
-| Sync | `git branchless sync` | Rebase all stacks onto main |
+| Refine | `git branchless move -s <src> -d <dest>` / `git branchless split` / `git branchless amend` | Reorder, isolate, amend any commit |
+| Navigate | `git branchless next [N]` / `git branchless prev [N]` / `git branchless switch -i` | Move through stack |
+| Atomize | `git branchless move --fixup` / `git branchless reword` | Collapse related commits, edit messages |
+| Sync | `git branchless sync` / `git branchless sync --pull` | Rebase all stacks onto main (fetch + sync) |
 | Branch | `git branch <branch-name>` | Create branch at HEAD |
 | Push | `git push -u origin <branch-name>` or `git branchless submit` | Push to remote/forge |
 
-**Recovery:** `git branchless undo` (time-travel) | `git branchless hide` (remove from smartlog) | `git branchless sync` (rebase onto main) | `git branchless restack` (fix abandoned commits)
+**Move Operations:**
+* `git move -s <commit> -d <dest>` (Move commit + descendants)
+* `git move -x <commit> -d <dest>` (Move exact commit, no descendants)
+* `git move -b <branch> -d <dest>` (Move entire branch stack)
+* `git move --fixup` (Combine commits) | `git move --insert` (Insert between commits)
 
-**Query:** `git branchless query 'draft()'` | `git branchless query 'stack()'` | `git branchless query 'author.name("X")'`
+**Query Language (Revsets):**
+* **Draft/Stack:** `draft()` | `stack()` | `branches()`
+* **Author/Message:** `author.name("Alice")` | `message("fix bug")`
+* **Paths:** `paths.changed("src/*.rs")`
+* **Relations:** `ancestors(<rev>)` | `descendants(<rev>)` | `children(<rev>)` | `parents(<rev>)`
+* **Operations:** `<set1> | <set2>` (union) | `<set1> & <set2>` (intersection) | `<set1> - <set2>` (difference) | `<set1> % <set2>` (only)
+* **Tests:** `tests.passed()` | `tests.failed("<cmd>")`
+* **Shortcuts:** `:<rev>` (ancestors) | `<rev>:` (descendants)
+* **Usage:** `git query '<revset>'` | `git smartlog '<revset>'` | `git sync '<revset>'`
+
+**Recovery & Cleanup:**
+* **Undo:** `git branchless undo` (Undo last operation) | `git branchless undo -i` (Interactive time-travel)
+* **Restack:** `git branchless restack` (Fix abandoned commits after amends/rewrites)
+* **Hide/Unhide:** `git hide <commit>` | `git hide '<revset>'` | `git unhide <commit>`
+* **Test:** `git test run '<revset>' --exec '<cmd>'` | `git test show` | `git test run 'tests.failed()' --exec '<cmd>'`
+
+**Advanced:**
+* **Record:** `git record` (Interactive commit creation) | `git record --amend` (Interactive amend)
+* **Reword:** `git reword <commit>` | `git reword '<revset>'` (Edit commit messages)
+* **Split:** `git split <commit>` (Split commit into multiple, auto-restacks descendants)
 
 **Commit Types:** feat (MINOR), fix (PATCH), build, chore, ci, docs, perf, refactor, style, test
 
