@@ -27,7 +27,7 @@ Think systemically using SHORT-form KEYWORDS for efficient internal reasoning. U
 
 **Tool execution:** Calls within batch execute sequentially; "parallel" = submit together; never use placeholders; respect dependencies. Patterns: Independent (1 batch) | Dependent (N batches: Batch 1 → ... → Batch K)
 
-**Context Isolation:** Create unique jj change per agent/subtask: `jj new <git_base> -m 'Agent: <Task>'` for isolated contexts.
+**Context Isolation:** Create unique git commit per agent/subtask on detached HEAD: `git checkout --detach <base> && git commit -m 'Agent: <Task>'` for isolated contexts.
 
 **FORBIDDEN:** Guessing params needing other results; ignoring logical order; batching dependent ops
 </orchestration>
@@ -89,44 +89,49 @@ Default to research over action. Do not jump into implementation unless clearly 
 **Rules:** NEVER create outline-related temporal files outside `.outline/` | Clean up after task completion | Use `/tmp` for scratch work not part of the outline workflow
 </temporal_files_organization>
 
-<jujutsu_vcs_strategy>
-**Jujutsu (jj) ↔ Git Interop Strategy**
-**Philosophy:** Git = **Remote Source of Truth**. JJ = **Local Temporal Workshop**.
-**Rule:** All stable branches live in Git. All local/WIP states live in JJ (anonymous revisions).
+<git_branchless_strategy>
+**git-branchless Workflow Strategy**
+**Philosophy:** Git = **Source of Truth**. git-branchless = **Enhancement Layer** for commit graph manipulation.
+**Rule:** Work in detached HEAD for anonymous commits. Branches only for publishing.
 
-**Atomic Interop Protocol:**
-1.  **Sync:** `jj git fetch` → `jj new <branch>@origin` (Start *anonymous* atom on Git tip).
-2.  **Develop (Temporal):**
-    *   *Iterate:* Edit files. State auto-snapshots into `@`.
-    *   *Refine:* `jj squash` (Combine edits), `jj split` (Isolate concerns), `jj new` (Stack atoms).
-    *   *Constraint:* No bookmarks (branches) until stable.
-3.  **Atomize:** Collapse temporal states into ONE logical unit (Code + Test + Docs).
-4.  **Publish:**
-    *   *Setup:* Ask user for target branch (e.g., `main`, `develop`).
-    *   *Sync:* `jj git fetch` (Refresh remote state).
-    *   *Rebase:* `jj rebase -d <target>@origin` (Merge to target).
-    *   *Bridge:* `jj bookmark create <branch-name> -r @`. Use Conventional Branch Conventions for branch names.
-    *   *Track:* `jj bookmark track <branch-name>@origin` (If remote bookmark exists).
-    *   *Push:* `jj git push --bookmark <branch-name>` (Transport to Remote).
+**Workflow Protocol:**
+1.  **Init (once per repo):**
+    * `git branchless init` (Install hooks, configure main branch).
+2.  **Sync:**
+    * `git fetch` (Update remote tracking branches).
+    * `git checkout --detach origin/main` (Start *anonymous* work on remote tip).
+    * `git branchless smartlog` (Visualize commit graph with draft commits).
+3.  **Develop (Anonymous Commits):**
+    * *Iterate:* Edit files, commit normally. Commits auto-tracked by branchless.
+    * *Refine:* `git branchless move` (Reorder commits), `git branchless split` (Isolate concerns), `git branchless amend` (Fixup).
+    * *Navigate:* `git branchless next`/`git branchless prev` (Move through stack), `git branchless switch -i` (Interactive switch).
+    * *Visualize:* `git branchless smartlog` or `git branchless sl` (Show commit graph).
+4.  **Atomize:** Use `git branchless move --fixup` to collapse related commits into logical units.
+5.  **Publish:**
+    * *Sync:* `git branchless sync` (Rebase all stacks onto main).
+    * *Branch:* `git branch <branch-name>` (Create branch at HEAD).
+    * *Push:* `git push -u origin <branch-name>` or `git branchless submit` (Push to remote/forge).
 
-**Recovery:** `jj undo` (Instant revert) | `jj abandon` (Discard atom) | `jj rebase -d <main>` (Update base).
-</jujutsu_vcs_strategy>
+**Recovery:** `git branchless undo` (Time-travel to any state) | `git branchless hide` (Remove from smartlog) | `git branchless sync` (Rebase onto main) | `git branchless restack` (Fix abandoned commits).
+</git_branchless_strategy>
 
 <claude_multiple_agents>
-**Multi-Agent Orchestration (Workspace Isolation)**
-**Rule:** Parallel agents MUST execute in isolated workspaces to prevent lock contention.
+**Multi-Agent Orchestration (Isolated Clones)**
+**Rule:** Parallel agents MUST execute in isolated workspaces (clones) to prevent lock contention.
+**Constraint:** Use `git clone --shared` for physical isolation (avoid `git worktree`).
 
 **Launch Protocol:**
-1.  **Analyze:** Identify base revision (e.g., `main@origin`).
-2.  **Isolate:** Create ephemeral workspace for EACH agent.
-    *   `jj workspace add ./.outline/agent-<id> --revision <base>`
-3.  **Execute:** Agents run inside `./.outline/agent-<id>`.
-    *   *Agent A:* `cd ./.outline/agent-a && jj new -m "task A"`
-    *   *Agent B:* `cd ./.outline/agent-b && jj new -m "task B"`
+1.  **Analyze:** Identify base revision (e.g., `origin/main`).
+2.  **Isolate:** Create ephemeral clones for EACH agent.
+    *   `git clone --shared . ./.outline/agent-<id>`
+3.  **Execute:** Agents run inside `./.outline/agent-<id>` in detached HEAD.
+    *   `cd ./.outline/agent-<id> && git checkout --detach <base>`
+    *   *Agent A:* `git commit -m "task A"` (auto-tracked as draft by branchless)
+    *   *Agent B:* `git commit -m "task B"` (auto-tracked as draft by branchless)
 4.  **Converge:**
-    *   Agents push unique bookmarks: `jj bookmark create agent-a` → `jj git push`
+    *   Agents publish unique stacks: `git branchless submit`
     *   Human/Coordinator merges via GitHub/GitLab.
-5.  **Cleanup:** `jj workspace forget ./.outline/agent-<id>` → `rm -rf ./.outline/agent-<id>`
+5.  **Cleanup:** `rm -rf ./.outline/agent-<id>`
 </claude_multiple_agents>
 
 <quickstart_workflow>
@@ -137,9 +142,9 @@ Default to research over action. Do not jump into implementation unless clearly 
 5. **Implementation**:
     *   **Search**: `ast-grep` (Structure) or `bfs` (Discovery).
     *   **Edit**: `srgn`/`ast-grep` (Structure) or `native-patch`.
-    *   **State**: `jj squash` iteratively to build atomic commit.
+    *   **State**: `git branchless move --fixup` or `git branchless amend` iteratively to build atomic commit.
 6. **Quality**: Build → Lint → Test → Smoke.
-7. **Completion**: Final `jj squash`, verify atomic message, cleanup.
+7. **Completion**: Final `git branchless move --fixup`, verify atomic message, cleanup.
 </quickstart_workflow>
 
 <surgical_editing_workflow>
@@ -177,12 +182,12 @@ Default to research over action. Do not jump into implementation unless clearly 
 1) **Utilities:** `zoxide` (Nav), `eza` (List), `bat` (Read), `huniq` (Dedupe).
 2) **Analysis:** `tokei` (Stats), `ripgrep` (Text Search), `fselect` (SQL Query).
 3) **Ops:** `hck` (Column Cut), `rargs` (Regex Args), `nomino` (Rename).
-4) **VCS:** `jj` (Main), `mergiraf` (Merge), `difftastic` (Diff).
+4) **VCS:** `git-branchless` (Main), `mergiraf` (Merge), `difftastic` (Diff).
 5) **Data:** `jql` (JSON).
 
-**Selection guide:** Discovery → bfs | Pipelines/Logic → nu | Code pattern → ast-grep | Simple edit → srgn | Text → rg | Scope → tokei | VCS → jj
+**Selection guide:** Discovery → bfs | Pipelines/Logic → nu | Code pattern → ast-grep | Simple edit → srgn | Text → rg | Scope → tokei | VCS → git-branchless
 
-**Workflow:** bfs (discover) → ast-grep/rg (search) → Edit (transform) → jj (commit)
+**Workflow:** bfs (discover) → ast-grep/rg (search) → Edit (transform) → git (commit) → git-branchless (manage)
 
 **Thinking tools:** sequential-thinking [ALWAYS USE] for decomposition/dependencies; actor-critic-thinking for alternatives; shannon-thinking for uncertainty/risk
 
@@ -284,7 +289,7 @@ Always retrieve framework/library docs using: ref-tools, context7, webfetch. Use
 ## Code Tools Reference
 
 <code_tools>
-**MANDATES:** HIGH PREFERENCE for `ast-grep` (Structure) and `jj` (State).
+**MANDATES:** HIGH PREFERENCE for `ast-grep` (Structure) and `git-branchless` (State).
 **Protocol:** Search (`bfs`/`rg`) → Metrics (`tokei`) → Plan → Edit (`srgn`/`ast-grep`) → Verify (`difft`).
 
 ### 1) Core System & File Ops
@@ -311,7 +316,7 @@ Always retrieve framework/library docs using: ref-tools, context7, webfetch. Use
 * **`lemmeknow`**: File type identification.
 
 ### 4) Version Control
-* **`jj`**: Main VCS. See VCS Strategy.
+* **`git-branchless`**: Main VCS. See VCS Strategy.
 * **`mergiraf`**: Syntax-aware merge.
 * **`difftastic`**: Syntax-aware diff. `difft --display inline old.rs new.rs`.
 

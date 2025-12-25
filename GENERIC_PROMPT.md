@@ -150,11 +150,11 @@ Default to research over action. Do not jump into implementation unless clearly 
 2) **Analysis:** `tokei` (Stats), `ripgrep` (Text Search), `fselect` (SQL Query).
 3) **Ops:** `hck` (Column Cut), `rargs` (Regex Args), `nomino` (Rename).
 4) **VCS:** `git-branchless` (Main), `mergiraf` (Merge), `difftastic` (Diff).
-5) **Data:** `jql` (JSON), `jq`.
+5) **Data:** `jql` (JSON - Primary), `jaq` (jq-compatible).
 
-**Selection guide:** Discovery → fd | Code pattern → ast-grep | Simple edit → srgn | Text → rg | Scope → tokei | VCS → git-branchless
+**Selection guide:** Discovery → fd | Code pattern → ast-grep | Simple edit → srgn | Text → rg | Scope → tokei | VCS → git-branchless | JSON → jql (default), jaq (jq-compatible/complex)
 
-**Workflow:** fd (discover) → ast-grep/rg (search) → native-patch (transform) → git (commit) → git-branchless (manage)
+**Workflow:** fd (discover) → ast-grep/rg (search) → Edit (transform) → git (commit) → git-branchless (manage)
 
 **Thinking tools:** sequential-thinking [ALWAYS USE] for decomposition/dependencies; actor-critic-thinking for alternatives; shannon-thinking for uncertainty/risk
 
@@ -360,6 +360,14 @@ Semantic diff tool. Tree-sitter based. Use for post-transform verification. See 
     * **Undo:** `git branchless undo` (time-travel) | `git branchless hide`/`git branchless unhide` (visibility)
     * **Query:** `git branchless query 'draft()'` | `git branchless query 'stack()'` | `git branchless query 'author.name("X")'`
     * **Publish:** `git branchless submit` (push to forge) | standard `git push`
+
+### 6) Data & Calculation
+* **`jql`** (PRIMARY): JSON query - simpler syntax. `jql '"key"' file.json` | `jql '"data"."nested"."field"'` | `jql '"items"[*]."name"'` | `jql '"users"|[?age>30]'`
+  Use for: path navigation, basic filtering, simple transforms (95% of cases)
+* **`jaq`**: jq-compatible JSON processor (Rust). `jaq '.key' file.json` | `jaq '.users[] | select(.age > 30) | .name'` | `jaq 'group_by(.category)'`
+  Use for: complex transforms, jq compatibility, advanced filtering, reusing jq scripts
+* **`huniq`**: Hash-based dedupe. `huniq < file.txt` | `huniq -c < file.txt` (count). Handles massive files via hash tables
+* **`fend`**: Unit-aware calc. Math: `fend '2^64'` | Units: `fend '5km to miles'` | Time: `fend 'today + 3 weeks'` | Base: `fend '0xff to decimal'` | Bool: `fend 'true and false'`
 
 ### 9) repomix (MCP) [CONTEXT PACKING]
 AI-optimized codebase analysis via MCP. Pack repositories into consolidated files for analysis.
