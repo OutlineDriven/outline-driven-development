@@ -68,7 +68,7 @@ go install github.com/zouuup/landrun/cmd/landrun@latest
   - ```gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension```
 - **Claude Code:** <https://github.com/OutlineDriven/odin-claude-plugin>
   - 빠른 설치:
-    - ```git clone https://github.com/OutlineDriven/odin-claude-plugin.git && cp -r ./odin-claude-plugin/ ~/.claude/ && claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace && claude plugin marketplace add ast-grep/claude-skill && claude plugin install ast-grep```
+    - ```git clone https://github.com/OutlineDriven/odin-claude-plugin.git && cp -r ./odin-claude-plugin/ ~/.claude/ && claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin@odin-marketplace && claude plugin marketplace add ast-grep/claude-skill && claude plugin install ast-grep```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
   - 빠른 설치:
     - ```git clone https://github.com/OutlineDriven/odin-codex-plugin.git && cp -r ./odin-codex-plugin/ ~/.codex/```
