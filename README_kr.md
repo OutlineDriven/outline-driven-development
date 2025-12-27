@@ -68,9 +68,10 @@ go install github.com/zouuup/landrun/cmd/landrun@latest
   - ```gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension```
 - **Claude Code:** <https://github.com/OutlineDriven/odin-claude-plugin>
   - 빠른 설치:
-    - 1. File Based (Recommended): ```git clone https://github.com/OutlineDriven/odin-claude-plugin.git && cp -r ./odin-claude-plugin/ ~/.claude/```
-    - 2. Plugin Based (Claude Marketplace): ```claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace```
+    - ```git clone https://github.com/OutlineDriven/odin-claude-plugin.git && cp -r ./odin-claude-plugin/ ~/.claude/ && claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin-claude-plugin@odin-marketplace && claude plugin marketplace add ast-grep/claude-skill && claude plugin install ast-grep```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
+  - 빠른 설치:
+    - ```git clone https://github.com/OutlineDriven/odin-codex-plugin.git && cp -r ./odin-codex-plugin/ ~/.codex/```
 
 - **프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](GENERIC_PROMPT.md)
 - **컴팩트 프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](COMPACTED_PROMPT.md)
