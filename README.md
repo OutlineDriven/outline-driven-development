@@ -92,3 +92,14 @@ Time, Tavily, Exa, Ref-tools
 | Concurrency | Preserve happens-before relationships | No circular waits; deadlock-free |
 | Memory | Ensure ownership + persistence model | Leak-free caches, append-only audit |
 | Optimization | Tie budgets to feedback loops | Regression triggers deterministic rollback |
+
+## Recent updates (2026-04)
+
+- **Execution default flipped:** Review-Gated Sequencing is the default for dependent tasks; Parallel only when independence is provable. Reviewer subagent inserted between every worker phase.
+- **Testing charter narrowed:** A test exists only if deleting it would let a real bug reach prod. Skip config-shape/constructor-output tests *only* when a static guarantee covers them (Rust, TS-strict, Kotlin, Java, C++); keep boundary shape/type tests in dynamic languages (Python, JS, Ruby).
+- **Token-Efficient Output [MANDATORY]:** ANSI/decoration suppression, discovery-then-targeted-read pattern, per-tool flag table.
+- **Completion Gate [MANDATORY]:** Run repo-native verification (e.g., `pytest`+`pyright`, `cargo test`+`clippy`) before declaring task complete.
+- **DOD anchor in CS anchors:** Data layout first (SoA vs AoS, alignment, padding), hot/cold split, batch homogeneity, zero-copy boundaries, no pointer-chasing in hot loops.
+- **OCaml 5.2+ language profile** added: `.mli`-first, `result`+`let*`/`let+`, Eio direct-style, dune 3.x + opam 2.2+, Alcotest+QCheck.
+- **Commit hygiene tightened:** never bundle unrelated changes; one concern touching N files = 1 commit, not N commits.
+- **Post-Agent Verify:** read back modified files after subagent edits; line-count mismatch = critical failure → rollback.

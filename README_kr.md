@@ -93,3 +93,14 @@ Time, Tavily, Exa, Ref-tools
 | 동시성 | 발생 전(happens-before) 관계 보존 | 순환 대기 없음; 데드락 자유 |
 | 메모리 | 소유권 + 지속성 모델 보장 | 누수 없는 캐시, 추가 전용(append-only) 감사 |
 | 최적화 | 예산을 피드백 루프에 연결 | 회귀 발생 시 결정론적 롤백 트리거 |
+
+## 최근 업데이트 (2026-04)
+
+- **실행 기본값 전환:** 의존성 있는 작업은 Review-Gated Sequencing(검토 게이트 순차)이 기본이며, 독립성이 증명될 때만 Parallel(병렬). 워커 단계마다 Reviewer 서브에이전트를 삽입.
+- **테스트 헌장 축소:** 삭제 시 실제 버그가 운영에 도달할 경우에만 테스트를 유지. 정적 보증이 있는 언어(Rust, TS-strict, Kotlin, Java, C++)에서는 config-shape/constructor-output 테스트를 *생략*; 정적 보증이 없는 동적 언어(Python, JS, Ruby)에서는 경계 shape/type 테스트를 유지.
+- **Token-Efficient Output [MANDATORY]:** ANSI/장식 억제, 디스커버리 후 타깃팅 읽기 패턴, 도구별 플래그 표.
+- **Completion Gate [MANDATORY]:** 작업 완료 선언 전 저장소 네이티브 검증 실행 (예: Python의 `pytest`+`pyright`, Rust의 `cargo test`+`clippy`).
+- **CS 앵커의 DOD:** 데이터 레이아웃 우선(SoA vs AoS, alignment, padding), hot/cold 분리, batch 동질성, zero-copy 경계, 핫 루프에서 포인터 추적 금지.
+- **OCaml 5.2+ 언어 프로파일** 추가: `.mli` 우선, `result`+`let*`/`let+`, Eio 직접 스타일, dune 3.x + opam 2.2+, Alcotest+QCheck.
+- **커밋 위생 강화:** 관련 없는 변경을 묶지 말 것; N개 파일에 걸친 단일 관심사 = 1 커밋 (N 커밋 아님).
+- **Post-Agent Verify:** 서브에이전트 편집 후 수정된 파일을 다시 읽어 검증; 라인 수 불일치 = 치명적 실패 → 롤백.
