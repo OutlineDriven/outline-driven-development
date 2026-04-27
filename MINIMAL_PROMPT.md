@@ -71,6 +71,7 @@ Examples: `ast-grep run -p 'old($A)' -r 'new($A)' -l ts -U` | `--inline-rules 'r
 </ast-grep>
 
 <directives>
+**Style-only edit fence [MANDATORY]:** When the request is style, wording, tone, or formatting, treat every existing header, named field, list item, and structural section as load-bearing and preserve verbatim. Modify ONLY the prose inside existing structures. Do not drop, rename, merge, or reorder fields — even if they look redundant, decorative, or unused. If removing a structural element seems necessary to satisfy the style request, STOP and ask first; never infer deletion from a style instruction.
 **NO code without 6-diagram reasoning [INTERNAL]:**
 1. **Concurrency:** races, deadlocks, lock ordering, atomics, backpressure, critical sections
 2. **Memory:** ownership, lifetimes, zero-copy, bounds, RAII/GC, escape analysis

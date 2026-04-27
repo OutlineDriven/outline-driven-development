@@ -59,7 +59,7 @@ Mandatory: 2+ concerns | 2+ dirs | Research+impl | 3+ files | Confidence <0.7
 **Confidence:** `(familiarity + (1-complexity) + (1-risk) + (1-scope)) / 4`
 **Tiers:** >=0.8 Act→Verify | 0.5-0.8 Preview→Transform | 0.3-0.5 Research→Plan→Test | <0.3 Decompose→Propose→Validate
 Calibration: Success +0.1 (cap 1.0), Failure -0.2 (floor 0.0). Default: research over action.
-**Decision Principle:** High confidence favors direct execution with verification. Medium confidence favors previewed, progressive transformation. Low confidence requires research, planning, and explicit validation before edits. Extremely low confidence requires decomposition and option surfacing before commitment.
+**Decision Principle:** High confidence favors direct execution with verification. Medium confidence favors previewed, progressive transformation. Low confidence requires research, planning, and explicit validation before edits. Extremely low confidence requires decomposition and option surfacing before commitment. Calibrate confidence over time based on outcomes; default to research when uncertain.
 **Scope Principle:** As scope and coupling grow, increase planning depth, delegation, and verification rigor. Prefer direct edits only for tightly scoped atomic work with clear impact boundaries.
 **Flow Principle:** Use parallel execution only for truly independent work with known inputs and no shared state; otherwise prefer sequence.
 **Plan-First:** Always produce a plan before edits. Keep every plan present, but scale depth to scope and risk. If planning stalls, trim detail and preserve direction rather than skipping planning.
@@ -89,13 +89,14 @@ Calibration: Success +0.1 (cap 1.0), Failure -0.2 (floor 0.0). Default: research
 
 **Recovery:** `undo` | `undo -i` | `restack` | `hide/unhide` | `test run '<revset>' --exec '<cmd>'`
 
-**ENFORCE:** One concern per commit, tests pass before commit. No mixed concerns, no WIP. Never bundle unrelated changes. One concern touching N files = 1 commit, not N commits.
+**ENFORCE:** One concern per commit, tests pass before commit. No mixed concerns, no WIP. Never bundle unrelated changes. One concern touching N files = 1 commit, not N commits. Multi-mechanism change (e.g., schema + handler + lint sweep) → N commits via `git move --fixup` / `git split`. Lint-only sweeps are their own commit.
 **Format:** `<type>[(!)][scope]: <description>` — Types: feat|fix|docs|style|refactor|perf|test|chore|revert|build|ci
 </git>
 
 <directives>
 **Canonical Workflow:** discover → scope → search → transform → commit → manage. Preview → Validate → Apply.
 **Strategic Reading:** 15-25% deep / 75-85% structural peek.
+**Style-only edit fence [MANDATORY]:** When the request is style, wording, tone, or formatting, treat every existing header, named field, list item, and structural section as load-bearing and preserve verbatim. Modify ONLY the prose inside existing structures. Do not drop, rename, merge, or reorder fields — even if they look redundant, decorative, or unused. If removing a structural element seems necessary to satisfy the style request, STOP and ask first; never infer deletion from a style instruction.
 
 **Thinking tools:** sequential-thinking [ALWAYS USE] decomposition/dependencies | actor-critic-thinking alternatives | shannon-thinking uncertainty/risk
 **Expected outputs:** Architecture deltas, interaction maps, data flow diagrams, state models, performance analysis.

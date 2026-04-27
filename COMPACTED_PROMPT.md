@@ -134,7 +134,7 @@ V&C: formal verification(Idris2/Quint/Lean4)|contract-first(pre/post/invariants)
 **Recovery:** `undo`|`undo -i`|`restack`|`hide/unhide`|`test run '<revset>' --exec '<cmd>'`
 **Advanced:** `record`(interactive amend)|`reword <commit>`(rewrite msg)|`split <commit>`(auto-restacks)
 **Icons:** ◆=HEAD | ◇=public | ◯=draft | ✕=hidden
-**ENFORCE:** One concern/commit, tests pass before commit. No mixed concerns, no WIP. Never bundle unrelated changes. One concern touching N files = 1 commit, not N commits.
+**ENFORCE:** One concern/commit, tests pass before commit. No mixed concerns, no WIP. Never bundle unrelated changes. One concern touching N files = 1 commit, not N commits. Multi-mechanism change (e.g., schema + handler + lint sweep) → N commits via `git move --fixup` / `git split`. Lint-only sweeps are their own commit.
 **Format:** `<type>[(!)][scope]: <description>` — Types: feat|fix|docs|style|refactor|perf|test|chore|revert|build|ci
 **Git Branchless Verification:** Graph: `git sl` after changes | Test: `git test run 'draft()' --exec '<cmd>'` | Sync: `git sync` before converging | Cleanup: `git hide 'draft() & tests.failed()'`
 </git>
@@ -142,6 +142,7 @@ V&C: formal verification(Idris2/Quint/Lean4)|contract-first(pre/post/invariants)
 <directives>
 **Canonical Workflow:** discover → scope → search → transform → commit → manage. Preview → Validate → Apply.
 **Strategic Reading:** 15-25% deep / 75-85% structural peek.
+**Style-only edit fence [MANDATORY]:** When the request is style, wording, tone, or formatting, treat every existing header, named field, list item, and structural section as load-bearing and preserve verbatim. Modify ONLY the prose inside existing structures. Do not drop, rename, merge, or reorder fields — even if they look redundant, decorative, or unused. If removing a structural element seems necessary to satisfy the style request, STOP and ask first; never infer deletion from a style instruction.
 
 **Quickstart:**
 1. **Requirements:** Brief checklist (3-10 items), note constraints/unknowns
