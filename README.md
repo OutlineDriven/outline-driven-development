@@ -48,7 +48,7 @@ cargo binstall -y bat tokei git-delta just raff-cli difftastic git-branchless zo
     - ```wget -O ~/.claude/CLAUDE.md https://raw.githubusercontent.com/OutlineDriven/odin-claude-plugin/refs/heads/main/CLAUDE.md && claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin@odin-marketplace```
 - **Codex CLI:** <https://github.com/OutlineDriven/odin-codex-plugin>
   - Quick Install:
-    - ```git clone https://github.com/OutlineDriven/odin-codex-plugin.git && cp -r ./odin-codex-plugin/ ~/.codex/```
+    - ```git clone https://github.com/OutlineDriven/odin-codex-plugin.git && rsync -a ./odin-codex-plugin/ ~/.codex/```
 - **Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](GENERIC_PROMPT.md)
 - **Compact Prompt-only (*Manual Apply for IDEs/Agents like Antigravity/Windsurf/Cursor/Augument Code ...*):** [Prompt](COMPACTED_PROMPT.md)
 
