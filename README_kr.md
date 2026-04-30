@@ -51,7 +51,7 @@ cargo binstall -y bat tokei git-delta just raff-cli difftastic git-branchless zo
     - ```git clone https://github.com/OutlineDriven/odin-codex-plugin.git && rsync -a ./odin-codex-plugin/ ~/.codex/```
 
 - **프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](GENERIC_PROMPT.md)
-- **컴팩트 프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](COMPACTED_PROMPT.md)
+- **컴팩트 프롬프트 전용 (*Antigravity/Windsurf/Cursor/Augument Code 등과 같은 IDE/에이전트에 수동 적용*):** [Prompt](COMPACT_PROMPT.md)
 
 ### MCP 확장 추천
 
