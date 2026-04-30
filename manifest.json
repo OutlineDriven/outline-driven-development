@@ -8,8 +8,8 @@
       "promptFile": "prompts/COMPACT_PROMPT.md"
     },
     "codex": {
-      "userScope": "~/.codex/",
-      "projectScope": "./.codex/",
+      "userScope": "~/.codex/AGENTS.md",
+      "projectScope": "./AGENTS.md",
       "promptFile": "prompts/COMPACT_PROMPT.md"
     },
     "gemini": {
