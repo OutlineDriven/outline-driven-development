@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "releaseTag": "v1.0.0",
+  "hosts": {
+    "claude": {
+      "userScope": "~/.claude/CLAUDE.md",
+      "projectScope": "./CLAUDE.md",
+      "promptFile": "prompts/COMPACT_PROMPT.md"
+    },
+    "codex": {
+      "userScope": "~/.codex/",
+      "projectScope": "./.codex/",
+      "promptFile": "prompts/COMPACT_PROMPT.md"
+    },
+    "gemini": {
+      "userScope": "~/.gemini/GEMINI.md",
+      "projectScope": "./GEMINI.md",
+      "promptFile": "prompts/COMPACT_PROMPT.md"
+    },
+    "opencode": {
+      "userScope": "~/.config/opencode/AGENTS.md",
+      "projectScope": "./AGENTS.md",
+      "promptFile": "prompts/COMPACT_PROMPT.md"
+    }
+  },
+  "tarballContents": {
+    "prompts": ["MINIMAL_PROMPT.md", "COMPACT_PROMPT.md", "GENERIC_PROMPT.md"],
+    "gitconfig": ["recommended.gitconfig"]
+  }
+}
