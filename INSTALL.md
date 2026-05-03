@@ -10,8 +10,8 @@
 
 ### Linux/macOS
 
-```bash
-export RUSTFLAGS="-C target-cpu=native -C link-arg=-fuse-ld=mold -C opt-level=3 -C strip=symbols -C panic=abort"
+```bas
+export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C strip=symbols -C panic=abort"
 
 cargo install --locked cargo-binstall
 cargo install ast-grep ripgrep fd-find eza lsd
