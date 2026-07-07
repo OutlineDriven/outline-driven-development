@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "releaseTag": "v1.0.0",
   "hosts": {
     "claude": {
@@ -24,7 +24,13 @@
     }
   },
   "tarballContents": {
-    "prompts": ["MINIMAL_PROMPT.md", "COMPACT_PROMPT.md", "GENERIC_PROMPT.md"],
-    "gitconfig": ["recommended.gitconfig"]
+    "prompts": [
+      "MINIMAL_PROMPT.md",
+      "COMPACT_PROMPT.md",
+      "GENERIC_PROMPT.md"
+    ],
+    "gitconfig": [
+      "recommended.gitconfig"
+    ]
   }
 }
