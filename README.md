@@ -64,7 +64,7 @@ See [INSTALL.md](INSTALL.md) for CLI tool prerequisites and detailed setup.
 
 **2026-04**
 
-- **Execution default flipped:** Review-Gated Sequencing is the default for dependent tasks; Parallel only when independence is provable. Reviewer subagent inserted between every worker phase.
+- **Execution default flipped:** dependent tasks run sequentially by default; parallel only when independence is provable. Reviewer subagent inserted between every worker phase.
 - **Testing charter narrowed:** A test exists only if deleting it would let a real bug reach prod. Skip config-shape/constructor-output tests *only* when a static guarantee covers them (Rust, TS-strict, Kotlin, Java, C++); keep boundary shape/type tests in dynamic languages (Python, JS, Ruby).
 - **Token-Efficient Output [MANDATORY]:** ANSI/decoration suppression, discovery-then-targeted-read pattern, per-tool flag table.
 - **Completion Gate [MANDATORY]:** Run repo-native verification before declaring task complete.

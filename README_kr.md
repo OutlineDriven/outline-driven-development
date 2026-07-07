@@ -96,7 +96,7 @@ Time, Tavily, Exa, Ref-tools
 
 ## 최근 업데이트 (2026-04)
 
-- **실행 기본값 전환:** 의존성 있는 작업은 Review-Gated Sequencing(검토 게이트 순차)이 기본이며, 독립성이 증명될 때만 Parallel(병렬). 워커 단계마다 Reviewer 서브에이전트를 삽입.
+- **실행 기본값 전환:** 의존성 있는 작업은 순차 실행이 기본이며, 독립성이 증명될 때만 병렬 실행. 워커 단계마다 Reviewer 서브에이전트를 삽입.
 - **테스트 헌장 축소:** 삭제 시 실제 버그가 운영에 도달할 경우에만 테스트를 유지. 정적 보증이 있는 언어(Rust, TS-strict, Kotlin, Java, C++)에서는 config-shape/constructor-output 테스트를 *생략*; 정적 보증이 없는 동적 언어(Python, JS, Ruby)에서는 경계 shape/type 테스트를 유지.
 - **Token-Efficient Output [MANDATORY]:** ANSI/장식 억제, 디스커버리 후 타깃팅 읽기 패턴, 도구별 플래그 표.
 - **Completion Gate [MANDATORY]:** 작업 완료 선언 전 저장소 네이티브 검증 실행 (예: Python의 `pytest`+`pyright`, Rust의 `cargo test`+`clippy`).
