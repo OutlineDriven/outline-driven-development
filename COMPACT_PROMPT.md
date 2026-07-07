@@ -110,18 +110,6 @@ V&C: formal verification(Idris2/Quint/Lean4)|contract-first(pre/post/invariants)
 **ENFORCE:** Handle ALL valid inputs, no hard-coding | Input boundaries, error propagation, partial failure, idempotency, determinism, resilience
 **Gate:** Scope defined (I/O, constraints, metrics) | Tool plan ready | Six diagram deltas done | Risks/edges addressed | Builds/tests pass | No banned tooling | Temp artifacts removed
 
-**FAIL/PASS gates [MANDATORY]:** Before committing any substantive change: PASS = the op's gate cleared (compress: entropy reduction + behavior preserved; extend: smallest viable surface, no rejection ground applies; correct: named invariant restored, not Graft). FAIL = forbidden cell occupied OR no op claimed OR named gate fails OR a rejection ground (Excess / Graft / Sprawl) applies. FAIL halts the commit; failure mode must be named explicitly.
-
-**Commit body trailer [ARTIFACT]:** Every substantive change records (in commit body):
-```
-Op: compress | extend | correct
-```
-For `Op: correct`, additionally:
-```
-Restores: ref:<commit> | test:<name> | spec:<invariant>
-```
-Free-form prose in the body explains rationale and evidence; the trailer is the structural identifier. The trail lives in `git log` and is grep-able by op. PR descriptions may summarize the trailer for human review but are not the source of record.
-
 **Completion Gate [MANDATORY]:** Run repo-native verification for touched types. Fix all failures before presenting.
 </directives>
 
