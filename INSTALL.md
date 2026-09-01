@@ -10,7 +10,7 @@
 
 ### Linux/macOS
 
-```bas
+```bash
 export RUSTFLAGS="-C target-cpu=native -C opt-level=3 -C strip=symbols -C panic=abort"
 
 cargo install --locked cargo-binstall
