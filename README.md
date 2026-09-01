@@ -82,15 +82,7 @@ work in and skip the rest. Every one installs the same way, for example
 The full domain-to-plugin table, with the skill count per plugin, is in the
 [odin-claude-plugin README](https://github.com/OutlineDriven/odin-claude-plugin#choose-your-plugins).
 
-### Prompt-only (any agent)
-
-Copy one of the prompt files into your agent's instruction file:
-
-- [MINIMAL_PROMPT.md](MINIMAL_PROMPT.md)
-- [COMPACT_PROMPT.md](COMPACT_PROMPT.md)
-- [GENERIC_PROMPT.md](GENERIC_PROMPT.md)
-
-COMPACT is the default carried by every host manifest.
+### CLI Tools
 
 See [INSTALL.md](INSTALL.md) for CLI tool prerequisites and detailed setup.
 

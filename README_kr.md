@@ -80,15 +80,7 @@ Cursor는 각 플러그인 루트의 Agent Plugins 매니페스트를 읽습니�
 플러그인별 스킬 수를 포함한 전체 영역별 표는
 [odin-claude-plugin README](https://github.com/OutlineDriven/odin-claude-plugin#choose-your-plugins)에 있습니다.
 
-### 프롬프트 전용 (모든 에이전트)
-
-다음 프롬프트 파일 중 하나를 에이전트의 명령 파일에 복사하십시오.
-
-- [MINIMAL_PROMPT.md](MINIMAL_PROMPT.md)
-- [COMPACT_PROMPT.md](COMPACT_PROMPT.md)
-- [GENERIC_PROMPT.md](GENERIC_PROMPT.md)
-
-모든 호스트 매니페스트에서 COMPACT가 기본값입니다.
+### CLI 도구 설치
 
 CLI 도구 사전 요구 사항과 상세 설정은 [INSTALL.md](INSTALL.md)를 참조하십시오.
 
