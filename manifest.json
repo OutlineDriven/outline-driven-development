@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "releaseTag": "v1.0.0",
+  "releaseTag": "v1.1.0",
   "hosts": {
     "claude": {
       "userScope": "~/.claude/CLAUDE.md",
@@ -25,12 +25,12 @@
   },
   "tarballContents": {
     "prompts": [
-      "MINIMAL_PROMPT.md",
-      "COMPACT_PROMPT.md",
-      "GENERIC_PROMPT.md"
+      "prompts/MINIMAL_PROMPT.md",
+      "prompts/COMPACT_PROMPT.md",
+      "prompts/GENERIC_PROMPT.md"
     ],
     "gitconfig": [
-      "recommended.gitconfig"
+      "gitconfig/recommended.gitconfig"
     ]
   }
 }
