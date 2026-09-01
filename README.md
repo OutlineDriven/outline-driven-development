@@ -13,32 +13,84 @@
 
 ## Contents
 
-- [What is Outline-Driven Development?](#what-is-outline-driven-development)
+- [What is Outline-Driven Development](#what-is-outline-driven-development)
+- [Implementation](#implementation)
 - [Install](#install)
 - [Comparison](#comparison)
-- [Recent Updates](#recent-updates)
+- [Status](#status-2026-09)
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## What is Outline-Driven Development?
+## What is Outline-Driven Development
 
 Outline-Driven Development is a coding methodology for LLM code agents. It occupies the space between two failure modes: vibes (too shallow, non-reproducible) and specs (too rigid, too expensive to maintain). The unit of truth is a versioned outline whose hash anchors every diff, every test, and every diagram.
 
-See [PHILOSOPHY.md](PHILOSOPHY.md) for the full design rationale and traceability model.
+The outline is harness-agnostic. One implementation carries it to every agent, and the methodology
+itself lives here as prompt files that any agent can consume. See [PHILOSOPHY.md](PHILOSOPHY.md)
+for the full design rationale and traceability model.
+
+---
+
+## Implementation
+
+[odin-claude-plugin](https://github.com/OutlineDriven/odin-claude-plugin) is the single source: 613
+skills in 28 plugins, authored once and discovered by Claude Code, Codex, Cursor, and any Agent
+Plugins client from the same tree. There is no separate per-agent repository to install or track.
 
 ---
 
 ## Install
 
-| Host | Repo | Quick install |
-|---|---|---|
-| Claude Code | [odin-claude-plugin](https://github.com/OutlineDriven/odin-claude-plugin) | `wget -O ~/.claude/CLAUDE.md https://raw.githubusercontent.com/OutlineDriven/odin-claude-plugin/refs/heads/main/CLAUDE.md && claude plugin marketplace add OutlineDriven/odin-claude-plugin && claude plugin install odin@odin-marketplace` |
-| Codex CLI | [odin-codex-plugin](https://github.com/OutlineDriven/odin-codex-plugin) | `git clone https://github.com/OutlineDriven/odin-codex-plugin.git && rsync -a ./odin-codex-plugin/ ~/.codex/` |
-| Gemini CLI | [odin-gemini-cli-extension](https://github.com/OutlineDriven/odin-gemini-cli-extension) | `gemini extensions install https://github.com/OutlineDriven/odin-gemini-cli-extension` |
-| Any IDE / agent (prompt-only) | — | [GENERIC\_PROMPT.md](GENERIC_PROMPT.md) |
-| Compact prompt | — | [COMPACT\_PROMPT.md](COMPACT_PROMPT.md) |
+### Claude Code
+
+```
+/plugin marketplace add OutlineDriven/odin-claude-plugin
+/plugin install odin-core@odin-marketplace
+```
+
+### Codex
+
+```
+codex plugin marketplace add OutlineDriven/odin-claude-plugin
+codex plugin add odin-core@odin-marketplace
+```
+
+### Cursor
+
+Add the `OutlineDriven/odin-claude-plugin` marketplace in Cursor, then:
+
+```
+/plugin install odin-core
+```
+
+Cursor reads the Agent Plugins manifest at each plugin root.
+
+### Pick your plugins
+
+`odin-core` is the base installed above. The other 27 plugins are optional, so add the domains you
+work in and skip the rest. Every one installs the same way, for example
+`/plugin install odin-security@odin-marketplace`. Three common additions:
+
+| Working on | Add |
+|---|---|
+| Everyday code changes | `odin-code`, `odin-run` |
+| Security review and hardening | `odin-security`, `odin-security-advanced` |
+| Research and technical writing | `odin-research`, `odin-writing` |
+
+The full domain-to-plugin table, with the skill count per plugin, is in the
+[odin-claude-plugin README](https://github.com/OutlineDriven/odin-claude-plugin#choose-your-plugins).
+
+### Prompt-only (any agent)
+
+Copy one of the prompt files into your agent's instruction file:
+
+- [MINIMAL_PROMPT.md](MINIMAL_PROMPT.md)
+- [COMPACT_PROMPT.md](COMPACT_PROMPT.md)
+- [GENERIC_PROMPT.md](GENERIC_PROMPT.md)
+
+COMPACT is the default carried by every host manifest.
 
 See [INSTALL.md](INSTALL.md) for CLI tool prerequisites and detailed setup.
 
@@ -46,32 +98,24 @@ See [INSTALL.md](INSTALL.md) for CLI tool prerequisites and detailed setup.
 
 ## Comparison
 
-<a id="comparison"></a>
-
 | Aspect | Vibe coding | Spec-driven (Spec Kit) | BMad | **Outline-Driven Development** |
 |---|---|---|---|---|
 | Source of truth | LLM intuition | Spec doc | Behavioral specs | **Versioned outline (hash-anchored)** |
 | Iteration unit | "Try again" | Spec -> re-prompt | BDD scenarios | **Outline node x diff** |
 | Validation | Eyeball | Spec compliance | Acceptance tests | **Diagram-first invariants + AST** |
-| Tooling | Plain chat | GitHub Spec Kit | BMad CLI | **Plugins for Claude / Codex / Gemini** |
+| Tooling | Plain chat | GitHub Spec Kit | BMad CLI | **One plugin tree for Claude Code, Codex, and Cursor** |
 | Reuse unit | Conversation | Spec template | Story | **Skill / agent / outline** |
 | LLM creativity | Unbounded | Bounded by spec | Bounded by story | **Bounded by outline; preserved within envelope** |
 | Best for | Throwaway scripts | Greenfield features | User-facing flows | **Long-lived methodologies + agentic work** |
 
 ---
 
-## Recent Updates
+## Status (2026-09)
 
-**2026-04**
-
-- **Execution default flipped:** dependent tasks run sequentially by default; parallel only when independence is provable. Reviewer subagent inserted between every worker phase.
-- **Testing charter narrowed:** A test exists only if deleting it would let a real bug reach prod. Skip config-shape/constructor-output tests *only* when a static guarantee covers them (Rust, TS-strict, Kotlin, Java, C++); keep boundary shape/type tests in dynamic languages (Python, JS, Ruby).
-- **Token-Efficient Output [MANDATORY]:** ANSI/decoration suppression, discovery-then-targeted-read pattern, per-tool flag table.
-- **Completion Gate [MANDATORY]:** Run repo-native verification before declaring task complete.
-- **DOD anchor:** Data layout first (SoA vs AoS, alignment, padding), hot/cold split, batch homogeneity, zero-copy boundaries.
-- **OCaml 5.2+ language profile** added.
-- **Commit hygiene tightened:** one concern per commit, never bundle unrelated changes.
-- **Post-Agent Verify:** read back modified files after subagent edits; line-count mismatch = critical failure.
+odin-claude-plugin 2.0.0 is the single implementation, shipping 613 skills across 28 plugins for
+Claude Code, Codex, Cursor, and any Agent Plugins client. The three prompt files were stripped of
+persona doctrine in early September 2026, so the methodology carries no agent identity of its own.
+Releases ship from the implementation repository, not from here.
 
 ---
 
