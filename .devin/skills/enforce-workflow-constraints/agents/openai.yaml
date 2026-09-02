@@ -1,0 +1,3 @@
+interface:
+  display_name: "Enforce Workflow Constraints"
+  short_description: "Use when any bounded workflow starts or reaches an action, path, proposal, or merge boundary."

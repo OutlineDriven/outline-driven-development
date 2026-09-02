@@ -1,0 +1,3 @@
+interface:
+  display_name: "Autoplan"
+  short_description: "Use when the user runs /autoplan on a plan or idea."

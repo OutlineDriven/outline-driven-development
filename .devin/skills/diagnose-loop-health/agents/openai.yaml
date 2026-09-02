@@ -1,0 +1,3 @@
+interface:
+  display_name: "Diagnose Loop Health"
+  short_description: "Use when a configured loop misbehaves, produces unexpected results, or its setup soundness is questioned."

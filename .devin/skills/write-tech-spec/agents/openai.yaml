@@ -1,0 +1,3 @@
+interface:
+  display_name: "Write Tech Spec"
+  short_description: "Use when a user asks for a tech spec or architecture doc."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Autopilot"
+  short_description: "Use when a human has an approved delivery plan and wants the full chain run under phase gates."

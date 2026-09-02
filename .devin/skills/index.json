@@ -1,0 +1,3073 @@
+{
+  "schema": "odin-devin-skill-mirror/v1",
+  "sourceRepository": "https://github.com/OutlineDriven/odin-claude-plugin",
+  "releaseVersion": "2.0.0",
+  "generator": "scripts/sync-outline-skills.mjs",
+  "skills": [
+    {
+      "slug": "abstract-well",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "address-sanitizer",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "aflpp",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "agent-environment-retrospective",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "agent-surface-forge",
+      "plugin": "odin-agent",
+      "files": 3
+    },
+    {
+      "slug": "agent-transcript",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "agents-md",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "ai-collab-protocols",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "all-scenarios-storm",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "analysis-artifacts",
+      "plugin": "odin-bigquery",
+      "files": 2
+    },
+    {
+      "slug": "api-and-interface-design",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "append-run-log",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "architect",
+      "plugin": "odin-code-advanced",
+      "files": 5
+    },
+    {
+      "slug": "architecture-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "articulate",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "artifact-arena",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "askme",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "ast-grep",
+      "plugin": "odin-code",
+      "files": 14
+    },
+    {
+      "slug": "atheris",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "atomic-issues-prs",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "attack-shape",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "audit-loop-scaffold",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "audit-project",
+      "plugin": "odin-loop",
+      "files": 4
+    },
+    {
+      "slug": "autolearn",
+      "plugin": "odin-research",
+      "files": 7
+    },
+    {
+      "slug": "automate-me",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "automatic-cybernetic-flow-design",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "automatic-freeform-graphs-design",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "autopilot",
+      "plugin": "odin-run-advanced",
+      "files": 3
+    },
+    {
+      "slug": "autoplan",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "autoship",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "ax-audit",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "axiom-mode",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "backlog",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "batch-ask-me",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "behavior-validator",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "blast-radius",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "book-to-skill",
+      "plugin": "odin-agent",
+      "files": 3
+    },
+    {
+      "slug": "brainstorm",
+      "plugin": "odin-planning",
+      "files": 14
+    },
+    {
+      "slug": "brand-authority",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "breaking-driven",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "browser-cookie-store",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "browser-qa",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "browser-testing",
+      "plugin": "odin-web",
+      "files": 5
+    },
+    {
+      "slug": "build-program-graph",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "burp-search-command",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "burpsuite-project-parser",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "buyer-objection-research",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "buzzword-analysis",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "buzzword-hijack",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "c-security-review",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "can-i-help",
+      "plugin": "odin-research",
+      "files": 4
+    },
+    {
+      "slug": "capstone",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "capture-isolated-patch",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cargo-fuzz",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cascade-dedup",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "catchup",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "chain-vulnerability-scanner",
+      "plugin": "odin-security-advanced",
+      "files": 8
+    },
+    {
+      "slug": "changelog-updates",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "check-agent-compatibility",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "cherrypick-to-release",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "chrome-extension",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "ci-cd",
+      "plugin": "odin-code",
+      "files": 6
+    },
+    {
+      "slug": "ci-fix",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "ci-sweeper",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "clarify",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "classify-ci-failure",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "claude-settings-audit",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "clean-and-true",
+      "plugin": "odin-create",
+      "files": 3
+    },
+    {
+      "slug": "clean-clean-cut",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cli-for-agents",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "close-done",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "cloud-task-orchestrator",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "code-simplification",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "codebase-design",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "codeql-security-analysis",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "commit",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "commit-economy",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "competitor-changelog",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "competitor-feature-research",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "compile-3d-workflow",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "complexity-grill",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "compound",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "confirmed-security-review",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "constant-time-analysis",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "constant-time-testing",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "constraint-driven-development",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "consult-deployment",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "context-engineering",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "continual-learning",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "contract-driven",
+      "plugin": "odin-code",
+      "files": 4
+    },
+    {
+      "slug": "control-cli",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "control-ui",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "converge",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "copywriting",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "copywriting-cta",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "copywriting-hooks",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "copywriting-prose-creator",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "copywriting-tone-of-voice-creator",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "corroborate-by-independent-reruns",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cost-reduction",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "council",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "create-branch",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "create-learning-path",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "create-plugin-scaffold",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "create-pull-request",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "cross-critique",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cross-lens-converge",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "cross-run-playbook",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "crypto-protocol-diagram",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "culture-burnout-detection",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "culture-conflict-mediation",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "culture-interview-debrief",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "culture-interview-profile-prediction",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "culture-manager-coaching",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "culture-onboarding-plan",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "customer-feedback-report",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "cut-new-release-candidate",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "cybernetic-loop",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "cycle-memo",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "dataflow-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "dbt-model-index",
+      "plugin": "odin-bigquery",
+      "files": 2
+    },
+    {
+      "slug": "debloat-respect-richness",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "decide",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "decision-diary",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "decision-rationale-gaps",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "dedup-skills",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "deep-research",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "define-goalstate",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "deprecate-and-migrate",
+      "plugin": "odin-code-advanced",
+      "files": 3
+    },
+    {
+      "slug": "deps-upgrade",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "design",
+      "plugin": "odin-design",
+      "files": 22
+    },
+    {
+      "slug": "design-consultation",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "design-gate-brainstorming",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "design-it-twice",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "design-variants",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "deslop",
+      "plugin": "odin-code",
+      "files": 6
+    },
+    {
+      "slug": "devcontainer-setup",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "developer-experience-review",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "diagnose-loop-health",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "diagramming-code",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "diamond-task",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "diff-scoped-browser-qa",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "differential-security-review",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "dimensional-analysis",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "diverge",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "django-access-review",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "django-perf-review",
+      "plugin": "odin-python",
+      "files": 2
+    },
+    {
+      "slug": "doc-coauthoring",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "doc-review",
+      "plugin": "odin-research",
+      "files": 15
+    },
+    {
+      "slug": "docs-and-adrs",
+      "plugin": "odin-research",
+      "files": 7
+    },
+    {
+      "slug": "docs-canvas",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "docs-update",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "docs-writing",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "document-api-endpoint",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "domain-modeling",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "doubt-driven",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "drift-detect",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "drill",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "duet",
+      "plugin": "odin-run",
+      "files": 3
+    },
+    {
+      "slug": "dwarf-expert",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "dx-audit",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "embed-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "enforce-workflow-constraints",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "engineering-blog-writing",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "engineering-retrospective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "entropy-assisted-planning",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "entry-point-analyzer",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "environment-contract-audit",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "eslint-to-biome-migration",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "evaluation-leakage-audit",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "exhaustive",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "explain-concept",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "explainer-artifact",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "explore",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "extremely-optimize",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "factory-mcp-bootstrap",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "fail-design",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "fail-recover",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "fastify-inject-testing",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "fastify-production-hardening",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "fastify-schema-first-service",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "fastopt",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "fastopt-extreme",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "feedback-pattern-sweep",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "feedback-sweep",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "figure-it-out",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "final-grain",
+      "plugin": "odin-design-advanced",
+      "files": 2
+    },
+    {
+      "slug": "finish-branch-menu",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "finish-it-now",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "firebase-apk-scanner",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "first-load-byte-reduction",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "fix-p0-issues",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "fixed-view-visual-benchmark",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "frame-rate-stability",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "framing-divergence-fanout",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "fresh-reader-review",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-breaking-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-business-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-career-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-codebase-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-first-principle",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "from-human-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-impact-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-innovation-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-moat-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-rentseeking-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-skeptic-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "from-stability-perspective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "fromzero",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "frontend-design-deslop",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "frontend-fidelity-rebuild",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "frontend-ui-engineering",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "full-product-evaluation",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "function-audit-context-analyzer",
+      "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "fuzz-harness-writing",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "fuzzing-coverage-analysis",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "fuzzing-dictionary",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "fuzzing-obstacles",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "gate-and-merge",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "gate-proposed-change",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "genealogical-proof",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "generalize",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "generate-my-taste",
+      "plugin": "odin-agent",
+      "files": 6
+    },
+    {
+      "slug": "get-pr-comments",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "gh-review-requests",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "gha-security-review",
+      "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "git-branchless",
+      "plugin": "odin-code-advanced",
+      "files": 5
+    },
+    {
+      "slug": "git-cleanup",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "git-guardrails",
+      "plugin": "odin-agent",
+      "files": 3
+    },
+    {
+      "slug": "git-history-analysis",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "git-workflow-and-versioning",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "github-backlog-triage",
+      "plugin": "odin-run",
+      "files": 3
+    },
+    {
+      "slug": "github-bug-report-triage",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "github-issue-dedupe",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "github-solution-research",
+      "plugin": "odin-research",
+      "files": 7
+    },
+    {
+      "slug": "goal-init",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "goal-prompt-drafting",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "good-readme",
+      "plugin": "odin-create",
+      "files": 5
+    },
+    {
+      "slug": "graph-backbone",
+      "plugin": "odin-core",
+      "files": 3
+    },
+    {
+      "slug": "graph-evolution",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "grill-with-docs",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "ground-latest",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "guardrail-carve-run",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "guillotine",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "gut-sync",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "handoff",
+      "plugin": "odin-research",
+      "files": 4
+    },
+    {
+      "slug": "handoff-prompt",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "harness-port-guide",
+      "plugin": "odin-agent",
+      "files": 3
+    },
+    {
+      "slug": "headed-browser-takeover",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-forget",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-health",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-notes",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-recall",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-source-registry",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "history-sync",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "how",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "humaniseur-fr",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "humanizer-en-asd-ste100",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "humansense2system",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "idea-sparkbox",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "ideate",
+      "plugin": "odin-create",
+      "files": 8
+    },
+    {
+      "slug": "implement-spec",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "incremental-implementation",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "influence-and-negotiation",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "infrastructure-mentor",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "inits",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "insecure-default-discovery",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "instruction-phrasing-microtest",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "instruction-understanding-gate",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "intent-proposal",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "interactive-drop-selector",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "interrogate",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "interview-me",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "ios-build-cleanup",
+      "plugin": "odin-apple",
+      "files": 2
+    },
+    {
+      "slug": "ios-build-fix",
+      "plugin": "odin-apple",
+      "files": 2
+    },
+    {
+      "slug": "ios-device-qa",
+      "plugin": "odin-apple",
+      "files": 2
+    },
+    {
+      "slug": "ios-visual-review",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "isolate-work-in-worktree",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "isolate-workspace-gate",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "issue-intake",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "issue-now",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "issue-triage",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-autostart-examples",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-continuous-capture",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-interview",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-maintenance",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-repo-structure",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-repo-trust-boundary",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-retrospective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "keep-why-schema-migration",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "knowledge-refresh",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "land-contribution",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "learning-retrospective",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "leave-only-first-principle",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "libafl",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "libfuzzer",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "lifecycle-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "lighter-checks",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "linkedin-ghostwriting",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "llm-self-loop",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "llms-visibility",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "load-bearing-assumption-test",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "lockstep-version-guard",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "loop-me",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "make-bot-ui",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "make-pr-easy-to-review",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "map-corpus",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "markdown-to-pdf",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "mcp-builder",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "meaningful-test-coverage",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "memory-clean",
+      "plugin": "odin-research",
+      "files": 7
+    },
+    {
+      "slug": "memory-sanitize",
+      "plugin": "odin-research",
+      "files": 6
+    },
+    {
+      "slug": "memory-update",
+      "plugin": "odin-research",
+      "files": 7
+    },
+    {
+      "slug": "merge-and-deploy",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "mermaid-to-proverif",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "minimalism-driven",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "minimap",
+      "plugin": "odin-core",
+      "files": 3
+    },
+    {
+      "slug": "model-challenge",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "model-retuning",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "modern-cpp-practices",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "modern-python",
+      "plugin": "odin-python",
+      "files": 3
+    },
+    {
+      "slug": "multi-agent-tournament-scorecard",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "multi-tenant-architecture",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "mutation-campaign-configuration",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "mutation-triage-genotoxic",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "mutual-sync",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "native-messaging-host-conflicts",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "necessary-work",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "negotiate-run-budget",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "new-branch-and-pr",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "new-space",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "next-best-action",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "no-comments",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "no-hide",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "node-internals-diagnosis",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "nodejs-graceful-shutdown",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "nodejs-hanging-test-diagnosis",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "nodejs-service-foundations",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "nodejs-stream-pipeline",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "notion-writer",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "oauth2-flow-implementation",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "observability",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "offense",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "onboard",
+      "plugin": "odin-research",
+      "files": 3
+    },
+    {
+      "slug": "open-source-license-selection",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "open-source-readiness-audit",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "optimise-seo",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "optimize",
+      "plugin": "odin-code-advanced",
+      "files": 6
+    },
+    {
+      "slug": "orchestration-patterns",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "oss-fuzz",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "paced-explanation",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "parallel-launch",
+      "plugin": "odin-run-advanced",
+      "files": 3
+    },
+    {
+      "slug": "partition-scopes-to-subagents",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "perspective-complete-review",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "plan",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "plan-review",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "plan-review-tune",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "planning",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "planning-and-task-breakdown",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "polished-web-prototype",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "port-static-analysis-rule",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "possible-worlds",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "possible-worlds-qa",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "post-change-check-gate",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "post-daily-new-issues",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "post-merge-cleanup",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "post-release-status",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "post-to-slack",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "poteto-mode",
+      "plugin": "odin-run-advanced",
+      "files": 3
+    },
+    {
+      "slug": "pov",
+      "plugin": "odin-planning",
+      "files": 13
+    },
+    {
+      "slug": "pr-impact-quiz",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "pr-link-issue",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "pr-review-canvas",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "pr-review-canvas-html",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "pr-walkthrough",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "prepare-repository-for-public-release",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "presentation-creator",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "press-release-writer",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "pricing-projection",
+      "plugin": "odin-product",
+      "files": 2
+    },
+    {
+      "slug": "principles",
+      "plugin": "odin-code",
+      "files": 7
+    },
+    {
+      "slug": "prism",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "product-design",
+      "plugin": "odin-design",
+      "files": 7
+    },
+    {
+      "slug": "product-signal-pulse",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "prohibit-bad-habits",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "project-findings-onto-graph",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "prompt-optimizer",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "promql-cli",
+      "plugin": "odin-prometheus",
+      "files": 2
+    },
+    {
+      "slug": "proof-driven",
+      "plugin": "odin-code-advanced",
+      "files": 5
+    },
+    {
+      "slug": "property-test-authoring",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "property-test-failure-triage",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "property-test-review",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "property-testing-fit-assessment",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "propose-external-change",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "propose-issue",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "prototype",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "prototype-logic",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "publish-branch",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "publish-release-pr",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "punishing-practices",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "purge-slop-docs",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "rationale-by-source",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "readiness-assessment",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "readout",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "recall",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "record-design-decisions",
+      "plugin": "odin-code-advanced",
+      "files": 4
+    },
+    {
+      "slug": "recorded-feedback-analysis",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "refactor-break-compat",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "reflect",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "release-gate",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "release-landing-report",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "release-promotion",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "render-excalidraw-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "reorder",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "reorder-respect-deliberate",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "replace-unsafe-typescript-assertions",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "repo-health-triage",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "reproduce-and-fix-issues",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "reproduce-bug-report",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "research",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "resolve",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "resolve-merge-conflicts",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "resolve-pr-feedback",
+      "plugin": "odin-run",
+      "files": 10
+    },
+    {
+      "slug": "respond-to-pr-comments-in-blocklist",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "respond-to-slack-thread",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "restart-keeping-lessons",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "review",
+      "plugin": "odin-code",
+      "files": 23
+    },
+    {
+      "slug": "review-and-ship",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "review-plugin-submission",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "review-reception-protocol",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "review-speedread",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "rewrite-clean-v0",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "rewrite-denoise-v0",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "rhythmic-taste",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "run-smoke-tests",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "rust-security-review",
+      "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "ruzzy",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "saga",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "sarif-parsing",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "save-md",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "scaffold-cli",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "scaffold-exercises",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "scaffold-nextjs",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "scheduler",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "scrape",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "secure-npm-package",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "security-finding-verification",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "security-hardening",
+      "plugin": "odin-security",
+      "files": 8
+    },
+    {
+      "slug": "security-review",
+      "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "seed-casebook",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "semgrep-rule-authoring",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "semgrep-security-scan",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "seo-aeo-audit",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "sequence-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "session-share",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "session-viewer",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "setup",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "setup-benny",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "setup-gitignore",
+      "plugin": "odin-code",
+      "files": 6
+    },
+    {
+      "slug": "setup-pre-commit",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "setup-pstack",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "setup-repo-skills",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "setup-tool-credentials",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "setup-ts-deep-modules",
+      "plugin": "odin-typescript",
+      "files": 3
+    },
+    {
+      "slug": "shape",
+      "plugin": "odin-planning",
+      "files": 3
+    },
+    {
+      "slug": "sharp-edges",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "sharp-edges-analyzer",
+      "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "shipping",
+      "plugin": "odin-run",
+      "files": 6
+    },
+    {
+      "slug": "show-me",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "show-me-your-work",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "show-review",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "show-way",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "simplify",
+      "plugin": "odin-code",
+      "files": 6
+    },
+    {
+      "slug": "single-file-html-deck",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "site-launch-checklist",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "size-the-run",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "skill-benchmark",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "skill-benchmark-gate",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "skill-doctor",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "skill-gap-finder",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "skill-improver",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "skill-progressive-disclosure-design",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "skill-scanner",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "skills-visibility",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "slack-qa-investigate",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "slicing-code-context",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "smart-contract-audit-prep",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "smart-contract-code-maturity-assessor",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "smart-contract-guidelines-advisor",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "smart-contract-secure-workflow",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "snippet-image-rendering",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "social-sentiment",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "solidate",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "source-driven",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "spec-driven",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "spec-driven-implementation",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "spec-to-code-compliance",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "sred-project-organizer",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "sred-work-summary",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "ssotize-audit-fold",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "state-machine-workflow",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "strategy",
+      "plugin": "odin-product",
+      "files": 4
+    },
+    {
+      "slug": "strict-validation-setup",
+      "plugin": "odin-code-advanced",
+      "files": 8
+    },
+    {
+      "slug": "strike-the-root",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "subagent-driven",
+      "plugin": "odin-run-advanced",
+      "files": 12
+    },
+    {
+      "slug": "substack-ghostwriting",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "summarize-document-set",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "supply-chain-risk-auditor",
+      "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "swarm",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "sync-docs",
+      "plugin": "odin-create",
+      "files": 4
+    },
+    {
+      "slug": "tailwind-best-practices",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "taste",
+      "plugin": "odin-create",
+      "files": 5
+    },
+    {
+      "slug": "tasty-abstraction",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "tdd",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "teach",
+      "plugin": "odin-research",
+      "files": 6
+    },
+    {
+      "slug": "technical-article-writer",
+      "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "technical-writing",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "terraform-style-check",
+      "plugin": "odin-terraform",
+      "files": 2
+    },
+    {
+      "slug": "test-migration-coverage-gate",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "test-suite-acceleration",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "testing-handbook-generator",
+      "plugin": "odin-agent",
+      "files": 3
+    },
+    {
+      "slug": "tests-adversarial",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "tests-purge-unneeded",
+      "plugin": "odin-code-advanced",
+      "files": 6
+    },
+    {
+      "slug": "thin-repo-pulse",
+      "plugin": "odin-run-advanced",
+      "files": 2
+    },
+    {
+      "slug": "thumbnail-accuracy-scorecard",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "to-greenfield",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "to-questionnaire",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "to-spec",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "to-tickets",
+      "plugin": "odin-planning",
+      "files": 3
+    },
+    {
+      "slug": "todo-add",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "todos-enhance",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "todos-update",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "token-integration-analyzer",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "toolchain-health",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "trailmark-structural",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "trailmark-summary",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "training-report",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "triage-security-finding",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "type-driven",
+      "plugin": "odin-code",
+      "files": 5
+    },
+    {
+      "slug": "typescript-best-practices",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "typescript-type-hardening",
+      "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "typing-exclusion-worker",
+      "plugin": "odin-python",
+      "files": 2
+    },
+    {
+      "slug": "typography-audit",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "ui-animation",
+      "plugin": "odin-design-advanced",
+      "files": 2
+    },
+    {
+      "slug": "ui-design",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "universal-invariant-baseline",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "unlazy",
+      "plugin": "odin-run",
+      "files": 8
+    },
+    {
+      "slug": "unleak-abstraction",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "unslop",
+      "plugin": "odin-writing",
+      "files": 4
+    },
+    {
+      "slug": "validate-changes-match-specs",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "validation-first-driven",
+      "plugin": "odin-code-advanced",
+      "files": 6
+    },
+    {
+      "slug": "validation-self-audit",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "variant-hunt",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "variant-neighborhood-seeding",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "vector-forge",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "verification-before-completion",
+      "plugin": "odin-core",
+      "files": 2
+    },
+    {
+      "slug": "verification-skill",
+      "plugin": "odin-code-advanced",
+      "files": 2
+    },
+    {
+      "slug": "verify-both-ways",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "verify-this",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "viral-opportunity-scout",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "visual-argument-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "visual-brainstorm-companion",
+      "plugin": "odin-design-advanced",
+      "files": 3
+    },
+    {
+      "slug": "visual-diagram",
+      "plugin": "odin-create",
+      "files": 3
+    },
+    {
+      "slug": "visual-diff-review",
+      "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "visual-fact-check",
+      "plugin": "odin-research-advanced",
+      "files": 2
+    },
+    {
+      "slug": "visual-plan",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "visual-project-recap",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "visual-render-tool",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "visual-slides",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "visualise-chart",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "visualise-explainer",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "visualise-widget",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "vulnerability-triage-brocards",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "wait-what",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "walk-with-me",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "watch-and-repair-pr",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "watch-for",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "watch-for-harness-mode",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "watch-for-structured",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "watch-until",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "waterfall-guide",
+      "plugin": "odin-create-advanced",
+      "files": 2
+    },
+    {
+      "slug": "wayfinder",
+      "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "web-accessibility-audit",
+      "plugin": "odin-design-advanced",
+      "files": 4
+    },
+    {
+      "slug": "web-design-review",
+      "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "web-performance-audit",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "webapp-testing",
+      "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "weekly-review",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "weekly-synthesis",
+      "plugin": "odin-run",
+      "files": 3
+    },
+    {
+      "slug": "what-did-i-get-done",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "why",
+      "plugin": "odin-research",
+      "files": 15
+    },
+    {
+      "slug": "wizard",
+      "plugin": "odin-run",
+      "files": 4
+    },
+    {
+      "slug": "wontfix",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "work",
+      "plugin": "odin-run",
+      "files": 10
+    },
+    {
+      "slug": "workflow-diagram",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "workflow-evidence-mining",
+      "plugin": "odin-loop",
+      "files": 2
+    },
+    {
+      "slug": "workflow-from-chats",
+      "plugin": "odin-research",
+      "files": 2
+    },
+    {
+      "slug": "workflows-driven",
+      "plugin": "odin-run-advanced",
+      "files": 5
+    },
+    {
+      "slug": "workspace-unfreeze",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "worktree",
+      "plugin": "odin-code",
+      "files": 3
+    },
+    {
+      "slug": "write-pr-description",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "write-prd",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "write-product-spec",
+      "plugin": "odin-product",
+      "files": 2
+    },
+    {
+      "slug": "write-tech-spec",
+      "plugin": "odin-create",
+      "files": 2
+    },
+    {
+      "slug": "writing-beats",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "writing-for-agents",
+      "plugin": "odin-agent",
+      "files": 2
+    },
+    {
+      "slug": "writing-fragments",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "writing-lean-proofs",
+      "plugin": "odin-lean",
+      "files": 2
+    },
+    {
+      "slug": "writing-shape",
+      "plugin": "odin-writing-advanced",
+      "files": 2
+    },
+    {
+      "slug": "writing-skills",
+      "plugin": "odin-agent",
+      "files": 5
+    },
+    {
+      "slug": "wycheproof",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    },
+    {
+      "slug": "xcode-project-sync",
+      "plugin": "odin-apple",
+      "files": 2
+    },
+    {
+      "slug": "xcode-simulator-testing",
+      "plugin": "odin-apple",
+      "files": 2
+    },
+    {
+      "slug": "yara-rule-authoring",
+      "plugin": "odin-security-advanced",
+      "files": 3
+    },
+    {
+      "slug": "zeroize-audit",
+      "plugin": "odin-security-advanced",
+      "files": 2
+    }
+  ]
+}
