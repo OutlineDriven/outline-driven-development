@@ -1,7 +1,7 @@
 {
   "schema": "odin-devin-skill-mirror/v1",
   "sourceRepository": "https://github.com/OutlineDriven/odin-claude-plugin",
-  "releaseVersion": "2.0.0",
+  "releaseVersion": "2.0.1",
   "generator": "scripts/sync-outline-skills.mjs",
   "skills": [
     {
@@ -1932,7 +1932,7 @@
     {
       "slug": "prompt-optimizer",
       "plugin": "odin-agent",
-      "files": 2
+      "files": 4
     },
     {
       "slug": "promql-cli",
