@@ -67,6 +67,13 @@ Add the `OutlineDriven/odin-claude-plugin` marketplace in Cursor, then:
 
 Cursor reads the Agent Plugins manifest at each plugin root.
 
+### Devin
+
+Devin has no marketplace step. It reads project skills from `.devin/skills/<skill>/SKILL.md`, and
+this repository carries every skill there as a flat, generated mirror of the plugin tree.
+`.devin/skills/index.json` records the plugin each skill came from and the release it mirrors. See
+[.devin/skills/README.md](.devin/skills/README.md).
+
 ### Pick your plugins
 
 `odin-core` is the base installed above. The other 27 plugins are optional, so add the domains you
@@ -114,6 +121,13 @@ Releases ship from the implementation repository, not from here.
 ## Contributing
 
 Open an issue to discuss ideas or report bugs. PRs improving the methodology, prompts, or tooling documentation are welcome.
+
+Do not edit `.devin/skills/` here. Every file under it is written by `scripts/sync-outline-skills.mjs`
+in [odin-claude-plugin](https://github.com/OutlineDriven/odin-claude-plugin), which also deletes any
+file the plugin tree no longer carries. Change the skill under `plugins/<plugin>/skills/<slug>/` in
+that repository and run `just sync-outline` there. The script writes to the sibling checkout
+`../outline-driven-development` by default; `node scripts/sync-outline-skills.mjs --target <path>`
+points it elsewhere, and `--check` reports drift without writing.
 
 ---
 
