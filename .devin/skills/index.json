@@ -1,7 +1,7 @@
 {
   "schema": "odin-devin-skill-mirror/v1",
   "sourceRepository": "https://github.com/OutlineDriven/odin-claude-plugin",
-  "releaseVersion": "2.1.0",
+  "releaseVersion": "2.1.1",
   "generator": "scripts/sync-outline-skills.mjs",
   "skills": [
     {
@@ -2200,6 +2200,11 @@
       "files": 2
     },
     {
+      "slug": "plain-korean",
+      "plugin": "odin-writing",
+      "files": 5
+    },
+    {
       "slug": "plan",
       "plugin": "odin-planning",
       "files": 3
@@ -2923,6 +2928,11 @@
       "slug": "static-analysis",
       "plugin": "odin-native",
       "files": 3
+    },
+    {
+      "slug": "ste-korean",
+      "plugin": "odin-writing",
+      "files": 5
     },
     {
       "slug": "stm32-baremetal",
