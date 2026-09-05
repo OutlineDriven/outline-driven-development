@@ -1296,7 +1296,7 @@
     },
     {
       "slug": "fuzzing",
-      "plugin": "odin-native",
+      "plugin": "odin-fuzzing",
       "files": 3
     },
     {

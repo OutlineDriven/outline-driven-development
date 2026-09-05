@@ -194,7 +194,18 @@ def print_analysis(analysis: dict[str, object]):
 
     print("CPU Optimization Strategy:")
 
-    if analysis["has_gemm"]:
+    if analysis["kernel_type"] == "attention":
+        print("  Kernel Category: Attention (Flash-Attention style)")
+        print("  Architecture: Tiled attention with brgemm for Q@K and S@V")
+        print("  Blocking: BLOCK_M=256, BLOCK_N=768 (attention-specific)")
+        print("  Threading: parallel over batch * heads * M-tiles")
+        print("  Requirements: AVX512 + AMX (via brgemm)")
+        print()
+        print("  Reference files:")
+        print("    - references/brgemm_patterns.yaml")
+        print("    - references/memory_patterns.yaml")
+
+    elif analysis["has_gemm"]:
         print("  Kernel Category: GEMM")
         print("  Architecture:")
         print("    - tinygemm path (M <= 4): fused dequant + _mm512_dpbf16_ps")
@@ -223,17 +234,6 @@ def print_analysis(analysis: dict[str, object]):
         print("    - references/simd_optimization_patterns.yaml")
         print("    - references/memory_patterns.yaml")
         print("    - references/threading_patterns.yaml")
-
-    elif analysis["kernel_type"] == "attention":
-        print("  Kernel Category: Attention (Flash-Attention style)")
-        print("  Architecture: Tiled attention with brgemm for Q@K and S@V")
-        print("  Blocking: BLOCK_M=256, BLOCK_N=768 (attention-specific)")
-        print("  Threading: parallel over batch * heads * M-tiles")
-        print("  Requirements: AVX512 + AMX (via brgemm)")
-        print()
-        print("  Reference files:")
-        print("    - references/brgemm_patterns.yaml")
-        print("    - references/memory_patterns.yaml")
 
     print()
     print("File Structure:")
