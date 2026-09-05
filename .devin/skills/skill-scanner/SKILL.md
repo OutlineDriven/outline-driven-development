@@ -1,6 +1,6 @@
 ---
 name: skill-scanner
-description: 'Use when a user asks to scan, audit, or validate a skill for security issues. Runs static analysis on skill files and returns a risk-level assessment with an install recommendation. Not for source-code or infrastructure review—use security-review—or for remote-system changes.'
+description: 'Use when a user asks to scan, audit, or validate a skill for security issues. Not for source-code or infrastructure review: use security-review. Not for remote-system changes.'
 ---
 
 # Skill scanner
@@ -10,7 +10,7 @@ description: 'Use when a user asks to scan, audit, or validate a skill for secur
 | Field | Bound contract |
 |---|---|
 | Trigger | user asks to scan, audit, or validate a skill for security issues |
-| Authority | read-only: no file, VCS, credential, paid, published, deployed, or remote mutation |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | chat-output: runs static analysis and produces a risk assessment |
 | Done | risk-level assessment with evidence, false positives filtered, and install recommendation |
 

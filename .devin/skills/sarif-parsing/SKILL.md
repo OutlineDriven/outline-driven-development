@@ -1,6 +1,6 @@
 ---
 name: sarif-parsing
-description: 'Use when a user supplies existing SARIF to inspect, filter, aggregate, deduplicate, diff, convert, or gate findings without running a scanner. Produces the requested findings or derived artifacts. Not for running a scanner — use the relevant security-review skill.'
+description: 'Use when a user supplies existing SARIF to inspect, filter, aggregate, deduplicate, diff, convert, or gate findings. Not for running a scanner: use the relevant security-review skill.'
 ---
 
 # SARIF analysis
@@ -10,7 +10,7 @@ description: 'Use when a user supplies existing SARIF to inspect, filter, aggreg
 | Field | Bound contract |
 |---|---|
 | Trigger | User supplies existing SARIF and asks to inspect, filter, aggregate, deduplicate, diff, convert, or gate findings without running a scanner. |
-| Authority | Reversible-local: write only named local artifacts derived from the provided SARIF; no scanner execution, no credential access, no remote mutation. |
+| Authority | Reversible local: writes only named local artifacts derived from the provided SARIF; rollback is deleting the written file. No remote mutation. No scanner execution, no credential access. |
 | Side effect | Reads provided SARIF and may emit requested derived summaries or transformed SARIF/CSV/HTML artifacts. Does not run source scanners. |
 | Done | Requested findings or derived artifacts are produced with optional fields handled, paths normalized where comparison requires it, inherited severity resolved correctly, and aggregation metadata retained. |
 
@@ -27,9 +27,9 @@ description: 'Use when a user supplies existing SARIF to inspect, filter, aggreg
 
 ## Procedure
 
-1. Load and parse the provided SARIF as JSON. If the input is a file path, read it from the local filesystem. If parsing fails, stop with `invalid-input`.
-2. Validate the top-level structure of the SARIF object (must contain `runs` as an array). If the structure is invalid, stop with `invalid-sarif`.
-3. Resolve inherited severity for every result that omits an explicit `level`: walk the `rules`/`ruleDescriptors` lookup table in the same `run` object, then fall back to the tool default (`warning`).
+1. Load and parse the provided SARIF as JSON. If the input is a file path, read it from the local filesystem. If parsing fails, stop with `invalid-input`. Done when: the SARIF is parsed as JSON, or an `invalid-input` stop is reported.
+2. Validate the top-level structure of the SARIF object (must contain `runs` as an array). If the structure is invalid, stop with `invalid-sarif`. Done when: the top-level structure is validated, or an `invalid-sarif` stop is reported.
+3. Resolve inherited severity for every result that omits an explicit `level`: walk the `rules`/`ruleDescriptors` lookup table in the same `run` object, then fall back to the tool default (`warning`). Done when: every result has a resolved severity level.
 4. Apply the user request:
    - Inspect / Filter: apply the stated filter criteria to `runs[].results[]`, keeping every result that matches.
    - Deduplicate: within each run, group results by the deduplication scope (exact, or relaxed) and retain one representative per group.
@@ -38,8 +38,9 @@ description: 'Use when a user supplies existing SARIF to inspect, filter, aggreg
    - Convert: transform the SARIF into the requested format (CSV, HTML summary, or SARIF variant) preserving the results, rules, and tool metadata.
    - Gate: evaluate each result against the stated threshold or rule list; report pass/fail per rule and overall.
    - Any other request: stop with `unsupported-request`.
-5. If the requested artifact must be written to a local file, write it to the stated path. Roll back by deleting the file if a subsequent step fails.
-6. Return the produced findings or derived artifact inline or confirm the written path.
+   Done when: the user request is applied and the requested operation is completed, or an `unsupported-request` stop is reported.
+5. If the requested artifact must be written to a local file, write it to the stated path. Roll back by deleting the file if a subsequent step fails. Done when: the artifact is written to the stated path or confirmed not to require a file.
+6. Return the produced findings or derived artifact inline or confirm the written path. Done when: the findings or derived artifact are returned inline or the written path is confirmed.
 
 ## Failure and recovery
 - **`invalid-input`**: SARIF is not valid JSON or the file does not exist. Do not produce any artifact.

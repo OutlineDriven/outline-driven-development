@@ -1,6 +1,6 @@
 ---
 name: doc-review
-description: 'Use when reviewing a prose plan, spec, PRD, requirements doc, design doc, or brainstorm, or invoking /doc-review. Returns tiered findings with verbatim evidence without editing the document. Not for collaborative drafting — use doc-coauthoring. No remote or irreversible changes.'
+description: 'Use when reviewing a prose plan, spec, PRD, requirements doc, design doc, or brainstorm, or invoking /doc-review. Not for collaborative drafting: use doc-coauthoring.'
 ---
 
 # Doc review
@@ -10,9 +10,9 @@ description: 'Use when reviewing a prose plan, spec, PRD, requirements doc, desi
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to review or critique a prose planning document (plan, spec, PRD, requirements, design doc, brainstorm) or invokes `/doc-review [path]`. |
-| Authority | Reversible-local. The orchestrator may write at most one review-record file `docs/reviews/<doc-slug>-review.md`, and only when `--record` is requested. Dispatched reviewer subagents are read-only (no Write, no Edit, no files). The reviewed document is never edited, written, or committed. |
+| Authority | Reversible local: writes at most one review-record file `docs/reviews/<doc-slug>-review.md`, and only when `--record` is requested; rollback is deleting that file. No remote mutation. Dispatched reviewer subagents are read-only; the reviewed document is never edited, written, or committed. |
 | Side effect | At most one local review-record file, only on `--record`; read-only subagent dispatch. No mutation of the reviewed document or any other tree path. Rollback: delete the single record file; nothing else was touched. |
-| Done | Findings routed to safe-auto / gated-auto / manual / FYI tiers with verbatim evidence, zero writes to the reviewed document, and the terminal signal `Review complete`. |
+| Done | Findings routed to safe_auto / gated_auto / manual / FYI tiers with verbatim evidence, zero writes to the reviewed document, and the terminal signal `Review complete`. |
 
 ## Inputs
 
@@ -24,7 +24,7 @@ description: 'Use when reviewing a prose plan, spec, PRD, requirements doc, desi
 
 1. **Detect mode.** **Done when:** one mode is fixed for the run.
 
-Strip flag tokens from the arguments; use the remaining token as the document path. If `mode:headless` is present, run headless for the whole workflow: findings return as structured text, no blocking-question prompts, no interactive routing, Phase 5 returns immediately with `Review complete`. Otherwise run interactive mode.
+Strip flag tokens from the arguments; use the remaining token as the document path. If `mode:headless` is present, run headless for the whole workflow: findings return as structured text, no blocking-question prompts, no interactive routing, step 6 returns immediately with `Review complete`. Otherwise run interactive mode.
 
 2. **Locate and classify by shape.** **Done when:** the document is resolved and classified by shape.
 
@@ -37,7 +37,7 @@ Classify by **content shape, not path** (path is a tie-breaker only):
 
 When shape is genuinely ambiguous, default to `requirements` (the conservative classification that activates fewer plan-grade feasibility checks). Extract the `origin:` frontmatter value once (or `none`). Pass classification + origin to every reviewer; reviewers adapt on them and do not re-classify.
 
-This skill reviews prose planning documents only. If the target is a diff or code file, stop — it is out of scope.
+This skill reviews prose planning documents only. If the target is a diff or code file, stop; it is out of scope.
 
 3. **Select personas by signal.** **Done when:** the persona roster is justified by document signals.
 
@@ -45,7 +45,7 @@ Always dispatch **coherence** + **feasibility**. Add a conditional lens only whe
 
 | Persona | Lens | Activate when the document… |
 |---|---|---|
-| coherence | internal-consistency (owns the mechanically-fixable safe-auto candidates) | always |
+| coherence | internal-consistency (owns the mechanically-fixable safe_auto candidates) | always |
 | feasibility | buildability (tightens to fundamental-rework gaps on requirements) | always |
 | product | premise/strategy + design-shape (adoption, cognitive load, workflow fit) | stakes a challengeable claim about what/why to build, ranks priorities, predicts user outcomes, carries strategic weight, OR has UI/UX/flow/accessibility signals |
 | security | plan-level threat surface | touches auth/authz, exposed endpoints, PII/payments/credentials/encryption, or third-party trust boundaries |
@@ -54,7 +54,7 @@ Always dispatch **coherence** + **feasibility**. Add a conditional lens only whe
 
 4. **Dispatch in parallel (read-only).** **Done when:** all selected personas are dispatched in one read-only parallel batch.
 
-Launch every selected persona in **one parallel tool-call message**. Sequential dispatch breaks the single-batch concurrency contract. Each subagent is read-only: no Write, no Edit, no files; it returns findings JSON only (it may use non-mutating tools — read, glob, grep, git log — to gather codebase context).
+Launch every selected persona in **one parallel tool-call message**. Sequential dispatch breaks the single-batch concurrency contract. Each subagent is read-only: no Write, no Edit, no files; it returns findings JSON only (it may use non-mutating tools, read, glob, grep, git log, to gather codebase context).
 
 Each subagent receives this dispatch prompt with the slots filled:
 
@@ -86,8 +86,8 @@ Confidence rubric — pick the single anchor whose behavioral criterion can be h
 Anchor and severity are independent axes. Anchor gates where the finding surfaces (drop/FYI/actionable); severity orders it within the actionable surface.
 
 autofix_class — set by whether there is one clear correct fix, not by severity:
-- safe_auto: one clear correct fix, applied silently. Eligible: typo, wrong count, missing list entry derivable elsewhere, stale internal cross-reference, terminology drift, summary/detail mismatch (body authoritative), prose-vs-prose contradiction where one passage is more detailed, missing step mechanically implied, unstated threshold implied by context. Always include suggested_fix. Factually incorrect behavior is gated_auto, not safe_auto.
-- gated_auto: a concrete fix exists but touches document meaning/scope/author intent and warrants one-click confirmation. Use for substantive additions implied by the document's own decisions, codebase-pattern-resolved fixes, framework-native-API substitutions, missing standard security/reliability controls, factually incorrect behavior where the correct behavior is derivable. Always include suggested_fix.
+- safe_auto: one clear correct fix, applied silently. Eligible: typo, wrong count, missing list entry derivable elsewhere, stale internal cross-reference, terminology drift, summary/detail mismatch (body authoritative), prose-vs-prose contradiction where one passage is more detailed, missing step mechanically implied, unstated threshold implied by context. always include suggested_fix. Factually incorrect behavior is gated_auto, not safe_auto.
+- gated_auto: a concrete fix exists but touches document meaning/scope/author intent and warrants one-click confirmation. Use for substantive additions implied by the document's own decisions, codebase-pattern-resolved fixes, framework-native-API substitutions, missing standard security/reliability controls, factually incorrect behavior where the correct behavior is derivable. always include suggested_fix.
 - manual: requires user judgment — genuinely multiple valid approaches. Include suggested_fix only when the fix is obvious despite the judgment call.
 
 Strawman-aware classification: when listing alternatives to the primary fix, count only alternatives a competent implementer would genuinely weigh. A "do nothing / accept the defect" option is the failure state, not an alternative. If the only alternatives are strawmen, the finding is safe_auto or gated_auto, not manual. If safe_auto is classified via strawman-dismissal, name the dismissed alternatives in why_it_matters; when any non-strawman alternative exists, downgrade to gated_auto.
@@ -115,7 +115,7 @@ Advisory observations route to FYI (anchor 50), do not force a decision — but 
 Rules:
 - Act as a leaf reviewer inside an already-running doc-review workflow. Do not invoke doc-review skills or agents. Perform the analysis directly and return findings JSON only.
 - Suppress any finding that cannot be honestly anchored at 50 or higher. If the persona sets a stricter floor, honor it.
-- Every finding MUST include at least one evidence item — a direct quote from the document.
+- Every finding must include at least one evidence item — a direct quote from the document.
 - Operationally read-only. Do not edit the document, create files, or make changes.
 - Exclude prior-round deferred entries from review scope; do not emit findings to note prior-round resolutions (use residual_risks for "verified landed" observations; synthesis checks fix-landed status automatically).
 - When no issues are found, return an empty findings array; still populate residual_risks and deferred_questions if applicable.
@@ -236,18 +236,18 @@ Run all returned findings through this pipeline. Order matters; re-evaluate stat
 | 75 | manual | walk-through, user-judgment framing (suggested_fix optional) |
 | 50 | any | FYI subsection; skip walk-through and any bulk action |
 
-**Four output tiers** (user-facing labels in parentheses): safe-auto (accepted recommendations), gated-auto (proposed fixes), manual (decisions), FYI (FYI observations).
+**Four output tiers** (user-facing labels in parentheses): safe_auto (accepted recommendations), gated_auto (proposed fixes), manual (decisions), FYI (FYI observations).
 
 6. **Present and route.** **Done when:** surviving findings are presented and routed.
 
-User-facing vocabulary rule: internal enum values (`safe_auto`, `gated_auto`, `manual`, `FYI`) stay inside the schema and synthesis prose. Every user-visible word uses plain language — "accepted recommendations", "proposed fixes", "decisions", "FYI observations" — except the `Tier` column in rendered tables, which names the internal enum. All tables are pipe-delimited markdown; escape literal `|` in cells as `\|`; never use ASCII box-drawing characters.
+User-facing vocabulary rule: internal enum values (`safe_auto`, `gated_auto`, `manual`, `FYI`) stay inside the schema and synthesis prose. Every user-visible word uses plain language ("accepted recommendations", "proposed fixes", "decisions", "FYI observations") except the `Tier` column in rendered tables, which names the internal enum. All tables are pipe-delimited markdown; escape literal `|` in cells as `\|`; never use ASCII box-drawing characters.
 
-Headless mode: output a structured text envelope (accepted recommendations, proposed fixes, decisions with dependents nested under roots, FYI observations, residual concerns, deferred questions — omit any empty section), end with `Review complete`, and stop. When the combined count of FYI/residual/deferred is ≥5, collapse each to a one-line count plus a tight bullet list; actionable buckets stay fully rendered.
+Headless mode: output a structured text envelope (accepted recommendations, proposed fixes, decisions with dependents nested under roots, FYI observations, residual concerns, deferred questions, omit any empty section), end with `Review complete`, and stop. When the combined count of FYI/residual/deferred is ≥5, collapse each to a one-line count plus a tight bullet list; actionable buckets stay fully rendered.
 
 Interactive mode: present findings grouped by severity (P0→P3), errors before omissions within each severity, with a summary line `Accepted N recommendations. K items need attention (X errors, Y omissions). Z FYI observations.`, the Coverage table, accepted recommendations, FYI observations (distinct subsection), residual concerns, and deferred questions. Coverage counts are post-synthesis: Findings = Auto + Proposed + Decisions + FYI exactly; Auto counts safe_auto@100, Proposed counts gated_auto@75/100, Decisions counts manual@75/100, FYI counts anchor-50 regardless of class. Footnotes below the table when non-zero, in order: `Dropped:`, `Chains:`, `Restated:`. Dependents render only nested under their root, never at their own severity position.
 
 Then route:
-- Only FYI observations remain (no gated_auto or manual at anchor 75/100) → skip the routing question; flow to Phase 6.
+- Only FYI observations remain (no gated_auto or manual at anchor 75/100) → skip the routing question; flow to step 7.
 - Actionable findings remain → ask the routing question:
 ```
 What should the agent do with the remaining N findings?
@@ -259,7 +259,7 @@ D. Report only — take no further action
 Option C is suppressed when all findings are already FYI-only.
 
 Walk-through (option A): per-finding loop over actionable findings (anchor 75/100, gated_auto/manual), root-first iteration order. Each finding: print an explanation block, then a yes/no question stem with the recommended action marked `(recommended)` (only A/B/C can carry it; D never). Four options per finding: Accept the recommendation / Defer / Skip / Auto-resolve with best judgment on the rest. After each answer emit a one-line confirmation (`-> Accepted.`, `-> Deferred.`, `-> Skipped.`). N=1 omits the `Finding N of M` heading and suppresses option D.
-- Accept: add to the in-memory Accepted set. No-fix guard: if the merged finding has no suggested_fix, Accept is not executable — ask `Accept isn't executable for this finding — the review surfaced the issue without a concrete fix. How should the agent proceed?` with options `A. Defer` / `B. Skip`.
+- Accept: add to the in-memory Accepted set. No-fix guard: if the merged finding has no suggested_fix, Accept is not executable; ask `Accept isn't executable for this finding — the review surfaced the issue without a concrete fix. How should the agent proceed?` with options `A. Defer` / `B. Skip`.
 - Defer: record the finding + rationale in the completion report's deferred section (never mutate the reviewed document). Entry: title, section, severity, reviewer, confidence, why_it_matters, reason (user-provided or `Deferred for later resolution`), timestamp. Compound-key dedup on `normalize(section)+normalize(title)+why_fingerprint`; on collision record a no-op in Coverage. If recording fails, ask `Couldn't record the deferral. What should the agent do?` → `A. Retry` / `B. Convert to Skip`; on no response default to Skip.
 - Skip: record as no-action.
 - Auto-resolve the rest: route through the bulk preview.
@@ -281,7 +281,7 @@ Default: report findings inline; write nothing. The reviewed document and the re
 ```
 git add docs/reviews/<doc-slug>-review.md
 ```
-Never `git add -A` / `git add .`. Never stage the reviewed document. Commit by the repo's normal flow.
+Never `git add -A` / `git add .` because staging everything risks committing the reviewed document or unrelated files. Never stage the reviewed document; only the review-record file is staged. Commit by the repo's normal flow.
 ## Failure and recovery
 - Document not resolvable: empty/missing candidate set → say so in one line and exit; launch no agents. Headless with no path → `Review failed: headless mode requires a document path.` and exit.
 - Subagent failure or timeout: proceed with findings from subagents that completed; note the failed reviewer in Coverage. Never block the entire review on a single reviewer failure.
@@ -294,4 +294,4 @@ Never `git add -A` / `git add .`. Never stage the reviewed document. Commit by t
 - Blocked/non-converged result: if the document cannot be classified even after the user is asked, or no reviewers return usable output, output `Review failed: <reason>` and stop without writing any file.
 
 ## Output
-A tiered findings report: every survivor labeled safe-auto / gated-auto / manual / FYI, each carrying a verbatim document quote and an anchored confidence value. Interactive mode adds a routing decision per actionable finding and a unified completion report. On `--record`, additionally one file `docs/reviews/<doc-slug>-review.md`. The reviewed document is never modified. The run terminates with the literal signal `Review complete` (or `Review failed: <reason>` on a blocked path).
+A tiered findings report: every survivor labeled safe_auto / gated_auto / manual / FYI, each carrying a verbatim document quote and an anchored confidence value. Interactive mode adds a routing decision per actionable finding and a unified completion report. On `--record`, additionally one file `docs/reviews/<doc-slug>-review.md`. The reviewed document is never modified. The run terminates with the literal signal `Review complete` (or `Review failed: <reason>` on a blocked path).

@@ -1,6 +1,6 @@
 ---
 name: cut-new-release-candidate
-description: 'Use when the user asks to cut, trigger, or start a release candidate for a release branch. Validates the branch against configured channel prefixes, dispatches the release workflow, receives the run URL, and posts a status notification. Don''t use for full releases, hotfixes, or non-release-candidate workflow dispatches.'
+description: 'Use when the user asks to cut, trigger, or start a release candidate for a release branch. Not for full releases, hotfixes, or non-release-candidate workflow dispatches.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to cut, trigger, or start a release candidate for a release branch. |
-| Authority | Explicit human invocation only. Preview the target and consequence before each remote mutation; mutate only the one workflow dispatch on the branch the user named and the one status notification. |
+| Authority | Remote: dispatches the release workflow on the named branch and posts one status notification; requires explicit human invocation. Preview the target and consequence before each remote mutation; mutate only the one workflow dispatch on the branch the user named and the one status notification. |
 | Side effect | Runs the configured release workflow on the release branch, obtains its run URL, and posts one status notification. Nothing else changes. |
 | Done | The workflow dispatch exits zero, the run query returns a non-null run URL, and the status notification is posted. |
 
@@ -36,7 +36,7 @@ If `INTERNAL_REPO` or `NOTIFICATION_TOKEN` is unset, stop and ask before running
 
 ## Procedure
 
-1. Validate the branch at the trust boundary — set the requested branch, strip the `origin/` prefix, and reject any branch that does not start with a configured channel prefix:
+1. Validate the branch at the trust boundary: set the requested branch, strip the `origin/` prefix, and reject any branch that does not start with a configured channel prefix:
 
    ```bash
    BRANCH_NAME="<release_branch>"
@@ -53,7 +53,7 @@ If `INTERNAL_REPO` or `NOTIFICATION_TOKEN` is unset, stop and ask before running
 
    Done when: the branch passes the channel-prefix check or the run stops with `Not a release branch`.
 
-2. Preview the mutation: state `INTERNAL_REPO`, `$RC_WORKFLOW_NAME`, `$BRANCH_NAME`, and the consequence — a release-candidate build starts on that branch and one status notification is posted. Proceed only on the user's explicit invocation. Done when: the mutation preview is stated and the user explicitly invokes the run.
+2. Preview the mutation: state `INTERNAL_REPO`, `$RC_WORKFLOW_NAME`, `$BRANCH_NAME`, and the consequence, a release-candidate build starts on that branch and one status notification is posted. Proceed only on the user's explicit invocation. Done when: the mutation preview is stated and the user explicitly invokes the run.
 3. Enter the repo context: `cd "$REPO_DIR"`. If `REPO_DIR` is unset or the path does not exist, ask the user for the local path to the release repo checkout and `cd` there; stop if none is given. Done when: the working directory is inside the release repo checkout.
 4. Confirm the branch exists on origin before dispatching:
 
@@ -64,35 +64,52 @@ If `INTERNAL_REPO` or `NOTIFICATION_TOKEN` is unset, stop and ask before running
 
    Done when: the branch is confirmed to exist on origin.
 
-5. Dispatch the workflow by name on the branch ref:
+5. Dispatch the workflow by name on the branch ref. Record the UTC dispatch timestamp immediately before dispatching; step 6 uses it to tell this dispatch's run from the previous one:
 
    ```bash
+   DISPATCH_TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
    gh workflow run "$RC_WORKFLOW_NAME" --repo "$INTERNAL_REPO" --ref "$BRANCH_NAME"
    ```
 
-   Done when: the workflow dispatch exits zero.
+   Done when: the workflow dispatch exits zero and the dispatch timestamp is recorded.
 
-6. Fetch the newest run for this workflow on this branch and share its `url`; do not watch or wait for completion:
+6. Fetch this dispatch's run and share its `url`, `status`, and `conclusion`; do not watch or wait for completion. A run list taken right after dispatch can still show the previous run, so poll until the newest run's `createdAt` is at or after the dispatch timestamp (ISO-8601 UTC strings compare lexicographically), up to ten tries ten seconds apart:
 
    ```bash
-   gh run list \
-     --repo "$INTERNAL_REPO" \
-     --workflow "$RC_WORKFLOW_NAME" \
-     --branch "$BRANCH_NAME" \
-     --limit 1 \
-     --json url,status,conclusion,createdAt \
-     --jq '.[0]'
+   RUN_JSON=""
+   for i in $(seq 1 10); do
+     RUN_JSON=$(gh run list \
+       --repo "$INTERNAL_REPO" \
+       --workflow "$RC_WORKFLOW_NAME" \
+       --branch "$BRANCH_NAME" \
+       --limit 1 \
+       --json url,status,conclusion,createdAt \
+       --jq '.[0] // empty')
+     CREATED=$(jq -r '.createdAt // empty' <<<"$RUN_JSON")
+     if [ -n "$CREATED" ] && [ ! "$CREATED" \< "$DISPATCH_TS" ]; then
+       break
+     fi
+     RUN_JSON=""
+     sleep 10
+   done
+   RUN_URL=$(jq -r '.url // empty' <<<"$RUN_JSON")
    ```
 
-   Done when: the newest run URL is fetched and shared.
+   Guards: `// empty` keeps an empty run list from printing the literal `null`, which would otherwise pass `-n` and compare greater than any timestamp; the `! ... \<` comparison accepts a run created in the same second as the dispatch. A run whose `createdAt` predates the dispatch timestamp is the previous run, not this one. After the loop, verify `RUN_URL` is non-empty and not `null` before posting anything: an empty or `null` URL means this dispatch's run never appeared, which is the "Dispatched but no run URL" failure below, never a notification. Done when: the URL, `status`, and `conclusion` for this dispatch's run are fetched and shared.
 
 7. Post the status notification carrying the branch name and run URL. Use the destination the user named. If the user gave no destination, stop and ask for one. Send the notification through the configured endpoint:
 
    ```bash
+   if [ -z "$RUN_URL" ] || [ "$RUN_URL" = "null" ]; then
+     printf 'Blocked: no run URL for workflow %s on branch %s after dispatch at %s\n' \
+       "$RC_WORKFLOW_NAME" "$BRANCH_NAME" "$DISPATCH_TS" >&2
+     exit 1
+   fi
+   JSON=$(jq -n --arg destination "$DESTINATION" --arg wf "$RC_WORKFLOW_NAME" --arg br "$BRANCH_NAME" --arg url "$RUN_URL" '{destination: $destination, text: ("Triggered " + $wf + " for " + $br + ".\nRun: " + $url)}')
    curl -s -X POST "$NOTIFICATION_ENDPOINT" \
      -H "Authorization: Bearer $NOTIFICATION_TOKEN" \
      -H "Content-type: application/json; charset=utf-8" \
-     -d '{"destination":"<DESTINATION>","text":"Triggered '"$RC_WORKFLOW_NAME"' for '"$BRANCH_NAME"'.\nRun: <RUN_URL>"}'
+     -d "$JSON"
    ```
 
    Require a success response from the notification API. Done when: the notification post returns success.

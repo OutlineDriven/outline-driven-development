@@ -1,6 +1,6 @@
 ---
 name: fuzzing-coverage-analysis
-description: 'Use when a user needs to measure fuzz corpus coverage, explain a coverage plateau, or turn uncovered regions into campaign work. Builds an instrumented binary, runs it over a post-campaign corpus, and produces a reproducible coverage report excluding harness noise. Not for harness creation — use fuzz-harness-writing.'
+description: 'Use when a user needs to measure fuzz corpus coverage, explain a coverage plateau, or turn uncovered regions into campaign work. Not for harness creation: use fuzz-harness-writing.'
 ---
 
 # Fuzzing coverage analysis
@@ -10,14 +10,14 @@ description: 'Use when a user needs to measure fuzz corpus coverage, explain a c
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs to measure a fuzz corpus, explain a coverage plateau, or turn uncovered regions into campaign work. |
-| Authority | Reversible local: write coverage profiles, reports, and temporary instrumented binaries under a single named target directory for one fuzz target. No VCS, credential, paid, published, deployed, or remote mutation. Roll back by deleting the generated profiles, report directory, and temporary binaries. |
+| Authority | Reversible local: writes only coverage profiles, reports, and temporary instrumented binaries under a single named target directory for one fuzz target; rollback is deleting the generated profiles, report directory, and temporary binaries. No remote mutation. No VCS mutation. |
 | Side effect | Coverage profiles (`.profraw`, `.profdata`, `.gcda`) and a coverage report (text and HTML) written under the target directory for the named fuzz target. |
 | Done | A reproducible coverage report excludes harness noise and identifies concrete reachable or blocked regions. |
 
 ## Not for
 
-- Harness creation or improvement — use fuzz-harness-writing.
-- Patching the system under test to bypass obstacles — use fuzzing-obstacles.
+- Harness creation or improvement: use fuzz-harness-writing.
+- Patching the system under test to bypass obstacles: use fuzzing-obstacles.
 - Remote, credential, publish, deploy, or irreversible changes.
 
 ## Inputs
@@ -41,7 +41,7 @@ Optional:
 6. Merge and report, excluding harness and runtime noise so the report reflects system-under-test coverage only. See `references/toolchain-commands.md` for per-toolchain merge and report commands. Done when: the merged report excludes harness noise and reflects SUT coverage.
 7. Classify every uncovered region into one of: reachable-but-uncovered (needs better seeds or harness input shaping), blocked-by-magic-value (a hardcoded conditional guard the fuzzer cannot satisfy), or dead/unreachable through this harness. Done when: every uncovered region is classified.
 8. Turn each uncovered region into concrete campaign work: a proposed dictionary entry for a magic value (passed to fuzzing-dictionary for execution), a seed input that shapes bytes toward the region, or a harness change that reaches it. For magic-value guards, propose the literal bytes (e.g. `"\x7F\x45\x4C\x46"`) as a dictionary entry rather than writing them to a dictionary file directly. Done when: each uncovered region has a concrete campaign-work item.
-9. If a baseline profile was supplied, run the differential command for the chosen toolchain to produce a differential view and report coverage gained or lost versus the earlier campaign. For LLVM, `llvm-cov show` with two `-instr-profile` arguments; for GCC, compare `gcovr` reports from both runs; for Rust, compare `cargo cov` output. See `references/toolchain-commands.md` for per-toolchain differential commands. Done when: the differential view is produced or the step is skipped (no baseline).
+9. If a baseline profile was supplied, run the differential command for the chosen toolchain to produce a differential view and report coverage gained or lost versus the earlier campaign. For LLVM, generate two `llvm-cov show` reports (one with the baseline profile, one with the target profile) and diff them; for GCC, compare `gcovr` reports from both runs; for Rust, compare `cargo cov` output. See `references/toolchain-commands.md` for per-toolchain differential commands. Done when: the differential view is produced or the step is skipped (no baseline).
 10. Write the report and the region classification with its campaign-work items into the target directory. Done when: the report and classification are written to the target directory.
 
 ## Failure and recovery
@@ -56,4 +56,4 @@ Optional:
 
 ## Output
 
-A coverage report (text summary plus HTML detail) and a region classification written under the target directory — each uncovered region listed as reachable-uncovered, blocked-by-magic-value, or dead, paired with a concrete campaign-work item (dictionary entry, seed input, or harness change); when a baseline was supplied, coverage gained or lost versus that baseline.
+A coverage report (text summary plus HTML detail) and a region classification written under the target directory: each uncovered region listed as reachable-but-uncovered, blocked-by-magic-value, or dead, paired with a concrete campaign-work item (dictionary entry, seed input, or harness change); when a baseline was supplied, coverage gained or lost versus that baseline.

@@ -1,6 +1,6 @@
 ---
 name: solidate
-description: 'Use when a user invokes this skill to harden a chosen but tentative artifact into one durable result. Resolves assumptions, names invariants, removes temporary choices, and verifies the stable end state. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when the user wants to harden a chosen but tentative artifact into one durable result. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Solidate
@@ -10,7 +10,7 @@ description: 'Use when a user invokes this skill to harden a chosen but tentativ
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to harden a chosen but tentative artifact into one durable result. |
-| Authority | Reversible local write only. No VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Reversible local: writes only the hardened artifact at its existing path; rollback is restoring the prior file content. No VCS, credential, paid, or remote mutation. |
 | Side effect | Writes the hardened artifact to its existing path via atomic rename. Does not create, move, or delete other files. |
 | Done | The chosen artifact is hardened and its stable end state is verified. |
 

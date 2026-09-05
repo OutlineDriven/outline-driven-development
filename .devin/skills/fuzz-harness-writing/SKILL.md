@@ -1,6 +1,6 @@
 ---
 name: fuzz-harness-writing
-description: 'Use when a user needs to create or improve a deterministic, engine-agnostic fuzz harness for raw or structured target inputs. Identifies the API entry point, defines an adapter for structured input, writes a deterministic harness, populates a boundary corpus, and confirms API reachability with preserved crashes. Not for coverage measurement — use fuzzing-coverage-analysis.'
+description: 'Use when a user needs to create or improve a deterministic, engine-agnostic fuzz harness for raw or structured target inputs. Not for coverage measurement: use fuzzing-coverage-analysis.'
 ---
 
 # Fuzz harness writing
@@ -10,14 +10,14 @@ description: 'Use when a user needs to create or improve a deterministic, engine
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs to create or improve a deterministic fuzz harness for raw or structured target inputs. |
-| Authority | Reversible local writes to the fuzz harness, target adapter code, corpus entries, and crash artifacts under the project tree; no VCS commit required. Revert by deleting the added harness, adapter, corpus, and artifact files. |
+| Authority | Reversible local: writes only the fuzz harness, target adapter code, corpus entries, and crash artifacts under the project tree; rollback is deleting the added harness, adapter, corpus, and artifact files. No remote mutation. No VCS commit required. |
 | Side effect | Local writes to fuzz harness, target adapter code, corpus, and crash artifacts. |
 | Done | The harness executes representative and boundary inputs deterministically, reaches the intended API, and preserves reproducible crashes. |
 
 ## Not for
 
-- Coverage measurement or plateau analysis — use fuzzing-coverage-analysis.
-- Patching the system under test to bypass obstacles — use fuzzing-obstacles.
+- Coverage measurement or plateau analysis: use fuzzing-coverage-analysis.
+- Patching the system under test to bypass obstacles: use fuzzing-obstacles.
 - Remote, credential, publish, deploy, or irreversible changes.
 
 ## Inputs

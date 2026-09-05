@@ -1,6 +1,6 @@
 ---
 name: weekly-synthesis
-description: 'Use when the user asks to compile a weekly synthesis, a weekly report, or a "what you need to know this week" digest from existing team reports: discovers the most recent report per source directory, synthesizes six sections with strict factual and recommendation separation, self-reviews before writing, and produces one local markdown file. Not for generating the underlying reports or ad-hoc summaries.'
+description: 'Use when the user asks for a weekly synthesis, a weekly report, or a "what you need to know this week" digest from team reports. Not for the underlying reports or ad-hoc summaries.'
 ---
 
 # Weekly synthesis
@@ -10,7 +10,7 @@ description: 'Use when the user asks to compile a weekly synthesis, a weekly rep
 | Field | Bound contract |
 |---|---|
 | Trigger | The user needs the period's scattered reports synthesized into one evidence-grounded weekly digest. |
-| Authority | Reversible-local: writes one markdown file under `reports/weekly-synthesis/`; delete the file to roll back. |
+| Authority | Reversible local: writes only one markdown file under `reports/weekly-synthesis/`; rollback is undo. No remote mutation. |
 | Side effect | Exactly one local file: `reports/weekly-synthesis/synthesis_YYYY-MM-DD.md`. No network calls, no credentials, no publishing. |
 | Done | The synthesis file exists with sections 1 through 5 strictly factual, section 6 labeled agent-generated recommendations, and the self-review checklist passed. |
 
@@ -19,7 +19,7 @@ description: 'Use when the user asks to compile a weekly synthesis, a weekly rep
 - **Report source directories** (at least one report across all of them required): the directories under the repository root holding the period's reports. The synthesis covers only artifacts that already exist; it never collects new data or generates the underlying reports.
 - Synthesis date `YYYY-MM-DD` (optional): the week being synthesized; defaults to today.
 - Previous synthesis (optional): the most recent file in `reports/weekly-synthesis/` enables the trend comparison and follow-up on prior recommendations.
-- Planning context (optional): active planning items and north-star metrics the operator supplies. When absent, sections 1 and 3 omit planning alignment and the omission is recorded in section 5.
+- Planning context (optional): active planning items and primary metrics the operator supplies. When absent, sections 1 and 3 omit planning alignment and the omission is recorded in section 5.
 
 ## Procedure
 

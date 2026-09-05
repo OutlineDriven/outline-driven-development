@@ -1,6 +1,6 @@
 ---
 name: model-challenge
-description: 'Use when a user requests an independent Codex or Gemini review of uncommitted code, a branch diff, or a specific commit. Returns findings with exact locations and confidence. Don''t use for unconfirmed or unattended external review sends, or for local source mutation.'
+description: 'Use when a user requests an independent Codex or Gemini review of uncommitted code, a branch diff, or a specific commit. Don''t use for unconfirmed or unattended review sends, or source mutation.'
 disable-model-invocation: true
 ---
 
@@ -11,16 +11,16 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User requests an independent Codex or Gemini review of uncommitted code, a branch diff, or a specific commit, optionally focused on security, performance, or error handling. |
-| Authority | Human-only, external, irreversible. Requires explicit user invocation. Preview the target and consequence before credentials, data-at-rest changes, paid actions, publishing, deployment, remote bulk mutation, or irreversible deletion. |
+| Authority | Remote: sends the selected code diff and project guidance to Codex and/or Gemini (paid API); requires explicit human invocation. Previews the target and consequence before credentials, data-at-rest changes, paid actions, publishing, deployment, remote bulk mutation, or irreversible deletion. |
 | Side effect | Sends the selected code diff and optional project guidance to Codex and/or Gemini. Codex is read-only sandboxed. Gemini headless invocation may auto-approve extension tool calls and therefore requires explicit user-authorized invocation. |
 | Done | The chosen external reviewer runs on the complete selected diff or is explicitly reported unavailable. Findings include exact locations and confidence where supported. Multiple-reviewer agreements and disagreements are summarized. Empty or oversized scopes are handled before invocation. |
 
 ## Inputs
 
-1. Code diff or commit reference (required) — uncommitted changes, a branch diff, or a specific commit SHA.
-2. Reviewer selection (required) — Codex, Gemini, or both.
-3. Focus area (optional) — security, performance, error handling, or general.
-4. Project guidance (optional) — context about the codebase or review priorities to include in the reviewer prompt.
+1. Code diff or commit reference (required): uncommitted changes, a branch diff, or a specific commit SHA.
+2. Reviewer selection (required): Codex, Gemini, or both.
+3. Focus area (optional): security, performance, error handling, or general.
+4. Project guidance (optional): context about the codebase or review priorities to include in the reviewer prompt.
 
 ## Procedure
 

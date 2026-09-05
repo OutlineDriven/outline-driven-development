@@ -1,6 +1,6 @@
 ---
 name: sync-docs
-description: 'Use when a behavioral diff may have left docs or CHANGELOG stale. Detects docs-vs-code drift and applies only safe fixes. Also handles stale code comments when tidy targets them. Not for roadmap drift — use drift-detect. Don''t use for remote or irreversible changes.'
+description: 'Use when a behavioral diff may have left docs or CHANGELOG stale, or when tidy targets stale code comments. Applies only safe fixes. Not for roadmap drift: use drift-detect.'
 ---
 
 # Sync docs
@@ -10,7 +10,7 @@ description: 'Use when a behavioral diff may have left docs or CHANGELOG stale. 
 | Field | Bound contract |
 |---|---|
 | Trigger | User says 'sync docs' or 'update changelog' after a behavioral change. |
-| Authority | Reversible local writes only. Edit named local doc files and write a fix ledger. Rollback reverts the edited files to their pre-edit content. |
+| Authority | Reversible local: writes only named local doc files and a fix ledger; rollback reverts the edited files. No remote mutation. |
 | Side effect | Applies only safe fixes (version bump plus CHANGELOG Unreleased entry) and writes a fix ledger with before/after evidence. |
 | Done | Safe fixes are applied or explicitly unavailable, and all residual drift is flagged with file:line evidence and reasons. |
 

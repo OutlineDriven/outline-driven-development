@@ -1,6 +1,6 @@
 ---
 name: decision-diary
-description: 'Use when a user wants to record why one world won over the others. The decision and its rationale are recorded in the decision diary. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a user wants to record why one world won over the others, as a decision-diary entry. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Decision diary
@@ -10,7 +10,7 @@ description: 'Use when a user wants to record why one world won over the others.
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to record why one world won over the others. |
-| Authority | Reversible local write: append one decision-diary entry to the agreed diary location; no file outside that diary is created or modified. |
+| Authority | Reversible local: writes only one decision-diary entry at the agreed diary location; rollback is version control. No remote mutation. |
 | Side effect | A decision-diary entry documenting why one world won. |
 | Done | The decision and its rationale are recorded in the decision diary. |
 

@@ -22,68 +22,92 @@ if [[ -z "$KEY" ]]; then
   exit 1
 fi
 
-# Returns 0 (true) if val contains a forbidden shell-control character.
 _has_control_chars() {
   printf '%s' "$1" | LC_ALL=C grep -q '[[:cntrl:]]'
 }
 
-_validate_memory_dir() {
-  local val="$1"
+# Shell-safety rules shared by both keys. A key whose value is expanded as an
+# unquoted glob also rejects whitespace: pass "reject-whitespace" for it.
+_validate_value() {
+  local key="$1" val="$2" ws_rule="${3:-any}"
   case "$val" in
     *'`'* | *'$'* | *'\'*)
-      printf 'ERROR: memory_dir contains forbidden shell-control character: %s\n' "$val" >&2
+      printf 'ERROR: %s contains forbidden shell-control character: %s\n' "$key" "$val" >&2
       exit 1 ;;
   esac
+  if [[ "$ws_rule" == "reject-whitespace" ]]; then
+    case "$val" in
+      *' '* | *'	'*)   # space and literal tab
+        printf 'ERROR: %s contains whitespace — word-splitting unsafe for unquoted glob expansion.\n' "$key" >&2
+        printf 'Tip: symlink the path to a no-space alias and point SESSION_HISTORY_GLOB at the alias.\n' >&2
+        exit 1 ;;
+    esac
+  fi
   if _has_control_chars "$val"; then
-    printf 'ERROR: memory_dir contains control bytes: %s\n' "$val" >&2
+    printf 'ERROR: %s contains control bytes: %s\n' "$key" "$val" >&2
     exit 1
   fi
 }
 
-_validate_session_glob() {
-  local val="$1"
-  case "$val" in
-    *'`'* | *'$'* | *'\'*)
-      printf 'ERROR: session_history_glob contains forbidden shell-control character: %s\n' "$val" >&2
-      exit 1 ;;
-    *' '* | *'	'*)   # space and literal tab
-      printf 'ERROR: session_history_glob contains whitespace — word-splitting unsafe for unquoted glob expansion.\n' >&2
-      printf 'Tip: symlink the path to a no-space alias and point SESSION_HISTORY_GLOB at the alias.\n' >&2
-      exit 1 ;;
+_reject_tracked() {
+  # Refuse a path git would add. check-ignore exits 0 only for an untracked
+  # ignored path; a tracked path and an untracked unignored path both exit 1.
+  # `git ls-files --error-unmatch` would let an unignored untracked dir through.
+  # Evaluate against the caller's path, not a root-relative copy of the same
+  # string: `git -C "$root" check-ignore mem` from repo/sub would test repo/mem.
+  local d="$1" abs probe root parent base
+  case "$d" in
+    /*) abs="$d" ;;
+    *) abs="$(pwd -P)/$d" ;;
   esac
-  if _has_control_chars "$val"; then
-    printf 'ERROR: session_history_glob contains control bytes: %s\n' "$val" >&2
-    exit 1
+  parent="$(dirname -- "$abs")"
+  base="$(basename -- "$abs")"
+  if [[ -d "$parent" ]]; then
+    abs="$(cd -- "$parent" && pwd -P)/$base"
   fi
+  probe="$abs"
+  # Climb to the nearest existing ancestor before asking git, so the guard can
+  # refuse a path that does not exist yet on its own. The memory_dir case below
+  # checks existence before it calls here, so today the loop never iterates;
+  # that is not a reason to delete it. Without the walk, the rev-parse after
+  # the loop fails for a missing path, its return 0 fires, and a directory git
+  # would track once created is allowed silently. Measured on a missing in-repo
+  # path: exit 1 with the walk, allowed without it.
+  while [[ ! -e "$probe" && "$probe" != "/" ]]; do
+    probe="$(dirname -- "$probe")"
+  done
+  git -C "$probe" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 0
+  root="$(git -C "$probe" rev-parse --show-toplevel)"
+  git -C "$root" check-ignore -q -- "$abs" && return 0
+  printf 'ERROR: git would track memory dir: %s\n' "$d" >&2
+  exit 1
 }
 
 case "$KEY" in
   memory_dir)
     if [[ -n "${MEMORY_DIR:-}" ]]; then
-      _validate_memory_dir "$MEMORY_DIR"
-      printf '%s\n' "$MEMORY_DIR"
+      VAL="$MEMORY_DIR"
     else
-      ENCODED=$("$SCRIPT_DIR/encode-memory-path.sh")
-      _validate_memory_dir "$ENCODED"
-      if [[ ! -d "$ENCODED" ]]; then
-        printf 'ERROR: memory dir does not exist: %s\n' "$ENCODED" >&2
-        printf 'Set MEMORY_DIR env var to override, or ensure Claude Code has initialized this project.\n' >&2
-        exit 1
-      fi
-      printf '%s\n' "$ENCODED"
+      VAL="$("$SCRIPT_DIR/encode-memory-path.sh")"
     fi
+    _validate_value memory_dir "$VAL"
+    if [[ ! -d "$VAL" ]]; then
+      printf 'ERROR: memory dir does not exist: %s\n' "$VAL" >&2
+      printf 'Set MEMORY_DIR env var to override, or ensure Claude Code has initialized this project.\n' >&2
+      exit 1
+    fi
+    _reject_tracked "$VAL"
+    printf '%s\n' "$VAL"
     ;;
   session_history_glob)
     if [[ -n "${SESSION_HISTORY_GLOB:-}" ]]; then
-      _validate_session_glob "$SESSION_HISTORY_GLOB"
-      printf '%s\n' "$SESSION_HISTORY_GLOB"
+      VAL="$SESSION_HISTORY_GLOB"
     else
-      ENCODED=$("$SCRIPT_DIR/encode-memory-path.sh")
-      PROJECT_DIR="${ENCODED%/memory}"
-      GLOB="$PROJECT_DIR/*.jsonl"
-      _validate_session_glob "$GLOB"
-      printf '%s\n' "$GLOB"
+      ENCODED="$("$SCRIPT_DIR/encode-memory-path.sh")"
+      VAL="${ENCODED%/memory}/*.jsonl"
     fi
+    _validate_value session_history_glob "$VAL" reject-whitespace
+    printf '%s\n' "$VAL"
     ;;
   *)
     printf 'ERROR: unknown key %s — must be memory_dir or session_history_glob\n' "$KEY" >&2

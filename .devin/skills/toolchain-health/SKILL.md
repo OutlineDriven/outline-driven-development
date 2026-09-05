@@ -1,6 +1,6 @@
 ---
 name: toolchain-health
-description: 'Use when the user runs /toolchain-health and wants a trustworthy green/yellow/red verdict on the installed toolchain with ranked repairs. Runs the project diagnostic tools read-only under a stated timeout, scores five categories against a threshold table, and presents a weighted composite verdict with a per-category dashboard. Not for tasks that require source or remote-system changes.'
+description: 'Use when the user runs /toolchain-health and wants a trustworthy green/yellow/red verdict on the installed toolchain with ranked repairs. Not for tasks that require source or remote-system changes.'
 ---
 
 # Toolchain health
@@ -10,7 +10,7 @@ description: 'Use when the user runs /toolchain-health and wants a trustworthy g
 | Field | Bound contract |
 |---|---|
 | Trigger | The user runs /toolchain-health |
-| Authority | Strictly read-only: run the project's own diagnostic tools, capture output, report; never fix, write config, persist history, or mutate any file, VCS state, credential, or remote |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. Runs the project's own diagnostic tools, captures output, and reports; never fixes, writes config, or persists history. |
 | Side effect | A green, yellow, or red health report in chat; no state change |
 | Done | A green/yellow/red verdict, a per-category dashboard, top issues for categories below threshold, and ranked repairs are returned with no state change |
 
@@ -67,4 +67,4 @@ description: 'Use when the user runs /toolchain-health and wants a trustworthy g
 
 ## Output
 
-A green, yellow, or red health verdict plus a per-category dashboard (tool, score, status, duration, detail counts), the top issues for any category below 7, and a repairs list ranked by `weight x (10 - score)` descending — no file, history, or project state is changed.
+A green, yellow, or red health verdict plus a per-category dashboard (tool, score, status, duration, detail counts), the top issues for any category below 7, and a repairs list ranked by `weight x (10 - score)` descending: no file, history, or project state is changed.

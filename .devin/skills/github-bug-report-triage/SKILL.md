@@ -1,6 +1,6 @@
 ---
 name: github-bug-report-triage
-description: 'Use when evaluating whether a bug issue has sufficient detail and identifying missing information from the reporter. Don''t use for feature requests, questions, non-bug issues, or repo-wide backlog triage — use github-backlog-triage.'
+description: 'Use when evaluating whether a bug issue has sufficient detail and identifying missing reporter information. Not for non-bug issues or backlog triage: use github-backlog-triage.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | Evaluating whether a bug issue has sufficient detail and identifying missing information from the reporter. |
-| Authority | Human-only. Read the issue and the project bug-report template; draft the determination and any missing-info comment. Preview the comment text and target issue before posting. Do not post, label, close, or otherwise mutate the issue or repository without explicit human action. |
+| Authority | Remote: drafts one missing-information comment for a GitHub issue and previews it with the target issue; the human posts it or applies any label. Requires explicit human invocation; the model never posts, labels, closes, or otherwise mutates the issue or repository on its own. |
 | Side effect | A comment on the GitHub issue requesting missing information, or a confirmation that the issue is actionable. Posting is a remote mutation performed or explicitly authorized by the human; the model never posts autonomously. |
 | Done | Ready issues are confirmed actionable; missing-info issues receive specific, constructive feedback listing exactly what is needed. |
 

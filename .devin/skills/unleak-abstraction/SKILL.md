@@ -1,6 +1,6 @@
 ---
 name: unleak-abstraction
-description: 'Use when a user names an abstraction leak and wants it sealed as a module seam, configuration option, or explicit override, or deliberately exposed as a named boundary. Measures hidden and wrapper complexity as branching decisions and admits the change only if the wrapper adds less than half the hidden complexity. Not for detecting concealment patterns: use no-hide.'
+description: 'Use when an abstraction leak must be sealed as a module seam, configuration option, or explicit override, or exposed as a named boundary. Not for detecting concealment patterns: use no-hide.'
 ---
 
 # Unleak abstraction
@@ -10,7 +10,7 @@ description: 'Use when a user names an abstraction leak and wants it sealed as a
 | Field | Bound contract |
 |---|---|
 | Trigger | User names an abstraction leak and wants it sealed as a module seam, configuration option, or explicit override, or deliberately exposed as a named boundary. |
-| Authority | Reversible-local: write only named local artifacts; state the rollback path before mutating. |
+| Authority | Reversible local: writes only named local artifacts; rollback is stated before mutating (version control or undo). No remote mutation. |
 | Side effect | Refactored code that seals or deliberately exposes the named leak. A wrapper is rejected if it adds more than half the measured complexity of what it hides. |
 | Done | The abstraction leak is sealed or deliberately exposed; the complexity gate holds (wrapper complexity is less than half the hidden complexity, or both are zero as the zero-complexity case from step 5), confirmed by post-change re-measurement. |
 

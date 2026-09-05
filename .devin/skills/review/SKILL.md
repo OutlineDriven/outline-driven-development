@@ -1,6 +1,6 @@
 ---
 name: review
-description: 'Use when asked to review a pull request, examine code changes, find bugs, or audit a branch. Standard mode produces a severity-graded validated-findings report with concrete fixes; depth mode fans out parallel bug/security and quality reviewers and synthesizes a unified verdict. Not for an iterative review-and-fix loop — use audit-project.'
+description: 'Use when asked to review a pull request, examine code changes, find bugs, or audit a branch, in standard or depth mode. Not for an iterative review-and-fix loop: use audit-project.'
 ---
 
 # Severity-graded review
@@ -12,7 +12,7 @@ Two modes share one authority (read-only) and one evidence bar: every finding ci
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to review a pull request, examine code changes, find bugs, run a security review, audit code on the current branch, or run combined bug/security and code-quality branch audits. |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output: a review report with findings (standard) or a unified audit report (depth). |
 | Done | Standard: validated findings with severity, evidence, and concrete fixes; no style-only or invented findings. Depth: a single deduplicated prioritized synthesis as a unified verdict ordered by severity. |
 
@@ -67,7 +67,7 @@ Every finding, in either mode, must cite specific code locations, line ranges, o
 5. **Synthesize.**
    - Merge findings from both reviewers.
    - Deduplicate and consolidate overlapping findings.
-   - Rank merged findings by severity (critical > high > medium > low > informational).
+   - Rank merged findings by severity (critical > high > medium > low > informational). Map reviewer-reported severities onto this scale: P0 = critical, P1 = high, P2 = medium, P3 = low; informational is for advisory notes with no behavioral impact.
    - Group findings by file or component.
    - Omit findings already resolved or not applicable.
    - Record which reviewer produced each finding for attribution.

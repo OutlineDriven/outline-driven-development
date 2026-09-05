@@ -1,6 +1,6 @@
 ---
 name: reproduce-bug-report
-description: 'Use when a bug report or UI-visible defect exists. Spawns repro agents to reproduce it locally and writes an artifact directory containing a structured summary with status, steps, environment, evidence, and next step. Not for fixing the bug — use reproduce-and-fix-issues.'
+description: 'Use when a bug report or UI-visible defect exists. Reproduces it locally. Not for fixing the bug: use reproduce-and-fix-issues.'
 ---
 
 # Reproduce bug report
@@ -10,7 +10,7 @@ description: 'Use when a bug report or UI-visible defect exists. Spawns repro ag
 | Field | Bound contract |
 |---|---|
 | Trigger | A UI-visible bug is worth reproducing (a bug report or observed defect exists). |
-| Authority | Write only to a named local artifact directory. Roll back any state change that persists after the directory is closed. Do not mutate VCS-tracked files, remote resources, credentials, or data at rest. |
+| Authority | Reversible local: writes only to a named local artifact directory; rollback is reverting any state change that persists after the directory is closed. No remote mutation. Does not mutate VCS-tracked files, credentials, or data at rest. |
 | Side effect | Spawns computer-use repro agents and writes an artifact directory under the named local directory. |
 | Done | Structured summary returned with status, steps, environment, evidence, and next step. |
 

@@ -1,6 +1,6 @@
 ---
 name: fixed-view-visual-benchmark
-description: 'Use when a visual needs repeatable fixed-view rendering and independent rubric scoring: render the fixed view through a specified interface, score it against a frozen rubric, and prove the saved render clears the threshold. Not for free-form visual review or subjective critique.'
+description: 'Use when a visual needs repeatable fixed-view rendering and independent rubric scoring. Not for free-form visual review or subjective critique.'
 ---
 
 # Fixed-view visual benchmark
@@ -10,7 +10,7 @@ description: 'Use when a visual needs repeatable fixed-view rendering and indepe
 | Field | Bound contract |
 |---|---|
 | Trigger | A visual needs repeatable fixed-view rendering and independent rubric scoring. |
-| Authority | Reversible local with capture consent: write only named local artifacts; capture consent required before rendering. |
+| Authority | Human-gated: asks for capture consent before rendering; otherwise reversible local: writes only named local artifacts; rollback is undo. No remote mutation. |
 | Side effect | Fixed-view visual benchmark: renders and scores the fixed view against the frozen rubric. |
 | Done | The saved render clears the frozen rubric threshold. |
 | Stop | Stalled; render blocked; budget exhausted. Bound: fixed view rig, rubric threshold, render budget. |
@@ -24,10 +24,11 @@ description: 'Use when a visual needs repeatable fixed-view rendering and indepe
 ## Procedure
 
 1. Bind the fixed view rig, rubric threshold, and render budget. Freeze all three before any mutation. Done when: the rig, threshold, and budget are named and frozen.
-2. Render the fixed view through a specified rendering interface with reproducibility controls. The interface must accept the frozen rig parameters and produce a deterministic output: same camera, same scene, same settings, same result. Record the interface name, version, and the exact parameter set used. If the interface is non-deterministic (stochastic sampling, temporal effects), declare the seed or averaging strategy that makes repeated renders comparable. Done when: a render is produced from the frozen rig with the interface and parameters recorded.
-3. Score the render against the frozen rubric independently. The rubric defines scoring dimensions (for example: composition, lighting accuracy, material fidelity, geometric correctness), each with a weight summing to 1.0 and a 0–10 scale per dimension. The aggregate score is the weighted sum. Score each dimension against the rubric criteria, not against the previous render. Record per-dimension scores, the aggregate, and the threshold. Done when: the rubric score is recorded with per-dimension breakdown.
-4. Stop at success (aggregate score clears the threshold), any non-success terminal, or the bound. Done when: a terminal class is reached and named.
-5. Persist the run record to `.outline/loops/fixed-view-visual-benchmark/<run_id>/` when durable. Emit `receipt.json` before return. Done when: the receipt is written with the saved render path, per-dimension scores, aggregate, threshold, and terminal class.
+2. Capture consent. Ask for and record explicit human consent before rendering. Done when: consent is recorded.
+3. Render the fixed view through a specified rendering interface with reproducibility controls. The interface must accept the frozen rig parameters and produce a deterministic output: same camera, same scene, same settings, same result. Record the interface name, version, and the exact parameter set used. If the interface is non-deterministic (stochastic sampling, temporal effects), declare the seed or averaging strategy that makes repeated renders comparable. Done when: a render is produced from the frozen rig with the interface and parameters recorded.
+4. Score the render against the frozen rubric independently. The rubric defines scoring dimensions (for example: composition, lighting accuracy, material fidelity, geometric correctness), each with a weight summing to 1.0 and a 0–10 scale per dimension. The aggregate score is the weighted sum. Score each dimension against the rubric criteria, not against the previous render. Record per-dimension scores, the aggregate, and the threshold. Done when: the rubric score is recorded with per-dimension breakdown.
+5. Stop at success (aggregate score clears the threshold), any non-success terminal, or the bound. Done when: a terminal class is reached and named.
+6. Persist the run record to `.outline/loops/fixed-view-visual-benchmark/<run_id>/` when durable. Emit `receipt.json` before return. Done when: the receipt is written with the saved render path, per-dimension scores, aggregate, threshold, and terminal class.
 
 ## Failure and recovery
 
@@ -39,4 +40,4 @@ description: 'Use when a visual needs repeatable fixed-view rendering and indepe
 
 ## Output
 
-A terminal classification (`success`, `capped`, `stalled`, `blocked`, `exhausted`, or `pending`) plus the saved render, its per-dimension rubric scores, aggregate score, threshold, and the run receipt.
+A terminal classification (`success`, `capped`, `stalled`, or `blocked`) plus the saved render, its per-dimension rubric scores, aggregate score, threshold, and the run receipt.

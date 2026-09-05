@@ -1,6 +1,6 @@
 ---
 name: humansense2system
-description: 'Use when the user wants to compile taste and "this feels wrong" signals into machine-consumable tokens, rules, forbidden combinations, and examples. Elicits concrete cases, classifies each into one of four buckets, and writes a structured rule/pattern document. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when the user wants to compile taste and "this feels wrong" signals into machine-consumable tokens, rules, forbidden combinations, and examples. Not for remote or irreversible changes.'
 ---
 
 # Humansense → system
@@ -10,17 +10,17 @@ description: 'Use when the user wants to compile taste and "this feels wrong" si
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to compile taste and "this feels wrong" into tokens, rules, forbidden combinations, and examples |
-| Authority | reversible-local: write only the named local artifact; state the rollback path |
+| Authority | Reversible local: writes only the named local artifact; rollback is version control or undo. No remote mutation. |
 | Side effect | One structured rule/pattern document written to the project shared docs or agent-rule folder |
 | Done | At least one classified entry exists across any section (Forbidden, Tokens, Examples, or Rules) and the user has validated the artifact |
 
 ## Inputs
 
 Must be supplied:
-- **Target artifact path** — a file under the project shared docs or an agent-rule folder that stores the human's agent-facing patterns
+- **Target artifact path**, a file under the project shared docs or an agent-rule folder that stores the human's agent-facing patterns
 
 Optional:
-- **Existing patterns** — any prior rule/pattern document at the same path; the procedure merges into it
+- **Existing patterns**, any prior rule/pattern document at the same path; the procedure merges into it
 
 ## Procedure
 

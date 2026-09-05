@@ -1,6 +1,6 @@
 ---
 name: publish-branch
-description: 'Use when asked to commit and push to the currently checked-out branch, including the default branch. Don''t use for creating branches, opening PRs, force pushes, or pushing any branch other than the current one.'
+description: 'Use when asked to commit and push to the currently checked-out branch, including the default branch. Not for creating branches, PRs, force pushes, or pushing any other branch.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to commit and push to the branch currently checked out, including the default branch. |
-| Authority | Human-only. Invoking on the checked-out branch (including `main`/`master`) is explicit authorization to push to that branch. Preview the push target and consequence before publishing. |
+| Authority | Remote: pushes local commits to `origin/<current-branch>`; requires explicit human invocation. Invoking on the checked-out branch (including `main`/`master`) is explicit authorization to push to that branch. Preview the push target and consequence before pushing. |
 | Side effect | Creates local commits and pushes them to `origin/<current-branch>`. No branch creation, no branch switch, no force push, no PR. |
 | Done | Current branch is committed and pushed, or detached/diverged/no-origin state is reported without unsafe recovery. |
 
@@ -57,7 +57,7 @@ EOF
 Done when: every group is committed with its hash and subject recorded, `git status` confirms each commit, and no `git add -A` or `git add .` was used, or a verification gate failure stopped the group and the failing group is named.
 
 6. Detect remote and push. Run `git remote`.
-   - No `origin` remote (empty output, or other remotes present but none named `origin`): do not push, and do not add, invent, or guess a remote. Report "local-only, no remote — commits only" (or "no `origin` remote configured" if other remotes exist) and stop.
+   - No `origin` remote (empty output, or other remotes present but none named `origin`): do not push, and do not add, invent, or guess a remote. Report "local-only, no remote: commits only" (or "no `origin` remote configured" if other remotes exist) and stop.
    - `origin` present: push with one unconditional form, always targeting `origin` even if the branch's configured upstream points elsewhere, setting upstream if missing:
      ```bash
      git push -u origin HEAD

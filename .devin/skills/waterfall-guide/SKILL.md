@@ -1,6 +1,6 @@
 ---
 name: waterfall-guide
-description: 'Use when a user wants to lock greenfield architecture and interfaces early for coherent parallel execution. Produces a locked architecture document with module inventory, interface contracts, cross-cutting ownership, and open questions, distributed to execution teams as the coordination contract.'
+description: 'Use when a user wants to lock greenfield architecture and interfaces early for coherent parallel execution.'
 ---
 
 # Waterfall guide
@@ -10,7 +10,7 @@ description: 'Use when a user wants to lock greenfield architecture and interfac
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to lock greenfield architecture and interfaces early for coherent parallel execution. |
-| Authority | Reversible-local: write only named local architecture and interface contract files; rollback by deleting the produced artifacts. |
+| Authority | Reversible local: writes only named local architecture and interface contract files; rollback is deleting the produced artifacts. No remote mutation. |
 | Side effect | Local write of locked architecture and interface contracts used to coordinate parallel execution. |
 | Done | Greenfield architecture and interface contracts are locked and distributed. |
 

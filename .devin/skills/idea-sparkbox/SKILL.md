@@ -1,6 +1,6 @@
 ---
 name: idea-sparkbox
-description: 'Use when the user asks to park ideas or inspiration for later. Stores one short project card per qualifying item under idea-sparkbox/ without organizing it. Never stores code, backlog, or divergence-class cards. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when the user asks to park ideas or inspiration for later. Not for code, backlog, or divergence-class cards, or remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Idea sparkbox
@@ -12,7 +12,7 @@ Park ideas and inspiration in short project cards. Organize them in a later pass
 | Field | Bound contract |
 |---|---|
 | Trigger | The user wants to keep short project cards for ideas or inspiration, to organize later. |
-| Authority | Reversible-local: create files only under `<project>/idea-sparkbox/`. No VCS commands, no writes outside `idea-sparkbox/`, no remote, paid, published, or deployed mutation. |
+| Authority | Reversible local: writes only files under `<project>/idea-sparkbox/`; rollback is deleting those files. No remote mutation. |
 | Side effect | New card files under `idea-sparkbox/` only; nothing else in the project is modified or deleted. |
 | Done | Every accepted item exists as a short card file under `idea-sparkbox/` inside the project tree, stored as tracked project knowledge awaiting later organization. |
 
@@ -23,7 +23,7 @@ Park ideas and inspiration in short project cards. Organize them in a later pass
 
 ## Procedure
 
-1. **Collect candidates.** Sweep the current exchange for two classes: ideas (concepts or approaches worth parking for later) and inspiration (things that sparked thinking but are not yet concrete ideas). Only items actually present in the session or named by the user qualify; never invent a card to fill an empty class. Reject code snippets, backlog items, and divergence-class material (possible worlds, weighed options, opinions, doubts, assumptions) — those belong elsewhere. Done when: every idea or inspiration item present in the session or named by the user is collected, and rejected material is set aside with a stated reason.
+1. **Collect candidates.** Sweep the current exchange for two classes: ideas (concepts or approaches worth parking for later) and inspiration (things that sparked thinking but are not yet concrete ideas). Only items actually present in the session or named by the user qualify; never invent a card to fill an empty class. Reject code snippets, backlog items, and divergence-class material (possible worlds, weighed options, opinions, doubts, assumptions); those belong elsewhere. Done when: every idea or inspiration item present in the session or named by the user is collected, and rejected material is set aside with a stated reason.
 
 2. **Bound each card.** Store one item per card in a few lines at most: class, one-line statement, who it is from (`human` or `agent`), capture date. Drop material that needs more than a few lines from this pass and say so. Done when: every collected item is bounded to a few lines or dropped with a stated reason.
 

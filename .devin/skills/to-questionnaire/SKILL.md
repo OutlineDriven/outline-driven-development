@@ -1,6 +1,6 @@
 ---
 name: to-questionnaire
-description: 'Use when the user wants an async questionnaire for someone else, a discovery questionnaire, or a knowledge gap needs answers from outside the repository. Produces prioritised one-idea questions with answer stubs and ambiguity rationale. Not for direct conversation elicitation; use askme. Not for agent-driven research; use research. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when user wants an async questionnaire, a discovery questionnaire, or a knowledge gap needs answers outside the repo. Not for direct conversation: use askme. Not for agent research: use research.'
 ---
 
 # To questionnaire
@@ -10,7 +10,7 @@ description: 'Use when the user wants an async questionnaire for someone else, a
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants an async questionnaire for someone else, a discovery questionnaire, or a knowledge gap needs answers from outside the repository. |
-| Authority | Reversible-local: model identifies recipient and needed answers, drafts the questionnaire, and writes the file. User delivers the document and follows up. |
+| Authority | Reversible local: writes only the questionnaire file; rollback is deleting that file. No remote mutation. |
 | Side effect | Writes exactly one to-questionnaire-<slug>.md beside the current work; no issue filing and no sending. |
 | Done | A minimum-answerable-question questionnaire with a return route exists for the named recipient and no repo-answerable question remains in it. |
 
@@ -22,7 +22,7 @@ Required: the topic or context of the knowledge gap. Optional: the recipient's r
 
 - Will not write a questionnaire before the recipient is identified.
 - Will not write a questionnaire before the needed answers are identified.
-- Will not send, file an issue, or deliver the questionnaire — the user does that.
+- Will not send, file an issue, or deliver the questionnaire: the user does that.
 - Will not include a question the repository itself can answer.
 
 ## Procedure
@@ -82,4 +82,4 @@ A closing catch-all: anything we did not ask that we should know?
 
 ## Output
 
-A standalone Markdown discovery questionnaire file at `to-questionnaire-<slug>.md` in the current working directory, with per-theme grouped questions ordered by importance, a return route, and a closing catch-all — the user delivers the file and acts on responses.
+A standalone Markdown discovery questionnaire file at `to-questionnaire-<slug>.md` in the current working directory, with per-theme grouped questions ordered by importance, a return route, and a closing catch-all: the user delivers the file and acts on responses.

@@ -1,6 +1,6 @@
 ---
 name: keep-why-maintenance
-description: 'Use when contradictions, revisit conditions, or duplicates appear in knowledge entries to resolve them by flipping statuses, marking superseded content, merging duplicates, or proposing file splits. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when contradictions, revisit conditions, or duplicates appear in knowledge entries. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Keep why maintenance
@@ -10,14 +10,14 @@ description: 'Use when contradictions, revisit conditions, or duplicates appear 
 | Field | Bound contract |
 |---|---|
 | Trigger | Contradiction found between entries, an entry's Revisit-when condition fires, entries conflict or duplicate, or a topic file grows too large. |
-| Authority | Reversible-local: write only named topic files; every edit is VCS-recoverable. |
+| Authority | Reversible local: writes only named topic files; rollback is version control. No remote mutation. |
 | Side effect | Status flips, superseded markers ('> Superseded <date>: see below') instead of deletion, duplicate merge, file split proposal. |
 | Done | No silent historical overwrite; superseded content retained with marker; splits proposed rather than unbounded growth; maintenance changes get the same scrutiny as new entries. |
 
 ## Inputs
 
 - Topic file (required): the knowledge file containing the entry or entries that triggered maintenance.
-- Triggering condition (required): which of the four trigger classes fired — contradiction, revisit-when, duplicate/conflict, or oversized file.
+- Triggering condition (required): which of the four trigger classes fired: contradiction, revisit-when, duplicate/conflict, or oversized file.
 - Entry or entries (required): the specific entry or pair of entries involved.
 
 ## Procedure
@@ -35,7 +35,7 @@ description: 'Use when contradictions, revisit conditions, or duplicates appear 
    d. Merge duplicates into one entry that preserves the combined reasoning from both originals.
    Done when: the superseded block carries its marker and the new/merged entry is written below it.
 
-5. **Oversized file handling.** If a topic file grows too large, propose a split into logical sub-topics. Name the proposed file boundaries and explain the rationale for each. Do not execute the split — propose it for human approval. Done when: a split proposal with named boundaries and rationale is produced.
+5. **Oversized file handling.** If a topic file grows too large, propose a split into logical sub-topics. Name the proposed file boundaries and explain the rationale for each. Do not execute the split; propose it for human approval. Done when: a split proposal with named boundaries and rationale is produced.
 
 6. **Diff review.** After all edits, review the diff. Confirm: (a) no entry was silently overwritten, (b) every superseded block carries the marker with date, (c) no content was deleted without a superseded marker. Done when: the diff confirms no silent overwrite, every superseded block is marked, and no unmarked deletion occurred.
 
@@ -52,4 +52,4 @@ description: 'Use when contradictions, revisit conditions, or duplicates appear 
 
 ## Output
 
-Modified topic file with status flips, superseded markers, and merge results applied, plus a maintenance report listing changes made, entries affected, and any split proposals pending human decision — all VCS-recoverable.
+Modified topic file with status flips, superseded markers, and merge results applied, plus a maintenance report listing changes made, entries affected, and any split proposals pending human decision, all VCS-recoverable.

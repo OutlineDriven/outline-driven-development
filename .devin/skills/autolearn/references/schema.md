@@ -1,15 +1,17 @@
-# Frontmatter contract — `docs/solutions/`
+# Frontmatter contract: `docs/solutions/`
+
+Owner. autolearn/SKILL.md inlines the field contract. Do not recopy.
 
 Canonical schema for learning docs written by `autolearn`. Read this when classifying a track, assembling frontmatter, or validating. The validator (`scripts/validate-frontmatter.py`) catches only silent YAML corruption; you must still enforce the field and enum rules below.
 
 ## Two tracks
 
-`problem_type` picks the track. The track decides which extra fields are required.
+`problem_type` picks the track. The track decides which extra fields are required. Pick the narrowest value; `best_practice` is the Knowledge fallback.
 
-| Track | problem_types | What it is |
-|-------|---------------|-----------|
-| **Bug** | `build_error`, `test_failure`, `runtime_error`, `performance_issue`, `database_issue`, `security_issue`, `ui_bug`, `integration_issue`, `logic_error` | Defects and failures that were diagnosed and fixed |
-| **Knowledge** | `best_practice`, `documentation_gap`, `workflow_issue`, `developer_experience`, `architecture_pattern`, `design_pattern`, `tooling_decision`, `convention` | Practices, patterns, conventions, decisions, workflow improvements. Prefer the narrowest value; `best_practice` is the fallback. |
+| Track | problem_types |
+|-------|---------------|
+| **Bug** | `build_error`, `test_failure`, `runtime_error`, `performance_issue`, `database_issue`, `security_issue`, `ui_bug`, `integration_issue`, `logic_error` |
+| **Knowledge** | `best_practice`, `documentation_gap`, `workflow_issue`, `developer_experience`, `architecture_pattern`, `design_pattern`, `tooling_decision`, `convention` |
 
 ## Required fields (both tracks)
 
@@ -18,7 +20,7 @@ Canonical schema for learning docs written by `autolearn`. Read this when classi
 - category: the `docs/solutions/` subdirectory (see Category map).
 - module: module or area affected (string).
 - problem_type: one enum value from the tracks table; determines the track.
-- component: component or subsystem involved (free-form string, e.g. `parser`, `auth`, `ci`, `cli`). Keep it consistent within a repo so frontmatter search works.
+- component: component or subsystem involved (free-form string; keep consistent within a repo so frontmatter search works).
 - severity: one of `critical`, `high`, `medium`, `low`.
 
 ## Bug-track required fields
@@ -63,17 +65,11 @@ No required fields beyond the shared core. All optional:
 | `tooling_decision` | `docs/solutions/tooling-decisions/` |
 | `convention` | `docs/solutions/conventions/` |
 
-Filename: `[sanitized-problem-slug].md` — no date suffix (the `date` field carries that).
+Filename: `[sanitized-problem-slug].md`: no date suffix (the `date` field carries that).
 
 ## Validation rules
 
-1. Determine the track from `problem_type`.
-2. All shared required fields present.
-3. Bug-track docs also carry `symptoms`, `root_cause`, `resolution_type`.
-4. Knowledge-track docs need no extra required fields.
-5. Enum fields match allowed values exactly.
-6. Array fields respect min/max item counts.
-7. `date` matches `YYYY-MM-DD`.
+Track from `problem_type`; shared required fields always present; bug track also requires `symptoms`, `root_cause`, `resolution_type`; knowledge track adds none. Enums match allowed values exactly, arrays respect item counts, `date` matches `YYYY-MM-DD`.
 
 ## Backward compatibility
 
@@ -85,7 +81,7 @@ Strict YAML parsers (`yq`, `js-yaml` strict, PyYAML) misread array items that *s
 
 `` ` ``  `[`  `]`  `{`  `}`  `,`  `*`  `&`  `!`  `|`  `>`  `%`  `@`  `?`
 
-Also quote when the value contains `": "` — that punctuation confuses flow-style parsers. The list above is the set that actually shows up at the front of solution-doc values, not an exhaustive YAML indicator catalogue; when unsure, just quote, and let a real YAML parse be the backstop.
+Also quote when the value contains `": "`: that punctuation confuses flow-style parsers. The list above is the set that actually shows up at the front of solution-doc values, not an exhaustive YAML indicator catalogue; when unsure, just quote, and let a real YAML parse be the backstop.
 
 Before (breaks strict YAML):
 
@@ -101,4 +97,4 @@ symptoms:
   - "`flush-cache` does not restore in-container mDNS"
 ```
 
-Scalar fields (`title:`, `module:`) have a separate failure mode — an unquoted ` #` truncates at the comment, an unquoted `: ` reframes as a mapping. `scripts/validate-frontmatter.py` catches those; quote and re-run until it exits 0.
+Scalar fields (`title:`, `module:`) have a separate failure mode, an unquoted ` #` truncates at the comment, an unquoted `: ` reframes as a mapping. `scripts/validate-frontmatter.py` catches those; quote and re-run until it exits 0.

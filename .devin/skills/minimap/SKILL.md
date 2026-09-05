@@ -1,6 +1,6 @@
 ---
 name: minimap
-description: 'Use when a compact current-work view is needed from Git state, recorded repository test evidence, and optional graph.yaml. Return one read-only view that classifies every claim as conquered, disputed, or fog. Don''t use for tasks that require source or remote-system changes.'
+description: 'Use when the user needs a compact read-only current-work view from Git state, recorded test evidence, and optional graph.yaml. Not for tasks that need source or remote-system changes.'
 ---
 
 # Minimap
@@ -10,7 +10,7 @@ description: 'Use when a compact current-work view is needed from Git state, rec
 | Field | Bound contract |
 |---|---|
 | Trigger | Use on an explicit model or human request for a compact view of current work state, including at an SDD phase boundary. |
-| Authority | Read-only: inspect local Git state, recorded test evidence, and root graph.yaml only; never mutate files, VCS, credentials, paid services, publications, deployments, or remote state. Never run tests. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. Never run tests. |
 | Side effect | Emit one compact view and write nothing. |
 | Done | Every reported claim has exactly one class (conquered, disputed, or fog) and a concise justification from the evidence join, with absent graph knowledge represented as fog. |
 
@@ -33,10 +33,10 @@ description: 'Use when a compact current-work view is needed from Git state, rec
 
 ## Failure and recovery
 
-- `blocked: git-unavailable` — return no partial minimap when the repository root or required Git evidence cannot be read. Retry only after the root or read access is corrected.
-- `blocked: invalid-recorded-test-result` — return no partial minimap when a present selected artifact cannot be parsed into named checks, outcomes, and a commit or tree binding. Correct or replace the artifact; do not run tests. A genuinely absent or non-uniquely ordered artifact is not this failure and yields fog as defined above.
-- `blocked: invalid-graph` — return no partial minimap when a present `graph.yaml` violates the accepted schema. Correct the graph outside this read-only run, then retry. Absence is not invalid and yields fog.
-- `blocked: evidence-read-failure` — return no partial minimap when an input changes during the snapshot or cannot be read completely. Retry from a fresh read-only snapshot.
+- `blocked: git-unavailable`: return no partial minimap when the repository root or required Git evidence cannot be read. Retry only after the root or read access is corrected.
+- `blocked: invalid-recorded-test-result`: return no partial minimap when a present selected artifact cannot be parsed into named checks, outcomes, and a commit or tree binding. Correct or replace the artifact; do not run tests. A genuinely absent or non-uniquely ordered artifact is not this failure and yields fog as defined above.
+- `blocked: invalid-graph`: return no partial minimap when a present `graph.yaml` violates the accepted schema. Correct the graph outside this read-only run, then retry. Absence is not invalid and yields fog.
+- `blocked: evidence-read-failure`: return no partial minimap when an input changes during the snapshot or cannot be read completely. Retry from a fresh read-only snapshot.
 
 No rollback applies because the procedure performs no mutation. Never suppress a failure or return the done predicate unless every emitted claim has exactly one justified class.
 

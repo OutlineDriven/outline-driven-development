@@ -1,6 +1,6 @@
 ---
 name: subagent-driven
-description: 'Use when a user says execute with subagents or hands over an ordered multi-task plan to run a per-task implementer-reviewer loop with an audit gate. Don''t use for credential, paid, or deployment work, or for any mutation outside the skill''s designated workspace.'
+description: 'Use when a user says execute with subagents or hands over an ordered multi-task plan. Not for credential, paid, or deployment work, or any mutation outside the skill''s designated workspace.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User says 'execute with subagents' or hands over an ordered multi-task plan. |
-| Authority | Reversible local: no file, VCS, credential, paid, published, deployed, or remote mutation outside the skill's designated workspace. |
+| Authority | Remote: publishes the branch via git-branchless `submit`; requires explicit human invocation. Also writes locally within the skill's designated workspace (commits, briefs, reports, ledger); rollback is version control. |
 | Side effect | Lands atomic commits, writes implementer briefs, reviewer reports, and diff packages as files, maintains the durable progress ledger, and ends in one final atomic ship. |
 | Done | Every task is audit-clean and verifier-green, the ledger is complete, and the whole-branch review has been dispatched and resolved. |
 
@@ -21,7 +21,7 @@ Required: an ordered multi-task plan file. The plan defines task boundaries, fil
 
 ## Refusal
 
-- Blocked implementer (BLOCKED): diagnose and act — context problem adds context and re-dispatches; reasoning problem escalates model capability; size problem splits the task; plan error escalates to the user. If the worker says it is stuck, something must change before retry.
+- Blocked implementer (BLOCKED): diagnose and act; context problem adds context and re-dispatches; reasoning problem escalates model capability; size problem splits the task; plan error escalates to the user. If the worker says it is stuck, something must change before retry.
 - Reviewer Cannot Verify from Diff items: requirements living in unchanged code or spanning tasks. Do not block on them; resolve each centrally before marking the task complete. A confirmed gap is a failed spec review; return to the implementer, then re-review.
 - Audit cannot be cleared: abort the chain rather than build on it. Do not squash or force through.
 

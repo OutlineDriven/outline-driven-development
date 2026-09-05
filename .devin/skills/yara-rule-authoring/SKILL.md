@@ -1,6 +1,6 @@
 ---
 name: yara-rule-authoring
-description: 'Use when writing, reviewing, optimizing, validating, or migrating YARA or YARA-X malware-detection rules, including CRX or DEX rules. Produces a validated rule with family-specific indicators and separated validation results. Not for network IDS or memory-forensics rules.'
+description: 'Use when writing, reviewing, optimizing, validating, or migrating YARA or YARA-X malware-detection rules, including CRX or DEX rules. Not for network IDS or memory-forensics rules.'
 ---
 
 # YARA-X rule authoring
@@ -10,7 +10,7 @@ description: 'Use when writing, reviewing, optimizing, validating, or migrating 
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to write, review, tighten, optimize, validate, or migrate YARA or YARA-X malware-detection rules, including CRX or DEX module rules. |
-| Authority | Reversible-local: create or modify YARA-X rule files on disk; run yr, yara_lint.py, atom_analyzer.py, sample scans, and goodware scans. No remote mutation, credential access, publishing, or deployment. Rollback is file deletion or VCS revert. |
+| Authority | Reversible local: writes only YARA-X rule files on disk; rollback is file deletion or VCS revert. No remote mutation. Runs yr, yara_lint.py, atom_analyzer.py, sample scans, and goodware scans; no credential access, publishing, or deployment. |
 | Side effect | May create or modify YARA-X rule files and run yr, yara_lint.py, atom_analyzer.py, sample scans, and goodware scans. Tool output must distinguish syntax/style/atom defects, positive matches, negative-corpus matches, timing, and unperformed validation rather than collapsing them into one verdict. |
 | Done | The resulting rule has family-specific indicators and cheap prefilters, correct endianness and module use, required metadata, bounded performant patterns, passing yr check/format/linter results, documented positive-sample coverage, and zero measured goodware matches, or explicitly states which validation was not run and why. |
 

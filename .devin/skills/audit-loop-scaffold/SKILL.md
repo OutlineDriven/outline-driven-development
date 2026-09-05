@@ -1,6 +1,6 @@
 ---
 name: audit-loop-scaffold
-description: 'Use when loop scaffold files have drifted from their provenance-pinned templates. Converges exactly four auto-fixable files (STATE.md, gate.yaml, loop-budget.md, loop-run-log.md) to template content with pre-write backup and rollback, and reports other drift. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when loop scaffold files have drifted from their provenance-pinned templates. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Audit loop scaffold
@@ -10,7 +10,7 @@ description: 'Use when loop scaffold files have drifted from their provenance-pi
 | Field | Bound contract |
 |---|---|
 | Trigger | Loop scaffold files have drifted from their templates or from each other |
-| Authority | Write only the four named auto-fixable files; retain pre-write content (including the absence state for newly created files) to enable rollback; roll back on verification failure |
+| Authority | Reversible local: writes only the four named auto-fixable files; rollback is restoring retained pre-write content. No remote mutation. Retains pre-write content (including the absence state for newly created files) and rolls back on verification failure. |
 | Side effect | Rewrites only STATE.md, gate.yaml, loop-budget.md, loop-run-log.md from templates; reports every other drifted file |
 | Done | Scaffold files match their templates or drift is reported with its exact file; nothing outside the fixed set was written |
 

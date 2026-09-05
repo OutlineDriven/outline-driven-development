@@ -1,6 +1,6 @@
 ---
 name: partition-scopes-to-subagents
-description: 'Use when asked to partition non-overlapping scopes across subagents and drive each to completion with fresh review, fix reports, and a glanceable actual-work map. Not for concurrent independent sub-tasks — use parallel-launch.'
+description: 'Use when asked to partition non-overlapping scopes across subagents and drive each to completion. Not for concurrent independent sub-tasks: use parallel-launch.'
 ---
 
 # Partition scopes to subagents
@@ -10,7 +10,7 @@ description: 'Use when asked to partition non-overlapping scopes across subagent
 | Field | Bound contract |
 |---|---|
 | Trigger | User names work that decomposes into non-overlapping scopes and asks to partition and execute them with subagents. |
-| Authority | reversible-local: writes scoped to each subagent's assigned files, per-scope artifacts, and a coordination map; no VCS, credential, paid, published, or deployed mutation. |
+| Authority | Reversible local: writes only each subagent's assigned files, per-scope artifacts, and a coordination map; rollback is version control or undo. No remote mutation. |
 | Side effect | Subagent briefs, per-scope work artifacts, review reports, fix reports, and an actual-work map written to local files only. |
 | Done | All scopes return a review report and a fix report; an actual-work map lists every scope and its terminal status. |
 
@@ -40,4 +40,4 @@ description: 'Use when asked to partition non-overlapping scopes across subagent
 - Non-converged result: If any scope remains BLOCKED after one re-dispatch, record the exhaustion and stop. Do not loop indefinitely.
 
 ## Output
-One `actual-work-map.md` listing every scope with terminal status (done, blocked, or failed), reviewer verdict, and fix count — plus one review report per scope, one fix report per scope that required fixes, and one brief file per scope.
+One `actual-work-map.md` listing every scope with terminal status (done, blocked, or failed), reviewer verdict, and fix count, plus one review report per scope, one fix report per scope that required fixes, and one brief file per scope.

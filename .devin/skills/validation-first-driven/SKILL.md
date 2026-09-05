@@ -1,6 +1,6 @@
 ---
 name: validation-first-driven
-description: 'Use when building protocols, workflows, concurrent systems, or lifecycle-heavy state that needs explicit states, transitions, and temporal properties. Defines the state machine, encodes invariants in types, and for high-risk designs runs a TLA+ or Alloy model checker. Not for encoding domain models in types — use type-driven; not for design-by-contract — use contract-driven.'
+description: 'Use when protocols, workflows, concurrency, or lifecycle state need states, transitions, and temporal properties. Not for domain models: use type-driven. Not for contracts: use contract-driven.'
 ---
 
 # Validation-first development
@@ -10,7 +10,7 @@ description: 'Use when building protocols, workflows, concurrent systems, or lif
 | Field | Bound contract |
 |---|---|
 | Trigger | The work builds protocols, workflows, concurrent systems, or lifecycle-heavy state, or needs temporal properties or a state machine. |
-| Authority | Reversible local: no file, VCS, credential, paid, published, deployed, or remote mutation outside the stated target. |
+| Authority | Reversible local: writes only within the stated target; rollback is version control. No remote mutation. No file or VCS mutation outside the stated target. |
 | Side effect | Writes the model and spec plus implementation assertions and tests; creates a TLA+ or Alloy spec for high-risk designs. |
 | Done | The state space is explicit, transitions are total, invariants are checked, and each temporal property maps to an assertion, test, or model-checker run. |
 

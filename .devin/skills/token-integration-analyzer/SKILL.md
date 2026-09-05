@@ -1,6 +1,6 @@
 ---
 name: token-integration-analyzer
-description: 'Use when a token implementation or integration needs standards, privilege, nonstandard-behavior, and defensive-integration analysis. Returns a prioritized remediation report. Not for tasks that require source or remote-system changes.'
+description: 'Use when a token implementation or integration needs standards, privilege, nonstandard-behavior, and defensive-integration analysis. Not for source or remote-system changes.'
 ---
 
 # Token integration analyzer
@@ -10,7 +10,7 @@ description: 'Use when a token implementation or integration needs standards, pr
 | Field | Bound contract |
 |---|---|
 | Trigger | A token implementation or integration needs standards, privilege, nonstandard-behavior, and defensive-integration analysis. |
-| Authority | No file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output: token conformity, privilege, weird-behavior, integration-safety, and prioritized remediation report. |
 | Done | Every applicable token category is evaluated and unsafe assumptions are tied to concrete defensive changes. |
 
@@ -29,7 +29,7 @@ Optional:
 
 - Will not fabricate on-chain facts when address or RPC is absent.
 - Will not invent evidence or call external tools not covered by this procedure.
-- Will not label a behavior as confirmed when it cannot be inferred from static code alone — label it unverified.
+- Will not label a behavior as confirmed when it cannot be inferred from static code alone; label it unverified.
 
 ## Procedure
 
@@ -55,4 +55,4 @@ Non-mutation rule: this skill performs no file writes, no credential use, and no
 
 ## Output
 
-A structured token security report with executive summary (risk level and counts per severity), per-category compliance checklist (all 10 categories with pass/warn/fail), weird-token-pattern table (each of the 24 applicable patterns with presence, risk, evidence, mitigation), on-chain analysis section (when address and RPC supplied), integration-safety assessment (when protocol integration analyzed), and prioritized recommendations (CRITICAL/HIGH/MEDIUM/LOW, each tying one unsafe assumption to one defensive change) — ordering: summary, categories, patterns, on-chain, integration, recommendations.
+A structured token security report with executive summary (risk level and counts per severity), per-category compliance checklist (all 10 categories with pass/warn/fail), weird-token-pattern table (each of the 24 applicable patterns with presence, risk, evidence, mitigation), on-chain analysis section (when address and RPC supplied), integration-safety assessment (when protocol integration analyzed), and prioritized recommendations (CRITICAL/HIGH/MEDIUM/LOW, each tying one unsafe assumption to one defensive change): ordering: summary, categories, patterns, on-chain, integration, recommendations.

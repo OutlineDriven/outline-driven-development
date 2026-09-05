@@ -1,6 +1,6 @@
 ---
 name: workflows-driven
-description: 'Use when asked to drive decomposable work as a deterministic multi-subagent workflow with phased fan-out and adversarial verification. Also handles audits, migrations, broad research sweeps, or scale one context cannot hold. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when work decomposes across subagents or phases: audits, migrations, research sweeps, or scale one context cannot hold. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Workflows-driven
@@ -10,7 +10,7 @@ description: 'Use when asked to drive decomposable work as a deterministic multi
 | Field | Bound contract |
 |---|---|
 | Trigger | The work is an audit, a migration, a broad research or review sweep, or scale that one context cannot hold. |
-| Authority | reversible-local: write only named local evidence artifacts; rollback is a no-op because all mutable state is scoped to per-task evidence files owned exclusively by one worker. |
+| Authority | Reversible local: writes only named local evidence artifacts; rollback is a no-op because all mutable state is scoped to per-task evidence files owned exclusively by one worker. No remote mutation. |
 | Side effect | Phased fan-out of subagent tasks under per-task contracts writes evidence files in disjoint scopes; adversarial and consistency critics verify. |
 | Done | All workflow phases complete, the parent's shared proof run passes, and circuit breakers were honored. |
 
@@ -20,7 +20,7 @@ Required: the work item. Optional: any existing evidence ledger at the artifact 
 
 ## Procedure
 
-1. Route. If the work is a quick lookup, a single edit, an ordered plan with per-task review gates, or a flat split with no phase structure, do that work inline and stop. Only proceed when the work decomposes into parallel slices, needs independent adversarial checks, or exceeds one context window. Done when: routing decision is made — inline work is done, or the workflow proceeds.
+1. Route. If the work is a quick lookup, a single edit, an ordered plan with per-task review gates, or a flat split with no phase structure, do that work inline and stop. Only proceed when the work decomposes into parallel slices, needs independent adversarial checks, or exceeds one context window. Done when: routing decision is made; inline work is done, or the workflow proceeds.
 2. Scout. Scout inline until the full work list can be named. List the files, scope the diff, find the call sites. Do not spawn workers while scouting. Done when: full work list is named.
 3. Order phases. Order the workflow as phases. A phase is one wave of parallel tasks plus a barrier. Later phases consume earlier phases' evidence. Name each phase explicitly. Done when: phases are ordered and named.
 4. Batch context. Carry the shared contract for the whole wave in the batch context: `# Goal` (what the wave accomplishes), `# Constraints` (rules, non-goals, permissions, verification limits), `# Contract` (shared interfaces, output shape, coordination rules). Done when: batch context is composed.

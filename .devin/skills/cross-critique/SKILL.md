@@ -1,6 +1,6 @@
 ---
 name: cross-critique
-description: 'Use when independent proposals on a contested decision need structured cross-critique before choosing. Reuses original authors and synthesizes convergence, objections, and the surviving option. Not for parallel multi-stance investigation — use council.'
+description: 'Use when independent proposals on a contested decision need cross-critique before choosing, reusing the original authors. Not for parallel multi-stance investigation: use council.'
 ---
 
 # Cross critique
@@ -10,7 +10,7 @@ description: 'Use when independent proposals on a contested decision need struct
 | Field | Bound contract |
 |---|---|
 | Trigger | Multiple independent proposals on a contested decision exist (round-one proposals are on the table). |
-| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation; the synthesis is conversational output. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. The synthesis is conversational output. |
 | Side effect | Read-only second round reusing existing subagents; no repo mutation. |
 | Done | Synthesis notes convergence, strongest objections, and surviving option. |
 
@@ -40,7 +40,7 @@ description: 'Use when independent proposals on a contested decision need struct
    - Explain why the recommended option best survives critique against the decision criteria.
    - Record remaining disagreement, confidence, and material unknowns.
    Done when: the synthesis states the recommendation, convergence, strongest cons, survival rationale, and remaining disagreement with confidence and unknowns.
-7. Keep the critique round read-only; do not mutate the repo, files, or remote state unless the underlying task explicitly requires changes. Done when: no repo, file, or remote mutation occurs unless the underlying task requires it.
+7. Keep the critique round read-only; do not mutate the repo, files, or remote state. Done when: no repo, file, or remote mutation occurs.
 
 ## Failure and recovery
 - No divergence or objective answer: stop before circulating. Report that the proposals already agree or the question is directly verifiable, so a second round would add cost without value.

@@ -1,6 +1,6 @@
 ---
 name: from-first-principle
-description: 'Use when a user wants to rebuild a design, organization, or API from primitives. Produces a first-principles rebuild spec naming primitives, structure, and open assumptions. Not for a perspective take — use from-*-perspective seats. Writes one local spec; no remote mutation.'
+description: 'Use when a user wants to rebuild a design, organization, or API from primitives. Not for a perspective take: use from-*-perspective seats.'
 ---
 
 # From first principle
@@ -10,15 +10,15 @@ description: 'Use when a user wants to rebuild a design, organization, or API fr
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to rebuild a design, organization, or API from primitives. |
-| Authority | Write one named local rebuild specification artifact; read the existing target as read-only. Rollback is deleting the artifact. |
+| Authority | Reversible local: writes only one named local rebuild specification artifact; rollback is deleting the artifact. No remote mutation. |
 | Side effect | Writes a first-principles rebuild specification of the design, organization, or API to a local file. |
 | Done | Produces a rebuilt first-principles specification naming primitives, derived structure, and open assumptions. |
 
 ## Not for
 
-- A perspective take on a question — use the from-*-perspective seats.
-- Pruning an existing structure down to its primitives — this rebuilds from primitives, it does not strip down.
-- Restarting from a blank greenfield — use fromzero.
+- A perspective take on a question: use the from-*-perspective seats.
+- Pruning an existing structure down to its primitives: this rebuilds from primitives, it does not strip down.
+- Restarting from a blank greenfield: use fromzero.
 - Remote, credential, publish, deploy, or irreversible changes.
 
 ## Inputs
@@ -43,4 +43,4 @@ Required: the target to rebuild (a design, an organization, or an API) and acces
 
 ## Output
 
-A local first-principles rebuild specification artifact: enumerated primitives, derived structure, per-element derivation steps, change/elimination diff against the existing target, and open assumptions — in that order.
+A local first-principles rebuild specification artifact: enumerated primitives, derived structure, per-element derivation steps, change/elimination diff against the existing target, and open assumptions, in that order.

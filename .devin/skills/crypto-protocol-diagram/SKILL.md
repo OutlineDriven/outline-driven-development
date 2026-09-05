@@ -1,6 +1,6 @@
 ---
 name: crypto-protocol-diagram
-description: 'Use when asked for a sequence diagram of cryptographic protocol semantics from code, prose, RFCs, papers, ProVerif, or Tamarin. Also handles code/spec divergence when both are supplied. Not for general architecture diagrams — use embed-diagram.'
+description: 'Use when asked for a sequence diagram of cryptographic protocol semantics from code, prose, RFCs, papers, ProVerif, or Tamarin, or for code/spec divergence. Not for architecture: use embed-diagram.'
 ---
 
 # Crypto protocol diagram
@@ -10,7 +10,7 @@ description: 'Use when asked for a sequence diagram of cryptographic protocol se
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to extract cryptographic protocol semantics from source code, prose, RFCs, papers, ProVerif, or Tamarin into a sequence diagram. |
-| Authority | Reversible local write: create one named Markdown artifact under the working directory. No VCS, credential, remote, or deployed mutation. Rollback is deleting the written file. |
+| Authority | Reversible local: writes only one named Markdown artifact under the working directory; rollback is deleting the written file. No remote mutation. |
 | Side effect | A named Markdown file containing a Mermaid sequence diagram, plus an inline ASCII rendering printed in the response. |
 | Done | Every distinct protocol message, party, cryptographic operation, phase, and material abort path is represented; ambiguities and implementation/spec divergences are labeled. |
 

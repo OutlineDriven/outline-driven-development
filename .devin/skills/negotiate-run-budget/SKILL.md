@@ -1,6 +1,6 @@
 ---
 name: negotiate-run-budget
-description: 'Use when a high-priority run reaches at least 90% of its budget and requests an extension. Ask its human owner once; on grant record the bounded extension, on decline mark the run WAITING_FOR_BUDGET. Never self-grants. Not for low-priority runs — let those exhaust silently.'
+description: 'Use when a high-priority run reaches at least 90% of its budget and requests an extension. Never self-grants. Not for low-priority runs: let those exhaust silently.'
 ---
 
 # Negotiate run budget
@@ -10,7 +10,7 @@ description: 'Use when a high-priority run reaches at least 90% of its budget an
 | Field | Bound contract |
 |---|---|
 | Trigger | A high-priority run reaches at least 90% of its budget and requests an extension. |
-| Authority | Reversible-local: one bounded extension may be requested from the human budget owner. |
+| Authority | Human-gated: asks the human budget owner for one bounded extension before continuing; every other write is reversible local, with version control as the rollback. |
 | Side effect | One extension request output to the user; on decline the run enters WAITING_FOR_BUDGET report-only; never self-grants. |
 | Done | Either one bounded extension is granted and recorded, or the run is report-only in WAITING_FOR_BUDGET; there is no silent continuation. |
 

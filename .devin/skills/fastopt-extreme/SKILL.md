@@ -1,6 +1,6 @@
 ---
 name: fastopt-extreme
-description: 'Use when a user wants to optimize estimated hot paths and complexity-neutral cold paths while refusing complexity theater. Emits hypotheses and benchmark designs. Not for measured-floor rebuilds — use extremely-optimize; not for hypothesis-only — use fastopt.'
+description: 'Use when optimizing estimated hot and complexity-neutral cold paths while refusing complexity theater. Not for measured-floor rebuilds: use extremely-optimize. Not for hypothesis-only: use fastopt.'
 ---
 
 # Fastopt extreme
@@ -11,8 +11,8 @@ description: 'Use when a user wants to optimize estimated hot paths and complexi
 |---|---|
 | Trigger | User wants to optimize estimated hot paths and complexity-neutral cold paths while refusing complexity theater. |
 | Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
-| Side effect | Chat output only: hypotheses and benchmark designs for estimated hot paths and complexity-neutral cold paths. |
-| Done | Hot and cold path hypotheses and benchmark designs are emitted; complexity theater is refused. |
+| Side effect | Chat output only: hypotheses and benchmark designs for estimated hot paths; simplification proposals for complexity-neutral cold paths. |
+| Done | Hot-path hypotheses with benchmark designs and cold-path simplification proposals are emitted; complexity theater is refused. |
 
 ## Inputs
 

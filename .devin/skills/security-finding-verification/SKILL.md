@@ -1,6 +1,6 @@
 ---
 name: security-finding-verification
-description: 'Use when a named security allegation needs a true-positive or false-positive verdict backed by data-flow and exploitability evidence. Not for discovering bugs — use security-review. Not for adding controls — use security-hardening.'
+description: 'Use when a named security allegation needs a true-positive or false-positive verdict. Not for discovering bugs: use security-review. Not for adding controls: use security-hardening.'
 ---
 
 # Security finding verification
@@ -10,14 +10,14 @@ description: 'Use when a named security allegation needs a true-positive or fals
 | Field | Bound contract |
 |---|---|
 | Trigger | A specific alleged security vulnerability needs a true-positive or false-positive verdict rather than new-bug discovery. |
-| Authority | Reversible-local: write only named local artifacts; state the rollback path. |
+| Authority | Reversible local: writes only named local artifacts; rollback is deleting those artifacts. No remote mutation. |
 | Side effect | Restated claim, threat model, complete source-to-sink evidence, class-specific checks, exploitability or PoC evidence where warranted, gate reviews, and verdict. |
 | Done | Each supplied finding is independently traced, tested or proved at the appropriate depth, challenged adversarially, and labeled true positive or false positive with evidence. |
 
 ## Not for
 
-- Discovering new vulnerabilities in a change set — use security-review.
-- Adding security controls during construction — use security-hardening.
+- Discovering new vulnerabilities in a change set: use security-review.
+- Adding security controls during construction: use security-hardening.
 
 ## Inputs
 

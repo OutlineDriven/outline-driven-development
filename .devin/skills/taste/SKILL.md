@@ -1,6 +1,6 @@
 ---
 name: taste
-description: 'Use when asking "overkill?", "elegant?", "audit", or "taste-test this", or setting a taste register. Returns a per-anchor verdict table with ranked fixes in audit mode, or loads the judgment register in anchor mode. Don''t use for tasks that require source or remote-system changes.'
+description: 'Use when asking "overkill?", "elegant?", "audit", or "taste-test this", or setting a taste register. Not for tasks that require source or remote-system changes.'
 ---
 
 # Taste
@@ -56,9 +56,9 @@ Resume the register once the high-stakes section ends.
 
 ### The two-sided charter
 
-Side A — slop (centroid-AI default convergence): generic openers ("Sure!", "Of course"), hedge-stacks ("perhaps it might be"), validation phrases ("you're absolutely right"), AI-flat prose with no rhythm, default palettes, defensive nil-checks where impossible, 50/50 decision hedges that pick nothing.
+Side A: slop (centroid-AI default convergence): generic openers ("Sure!", "Of course"), hedge-stacks ("perhaps it might be"), validation phrases ("you're absolutely right"), AI-flat prose with no rhythm, default palettes, defensive nil-checks where impossible, 50/50 decision hedges that pick nothing.
 
-Side B — overkill (decoration covering thin ideas): gradient stacks on every section, thesaurus-soup prose ("orchestrate the comprehensive synthesis of"), abstraction towers (4 layers where 1 suffices), complexity-flex masking absent conviction, ceremony that performs depth without delivering it.
+Side B: overkill (decoration covering thin ideas): gradient stacks on every section, thesaurus-soup prose ("orchestrate the comprehensive synthesis of"), abstraction towers (4 layers where 1 suffices), complexity-flex masking absent conviction, ceremony that performs depth without delivering it.
 
 | Domain   | Side A (slop)                            | Side B (overkill)                        |
 |----------|------------------------------------------|------------------------------------------|
@@ -109,6 +109,9 @@ Restraint          | warn    | Side B: ceremony      | Cut the framing paragraph
 Generosity         | pass    |                       |
 Honesty            | pass    |                       |
 One-strong-moment  | fail    | Side A: 50/50 hedge   | Commit to one direction
+Invariants         | pass    |                       |
+Audience           | pass    |                       |
+Emptiness          | pass    |                       |
 
 Top-3 fixes: 1. Pick one direction (Intent + One-strong-moment).
              2. Lead with the verdict (Hierarchy).
@@ -116,3 +119,5 @@ Top-3 fixes: 1. Pick one direction (Intent + One-strong-moment).
 ```
 
 ### Anchor mode
+
+The register is loaded; subsequent responses hold the eleven anchors as imperatives. No table is emitted.

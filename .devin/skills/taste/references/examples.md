@@ -2,7 +2,7 @@
 
 Three terse examples: prose, code, and decision. Each follows artifact → per-anchor verdict → top-3 fixes → revised.
 
-## Example 1 — Prose (corporate-blog opener)
+## Example 1: Prose (corporate-blog opener)
 
 Artifact:
 > Sure! In this post, we'll explore some really fascinating considerations around the topic of API design, which is, basically, a really important topic in modern software development. There are many factors to consider, and the best approach often depends on your specific use case.
@@ -14,18 +14,21 @@ Audit:
 | Clarity | fail | Side A: AI-flat prose | Lead with the actual claim, not a topic announcement |
 | Hierarchy | fail | Side A: AI-flat prose | Verdict sentence first, supporting after |
 | Intent | fail | Side A: hedge-stack ("really fascinating", "basically", "many factors") | Cut every hedge; commit to one position |
-| Coherence | warn | — | Tone is tour-guide; the post body claims to be technical |
+| Coherence | warn | none | Tone is tour-guide; the post body claims to be technical |
 | Restraint | fail | Side A: ceremony | Drop the framing paragraph entirely |
-| Generosity | pass | — | (Cannot judge — body absent) |
+| Generosity | pass | none | (Cannot judge: body absent) |
 | Honesty | fail | Side A: "depends on your use case" | Name the position; if there is none, do not write the post |
 | One-strong-moment | fail | Side A: 50/50 hedge | Pick one design rule; argue it |
+| Invariants | pass | none | (Cannot judge: body absent) |
+| Audience | pass | none | (Cannot judge: body absent) |
+| Emptiness | fail | Side A: AI-flat prose | Open with the claim; let the body earn the reader |
 
 Top-3 fixes: 1. Open with the position. 2. Cut every "really", "basically", "fascinating". 3. If there is no position, kill the post.
 
 Revised:
 > Most APIs are too configurable. Default to one path; let callers pay for the second one only when they need it.
 
-## Example 2 — Code (defensive nil + abstraction tower)
+## Example 2: Code (defensive nil + abstraction tower)
 
 Artifact:
 ```ts
@@ -52,13 +55,16 @@ Audit:
 | Anchor | Verdict | Citation | Fix |
 |---|---|---|---|
 | Clarity | fail | Side B: abstraction tower | Replace 3 classes with `getUser(id)` function |
-| Hierarchy | fail | — | One call site; no factory needed |
+| Hierarchy | fail | none | One call site; no factory needed |
 | Intent | fail | Side A: defensive nil-checks | Type system rules out "" if `id: NonEmptyString` |
-| Coherence | warn | — | TS strict mode rules out `undefined`; the checks contradict the type |
+| Coherence | warn | none | TS strict mode rules out `undefined`; the checks contradict the type |
 | Restraint | fail | Side B: parameterization, Side A: defensive checks | Inline; delete factory layer |
 | Generosity | fail | Side A: silent null return | Throw with the id when not found |
 | Honesty | fail | Side B: "Factory" performs architecture | Name the function for what it does |
-| One-strong-moment | fail | — | Nothing in 12 lines justifies its weight |
+| One-strong-moment | fail | none | Nothing in 12 lines justifies its weight |
+| Invariants | fail | Side A: defensive nil-checks | Type the contract and throw on missing user |
+| Audience | warn | none | Isolated snippet; name from the call site |
+| Emptiness | fail | Side B: parameterization, Side A: defensive checks | Inline to one function |
 
 Top-3 fixes: 1. Collapse 3 classes to 1 function. 2. Drop the nil-checks; lean on the type. 3. Throw with the id instead of returning null.
 
@@ -69,7 +75,7 @@ function getUser(id: NonEmptyString): User {
 }
 ```
 
-## Example 3 — Decision (ADR with weighted matrix)
+## Example 3: Decision (ADR with weighted matrix)
 
 Artifact:
 > ## Decision: Postgres vs MySQL
@@ -82,11 +88,14 @@ Audit:
 | Clarity | fail | Side A: 50/50 hedge | State the pick in the first line |
 | Hierarchy | fail | Side B: scoring matrix | The matrix is the alibi for not picking |
 | Intent | fail | Side A: "depends" | Pick one; defend it |
-| Coherence | warn | — | "Decision" header but no decision in body |
+| Coherence | warn | none | "Decision" header but no decision in body |
 | Restraint | fail | Side B: 5-criterion scoring | Two reasons suffice if they are load-bearing |
-| Generosity | fail | — | No cost named for the recommendation |
+| Generosity | fail | none | No cost named for the recommendation |
 | Honesty | fail | Side B: scoring performs rigor | Name the real reason (likely "team knows Postgres") |
 | One-strong-moment | fail | Side A: 50/50 hedge | The decision is the moment; it is missing |
+| Invariants | fail | Side A: 50/50 hedge | State the constraints the chosen option must satisfy |
+| Audience | fail | Side A: "depends" | Name the audience and their actual constraints |
+| Emptiness | fail | Side B: 5-criterion scoring | Two reasons suffice; leave the trade-off for the reader |
 
 Top-3 fixes: 1. First line names the pick. 2. Drop the scoring matrix entirely. 3. Two reasons (one for, one against), not five weighted axes.
 

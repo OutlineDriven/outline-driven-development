@@ -1,6 +1,6 @@
 ---
 name: browser-qa
-description: 'Use when the user runs /browser-qa to run the QA verification pass and return report-only results without entering a fix loop. Runs configured build, test, and lint checks in order, collects findings, and writes one local report. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when the user runs /browser-qa for report-only QA results without entering a fix loop. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Browser qa
@@ -10,7 +10,7 @@ description: 'Use when the user runs /browser-qa to run the QA verification pass
 | Field | Bound contract |
 |---|---|
 | Trigger | The user runs /browser-qa to run a QA verification pass and get report-only results. |
-| Authority | Write one local QA report under the working tree. No source, VCS, credential, paid, published, deployed, or remote mutation. Reversible by deleting the report. |
+| Authority | Reversible local: writes only one local QA report under the working tree; rollback is deleting the report. No remote mutation. No source or VCS mutation. |
 | Side effect | A QA report only. No fix loop, no file edits, no further checks after the report is returned. |
 | Done | Report-only verification results are returned: per-check status and findings in one local report file. |
 

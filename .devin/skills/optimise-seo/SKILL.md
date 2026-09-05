@@ -1,6 +1,6 @@
 ---
 name: optimise-seo
-description: 'Use when asked to make a Next.js App Router application crawlable, indexable, and structurally optimized for search with green Core Web Vitals. Configures sitemaps, robots, metadata, structured data, canonicals, internal linking, and CWV budgets, then validates with build, curl, and Lighthouse evidence. Not for security-header configuration or remote mutations.'
+description: 'Use when asked to make a Next.js App Router app crawlable, indexable, and search-optimized for sitemaps, robots, canonicals, and Core Web Vitals. Not for security headers or remote mutations.'
 ---
 
 # Optimise SEO
@@ -10,7 +10,7 @@ description: 'Use when asked to make a Next.js App Router application crawlable,
 | Field | Bound contract |
 |---|---|
 | Trigger | Improve SEO, Next.js SEO, sitemap, robots, meta tags, structured data, canonical URL, hreflang, Core Web Vitals, crawlability, indexability. |
-| Authority | Reversible-local: change only named local project source files (App Router pages and layouts, `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `next.config.ts`, JSON-LD components, `public/` assets). No remote mutations. Audit-only mode reads a deployed origin without editing files. Record each file's prior content before the first edit and state that rollback path. |
+| Authority | Reversible local: writes only named local project source files (App Router pages and layouts, `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `next.config.ts`, JSON-LD components, `public/` assets); rollback is version control or restoring recorded prior content. No remote mutation. Audit-only mode reads a deployed origin without editing files. |
 | Side effect | Applies or recommends SEO and technical changes within the named scope. No visual redesigns, component styling, or layout changes; no content rewriting; no security-header configuration; llms.txt and AI-agent readability are out of scope. |
 | Done | A pass or fail checklist with per-check command evidence: build, curl header and meta checks, and Lighthouse. Each item is marked pass with evidence or fail with a named blocker. Done does not require green Core Web Vitals when external gates are unreachable; those items are marked blocked. |
 

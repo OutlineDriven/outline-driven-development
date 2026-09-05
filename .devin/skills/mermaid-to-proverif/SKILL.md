@@ -1,6 +1,6 @@
 ---
 name: mermaid-to-proverif
-description: 'Use when a cryptographic Mermaid sequenceDiagram is supplied and the user requests a ProVerif model with secrecy, authentication, replay, or forward secrecy verification. Parses the diagram, defines Dolev-Yao cryptographic primitives, maps messages to ProVerif processes, and runs verification queries. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a crypto Mermaid sequenceDiagram needs a ProVerif model for secrecy, authentication, replay, or forward-secrecy checks. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Mermaid to ProVerif
@@ -10,7 +10,7 @@ description: 'Use when a cryptographic Mermaid sequenceDiagram is supplied and t
 | Field | Bound contract |
 |---|---|
 | Trigger | A cryptographic Mermaid sequenceDiagram exists and the user asks for a ProVerif model or secrecy/authentication/replay/forward-secrecy verification. |
-| Authority | Reversible local: write only named `.pv` and report files. Roll back by deleting uncommitted files. |
+| Authority | Reversible local: writes only named `.pv` and report files; rollback is deleting uncommitted files. No remote mutation. |
 | Side effect | A named `.pv` model file and verifier output; may execute ProVerif. |
 | Done | The model type-checks, participant sends and receives match, reachability is established before security queries are trusted, and assumptions plus each query result are reported. |
 

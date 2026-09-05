@@ -1,6 +1,6 @@
 ---
 name: mutation-campaign-configuration
-description: 'Use when the user mentions mewt, muton, or mutation testing and asks to initialize, scope, estimate, configure, validate, or optimize a campaign before execution. Writes only the TOML config and validates readiness without generating mutants or touching source. Not for running the campaign: use mewt run separately.'
+description: 'Use when asked to initialize, scope, estimate, configure, validate, or optimize a mewt, muton, or mutation testing campaign before execution. Writes the TOML config. Not for running it: use the mewt CLI.'
 ---
 
 # Mutation campaign configuration
@@ -10,7 +10,7 @@ description: 'Use when the user mentions mewt, muton, or mutation testing and as
 | Field | Bound contract |
 |---|---|
 | Trigger | The user mentions mutation testing, mewt, or muton and asks to initialize, scope, estimate, configure, validate, or optimize a campaign before execution. |
-| Authority | Reversible-local. Write only `mewt.toml` or `muton.toml`. Do not create or modify the accompanying SQLite database, do not generate mutants, do not touch source files. Rollback restores the prior TOML from version control or a pre-edit snapshot. |
+| Authority | Reversible local: writes only `mewt.toml` or `muton.toml`; rollback is restoring the prior TOML from version control or a pre-edit snapshot. No remote mutation. Does not create or modify the accompanying SQLite database, generate mutants, or touch source files. |
 | Side effect | Create or update `mewt.toml` or `muton.toml`; inspect target files and estimate mutant scope read-only; measure test duration; validate readiness without interpreting completed campaign results. |
 | Done | Configuration parses, intended source targets and mutant counts are estimated, test commands pass, timeout policy is justified by measurement, estimated duration is acceptable, and the project is ready for a separate campaign run. |
 

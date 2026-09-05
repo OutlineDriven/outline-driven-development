@@ -23,7 +23,9 @@ llvm-cov show ... -format=html -output-dir <target>/html/
 
 Differential (when a baseline profile was supplied):
 ```
-llvm-cov show ... -instr-profile=<baseline>.profdata -instr-profile=<target>/fuzz.profdata
+llvm-cov show ./fuzz_exec -instr-profile=<baseline>.profdata -format=html -output-dir <target>/html_baseline/
+llvm-cov show ./fuzz_exec -instr-profile=<target>/fuzz.profdata -format=html -output-dir <target>/html_target/
+diff -r <target>/html_baseline/ <target>/html_target/ > <target>/coverage_diff.txt
 ```
 
 ## GCC (C/C++)
@@ -72,7 +74,11 @@ Differential (when a baseline profile was supplied):
 ```
 cargo +nightly cov -- show -Xdemangler=rustfilt <target-binary> \
   -instr-profile=<baseline>.profdata \
+  -show-line-counts-or-regions -show-instantiations \
+  -format=html -o <target>/html_baseline/ <src-filter>
+cargo +nightly cov -- show -Xdemangler=rustfilt <target-binary> \
   -instr-profile=<target>.profdata \
   -show-line-counts-or-regions -show-instantiations \
-  -format=html -o <target>/diff_html/ <src-filter>
+  -format=html -o <target>/html_target/ <src-filter>
+diff -r <target>/html_baseline/ <target>/html_target/ > <target>/coverage_diff.txt
 ```

@@ -1,6 +1,6 @@
 ---
 name: smart-contract-secure-workflow
-description: 'Use when a smart-contract team invokes this before check-in or deployment to run a five-stage security workflow producing a consolidated pass or unresolved-risk report. Not for audit prep — use smart-contract-audit-prep; not for guidelines — use smart-contract-guidelines-advisor.'
+description: 'Use when a smart-contract team invokes this before check-in or deployment. Not for audit prep: use smart-contract-audit-prep. Not for guidelines: use smart-contract-guidelines-advisor.'
 ---
 
 # Smart contract secure workflow
@@ -16,7 +16,7 @@ description: 'Use when a smart-contract team invokes this before check-in or dep
 | Field | Bound contract |
 |---|---|
 | Trigger | A smart-contract team needs to execute a repeatable end-to-end secure development check before a check-in or deployment. |
-| Authority | Reversible local. Write only named local artifacts under the working directory. Roll back by deleting the generated report, tool outputs, and review notes. |
+| Authority | Reversible local: writes only named local artifacts under the working directory; rollback is deleting the generated report, tool outputs, and review notes. No remote mutation. |
 | Side effect | Tool outputs, visualizations, documented properties, manual-review notes, and a consolidated workflow report. All artifacts written to local paths only. |
 | Done | All five workflow stages are executed or explicitly marked unavailable with compensating analysis and unresolved risks documented. |
 

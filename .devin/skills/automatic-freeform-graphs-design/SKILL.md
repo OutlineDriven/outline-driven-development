@@ -1,6 +1,6 @@
 ---
 name: automatic-freeform-graphs-design
-description: 'Use when a user wants a looser conceptual graph for exploratory work. Generates a freeform conceptual graph that the user can explore. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a user wants a looser conceptual graph for exploratory work. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Automatic freeform graphs design
@@ -10,7 +10,7 @@ description: 'Use when a user wants a looser conceptual graph for exploratory wo
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants a looser conceptual graph for exploratory work. |
-| Authority | Reversible local: write only one named freeform conceptual graph artifact to the working directory. Do not mutate VCS, credentials, remotes, or published content. Roll back by deleting or overwriting that single file. |
+| Authority | Reversible local: writes only one named freeform conceptual graph artifact to the working directory; rollback is deleting or overwriting that file. No remote mutation. |
 | Side effect | A freeform conceptual graph artifact for exploration, written to the local filesystem. |
 | Done | A freeform conceptual graph is generated and can be used for exploration. |
 
@@ -38,4 +38,4 @@ description: 'Use when a user wants a looser conceptual graph for exploratory wo
 - Rollback: the artifact is a single local file. Delete or overwrite it to revert. No other state is mutated.
 
 ## Output
-A single freeform conceptual graph artifact ordered: node list (with confidence markers), labeled edge list (allowing cycles), provisional cluster summary, high-value bridge targets, open-questions list — human-readable, revisable without tooling.
+A single freeform conceptual graph artifact ordered: node list (with confidence markers), labeled edge list (allowing cycles), provisional cluster summary, high-value bridge targets, open-questions list, human-readable, revisable without tooling.

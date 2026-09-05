@@ -1,6 +1,6 @@
 # Survey and ranking
 
-Depth indicators and two-axis scoring for the brownfield survey sub-branch. Assumes the vocabulary in the survivor SKILL.md — module, interface, depth, seam, adapter, leverage, locality.
+Depth indicators and two-axis scoring for the brownfield survey sub-branch. Assumes the vocabulary in the survivor SKILL.md: module, interface, depth, seam, adapter, leverage, locality.
 
 ## Depth indicators
 
@@ -22,7 +22,7 @@ Order shallow modules by:
 
 Higher gain and lower effort ranks higher.
 
-## Report shape
+## Report plan
 
 - Ranked list of all shallow modules with their effort and gain scores.
 - Top candidate with a one-paragraph rationale for why it ranks first.

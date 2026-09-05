@@ -10,7 +10,7 @@ description: 'Use when a scheduled or watcher tick fires and a lightweight pulse
 | Field | Bound contract |
 |---|---|
 | Trigger | A scheduled or watcher tick fires and a lightweight pulse must capture current external state. |
-| Authority | Reversible-local: write only to named local snapshot and marker artifacts; state the rollback path before writing. |
+| Authority | Reversible local: writes only named local snapshot and marker artifacts; rollback is file deletion. No remote mutation. |
 | Side effect | One bounded snapshot file plus one run marker in the configured output directory. No source, label, workflow, merge, or issue state change. |
 | Done | The snapshot file exists, the run marker attributes it to exactly one run with `status: success` or `status: empty`, the snapshot contains the requested state (empty when the source returned no matching state), and zero action side effects were produced. A run with `status: error` does not satisfy Done. |
 
@@ -25,7 +25,7 @@ description: 'Use when a scheduled or watcher tick fires and a lightweight pulse
 
 - Will not trigger downstream workflows, open issues, update labels, or mutate the source.
 - Will not write to an alternate path if the primary write fails.
-- Will not retry a failed source query — record the failure in the run marker and stop.
+- Will not retry a failed source query; record the failure in the run marker and stop.
 
 ## Procedure
 
@@ -48,4 +48,4 @@ description: 'Use when a scheduled or watcher tick fires and a lightweight pulse
 
 ## Output
 
-Two artifacts in the configured output directory: `snapshot.json` (captured external state, empty when the source returned no matching state) and `.last-run.json` (run metadata: run_id, timestamp, source, status, snapshot_bytes, and reason when status is error) — ordering: snapshot first, then marker.
+Two artifacts in the configured output directory: `snapshot.json` (captured external state, empty when the source returned no matching state) and `.last-run.json` (run metadata: run_id, timestamp, source, status, snapshot_bytes, and reason when status is error), ordering: snapshot first, then marker.

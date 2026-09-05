@@ -1,6 +1,6 @@
 ---
 name: diagnose-loop-health
-description: 'Use when a configured loop misbehaves, produces unexpected results, or its setup soundness is questioned. Reads the charter, state, gate, and budget files, classifies health as healthy, warning, or blocked, and emits at most three prioritized actions. Not for tasks that require source or remote-system changes; not for loop design — use harness-engineering.'
+description: 'Use when a configured loop misbehaves, produces unexpected results, or its setup soundness is questioned. Not for tasks that require source or remote-system changes, not for loop design.'
 ---
 
 # Diagnose loop health
@@ -10,7 +10,7 @@ description: 'Use when a configured loop misbehaves, produces unexpected results
 | Field | Bound contract |
 |---|---|
 | Trigger | A configured loop misbehaves, or the user asks whether the loop setup is sound |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | A severity report with at most three prioritized actions and a nonzero exit on blocked; no file mutation |
 | Done | Severity is healthy, warning, or blocked with exit 0, 1, or 2, and each finding names the exact missing or stale charter, state, gate, or budget file |
 

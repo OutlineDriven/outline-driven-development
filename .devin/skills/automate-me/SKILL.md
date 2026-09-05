@@ -1,6 +1,6 @@
 ---
 name: automate-me
-description: 'Use when asked to create or refresh a personal mode skill and open a reviewable PR. Mines recent session history for a recurring manual workflow, drafts one self-contained skill file, and opens a PR with evidence. Not for shared repo skills or work that skips human approval.'
+description: 'Use when asked to create or refresh a personal mode skill and open a reviewable PR. Not for shared repo skills or work that skips human approval.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | Create or refresh a personal mode skill. |
-| Authority | Human-only. Require explicit human invocation; preview the target file, skill content, and PR consequence before any write, push, or remote publish. |
+| Authority | Remote: pushes a branch and opens a reviewable PR; requires explicit human invocation. Previews the target file, skill content, and PR consequence before any write. |
 | Side effect | Creates or edits one personal mode skill file in a local working copy on a new branch, commits it, pushes the branch, and opens a reviewable PR. No files beyond that skill file and no remote state beyond that branch and PR are touched; no credentials are read or written. |
 | Done | Evidence-backed personal mode skill in a reviewable PR. |
 
@@ -41,4 +41,4 @@ disable-model-invocation: true
 - Partial result rule: if the file is written and committed but the PR cannot be opened, report the local commit as the partial result and the blocking error; the done predicate is not met until a PR URL exists.
 
 ## Output
-A reviewable PR URL, the skill file path, and a one-line summary of the encoded personal workflow backed by the history evidence or description used — classified done only when the PR URL exists, otherwise blocked with the failure class named.
+A reviewable PR URL, the skill file path, and a one-line summary of the encoded personal workflow backed by the history evidence or description used, classified done only when the PR URL exists, otherwise blocked with the failure class named.

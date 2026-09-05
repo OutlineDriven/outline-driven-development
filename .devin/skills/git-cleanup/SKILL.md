@@ -1,6 +1,6 @@
 ---
 name: git-cleanup
-description: 'Use when the user explicitly invokes branch or worktree cleanup for a repo with accumulated local branches. Also handles tidy''s scratch-file cleanup when the user says tidy and the target is scratch artifacts. Don''t use for remote branch deletion or force-push operations.'
+description: 'Use when the user explicitly invokes branch or worktree cleanup for a repo with accumulated local branches. Don''t use for remote branch deletion or force-push operations.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | The user explicitly invokes branch/worktree cleanup for a repository with accumulated local branches or worktrees. |
-| Authority | Restrict changes to VCS-tracked local branches and clean worktrees; show the exact set before any deletion; use git reflog and remote refs as recovery. |
+| Authority | Reversible local: writes only VCS-tracked local branches and clean worktrees; rollback is git reflog and remote refs. No remote mutation. Show the exact set before any deletion. |
 | Side effect | Delete confirmed local git branches and clean worktrees only; dirty worktrees and protected branches are refused. |
 | Done | Every local branch is categorized or surfaced as unanalyzed, every recommended deletion has evidence, exact quoted commands receive final confirmation, and each command is reported as deleted or failed. |
 

@@ -10,7 +10,7 @@ description: 'Use when the user says show this or diagram this about the current
 | Field | Bound contract |
 |---|---|
 | Trigger | The user says show me or diagram this about the current topic. |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Emits an ephemeral visual in chat; no files on disk. |
 | Done | One (or at most two) smallest views carrying the point, beside its short supporting text. |
 
@@ -18,7 +18,7 @@ description: 'Use when the user says show this or diagram this about the current
 
 - An auditable decision trail for unattended work: use show-me-your-work.
 - A committed diagram in a document: use embed-diagram.
-- An interactive clickable sketch: use prototype-logic.
+- An interactive clickable sketch: use prototype.
 - Teaching a concept with explanation and examples: use explain-concept.
 - A visual walk of review findings one at a time: use show-review.
 - A guided multi-turn exploration: use walk-with-me.
@@ -29,7 +29,7 @@ The current topic from the user prompt. The skill picks the minimal view type th
 
 ## Procedure
 
-1. Identify the single concept the user asks to see. If the topic is too broad for one visual, ask the user to narrow it before producing more than two views. **Done when:** one concept is identified or the user is asked to narrow.
+1. Identify the single concept the user asks to see. If the topic is too broad for one visual, ask the user to narrow it before producing more than two views. Done when: one concept is identified or the user is asked to narrow.
 2. Pick the smallest view that carries the point:
 
    | The point is | View |
@@ -41,10 +41,10 @@ The current topic from the user prompt. The skill picks the minimal view type th
    | Relationships or flow | Diagram (Mermaid or nomnoml) |
    | The code itself | Whole block |
 
-   **Done when:** the view type is chosen.
-3. Render the view using the appropriate shape. **Done when:** the view is rendered in chat.
-4. Shape diffs to match the view they change: a component diff for UI changes, a file-layout diff for file organization, a call-tree diff for call-graph changes, and a pseudocode diff for control-flow changes. **Done when:** the diff matches its view type or no diff is needed.
-5. Place each visual adjacent to the short supporting text, not in its own trailing block. **Done when:** the visual sits beside its context.
+   Done when: the view type is chosen.
+3. Render the view using the appropriate shape. Done when: the view is rendered in chat.
+4. Shape diffs to match the view they change: a component diff for UI changes, a file-layout diff for file organization, a call-tree diff for call-graph changes, and a pseudocode diff for control-flow changes. Done when: the diff matches its view type or no diff is needed.
+5. Place each visual adjacent to the short supporting text, not in its own trailing block. Done when: the visual sits beside its context.
 
 ## Failure and recovery
 

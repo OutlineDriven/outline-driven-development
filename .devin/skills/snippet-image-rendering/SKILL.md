@@ -1,6 +1,6 @@
 ---
 name: snippet-image-rendering
-description: 'Use when the user explicitly names snipgrapher and wants code rendered to a polished PNG, SVG, or WebP at an explicit local path. Probes the installed CLI for supported flags and writes only the named image file. Not for other renderers, publishing, or remote actions.'
+description: 'Use when the user explicitly names snipgrapher and wants code rendered to a polished PNG, SVG, or WebP at an explicit local path. Not for other renderers, publishing, or remote actions.'
 ---
 
 # Snippet image rendering
@@ -16,7 +16,7 @@ description: 'Use when the user explicitly names snipgrapher and wants code rend
 | Field | Bound contract |
 |---|---|
 | Trigger | User explicitly mentions snipgrapher and wants code rendered as an image |
-| Authority | Reversible-local: write only the named image file and, only when the user asks, a snipgrapher config file whose path and format are stated before writing. Rollback deletes only files this run created. If the output path existed before the run, the pre-existing bytes are captured before overwrite and restored on failure. |
+| Authority | Reversible local: writes only the named image file and, only when the user asks, a snipgrapher config file whose path and format are stated before writing; rollback is deleting only files this run created. No remote mutation. If the output path existed before the run, the pre-existing bytes are captured before overwrite and restored on failure. |
 | Side effect | Writes one image file to the explicit output path; optionally writes a config file when the user requests it and its path and format are stated before writing |
 | Done | The requested PNG, SVG, or WebP exists at the explicit path with non-zero size, produced through the profile actually used (default named when none supplied), with a one-line report of path and byte count |
 

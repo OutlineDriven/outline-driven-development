@@ -1,6 +1,6 @@
 ---
 name: perspective-complete-review
-description: 'Use when one named review viewpoint must run fix cycles until a fresh reviewer finds nothing. Leaves verified machine-owned fixes and a written verdict. Not for multi-viewpoint review or remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when one named review viewpoint must run fix cycles until a fresh reviewer finds nothing. Not for multi-viewpoint review or remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Perspective complete review
@@ -10,8 +10,8 @@ description: 'Use when one named review viewpoint must run fix cycles until a fr
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants review and fix cycles for one viewpoint until that viewpoint is quiet. |
-| Authority | Reversible-local: write only the reviewed artifact, its fix patches, and the review report for this one viewpoint; every applied fix is rolled back by restoring the recorded baseline. |
-| Side effect | Reviewed artifact mutated only by applied in-scope fixes, plus one review report holding the fix patches and verdict. No file outside the declared review scope is written, and no out-of-scope file is edited to make a fix fit. |
+| Authority | Reversible local: writes only the reviewed artifact, its fix patches, the baseline snapshot, and the review report for this one viewpoint; rollback is restoring the recorded baseline. No remote, VCS-history, credential, paid, published, or deployed mutation. |
+| Side effect | Reviewed artifact mutated only by applied in-scope fixes, the baseline snapshot (a file copy when no VCS baseline is supplied), and one review report holding the fix patches and verdict. No file outside the declared review scope is written, and no out-of-scope file is edited to make a fix fit. |
 | Done | The chosen viewpoint has no further findings: a complete fresh-reviewer cycle returned zero findings for that viewpoint. Machines own logic, races, panics, and vulnerability checks; humans own taste, architecture, and problem choice. |
 
 ## Inputs
@@ -41,4 +41,4 @@ description: 'Use when one named review viewpoint must run fix cycles until a fr
 - No failure is swallowed: every error, revert, and unresolved finding appears in the report, and the terminal classification reflects the state that actually held at stop time.
 
 ## Output
-One review report next to the reviewed artifact (`<artifact-basename>.<viewpoint>-review.md` or user-supplied path) containing the viewpoint charter, per-cycle log with model family, every applied fix patch with check result, human-owned questions, unresolved findings, and terminal classification — plus artifact state with check-verified fixes applied or baseline restored on rejection.
+One review report next to the reviewed artifact (`<artifact-basename>.<viewpoint>-review.md` or user-supplied path) containing the viewpoint charter, per-cycle log with model family, every applied fix patch with check result, human-owned questions, unresolved findings, and terminal classification, plus artifact state with check-verified fixes applied or baseline restored on rejection.

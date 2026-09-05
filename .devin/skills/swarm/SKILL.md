@@ -1,6 +1,6 @@
 ---
 name: swarm
-description: 'Use when asked to run partitioned parallel coverage or races across isolated workers, producing a consolidated evidence table with gaps and dropouts. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when asked to run partitioned parallel coverage or races across isolated workers. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Swarm
@@ -10,7 +10,7 @@ description: 'Use when asked to run partitioned parallel coverage or races acros
 | Field | Bound contract |
 |---|---|
 | Trigger | Run partitioned parallel coverage or races. |
-| Authority | reversible-local: write only named local artifacts; state the rollback path. |
+| Authority | Reversible local: writes only named local artifacts; rollback is version control or undo. No remote mutation. |
 | Side effect | Spawns isolated cloud workers. Workers run session-scoped; nothing published. |
 | Done | Consolidated evidence table with gaps and dropouts returned. |
 

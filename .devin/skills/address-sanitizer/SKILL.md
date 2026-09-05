@@ -1,6 +1,6 @@
 ---
 name: address-sanitizer
-description: 'Use when building or running native code under AddressSanitizer, or when interpreting an existing ASan report. Instruments C/C++ or Rust unsafe/FFI targets, sets ASAN_OPTIONS for fuzzer integration, and classifies each reported error with its faulting and allocation sites. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when building or running native code under AddressSanitizer, interpreting an existing ASan report, or debugging a memory-corruption failure. Not for remote or irreversible changes.'
 ---
 
 # AddressSanitizer
@@ -10,7 +10,7 @@ description: 'Use when building or running native code under AddressSanitizer, o
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs to build or run native code with ASan, interpret an ASan report, or debug a memory-corruption failure. |
-| Authority | Reversible local: write only the instrumented build artifacts and test invocations named by the user; discard the instrumented binary and rebuild without `-fsanitize=address` to roll back. |
+| Authority | Reversible local: writes only the instrumented build artifacts and test invocations named by the user; rollback is discarding the instrumented binary and rebuilding without `-fsanitize=address`. No remote mutation. |
 | Side effect | Instrumented native build and test process under the target project directory. |
 | Done | When building or running: the target is instrumented, exercised, and any reported memory error is explained with a reproducible location. When interpreting an existing report: the error type, faulting source location, and allocation/deallocation sites are extracted from the report and mapped to a root cause, without requiring a fresh instrumented run. |
 
@@ -28,7 +28,7 @@ Optional: a preferred sanitizer combination, or a fuzzer in use (libFuzzer, AFL+
 
 2R. Report interpretation. Read the supplied ASan report and extract the error type (heap-buffer-overflow, use-after-free, double-free, stack-buffer-overflow, memory leak), the faulting stack trace with source file and line, and the allocation/deallocation traces. If source is available, correlate the faulting and alloc/dealloc frames to the source to state the root cause. Done when: the error type, faulting location, and alloc/dealloc locations are extracted from the report and the root cause is stated. This branch does not require a fresh instrumented run.
 
-3. Confirm the target is C/C++ or Rust with unsafe blocks or FFI. ASan is not useful for pure safe languages without FFI. Linux gives full support; macOS and Windows have limited or experimental support — state the platform limitation before proceeding. Done when: the target is confirmed and platform limitations are stated.
+3. Confirm the target is C/C++ or Rust with unsafe blocks or FFI. ASan is not useful for pure safe languages without FFI. Linux gives full support; macOS and Windows have limited or experimental support: state the platform limitation before proceeding. Done when: the target is confirmed and platform limitations are stated.
 4. Compile and link the target with `-fsanitize=address -g`. Apply the flag in both the compile and link steps; missing it at link time produces "ASan runtime not initialized." Add `-O2` or `-O3` if the uninstrumented slowdown exceeds roughly 4x. Done when: the target compiles and links with `-fsanitize=address -g`.
 5. Set `ASAN_OPTIONS` for the run: `verbosity=1` to confirm ASan is active at startup, `abort_on_error=1` when a fuzzer requires `abort()` instead of `_exit()`, and `detect_leaks=0` during fuzzing to keep LeakSanitizer output from cluttering crash reports. Join multiple options with colons. Done when: `ASAN_OPTIONS` are set for the run.
 6. If a fuzzer drives the target, lift its memory limit because ASan maps approximately 20 TB of virtual memory: libFuzzer `-rss_limit_mb=0`, AFL++ `-m none`. For libFuzzer combine `-fsanitize=fuzzer,address`; for AFL++ set `AFL_USE_ASAN=1` on the compiler; for cargo-fuzz pass `--sanitizer=address`; for honggfuzz compile the target with `hfuzz-clang -fsanitize=address`. Done when: the fuzzer's memory limit is lifted for ASan's virtual mapping.
@@ -45,4 +45,4 @@ Optional: a preferred sanitizer combination, or a fuzzer in use (libFuzzer, AFL+
 - Rollback: delete the instrumented binary and rebuild without `-fsanitize=address`. No source change is required for instrumentation-only builds.
 
 ## Output
-When building or running: an instrumented binary or fuzz target, the exercise run result, and for any detected memory error a statement of the error type, the faulting source location, and the allocation/deallocation locations — sufficient to reproduce the failure. When interpreting a report: a statement of the error type, the faulting source location, and the allocation/deallocation locations extracted from the supplied report, with the root cause mapped to source where available.
+When building or running: an instrumented binary or fuzz target, the exercise run result, and for any detected memory error a statement of the error type, the faulting source location, and the allocation/deallocation locations, sufficient to reproduce the failure. When interpreting a report: a statement of the error type, the faulting source location, and the allocation/deallocation locations extracted from the supplied report, with the root cause mapped to source where available.

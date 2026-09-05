@@ -1,6 +1,6 @@
 ---
 name: continual-learning
-description: 'Use when asked to mine prior chats on a scheduled or watcher tick and maintain project memory. Reads transcripts and the memory index, extracts decisions and conventions, filters against the baseline, and writes deduplicated high-signal updates or reports no update. No remote, credential, publish, deploy, or irreversible mutation.'
+description: 'Use when asked to mine prior chats on a scheduled or watcher tick and maintain project memory. Not for remote, credential, publish, deploy, or irreversible mutation.'
 ---
 
 # Continual learning
@@ -10,7 +10,7 @@ description: 'Use when asked to mine prior chats on a scheduled or watcher tick 
 | Field | Bound contract |
 |---|---|
 | Trigger | A scheduled tick or watcher event fires to mine prior chats and maintain project memory. |
-| Authority | Reversible local writes only to AGENTS.md and the continual-learning index; no VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Reversible local: writes only AGENTS.md and the continual-learning index; rollback is version control. No remote mutation. |
 | Side effect | Updates AGENTS.md and the continual-learning index with deduplicated high-signal memory entries. |
 | Done | Deduplicated high-signal memory updates are written, or an explicit no-update result is returned. |
 

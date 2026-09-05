@@ -1,6 +1,6 @@
 ---
 name: from-human-perspective
-description: 'Use when a user wants an answer only from the human seat: what a person can love, trust, and tolerate. Emits a human-perspective analysis without blending. Not for rebuilding from primitives — use from-first-principle. Read-only; no source or remote mutation.'
+description: 'Use when a user wants an answer only from the human seat: what a person can love, trust, and tolerate. Not for rebuilding from primitives: use from-first-principle.'
 ---
 
 # From human perspective
@@ -10,15 +10,15 @@ description: 'Use when a user wants an answer only from the human seat: what a p
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants an answer only from the human seat (what a person can love, trust, and tolerate). |
-| Authority | Read-only; no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Returns a human-perspective analysis in chat; no other surface is touched. |
 | Done | Returns a human-perspective answer without blending. |
 
 ## Not for
 
-- Rebuilding a design from primitives — use from-first-principle.
-- Blended multi-seat analysis — run each from-*-perspective seat independently and compare after.
-- Source or remote mutation — this skill is read-only.
+- Rebuilding a design from primitives: use from-first-principle.
+- Blended multi-seat analysis: run each from-*-perspective seat independently and compare after.
+- Source or remote mutation: this skill is read-only.
 
 ## Inputs
 
@@ -43,4 +43,4 @@ description: 'Use when a user wants an answer only from the human seat: what a p
 
 ## Output
 
-A single human-perspective analysis answering the input from the human seat only, with any other relevant seats named as separate lenses to run later — no blending.
+A single human-perspective analysis answering the input from the human seat only, with any other relevant seats named as separate lenses to run later, no blending.

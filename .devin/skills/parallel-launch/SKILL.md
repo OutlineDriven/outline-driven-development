@@ -1,6 +1,6 @@
 ---
 name: parallel-launch
-description: 'Use when work splits into independent sub-tasks or cross-domain research. Runs concurrent agents and returns one reviewed composition or an exact gap. Not for durable scope ownership with per-scope review — use partition-scopes-to-subagents.'
+description: 'Use when work splits into independent sub-tasks or cross-domain research. Not for durable scope ownership with per-scope review: use partition-scopes-to-subagents.'
 ---
 
 # Parallel launch
@@ -10,7 +10,7 @@ description: 'Use when work splits into independent sub-tasks or cross-domain re
 | Field | Bound contract |
 |---|---|
 | Trigger | The request has multiple independent sub-tasks, cross-domain research, or parallelizable work. |
-| Authority | Write only local targets explicitly named in the request or agent assignments; capture each target's prior state or exact undo operation before changing it. Do not mutate credentials, paid services, deployments, publications, or remote state. |
+| Authority | Reversible local: writes only local targets explicitly named in the request or agent assignments; rollback is the captured prior state or exact undo operation. No remote mutation. |
 | Side effect | Execute concurrent subagents and report composed output in chat. This orchestration creates no durable file of its own; delegated local changes remain confined to their named targets. |
 | Done | Return composed output after completeness, consistency, accuracy, and scope review passes, or return each usable partial result with the exact gap and a targeted follow-up when an agent or review fails. |
 
@@ -36,4 +36,4 @@ Required: the request, its acceptance criteria, and enough source context for ea
 - Unauthorized or partial mutation: Stop further dispatch. Restore every changed local target from its captured prior content or exact undo operation, then report restoration status and any target that could not be restored. Never conceal an error or claim the done predicate holds.
 
 ## Output
-One reviewed composition mapping each concern to its result with review passage recorded — or, on failure, usable partial results, terminal classification (`blocked` or `non-converged`), exact gap, observed error or conflict, restoration status, and one targeted follow-up.
+One reviewed composition mapping each concern to its result with review passage recorded, or, on failure, usable partial results, terminal classification (`blocked` or `non-converged`), exact gap, observed error or conflict, restoration status, and one targeted follow-up.

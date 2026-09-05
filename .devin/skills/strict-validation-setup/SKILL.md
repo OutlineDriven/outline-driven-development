@@ -1,6 +1,6 @@
 ---
 name: strict-validation-setup
-description: 'Use when a user invokes a strict-mode validation or verifiable-goals loop setup. Bootstraps strict-mode tooling and per-task GOALS.md scaffolding so an agentic loop can self-verify. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a user invokes a strict-mode validation or verifiable-goals loop setup. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Strict validation setup
@@ -10,7 +10,7 @@ description: 'Use when a user invokes a strict-mode validation or verifiable-goa
 | Field | Bound contract |
 |---|---|
 | Trigger | User invokes a strict-mode validation or verifiable-goals loop setup. |
-| Authority | Reversible local write: idempotent tooling-config merge, per-task GOALS.md scaffold, and failing-test authoring; no remote, credential, or deployed mutation. |
+| Authority | Reversible local: writes only idempotent tooling-config merges, per-task GOALS.md scaffolds, an `AGENTS.md` stable pointer, and failing tests; rollback is version control. No remote mutation. No credential or deployed mutation. |
 | Side effect | Merges strict-mode tooling configs idempotently, ensures AGENTS.md points to per-task GOALS.md, scaffolds `.agent-tasks/<id>/GOALS.md`, and writes failing tests; one-shot bootstrap. |
 | Done | Strict configs are merged idempotently and per-task GOALS.md plus failing tests are in place, with task goals kept out of AGENTS.md. |
 
@@ -59,8 +59,8 @@ No partial config-only or GOALS-only result satisfies the contract.
    - [ ] SC-02: <observable criterion, if any>
 
    ## Verification
-   - SC-01: `.agent-tasks/<task-id>/tests/sc-01.<language extension>` — `<existing targeted test command>`
-   - SC-02: `.agent-tasks/<task-id>/tests/sc-02.<language extension>` — `<existing targeted test command>`
+   - SC-01: `.agent-tasks/<task-id>/tests/sc-01.<language extension>`, `<existing targeted test command>`
+   - SC-02: `.agent-tasks/<task-id>/tests/sc-02.<language extension>`, `<existing targeted test command>`
 
    ## Boundaries
    - Project-stable rules remain in project configuration.

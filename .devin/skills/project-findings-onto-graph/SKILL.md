@@ -1,6 +1,6 @@
 ---
 name: project-findings-onto-graph
-description: 'Use when SARIF results, reviewer annotations, or a third-party finding export must be projected onto an existing program graph and cross-referenced with precomputed reachability or blast-radius evidence, with every finding left at its source status. Not for building the graph; use build-program-graph. Not for triaging one finding; use triage-security-finding.'
+description: 'Use when SARIF, reviewer annotations, or third-party findings must be projected onto a program graph. Not for building graph: use build-program-graph. Not for triage: use triage-security-finding.'
 ---
 
 # Project findings onto a program graph
@@ -12,7 +12,7 @@ External findings land as flat lists: a SARIF file, a reviewer's annotation expo
 | Field | Bound contract |
 |---|---|
 | Trigger | A supported finding export must be projected onto an existing program graph and cross-referenced with preanalysis evidence. |
-| Authority | Reversible local writes only; state the rollback path before writing. |
+| Authority | Reversible local: writes only graph annotations, severity or tool-specific subgraphs, and an optional augmented graph export; rollback is deleting the augmented export or removing annotations by source tag. No remote mutation. |
 | Side effect | Graph annotations and severity or tool-specific subgraphs derived from the imports; optionally an augmented graph export. Roll back by deleting the augmented export or removing annotations by source tag. |
 | Done | All supported inputs are imported, matched and unmatched counts are reported, and graph context is attached without promoting imported findings beyond their source status. |
 

@@ -24,7 +24,7 @@ You produce a compact return to the parent with findings matching the schema:
 
 **Schema conformance — hard constraints (use these exact values):**
 
-- `severity`: one of `P0`, `P1`, `P2`, `P3`.
+- `severity`: one of `P0`, `P1`, `P2`, `P3` — the parent report reads these as critical, high, medium, and low respectively.
 - `confidence`: one of `high`, `med`, `low`.
 - `action-class`: one of `safe`, `gated`, `manual`, `advisory`.
 - `suggested-route`: one of `apply`, `audit-project`, `none`.
@@ -38,7 +38,7 @@ You produce a compact return to the parent with findings matching the schema:
 
 A finding with no nameable reachable impact is P3. "Looks wrong" is not P0.
 
-**False-positive suppression.** Do NOT emit a finding when any of these apply:
+**False-positive suppression.** Do not emit a finding when any of these apply:
 
 - Pre-existing issues unrelated to this diff (mark `pre_existing: true` only for unchanged code the diff does not interact with).
 - Pedantic style nitpicks a linter or formatter would catch.

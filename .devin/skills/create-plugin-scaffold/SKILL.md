@@ -1,6 +1,6 @@
 ---
 name: create-plugin-scaffold
-description: 'Use when asked to create a local agent-plugin directory tree. Generates a valid scaffold with a host-specific manifest, entry point exporting the registration API, and standard directory layout, then validates the result. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when asked to create a local agent-plugin directory tree or marketplace package. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Create plugin scaffold
@@ -10,7 +10,7 @@ description: 'Use when asked to create a local agent-plugin directory tree. Gene
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to create an agent plugin or marketplace package |
-| Authority | Reversible local writes: create files and directories under a new plugin tree. No remote, VCS, credential, paid, published, or deployed mutation |
+| Authority | Reversible local: writes only files and directories under a new plugin tree; rollback is deleting the tree. No remote mutation. No VCS mutation. |
 | Side effect | Creates a plugin tree on the local filesystem. Scope is bounded to the named plugin directory before any file is written |
 | Done | A valid plugin scaffold tree exists and a validation report confirms manifest fields, entry points, and directory layout |
 

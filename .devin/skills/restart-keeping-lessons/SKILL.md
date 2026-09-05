@@ -1,6 +1,6 @@
 ---
 name: restart-keeping-lessons
-description: 'Use when an implementation has accumulated more workarounds than structure and another patch will not pay. Archives the failed implementation as evidence, carries forward only evidence-earned lessons, and delivers a fresh v0 vertical loop through a predeclared gate. Not for re-deriving a subsystem contract in place: use breaking-driven; not for rewriting one sedimented artifact: use rewrite-clean-v0.'
+description: 'Use when an implementation has more workarounds than structure and another patch will not pay. Not for in-place re-derivation: use breaking-driven. Not for one-artifact rewrites: use rewrite-clean-v0.'
 ---
 
 # Restart keeping lessons
@@ -10,7 +10,7 @@ description: 'Use when an implementation has accumulated more workarounds than s
 | Field | Bound contract |
 |---|---|
 | Trigger | The implementation accumulated more workarounds than structure and another patch will not pay, or the human says "start over", "scrap it and rebuild", or "restart from scratch". |
-| Authority | Reversible-local: write only the failed-branch evidence archive and the new v0 skeleton inside the named restart scope. No branch deletion, no force push, no history rewrite, no remote mutation, no deletion or rewrite of original code. Rollback: delete the written skeleton files and archive entries; original code is never deleted, so this restores the prior state exactly. |
+| Authority | Reversible local: writes only the failed-branch evidence archive and the new v0 skeleton inside the named restart scope; rollback is undo (delete the written skeleton files and archive entries; original code is never deleted). No remote mutation. No branch deletion, no force push, no history rewrite, no deletion or rewrite of original code. |
 | Side effect | Archives failed branches and dead code as evidence, and writes a new v0 skeleton with one vertical loop. Nothing outside the restart scope is written. |
 | Done | Three schema-conformant artifacts exist in the restart scope and the v0 loop clears its named first gate. |
 

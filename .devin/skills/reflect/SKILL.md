@@ -1,6 +1,6 @@
 ---
 name: reflect
-description: 'Use when a completed task needs reflection on the invoked skills to propose and apply approved improvements, with explicit human approval before any edit. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a completed task needs reflection on invoked skills to propose and apply approved improvements. Not for remote, credential, publish, deploy, or irreversible changes.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | Reflect on a completed task to improve invoked skills. |
-| Authority | Human-only: explicit invocation required before any mutation. |
+| Authority | Human-gated: explicit invocation required before any mutation; every other write is reversible local, with version control as the rollback. |
 | Side effect | Edits approved skills and may file backlog items. |
 | Done | Approved improvements applied and rejections explained. |
 

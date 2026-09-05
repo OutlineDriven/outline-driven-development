@@ -1,6 +1,6 @@
 ---
 name: pr-impact-quiz
-description: 'Use when a user invokes this skill to generate three targeted questions that prove the author understands how the submitted change affects the existing codebase. Not for reviewing the change — use for pre-review author self-check only.'
+description: 'Use when the user invokes this skill to generate targeted questions proving the author understands the change''s codebase effect. Not for reviewing the change: use review.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants a small set of impact questions proving the author understands how the change affects the existing codebase. |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output of three impact questions. |
 | Done | Three impact questions are generated for the author to answer. |
 

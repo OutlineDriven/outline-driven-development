@@ -1,6 +1,6 @@
 ---
 name: punishing-practices
-description: 'Use when a workflow, plan, diff, or completed work cycle must be checked for practices that punish the project later: symptom patching, infinite retries, weak verification, score chasing, budget burn. Returns a read-only evidence report naming each detected practice with a cheaper alternative. Not for source, remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a workflow, plan, diff, or completed work cycle must be checked for practices that punish the project later. Not for source, remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Punishing practices
@@ -10,7 +10,7 @@ description: 'Use when a workflow, plan, diff, or completed work cycle must be c
 | Field | Bound contract |
 |---|---|
 | Trigger | A workflow, plan, diff, or completed work cycle must be checked for practices that punish the project later. |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output naming each detected practice with evidence and a cheaper alternative, or a clean verdict. |
 | Done | Every detected practice is named with an evidence line and a cheaper alternative (or explicit absence), or the artifact is reported clean with scan coverage stated. The report changes nothing. |
 
@@ -49,4 +49,4 @@ description: 'Use when a workflow, plan, diff, or completed work cycle must be c
 
 ## Output
 
-A chat-only report — per detected practice, class name, exact evidence line, one cheaper alternative (or explicit statement that none was found); if nothing matched, a clean verdict naming the five classes scanned and the artifact scope covered. The report changes no file, branch, credential, or remote state.
+A chat-only report: per detected practice, class name, exact evidence line, one cheaper alternative (or explicit statement that none was found); if nothing matched, a clean verdict naming the five classes scanned and the artifact scope covered. The report changes no file, branch, credential, or remote state.

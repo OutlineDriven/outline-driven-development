@@ -1,6 +1,6 @@
 ---
 name: git-history-analysis
-description: 'Use when the user asks about recent engineering work or what the team is working on, or is preparing planning or roadmap material. Also handles an optional Slack summary when the user explicitly requests it. Not for remote mutation or any irreversible change.'
+description: 'Use when the user asks about recent engineering work, what the team is working on, planning or roadmap material, or an explicitly requested Slack summary. Not for remote or irreversible changes.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks about recent engineering work, what the team is working on, or planning or roadmap preparation. |
-| Authority | Human-only. Reads git history from the target repository and writes a report under reports/git_history_analysis/. The optional Slack post is a human-gated branch that requires explicit confirmation before any remote mutation. No force-push, PR creation, or other remote mutation runs without explicit human invocation. |
+| Authority | Human-gated: previews the Slack destination and posting consequence before the optional remote Slack post; otherwise reversible local: writes only a report under reports/git_history_analysis/; rollback is deleting the report. No remote mutation. No force-push or PR creation. |
 | Side effect | Writes a categorized commit-breakdown report to reports/git_history_analysis/. Optionally posts a summary to Slack only on explicit human confirmation. |
 | Done | Report saved with commit breakdown, active branches, key insights, risks, and follow-up questions. |
 
@@ -33,9 +33,9 @@ disable-model-invocation: true
 4. Collect active branches (work in progress), filtering out merged branches and dynamically resolving the default branch instead of hardcoding `main`:
    ```bash
    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo main)
-   git --no-pager branch -r --no-merged origin/$default_branch --sort=-committerdate | head -20 -- <filters>
+   git --no-pager branch -r --no-merged origin/$default_branch --sort=-committerdate | grep -E "<filters>" | head -20
    ```
-   Omit `-- <filters>` when no path filters are supplied. Done when: active unmerged branches listed, sorted by most recent commit.
+   Apply branch-name filters before `head` so filtering cannot discard branches beyond the first twenty. Path filters are a different concern: collect them with `git log --all --oneline -- <paths>` in their own step, never by grepping branch names. Done when: active unmerged branches listed, sorted by most recent commit.
 5. Collect recent merges to the default branch (completed work), dynamically resolving the default branch and appending `-- <filters>` when path filters are specified:
    ```bash
    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo main)
@@ -60,4 +60,4 @@ disable-model-invocation: true
 
 ## Output
 
-A report at `reports/git_history_analysis/git_analysis_YYYY-MM-DD.md` ordered: title and period header, TL;DR, active features in progress, recently completed (merged to the default branch), commit breakdown by type, most active areas, key insights, risks and observations, follow-up questions. Evidence-driven — cite specific commits, branches, or metrics; separate facts from interpretations; note incomplete data. No author attribution.
+A report at `reports/git_history_analysis/git_analysis_YYYY-MM-DD.md` ordered: title and period header, TL;DR, active features in progress, recently completed (merged to the default branch), commit breakdown by type, most active areas, key insights, risks and observations, follow-up questions. Evidence-driven: cite specific commits, branches, or metrics; separate facts from interpretations; note incomplete data. No author attribution.

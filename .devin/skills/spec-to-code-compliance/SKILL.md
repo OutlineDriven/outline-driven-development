@@ -1,6 +1,6 @@
 ---
 name: spec-to-code-compliance
-description: 'Use when implementation must be checked requirement-by-requirement against an authoritative specification, with evidence for each verdict. Handles both standalone spec audits and PR-review spec-drift checks against checked-in spec context. Not for writing or updating specs: use spec-driven-implementation. Not for remote or irreversible changes.'
+description: 'Use when implementation must be checked against an authoritative specification, or during PR review for spec drift against checked-in specs. Not for spec updates: use spec-driven-implementation.'
 ---
 
 # Spec to code compliance
@@ -10,7 +10,7 @@ description: 'Use when implementation must be checked requirement-by-requirement
 | Field | Bound contract |
 |---|---|
 | Trigger | Implementation must be checked path-by-path against an authoritative specification, whitepaper, standard, or design document; or during PR review when checked-in spec context exists in the repository and the implementation must be compared against it. |
-| Authority | Reversible-local: local files and searches only; no remote mutation, no credential exposure, no deployment. For PR-review mode, fold findings into `review.json` only; no GitHub posts, no separate report file. |
+| Authority | Reversible local: writes only local files and searches; rollback is undo. No remote mutation. No credential exposure, no deployment. For PR-review mode, fold findings into `review.json` only; no GitHub posts, no separate report file. |
 | Side effect | Per-requirement evidence records, refuted or confirmed divergence findings, reverse undocumented-behavior analysis, coverage caveats, and (in PR-review mode) spec-drift findings folded into `review.json`. |
 | Done | Each selected requirement has one grounded verdict with searches and lines read, divergences survive independent refutation, and unchecked or unreadable scope is explicit. In PR-review mode, `review.json` contains material spec-drift findings or an explicit close-match. |
 

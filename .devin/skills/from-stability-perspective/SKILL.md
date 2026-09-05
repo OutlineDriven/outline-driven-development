@@ -1,6 +1,6 @@
 ---
 name: from-stability-perspective
-description: 'Use when the user wants an answer only from the stability seat: preservation of the working machine. Emits a stability-perspective analysis without blending. Not for rebuilding from primitives — use from-first-principle. Read-only; no source or remote mutation.'
+description: 'Use when the user wants an answer only from the stability seat: preservation of the working machine. Not for rebuilding from primitives: use from-first-principle.'
 ---
 
 # From stability perspective
@@ -10,15 +10,15 @@ description: 'Use when the user wants an answer only from the stability seat: pr
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants an answer only from the stability seat (preservation of the working machine). |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | A stability-perspective analysis emitted as chat output only. |
 | Done | A stability-perspective answer is emitted without blending other seats. |
 
 ## Not for
 
-- Rebuilding a design from primitives — use from-first-principle.
-- Blended multi-seat analysis — run each from-*-perspective seat independently and compare after.
-- Source or remote mutation — this skill is read-only.
+- Rebuilding a design from primitives: use from-first-principle.
+- Blended multi-seat analysis: run each from-*-perspective seat independently and compare after.
+- Source or remote mutation: this skill is read-only.
 
 ## Inputs
 

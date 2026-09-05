@@ -1,6 +1,6 @@
 ---
 name: verify-this
-description: 'Use when a measurable claim needs before/after proof. Runs controlled baseline and treatment probes, then returns VERIFIED, NOT VERIFIED, or INCONCLUSIVE with deltas. Not for fact-checking or done-claim gating — use verify-both-ways or verification-before-completion.'
+description: 'Use when a measurable claim needs before/after proof. Not for fact-checking or done-claim gating: use verify-both-ways or verification-before-completion.'
 ---
 
 # Verify this
@@ -10,7 +10,7 @@ description: 'Use when a measurable claim needs before/after proof. Runs control
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to test a measurable claim with before/after proof. |
-| Authority | Write only named local evidence artifacts; state the rollback path before writing. No VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Reversible local: writes only named local evidence artifacts; rollback is deleting them. No remote mutation. No VCS, credential, or paid mutation. |
 | Side effect | Runs probes and saves temporary evidence files locally. |
 | Done | VERIFIED, NOT VERIFIED, or INCONCLUSIVE classification with measured deltas between baseline and treatment. |
 

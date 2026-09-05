@@ -1,6 +1,6 @@
 ---
 name: history-source-registry
-description: 'Use when a coding-agent session store is added or its format drifts, to document its layout, roles, time handling, and quirks in the registry with a passing conformance fixture. Not for recalling a session — use history-recall; not for peer transfer — use history-sync.'
+description: 'Use when a coding-agent session store is added or its format drifts, to document its layout, roles, quirks. Not for recalling a session: use history-recall. Not for peer transfer: use history-sync.'
 ---
 
 # History source registry
@@ -10,7 +10,7 @@ description: 'Use when a coding-agent session store is added or its format drift
 | Field | Bound contract |
 |---|---|
 | Trigger | Maintainer or user adds or verifies a coding-agent session store when its format drifts. |
-| Authority | Reversible local writes only: registry JSON, documentation pages, credential-free fixtures, and tests. Roll back by reverting the working tree. |
+| Authority | Reversible local: writes only registry JSON, documentation pages, credential-free fixtures, and tests; rollback is version control. No remote mutation. |
 | Side effect | Updates repository-owned registry, credential-free fixture, and tests. |
 | Done | Observed discovery/layout/roles/time/quirks are documented; registry and page dates match; loader list cross-checks; a synthetic fixture passes; drift reports only the smallest redacted record, never a real transcript. |
 

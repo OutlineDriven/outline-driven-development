@@ -1,6 +1,6 @@
 ---
 name: load-bearing-assumption-test
-description: 'Use when the user asks why a plan is wrong or says "poke holes in this". Returns one load-bearing objection and the cheapest experiment that would prove whether it matters. Don''t use for tasks that require source or remote-system changes.'
+description: 'Use when the user asks why a plan is wrong or says "poke holes in this". Not for tasks that require source or remote-system changes.'
 ---
 
 # Load-bearing assumption test
@@ -10,9 +10,9 @@ description: 'Use when the user asks why a plan is wrong or says "poke holes in 
 | Field | Bound contract |
 |---|---|
 | Trigger | User says "tell me why this is wrong", or "poke holes in this" about a plan, design, or claim |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output only: a single root objection and first-nail recommendation as { root, first_nail }; no files written |
-| Done | Root is genuinely load-bearing and the first nail is genuinely cheaper than the plan it would preempt |
+| Done | Root is genuinely load-bearing and the first nail is the cheapest experiment beating the plan or null when none exists |
 
 ## Inputs
 

@@ -1,6 +1,6 @@
 ---
 name: social-sentiment
-description: 'Use when the user asks for a weekly sentiment report, weekly social summary, or how mentions looked this week. Compares the most recent completed week against the prior week: sentiment scores, volume deltas, notable patterns, and product feedback, published as a PR after human approval. Not for continuous monitoring or alerting.'
+description: 'Use when the user asks for a weekly sentiment report, weekly social summary, or how mentions looked this week. Not for continuous monitoring or alerting.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks for a weekly sentiment report, weekly social summary, or how mentions looked this week. |
-| Authority | Human-only external publish. The run exists only because the human invoked it. Before any push, preview the report, branch name, and PR title. Publish only on an explicit yes. |
+| Authority | Remote: creates one branch, pushes it, and opens one PR containing the report; requires explicit human invocation. Before any push, preview the report, branch name, and PR title. Publish only on an explicit yes. |
 | Side effect | Writes one report file under reports/weekly_sentiment_analysis/, then creates one branch, pushes it, and opens one PR. No other files change, no force pushes, no direct commits to the default branch. |
 | Done | A report exists at the dated path with sentiment scores, volume, notable patterns, and product feedback. If the human approved, one PR is opened and its URL is returned. If the human declined, the report stays uncommitted and the decline is the terminal state. |
 

@@ -1,6 +1,6 @@
 ---
 name: from-codebase-perspective
-description: 'Use when asked to answer only from the codebase seat: what existing code tolerates or punishes. Emits a single-perspective analysis without blending. Not for rebuilding from primitives — use from-first-principle. Read-only; no source or remote mutation.'
+description: 'Use when asked to answer only from the codebase seat: what existing code tolerates or punishes. Not for rebuilding from primitives: use from-first-principle.'
 ---
 
 # From codebase perspective
@@ -16,9 +16,9 @@ description: 'Use when asked to answer only from the codebase seat: what existin
 
 ## Not for
 
-- Rebuilding a design from primitives — use from-first-principle.
-- Blended multi-seat analysis — run each from-*-perspective seat independently and compare after.
-- Source or remote mutation — this skill is read-only.
+- Rebuilding a design from primitives: use from-first-principle.
+- Blended multi-seat analysis: run each from-*-perspective seat independently and compare after.
+- Source or remote mutation: this skill is read-only.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ The question or proposal to analyze from the codebase seat. The codebase under a
 
 ## Procedure
 
-1. Confirm the seat is codebase only. State that money, customers, timing, impact, career, breaking, rent-seeking, innovation, stability, and moat perspectives are out of scope. Done when: the out-of-scope seats are named.
+1. Confirm the seat is codebase only. State that money, customers, timing, impact, career, breaking, rent-seeking, innovation, stability, moat, human, and skeptic perspectives are out of scope. Done when: the out-of-scope seats are named.
 2. Read the existing code, structure, conventions, and constraints that bear on the question. Done when: the relevant code is read and the evidence base is stated.
 3. Determine what the existing code tolerates: patterns, shapes, and directions it already accepts without friction. Done when: tolerates patterns are listed with code evidence.
 4. Determine what the existing code punishes: patterns, shapes, and directions that fight the current structure, require rework, or break invariants. Done when: punishes patterns are listed with code evidence.
@@ -41,4 +41,4 @@ The question or proposal to analyze from the codebase seat. The codebase under a
 
 ## Output
 
-One codebase-perspective analysis in chat: what the existing code tolerates, what it punishes, and the code evidence for each — no decision selected or recorded; comparison with other lenses happens after their independent outputs.
+One codebase-perspective analysis in chat: what the existing code tolerates, what it punishes, and the code evidence for each, no decision selected or recorded; comparison with other lenses happens after their independent outputs.

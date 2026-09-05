@@ -1,6 +1,6 @@
 ---
 name: engineering-retrospective
-description: 'Use when the user requests an engineering retrospective for a named period. Discovers repository and tracker telemetry, establishes source precedence, derives team breakdowns and evidence-backed habits, and writes a single report file. Not for an agent-environment retrospective — use agent-environment-retrospective; for a learning milestone — use learning-retrospective.'
+description: 'Use when a user requests an engineering retrospective for a period. Not for agent-environment retrospectives: use agent-environment-retrospective. For learning milestones: use learning-retrospective.'
 ---
 
 # Engineering retrospective
@@ -10,7 +10,7 @@ description: 'Use when the user requests an engineering retrospective for a name
 | Field | Bound contract |
 |---|---|
 | Trigger | The user requests an engineering retrospective for a named period. |
-| Authority | Reversible local: write only the single report file at `reports/engineering-retrospective-<period-slug>.md`; delete that file to roll back. No VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Reversible local: writes only the single report file at `reports/engineering-retrospective-<period-slug>.md`; rollback is undo. No remote mutation. |
 | Side effect | One local write to the authorized report file built from telemetry and review logs. |
 | Done | A report file exists at the authorized path containing the period, team breakdowns, evidence-backed habits, and gap accounting. |
 

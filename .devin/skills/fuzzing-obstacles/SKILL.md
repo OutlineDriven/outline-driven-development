@@ -1,6 +1,6 @@
 ---
 name: fuzzing-obstacles
-description: 'Use when asked to identify and bypass checksums, nondeterminism, or validation barriers that block fuzzing coverage. Patches the SUT behind an explicit fuzzing build flag with false-positive risk assessed. Not for dictionary creation — use fuzzing-dictionary. Local writes only.'
+description: 'Use when asked to identify and bypass checksums, nondeterminism, or validation barriers that block fuzzing coverage. Not for dictionary creation: use fuzzing-dictionary. Local writes only.'
 ---
 
 # Fuzzing obstacles
@@ -10,14 +10,14 @@ description: 'Use when asked to identify and bypass checksums, nondeterminism, o
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs to identify and safely bypass checksums, nondeterminism, or validation barriers that block fuzzing coverage. |
-| Authority | Reversible local write: modify only the System Under Test source behind an explicit fuzzing build flag so production behavior is unchanged. Rollback by deleting the conditional block or the fuzz build configuration; production code path is never altered. |
+| Authority | Reversible local: writes only the System Under Test source behind an explicit fuzzing build flag so production behavior is unchanged; rollback is deleting the conditional block or the fuzz build configuration. No remote mutation. Production code path is never altered. |
 | Side effect | Fuzz-only target behavior behind explicit build controls. No production binary, credential, remote, or published artifact is touched. |
 | Done | The specific obstacle is bypassed only in fuzz builds, coverage improves over the unpatched baseline, and false-positive risk is assessed. |
 
 ## Not for
 
-- Dictionary creation for fixed-token gates — use fuzzing-dictionary.
-- Coverage measurement or plateau analysis — use fuzzing-coverage-analysis.
+- Dictionary creation for fixed-token gates: use fuzzing-dictionary.
+- Coverage measurement or plateau analysis: use fuzzing-coverage-analysis.
 - Remote, credential, publish, deploy, or irreversible changes.
 
 ## Inputs
@@ -50,4 +50,4 @@ Rollback: delete the conditional compilation block (or remove the fuzz build con
 
 ## Output
 
-Conditional-compilation patches in the System Under Test (each gated on the fuzzing build flag and documented), a coverage delta showing improved reachability over the unpatched baseline, and a per-patch false-positive risk classification (LOW / MEDIUM / MITIGATED) with rationale — unresolved obstacles reported as such with evidence rather than marked done.
+Conditional-compilation patches in the System Under Test (each gated on the fuzzing build flag and documented), a coverage delta showing improved reachability over the unpatched baseline, and a per-patch false-positive risk classification (LOW / MEDIUM / MITIGATED) with rationale, unresolved obstacles reported as such with evidence rather than marked done.

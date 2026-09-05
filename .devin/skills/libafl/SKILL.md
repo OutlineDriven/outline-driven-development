@@ -1,6 +1,6 @@
 ---
 name: libafl
-description: 'Use when a custom LibAFL fuzzer needs an executor, observer, feedback, mutator, scheduler, or objective composed around a target. Produces a coverage-guided engine with persisted findings. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a LibAFL fuzzer needs an executor, observer, feedback, mutator, scheduler, or objective composed around a target. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # LibAFL custom fuzzer composition
@@ -10,14 +10,14 @@ description: 'Use when a custom LibAFL fuzzer needs an executor, observer, feedb
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs a custom LibAFL fuzzer, observer, feedback, mutator, scheduler, or executor composition. |
-| Authority | Reversible-local: write only named local Rust source artifacts; rollback by deleting the generated crate or reverting VCS changes. |
-| Side effect | Local-write: creates or modifies Rust source files implementing the composed fuzzing engine and target integration. |
+| Authority | Reversible local: writes named local Rust source artifacts, corpus entries, and objective findings under the output directory; rollback is deleting the generated crate, the output directory, or reverting VCS changes. No remote mutation. |
+| Side effect | Local-write: creates or modifies Rust source files implementing the composed fuzzing engine and target integration, plus corpus entries and crash/timeout findings under the output directory. |
 | Done | The composed LibAFL fuzzer compiles, runs the target, records coverage feedback, and persists objective findings to disk. |
 
 ## Inputs
 
 - Target: the function, binary, or harness to fuzz. Required.
-- Components: which LibAFL modules to compose — at minimum an executor, observer, feedback, and mutator. Optional; defaults to a coverage-guided in-process fuzzer with `StdScheduledMutator` and `HitcountsMapObserver`.
+- Components: which LibAFL modules to compose, at minimum an executor, observer, feedback, and mutator. Optional; defaults to a coverage-guided in-process fuzzer with `StdScheduledMutator` and `HitcountsMapObserver`.
 - Objective: the stopping condition or crash classification (e.g., timeout, crash, custom `ExitKind`). Optional; defaults to crash detection.
 - Output directory: where corpus and findings persist. Optional; defaults to `./fuzz_out`.
 
@@ -25,7 +25,7 @@ description: 'Use when a custom LibAFL fuzzer needs an executor, observer, feedb
 
 1. **Identify the target boundary.** Determine the function signature or binary entry point to fuzz. Confirm the target accepts byte-slice input (`&[u8]`) or can be wrapped in a `BytesInput` harness. Done when: the target boundary is identified and confirmed compatible with byte-slice input.
 
-2. **Select the executor.** Choose `InProcessExecutor` for in-process fuzzing or `ForkserverExecutor` / `CommandExecutor` for out-of-process. For `InProcessExecutor`, set a signal handler via `InProcessForkHelper` to catch crashes. Done when: one executor is selected and crash handling is configured.
+2. **Select the executor.** Choose `InProcessExecutor` for in-process fuzzing or `ForkserverExecutor` / `CommandExecutor` for out-of-process. `InProcessExecutor` has no crash isolation in-process; when crash handling is needed, select `InProcessForkExecutor`, which forks per execution and catches crashes in the parent. Done when: one executor is selected and crash handling is configured.
 
 3. **Select the observer.** Create a `HitcountsMapObserver` backed by a `CoverageMap` (typically `AFL-style` shared memory). Wrap in `MultiMapObserver` if tracking multiple maps. Done when: one observer is selected and backed by a coverage map.
 
@@ -37,7 +37,7 @@ description: 'Use when a custom LibAFL fuzzer needs an executor, observer, feedb
 
 7. **Select the scheduler.** Use `QueueScheduler` for corpus cycling, `PowerScheduleScheduler` for power scheduling, or `MinimizerScheduler` wrapping another scheduler for corpus minimization. Done when: one scheduler is selected.
 
-8. **Assemble the fuzzer.** Create a `StdFuzzer` with the chosen scheduler and feedback. Wire the executor, observer, and objective into a `FuzzingLoop` or call `fuzzer.fuzz_loop(&mut executor, &mut state, &mut mgr)`. Done when: the `StdFuzzer` is assembled with all components wired.
+8. **Assemble the fuzzer.** Create a `StdFuzzer` with the chosen scheduler and feedback. Wire the executor, observer, and objective. Done when: the `StdFuzzer` is assembled with all components wired.
 
 9. **Set up the event manager.** Use `SimpleEventManager` for single-process or `LlmpEventManager` for multi-process. Connect to a `StatsMonitor` (e.g., `MultiMonitor` printing to stdout). Done when: the event manager is set up and connected to a stats monitor.
 

@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: 'Use when settled conversation decisions need synthesis into an agent-ready implementation spec at docs/specs/<feature-slug>-spec.md, stopping before publication. Not for turning plans into tickets — use to-tickets; not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when settled conversation decisions need synthesis into an agent-ready implementation spec, stopping before publication. Not for turning plans into tickets: use to-tickets.'
 ---
 
 # To spec
@@ -10,7 +10,7 @@ description: 'Use when settled conversation decisions need synthesis into an age
 | Field | Bound contract |
 |---|---|
 | Trigger | Settled decisions need synthesis into an implementation spec. |
-| Authority | Reversible local: write only a named local spec file; the rollback path is deleting that file. |
+| Authority | Reversible local: writes only a named local spec file; rollback is deleting that file. No remote mutation. |
 | Side effect | Writes an agent-ready specification file locally and stops before publishing or distributing it; a human performs any publication. |
 | Done | Problem, solution, stories, decisions, tests, and exclusions are agent-ready in a verified local specification file; publication remains an unexecuted human handoff. |
 
@@ -22,9 +22,9 @@ description: 'Use when settled conversation decisions need synthesis into an age
 
 ## Refusals
 
-- Will not interview the user or open a new round of questioning — synthesize what has already been decided.
+- Will not interview the user or open a new round of questioning: synthesize what has already been decided.
 - Will not fabricate decisions or fill gaps with assumptions.
-- Will not publish, distribute, or assign labels — publication is a human handoff.
+- Will not publish, distribute, or assign labels: publication is a human handoff.
 - Will not proceed to spec writing until the user confirms the identified seams.
 
 ## Procedure
@@ -100,4 +100,4 @@ Any additional notes about the feature.
 
 ## Output
 
-A local specification file at `docs/specs/<feature-slug>-spec.md` with all seven sections (Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions, Out of Scope, Further Notes) populated and agent-ready — publication is a separate human step.
+A local specification file at `docs/specs/<feature-slug>-spec.md` with all seven sections (Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions, Out of Scope, Further Notes) populated and agent-ready, publication is a separate human step.

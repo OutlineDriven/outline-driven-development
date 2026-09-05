@@ -1,6 +1,6 @@
 ---
 name: web-accessibility-audit
-description: 'Use when the user requests an accessibility audit, a11y check, or WCAG compliance review. Returns a prioritized WCAG findings report with file and line locations, before and after code fixes, and manual testing recommendations. Don''t use for tasks that require source or remote-system changes.'
+description: 'Use when the user requests an accessibility audit, a11y check, or WCAG compliance review. Don''t use for tasks that require source or remote-system changes.'
 ---
 
 # Web accessibility audit
@@ -10,7 +10,7 @@ description: 'Use when the user requests an accessibility audit, a11y check, or 
 | Field | Bound contract |
 |---|---|
 | Trigger | Accessibility audit, a11y check, or WCAG compliance review |
-| Authority | Read-only: read project files and run only analysis tools already installed in the project; create, modify, or delete no file; no VCS, credential, paid, publishing, deployment, or remote mutation; install no package |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. Reads project files and runs only analysis tools already installed in the project; installs no package. |
 | Side effect | None: the only artifact is the accessibility report returned in the conversation |
 | Done | Report contains prioritized WCAG findings with file/line locations, before/after code, and manual testing recommendations |
 
@@ -38,4 +38,4 @@ description: 'Use when the user requests an accessibility audit, a11y check, or 
 - Non-mutation: nothing is written at any point, so there is nothing to roll back; if a step could only proceed by writing a file, skip that step and say so in the report.
 
 ## Output
-A report returned in the conversation (no files created) with sections in order: Summary (scope, WCAG level, issue counts by severity, automated coverage, failed checks), Findings (in severity order: Critical, Serious, Moderate, Minor — each with WCAG criterion, `path:line` locations, before/after code, and fix rationale), Manual testing recommendations, and Next steps.
+A report returned in the conversation (no files created) with sections in order: Summary (scope, WCAG level, issue counts by severity, automated coverage, failed checks), Findings (in severity order: Critical, Serious, Moderate, Minor, each with WCAG criterion, `path:line` locations, before/after code, and fix rationale), Manual testing recommendations, and Next steps.

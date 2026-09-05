@@ -1,6 +1,6 @@
 ---
 name: scaffold-exercises
-description: 'Use when a course needs numbered problem, solution, and explainer scaffolds. Creates type-specific files with non-colliding names, populates them, and validates with the course linter. Not for a CLI or Next.js project scaffold — use scaffold-cli or scaffold-nextjs.'
+description: 'Use when a course needs numbered problem, solution, and explainer scaffolds. Not for a CLI or Next.js project scaffold: use scaffold-cli or scaffold-nextjs.'
 ---
 
 # Scaffold exercises
@@ -10,7 +10,7 @@ description: 'Use when a course needs numbered problem, solution, and explainer 
 | Field | Bound contract |
 |---|---|
 | Trigger | A course needs numbered problem, solution, and explainer scaffolds. |
-| Authority | Write only to tracked section and exercise files/directories in the working directory. Revert with standard VCS. |
+| Authority | Reversible local: writes only tracked section and exercise files/directories in the working directory; rollback is version control. No remote mutation. |
 | Side effect | Creates or updates numbered section and exercise files and directories. |
 | Done | A JSON object naming scaffolded paths and linter status, with no unvalidated scaffold left on disk. |
 
@@ -18,10 +18,10 @@ description: 'Use when a course needs numbered problem, solution, and explainer 
 
 Must be supplied:
 
-- `section` — the section number as a non-negative integer (e.g. 1, 2, 3)
-- `exercise` — the exercise number as a positive integer
-- `type` — one of: `problem`, `solution`, `explainer`
-- `base_path` — the directory under which sections and exercises live (must be a tracked VCS path)
+- `section`: the section number as a non-negative integer (e.g. 1, 2, 3)
+- `exercise`: the exercise number as a positive integer
+- `type`: one of: `problem`, `solution`, `explainer`
+- `base_path`: the directory under which sections and exercises live (must be a tracked VCS path)
 
 ## Procedure
 

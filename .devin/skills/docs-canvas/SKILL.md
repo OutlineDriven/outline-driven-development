@@ -1,6 +1,6 @@
 ---
 name: docs-canvas
-description: 'Use when asked to render documentation as an interactive, navigable HTML canvas. Fetches files, directories, or URLs, extracts headings and sources, and produces a self-contained HTML artifact with a table of contents. Not for writing or restructuring docs.'
+description: 'Use when asked to render documentation as an interactive, navigable HTML canvas. Not for writing or restructuring docs.'
 ---
 
 # Docs canvas
@@ -10,7 +10,7 @@ description: 'Use when asked to render documentation as an interactive, navigabl
 | Field | Bound contract |
 |---|---|
 | Trigger | Render a set of documentation (file, directory, or URL) as an interactive, navigable HTML canvas artifact. |
-| Authority | Reversible local writes for the single output HTML artifact in the working directory. Read-only access to local files or network fetch for URLs. |
+| Authority | Reversible local: writes only the single output HTML artifact in the working directory; rollback is deleting that file. No remote mutation. Read-only access to local files or network fetch for URLs. |
 | Side effect | Creates one self-contained HTML canvas artifact under the working directory. |
 | Done | One self-contained, navigable HTML file at the stated path containing the structured overview, rendered sections, and a combined sources index. |
 
@@ -28,7 +28,7 @@ Optional: a preferred output filename (default `docs-canvas.html`) and a section
 
 3. Extract source references and build a combined index. Collect every citation, link, and attribution discovered across all documents. Build an index mapping each reference to its source document and location. Done when: the combined sources index is built.
 
-4. Render the content as a single HTML artifact with an interactive table of contents. Produce one section per heading, preserving the source text without paraphrase or invented content. The table of contents links each entry to its section anchor. Done when: every heading has a rendered section and every TOC entry links to its anchor.
+4. Render the content as a single HTML artifact with an interactive table of contents and a combined sources index. Produce one section per heading, preserving the source text without paraphrase or invented content. The table of contents links each entry to its section anchor; the combined sources index links each reference to its source document and location. Done when: every heading has a rendered section, every TOC entry links to its anchor, and the combined sources index is rendered.
 
 5. Save to the working directory with all CSS and JavaScript inlined. The artifact must open without external dependencies. Done when: the HTML file exists at the stated path with inlined CSS and JavaScript, and every TOC link resolves to a rendered section.
 

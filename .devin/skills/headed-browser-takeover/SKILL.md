@@ -1,6 +1,6 @@
 ---
 name: headed-browser-takeover
-description: 'Use when the user asks to open or take over a visible browser session, or needs to intervene in a live browser by hand, for example to solve a CAPTCHA or authenticate. Use for the headed takeover handshake: pre-flight cleanup, headed launch, mode confirmation, and a round-trip proof the user can see. Not for headless scraping or unattended automation.'
+description: 'Use when the user asks to open or take over a visible browser session by hand, for example to solve a CAPTCHA or authenticate. Not for headless scraping or unattended automation.'
 ---
 
 # Headed browser takeover
@@ -10,11 +10,11 @@ description: 'Use when the user asks to open or take over a visible browser sess
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks to open or take over a visible browser session, or a step in another workflow needs human hands in the browser (CAPTCHA, login, consent screen) |
-| Authority | Reversible local: write only the automation state file, the browser profile directory, and the automation server process; rollback by disconnecting, killing the server, and removing the state and lock files |
+| Authority | Reversible local: writes only the automation state file, the browser profile directory, and the automation server process; rollback is undo by disconnecting, killing the server, and removing the state and lock files. No remote mutation. |
 | Side effect | A visible headed browser window attached to the automation server, ready for the user to watch or drive by hand |
 | Done | The user confirms the live control surface is visible and a command round-trip appears in the activity feed; the session is ready for takeover |
 
-The point of headed mode: the user and the agent look at the same window. The agent drives through the automation endpoint; the user can grab the mouse and keyboard at any moment without breaking the session.
+In headed mode, the user and the agent look at the same window. The agent drives through the automation endpoint; the user can grab the mouse and keyboard at any moment without breaking the session.
 
 ## Inputs
 

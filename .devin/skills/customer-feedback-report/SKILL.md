@@ -1,6 +1,6 @@
 ---
 name: customer-feedback-report
-description: 'Use when customer feedback, NPS, churn, email feedback, call transcripts, or voice-of-the-customer analysis needs a report over a time window. Produces themes, pain points, competitive mentions, feature demand, exact counts, week-over-week comparison, cited links, and verbatim quotes in a report and PR. Requires human authorization for credentials, publication, and PR creation.'
+description: 'Use when customer feedback, NPS, churn, email feedback, call transcripts, or voice-of-the-customer analysis needs a report over a time window.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks for customer feedback analysis, weekly summary, trending issues, NPS, churn, email feedback, voice of the customer, VoTC analysis, customer call insights, or what customers are saying over a window. |
-| Authority | Human-only. Require explicit human invocation. Preview the exact account/team scope, time windows, enabled sources, credential use, output path, publication consequence, and PR consequence. Obtain explicit human authorization before using credentials, before publishing the report, and before creating the PR. |
+| Authority | Remote: reads customer data via credentials, saves a report, and creates a PR; requires explicit human invocation. Preview the exact account/team scope, time windows, enabled sources, credential use, output path, publication consequence, and PR consequence. Obtain explicit human authorization before using credentials, before publishing the report, and before creating the PR. |
 | Side effect | Run the analysis mechanism inline, save one markdown report under `reports/customer_feedback_summaries/`, then create a PR. The named mechanism is a behavior contract, not a dependency on an external script. |
 | Done | The saved report contains themes, exact counts, an equal-length week-over-week comparison, cited GitHub issue links, verbatim customer quotes, and (when call transcripts are enabled) pain points, competitive mentions, feature demand, and success stories, and the authorized PR contains that report. |
 | Invocation | Human-only. Never invoke from model inference or another skill. |

@@ -1,6 +1,6 @@
 ---
 name: from-impact-perspective
-description: 'Use when asked to answer only from the impact seat: who and what actually moves. Returns an impact-perspective analysis without blending. Not for rebuilding from primitives — use from-first-principle. Read-only; no source or remote mutation.'
+description: 'Use when asked to answer only from the impact seat: who and what actually moves. Not for rebuilding from primitives: use from-first-principle.'
 ---
 
 # From impact perspective
@@ -10,15 +10,15 @@ description: 'Use when asked to answer only from the impact seat: who and what a
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants an answer only from the impact seat (who and what actually moves). |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Returns an impact-perspective analysis in chat; no other surface is touched. |
 | Done | Returns an impact-perspective answer without blending. |
 
 ## Not for
 
-- Rebuilding a design from primitives — use from-first-principle.
-- Blended multi-seat analysis — run each from-*-perspective seat independently and compare after.
-- Source or remote mutation — this skill is read-only.
+- Rebuilding a design from primitives: use from-first-principle.
+- Blended multi-seat analysis: run each from-*-perspective seat independently and compare after.
+- Source or remote mutation: this skill is read-only.
 
 ## Inputs
 
@@ -39,4 +39,4 @@ The question or subject to analyze from the impact seat (required). Optional: th
 
 ## Output
 
-A standalone impact-perspective analysis identifying who and what actually moves, with unverified impact marked as inference — no blended perspectives.
+A standalone impact-perspective analysis identifying who and what actually moves, with unverified impact marked as inference, no blended perspectives.

@@ -1,6 +1,6 @@
 ---
 name: reorder
-description: 'Use when asked to reorder a drifted listing under one stated principle, moving items only and rewording nothing. Handles catalogs, indexes, tables of contents, enums, and menus. Not for listings with intentionally ranked items — use reorder-respect-deliberate.'
+description: 'Use when asked to reorder a drifted listing under one stated principle, moving items only and rewording nothing. Not for deliberately ranked listings: use reorder-respect-deliberate.'
 ---
 
 # Reorder
@@ -10,7 +10,7 @@ description: 'Use when asked to reorder a drifted listing under one stated princ
 | Field | Bound contract |
 |---|---|
 | Trigger | Catalog/index/toc/enum/menu whose order went arbitrary, or user says reorder this / sensible order. |
-| Authority | Reversible-local: write only the named local artifact; VCS state is the rollback path. |
+| Authority | Reversible local: write only the named local artifact; VCS state is the rollback path. |
 | Side effect | Repositions items in a listing (and mirrored copies) without content edits. |
 | Done | Reader can name the ordering principle; every item still present, kin adjacent. |
 

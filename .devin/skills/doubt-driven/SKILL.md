@@ -1,6 +1,6 @@
 ---
 name: doubt-driven
-description: 'Use when a non-trivial decision sits under uncertainty and correctness matters more than speed. Returns fresh-context adversarial findings with classified reconciliation and a stop condition. Not for patch review — use review; not for plan attacks — use advocate.'
+description: 'Use when a non-trivial decision sits under uncertainty and correctness matters more than speed. Not for patch review: use review. Not for plan attacks: use load-bearing-assumption-test.'
 ---
 
 # Doubt-driven development
@@ -10,7 +10,7 @@ description: 'Use when a non-trivial decision sits under uncertainty and correct
 | Field | Bound contract |
 |---|---|
 | Trigger | Non-trivial decision under uncertainty; correctness matters more than speed; a claim not checkable by the type system or compiler; before committing non-trivial code |
-| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output: fresh-context adversarial review findings and reconciliation |
 | Done | Every non-trivial decision named as a CLAIM and fresh-context reviewed; findings classified; a stop condition met |
 
@@ -42,7 +42,7 @@ description: 'Use when a non-trivial decision sits under uncertainty and correct
    CONTRACT: <paste contract>
    ```
 
-   Pass ARTIFACT + CONTRACT only. Do NOT pass the CLAIM: handing the reviewer a conclusion biases it toward agreement. If a reviewer's default shape cannot be overridden to issues-only, fall back to a generic subagent with the adversarial prompt. Done when: a fresh-context review is spawned passing ARTIFACT + CONTRACT only.
+   Pass ARTIFACT + CONTRACT only. Do not pass the CLAIM: handing the reviewer a conclusion biases it toward agreement. If a reviewer's default shape cannot be overridden to issues-only, fall back to a generic subagent with the adversarial prompt. Done when: a fresh-context review is spawned passing ARTIFACT + CONTRACT only.
 
 4. **RECONCILE.** Re-read the artifact against each finding before classifying it. Rubber-stamping the reviewer fails just as surely as ignoring it. Classify each finding in this precedence order, first match wins: (a) **contract misread**: the CONTRACT was unclear or incomplete, fix it and re-classify next cycle; (b) **valid + actionable**: real issue, change the artifact and re-loop; (c) **valid trade-off**: real but fixing costs more than accepting, document the trade-off; (d) **noise**: correct under context the reviewer lacked, note it and consider adding that context to the contract. Done when: every finding is classified with first-match-wins precedence.
 5. **STOP.** Stop when the next iteration returns only trivial or already-considered findings, or 3 cycles are completed (escalate to the user, do not grind a fourth alone), or the user explicitly says to ship. If 3 cycles still surface substantive issues, the artifact may not be ready; surface this to the user. Three unresolved cycles is information about the artifact, not a reason to keep looping. If 3 cycles is obviously insufficient because the artifact is large, the artifact is too big: return to Step 2 and decompose; do not lift the bound. Done when: a stop condition is met (trivial findings, 3 cycles, user says ship, or escalation).
@@ -61,4 +61,4 @@ description: 'Use when a non-trivial decision sits under uncertainty and correct
 - Non-mutation rule: read-only; no file, VCS, credential, paid, published, deployed, or remote mutation. Re-loop changes are recommendations in chat output, not applied edits.
 
 ## Output
-A report listing each CLAIM, the fresh-context review findings, the classification of each finding (contract misread / valid + actionable / valid trade-off / noise), and the stop condition met — with actionable findings carrying a recommended artifact change stated as a recommendation, not an applied edit.
+A report listing each CLAIM, the fresh-context review findings, the classification of each finding (contract misread / valid + actionable / valid trade-off / noise), and the stop condition met, with actionable findings carrying a recommended artifact change stated as a recommendation, not an applied edit.

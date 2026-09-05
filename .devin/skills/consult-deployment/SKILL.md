@@ -1,6 +1,6 @@
 ---
 name: consult-deployment
-description: 'Use when the user asks to rank deployment platforms and stacks against their product with quantitative trade-offs. Enumerates candidates, gathers raw metrics, normalizes them to a common scale, applies user weighting, and returns a ranked list with per-axis scores. Read-only; no source or remote mutation.'
+description: 'Use when the user asks to rank deployment platforms and stacks against their product with quantitative trade-offs. Not for source or remote mutation.'
 ---
 
 # Consult deployment
@@ -10,7 +10,7 @@ description: 'Use when the user asks to rank deployment platforms and stacks aga
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to rank deployment platforms and stacks against the product with quantitative trade-offs. |
-| Authority | Read-only advisory research. No file, VCS, credential, paid, published, deployed, or remote mutation. No deployment action is taken. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. Advisory research only; no deployment action is taken. |
 | Side effect | A ranked list of deployment platforms and stacks with quantitative trade-offs is written to chat output only. |
 | Done | A ranked deployment list with per-axis normalized scores, applied weights, and a summary trade-off statement is returned. |
 
@@ -28,7 +28,7 @@ If a required input is missing, ask for it before ranking rather than guessing.
 2. Enumerate candidate deployment platforms and stacks that satisfy the stated constraints. Include at least the obvious default and one divergent alternative so the ranking is not a single entry. Done when: at least two candidates are enumerated.
 3. For each candidate, gather raw metrics on the quantitative axes drawn from the stated constraints: monthly cost at the stated scale, cold-start or p99 latency, build and deploy time, autoscale ceiling, managed-service coverage breadth, vendor lock-in cost, observability depth, and security or compliance posture. Use measured or documented numbers from primary sources. Where a number is unavailable, mark the axis unknown. Done when: every candidate is scored on every applicable axis or the unknown axis is marked.
 4. Normalize each raw metric to a common 0-10 relative scale across the candidates on that axis. For lower-is-better axes (cost, latency, deploy time, lock-in), invert so that 10 is best. For higher-is-better axes (autoscale ceiling, managed-service coverage, observability depth, security posture), score directly so that 10 is best. Missing-value rule: when a candidate's raw value is unknown, assign it no normalized score on that axis and exclude that axis from that candidate's weighted total; record the exclusion. Done when: every known raw metric has a 0-10 normalized score and every unknown is recorded as excluded.
-5. Apply the user's weighting to the normalized scores. Convert the weighting intent to per-axis weights summing to 1.0: if the user named specific axes that matter most, assign those higher weights and distribute the remainder across the rest; if the user gave no weighting, use equal weights. For each candidate, multiply each normalized axis score by its weight and sum the weighted scores over the axes that have values for that candidate. Record the weights used. Done when: a single weighted score is produced for each candidate with the weights recorded.
+5. Apply the user's weighting to the normalized scores. Convert the weighting intent to per-axis weights summing to 1.0: if the user named specific axes that matter most, assign those higher weights and distribute the remainder across the rest; if the user gave no weighting, use equal weights. For each candidate, use only the axes that have values. Renormalize the candidate's active weights by dividing each present-axis weight by the sum of the present-axis weights, so the active weights sum to 1.0 and the weighted total shares one 0-10 scale. Report the excluded axis names. Record the renormalized weights for the present axes. Done when: a single weighted score is produced for each candidate with the present-axis renormalized weights and the excluded axis names recorded.
 6. Rank candidates by weighted score descending. Return the ranked list with each candidate's per-axis normalized scores, the applied weights, any excluded axes, and a one-sentence trade-off statement explaining why each candidate placed where it did. Done when: the ranked list is returned with normalized scores, weights, exclusions, and trade-off statements.
 
 ## Failure and recovery

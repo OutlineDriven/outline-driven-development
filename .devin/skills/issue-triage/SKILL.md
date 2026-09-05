@@ -1,6 +1,6 @@
 ---
 name: issue-triage
-description: 'Use when a human invokes triage on a new configured Slack issue report. Produces a single classified verdict and posts it to the Slack thread, with deduped tracker state. Don''t use for triaging reports from other channels or posting more than one verdict.'
+description: 'Use when a human invokes triage on a new configured Slack issue report. Not for triaging reports from other channels or posting more than one verdict.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | Human invokes this skill on a new configured Slack issue report. |
-| Authority | Human-only. Requires explicit human invocation. Preview the target and consequence before any credential use, data-at-rest change, paid action, publishing, or remote mutation. |
+| Authority | Remote: posts at most one Slack thread verdict and creates at most one tracker issue; requires explicit human invocation. Previews the target and consequence before any credential use, data-at-rest change, paid action, publishing, or remote mutation. |
 | Side effect | Posts at most one Slack thread verdict. Creates at most one tracker issue. |
 | Done | Exactly one classified verdict exists in the thread and tracker state is deduped. |
 

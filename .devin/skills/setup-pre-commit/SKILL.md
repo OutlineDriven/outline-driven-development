@@ -1,6 +1,6 @@
 ---
 name: setup-pre-commit
-description: 'Use when installing or repairing one repository-local pre-commit hook using the project''s current gates, or when a repo needs package-manager-native commit-time checks. Extends existing hook tooling instead of duplicating it; JS uses Lefthook and Biome, Python/Rust/OCaml use prek. Not for remote or irreversible changes.'
+description: 'Use when installing or repairing a repo-local pre-commit hook from the project gates, or when a repo needs package-manager-native commit-time checks. Not for remote or irreversible changes.'
 ---
 
 # Setup pre-commit
@@ -10,7 +10,7 @@ description: 'Use when installing or repairing one repository-local pre-commit h
 | Field | Bound contract |
 |---|---|
 | Trigger | Install, repair, or standardize local pre-commit checks in an existing repository, including package-manager-native commit-time checks. |
-| Authority | Reversible local writes to hook configuration, dependency manifests, and lockfiles. No push, remote setting, credential, or release mutation. |
+| Authority | Reversible local: writes only hook configuration, dependency manifests, lockfiles, a temporary probe file, and a staged trivial change; rollback is version control or undo. No remote mutation. No credential or release mutation. |
 | Side effect | Extends the existing hook manager or installs one current manager, writes its config, and installs the local Git hook. |
 | Done | Exactly one hook manager owns pre-commit; its all-files command runs the repository formatter, linter, type checker, and targeted tests successfully; a deliberate failing probe blocks and a passing probe exits zero. |
 

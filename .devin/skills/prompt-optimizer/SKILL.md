@@ -1,6 +1,6 @@
 ---
 name: prompt-optimizer
-description: 'Use when asked to improve, optimize, rewrite, tune, or port a prompt, skill, or tool description, to build prompt evals, or to audit prompt text for dated instructions. Optimize mode returns a shorter prompt validated on holdout cases; audit mode returns a confidence-ordered findings report and a proposed diff, and applies nothing.'
+description: 'Use when asked to improve, optimize, rewrite, tune, or port a prompt, skill, or tool description. Also for building prompt evals or auditing prompt text for dated instructions.'
 ---
 
 # Prompt optimizer
@@ -10,7 +10,7 @@ description: 'Use when asked to improve, optimize, rewrite, tune, or port a prom
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to improve, optimize, rewrite, tune, or port a prompt, or to audit prompt text for dated instructions |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. A proposed diff is chat output; applying it is outside this skill. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. A proposed diff is chat output; applying it is outside this skill. |
 | Side effect | Chat output returns either an optimized prompt or an audit report plus a proposed diff |
 | Done | Optimize mode: shorter prompt validated on holdout cases with one owner per behavior rule. Audit mode: every finding names a pattern and a target-model reason, and the diff carries only high- and medium-confidence hunks. |
 
@@ -23,7 +23,7 @@ Required:
 Optional:
 - Mode (optional): optimize (default) or audit. Audit when the request names auditing, dated instructions, cruft, or a model migration; optimize otherwise. When a request asks for both, run audit first and report each result separately.
 - Known failure cases or error patterns from prior runs
-- Model family or adapter context (e.g., Claude, GPT-4, Gemini); audit mode reads this as the target model
+- Model family or adapter context (e.g., Claude, GPT-5.6, Gemini); audit mode reads this as the target model
 - Evaluation criteria the user already accepts
 
 ## Procedure

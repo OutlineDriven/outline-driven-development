@@ -1,6 +1,6 @@
 ---
 name: goal-prompt-drafting
-description: 'Use when asked to draft copy-ready /goal objectives for long-running agents; returns one normalized one-line objective with measurable end state, grounded proof, easy-out invariants, a stop clause, and a Missing list. Not for source or remote-system changes.'
+description: 'Use when asked to draft copy-ready /goal objectives for long-running agents. Not for source or remote-system changes.'
 ---
 
 # Goal prompt drafting
@@ -10,7 +10,7 @@ description: 'Use when asked to draft copy-ready /goal objectives for long-runni
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to draft, rewrite, compress, or prepare a copy-ready goal-mode objective or /goal command for a long-running agent. |
-| Authority | Read-only: no file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output only; applies a deterministic one-line normalizer and returns one normalized /goal command plus only necessary missing-information warnings. |
 | Done | The objective states a measurable end state, grounded proof, invariants against easy-outs, and a stop or blocked clause; it is one line within the 4,000-character harness limit, and any ungrounded contract element is listed as missing. |
 

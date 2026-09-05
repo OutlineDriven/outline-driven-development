@@ -1,6 +1,6 @@
 ---
 name: fuzzing-dictionary
-description: 'Use when a parser, protocol, or file format fuzzer stalls at fixed-token validation gates. Extracts tokens from target source, headers, or binary, writes a fuzzer-parseable dictionary, and confirms tokens correspond to target parsing gates. Not for patching the SUT — use fuzzing-obstacles.'
+description: 'Use when a parser, protocol, or file format fuzzer stalls at fixed-token validation gates and needs a coverage dictionary. Not for patching the SUT: use fuzzing-obstacles.'
 ---
 
 # Fuzzing dictionary
@@ -10,14 +10,14 @@ description: 'Use when a parser, protocol, or file format fuzzer stalls at fixed
 | Field | Bound contract |
 |---|---|
 | Trigger | User needs a focused dictionary for a parser, protocol, or file format whose coverage stalls at fixed tokens. |
-| Authority | Write only the named local dictionary file and fuzzer campaign configuration; rollback is deleting the dictionary file and reverting the configuration flag. |
-| Side effect | Fuzzer dictionary file and campaign configuration. |
+| Authority | Reversible local: writes only the named local dictionary file, the fuzzer campaign configuration, and transient short-campaign corpus or crash artifacts under a single output directory; rollback is deleting the dictionary file, reverting the configuration flag, and removing the short-campaign output directory. No remote mutation. |
+| Side effect | Fuzzer dictionary file, campaign configuration, and transient short-campaign corpus or crash artifacts. |
 | Done | The dictionary parses in the selected fuzzer and its tokens correspond to target validation or parsing gates. |
 
 ## Not for
 
-- Patching the system under test to bypass obstacles — use fuzzing-obstacles.
-- Coverage measurement or plateau analysis — use fuzzing-coverage-analysis.
+- Patching the system under test to bypass obstacles: use fuzzing-obstacles.
+- Coverage measurement or plateau analysis: use fuzzing-coverage-analysis.
 - Remote, credential, publish, deploy, or irreversible changes.
 
 ## Inputs

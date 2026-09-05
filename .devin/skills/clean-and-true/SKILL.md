@@ -1,6 +1,6 @@
 ---
 name: clean-and-true
-description: 'Use when the automatic trigger applies: after editing a durable artifact, or when the user says "clean and true", "run the hygiene pass", or "taste the output". Routes the just-changed artifact through the hygiene passes the change earned and skips the rest.'
+description: 'Use when the user just edited a durable artifact, or says \"clean and true\", \"run the hygiene pass\", or \"taste the output\". Routes the artifact through the hygiene passes it earned.'
 ---
 
 # Clean and true
@@ -10,7 +10,7 @@ description: 'Use when the automatic trigger applies: after editing a durable ar
 | Field | Bound contract |
 |---|---|
 | Trigger | Fires automatically after editing a durable artifact, or when the user says "clean and true", "run the hygiene pass", or "taste your own output". |
-| Authority | Reversible local writes limited to the just-changed durable artifact; no VCS, credential, paid, published, deployed, or remote mutation. Rollback is the prior on-disk content of that artifact. |
+| Authority | Reversible local: writes only the just-changed durable artifact; rollback is restoring that artifact's prior on-disk content. No VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | May revise the just-changed local artifact through applicable hygiene passes only. |
 | Done | Every applicable hygiene route ran or has a stated skip reason; findings are applied or explicitly deferred; no-op when nothing improves. |
 

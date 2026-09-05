@@ -1,6 +1,6 @@
 ---
 name: ssotize-audit-fold
-description: 'Use when asked to find duplication, check consistency, establish or repair SSOT, consolidate scattered facts, or when the user says "consolidate this" or "ssotize this". Audits every occurrence, proposes a reversible plan, then folds unique details into one approved canonical home. Not for remote or irreversible changes.'
+description: 'Use when asked to find duplication, check consistency, establish or repair SSOT, consolidate facts, or when the user says "consolidate this" or "ssotize this". Not for remote or irreversible changes.'
 ---
 
 # SSOTize audit fold
@@ -10,7 +10,7 @@ description: 'Use when asked to find duplication, check consistency, establish o
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to find duplication, check consistency, establish or repair SSOT, consolidate, unify scattered facts, or says "consolidate this" or "ssotize this". |
-| Authority | Reversible-local: write only named local artifacts. Before any mutation, present the full mutation plan to the human and receive explicit approval. Rollback must restore the pre-mutation state. |
+| Authority | Human-gated: presents the full mutation plan and receives explicit approval before any mutation; every other write is reversible local, with version control as the rollback. Rollback must restore the pre-mutation state. |
 | Side effect | Read-only until the human approves the mutation plan. On approval, fold unique details into the canonical home and replace copies with references pointing to it. |
 | Done | Canonical home complete and current; every copy now references it and resolves; no unique detail lost; contradictions reconciled to one value. |
 

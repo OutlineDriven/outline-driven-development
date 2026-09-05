@@ -1,6 +1,6 @@
 ---
 name: compound
-description: 'Use when the user explicitly asks to save, curate, or consolidate what was learned, or closes a meaningful knowledge-work session. Curates at most three typed, approved knowledge records from existing lessons into docs/knowledge/, checks for duplicates and contradictions, and confirms by naming retrieval tags. No remote, publish, deploy, or irreversible mutation.'
+description: 'Use when the user explicitly asks to save, curate, or consolidate what was learned, or closes a meaningful knowledge-work session. Not for remote, publish, deploy, or irreversible changes.'
 ---
 
 # Knowledge compound
@@ -10,8 +10,8 @@ description: 'Use when the user explicitly asks to save, curate, or consolidate 
 | Field | Bound contract |
 |---|---|
 | Trigger | User explicitly asks to save, curate, or consolidate what was learned, or closes a meaningful knowledge-work session. |
-| Authority | Reversible local write: may append or update docs/knowledge/{slug}.md records; never silently delete stale entries. |
-| Side effect | Writes typed docs/knowledge/{slug}.md records and may update, but never silently delete, stale entries. |
+| Authority | Reversible local: writes only docs/knowledge/{slug}.md records and repo-root CONCEPTS.md; rollback is version control. No remote mutation. Never silently deletes stale entries. |
+| Side effect | Writes typed docs/knowledge/{slug}.md records and repo-root CONCEPTS.md; may update stale entries, but never silently delete them. |
 | Done | At most three specific typed learnings or an honest none are proposed; duplicates and contradictions are checked; the user approves; saved records carry type, retrieval tags, confidence, date, source, Context, and Implication; confirmation names retrieval tags. |
 
 ## Inputs
@@ -55,9 +55,9 @@ Canonical frontmatter contract for `docs/knowledge/{slug}.md` records. All seven
 | `tags` | array[string] | Retrieval keywords, lowercase and hyphen-separated. Used for duplicate and contradiction detection. |
 | `confidence` | enum | `high`, `medium`, or `low`. |
 | `date` | string | ISO 8601 date (`YYYY-MM-DD`). |
-| `source` | string | Where the learning originated — session context, PR, issue, or codebase area. |
-| `Context` | string | What triggered the learning — the situation or problem that produced it. |
-| `Implication` | string | What changes as a result — the actionable consequence of the learning. |
+| `source` | string | Where the learning originated: session context, PR, issue, or codebase area. |
+| `Context` | string | What triggered the learning: the situation or problem that produced it. |
+| `Implication` | string | What changes as a result: the actionable consequence of the learning. |
 
 ### Body
 
@@ -65,16 +65,16 @@ Prose body derived from the session, expanding on Context and Implication with t
 
 ### Filename
 
-`{slug}.md` — a sanitized, descriptive slug derived from the learning's core idea. No date suffix (the `date` field carries that).
+`{slug}.md`: a sanitized, descriptive slug derived from the learning's core idea. No date suffix (the `date` field carries that).
 
 ### YAML safety
 
-Wrap array items in double quotes when a value starts with any of: `` ` `` `[` `]` `{` `}` `,` `*` `&` `!` `|` `>` `%` `@` `?`. Also quote when a value contains `": "`. Scalar fields have a separate failure mode — an unquoted ` #` truncates at the comment, an unquoted `: ` reframes as a mapping.
+Wrap array items in double quotes when a value starts with any of: `` ` `` `[` `]` `{` `}` `,` `*` `&` `!` `|` `>` `%` `@` `?`. Also quote when a value contains `": "`. Scalar fields have a separate failure mode: an unquoted ` #` truncates at the comment, an unquoted `: ` reframes as a mapping.
 
 ### Consolidation
 
 When a new record supersedes or contradicts an existing entry (flagged in step 2), the user may approve a consolidation: merge the new record into the existing file, preserve the original as a history line, and update the frontmatter `date` and `Context`/`Implication` to reflect the consolidated state. Never silently delete the superseded entry.
 
-## Vocabulary capture — CONCEPTS.md (optional)
+## Vocabulary capture: CONCEPTS.md (optional)
 
 When a durable project term with a precise local meaning surfaces during curation, reconcile CONCEPTS.md per `references/concepts.md`. The glossary is a shared surface; follow the one-definition-per-concept discipline. This is optional and never blocks the primary curation flow.

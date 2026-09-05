@@ -1,6 +1,6 @@
 ---
 name: resolve-merge-conflicts
-description: 'Use when a merge, rebase, cherry-pick, or stash pop stops on conflicts. Read both intents from primary sources, resolve every hunk, verify with scoped checks, and finish the integration. Not for people-mediation conflicts — use culture-conflict-mediation.'
+description: 'Use when a merge, rebase, cherry-pick, or stash pop stops on conflicts. Not for people-mediation conflicts: use culture-conflict-mediation.'
 ---
 
 # Resolve merge conflicts
@@ -10,13 +10,13 @@ description: 'Use when a merge, rebase, cherry-pick, or stash pop stops on confl
 | Field | Bound contract |
 |---|---|
 | Trigger | A merge, rebase, cherry-pick, or stash pop stops on conflicts: `git` exits with unmerged paths. |
-| Authority | Reversible local writes: edits to conflicted files, `git add` of resolved hunks, package lock regeneration, scoped check execution, and integration continuation (committing a merge, `git rebase --continue`, `git cherry-pick --continue`, `git stash drop`). No push, no tag, no force-push. Rollback: `git merge --abort`, `git rebase --abort`, `git cherry-pick --abort`, or `git checkout -- <file>` before staging. |
+| Authority | Reversible local: writes only conflicted-file edits, staged resolutions, regenerated lockfiles, and integration continuation (committing a merge, `git rebase --continue`, `git cherry-pick --continue`, and `git stash drop` only after the resolution is committed); runs scoped checks; rollback is `git merge --abort`, `git rebase --abort`, `git cherry-pick --abort`, or `git checkout -- <file>`. No remote mutation. No push, no tag, no force-push. |
 | Side effect | Edits conflicted files, stages resolutions, regenerates lockfiles with package manager tooling, runs scoped checks, completes the in-progress integration. |
 | Done | No unmerged paths, no conflict markers in any tracked file, scoped checks pass, integration is committed and complete. |
 
 ## Refusal
 
-Not for people-mediation or team-interpersonal conflicts — use **culture-conflict-mediation**, which addresses working friction between colleagues using Culture Index trait profiles; resolve-merge-conflicts handles text conflicts in tracked files where git stops on unmerged paths. The shared word "conflict" is the only overlap. Not for remote, credential, publish, deploy, or other irreversible changes.
+Not for people-mediation or team-interpersonal conflicts; use **culture-conflict-mediation**, which addresses working friction between colleagues using Culture Index trait profiles; resolve-merge-conflicts handles text conflicts in tracked files where git stops on unmerged paths. The shared word "conflict" is the only overlap. Not for remote, credential, publish, deploy, or other irreversible changes.
 
 ## Inputs
 
@@ -53,7 +53,7 @@ Optional context:
    - Merge: commit the merge with a message that names both sides' intents and the resolution rationale, including any discarded intent recorded in Step 4.
    - Rebase: `git rebase --continue` until every commit is replayed and no conflict remains.
    - Cherry-pick: `git cherry-pick --continue` (or commit, then continue if multiple commits remain).
-   - Stash pop: the stash is applied after resolution; `git stash drop` if the stash entry was not auto-dropped.
+   - Stash pop: the stash is applied after resolution; run `git stash drop` only after the resolved changes are committed, so the stash stays recoverable until the resolution is in history.
    *Done when: `git status` shows no conflicts and the integration is complete.*
 
 ## Failure and recovery

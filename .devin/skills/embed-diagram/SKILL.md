@@ -1,6 +1,6 @@
 ---
 name: embed-diagram
-description: 'Use when the user runs /embed-diagram to render a Mermaid diagram offline and embed the SVG or PNG into a target document. Uses a local CLI renderer, not a remote page. Not for code-derived diagrams. No remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when the user runs /embed-diagram to render a Mermaid diagram offline and embed it into a document. Not for code-derived diagrams or remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Embed diagram
@@ -10,7 +10,7 @@ description: 'Use when the user runs /embed-diagram to render a Mermaid diagram 
 | Field | Bound contract |
 |---|---|
 | Trigger | The user runs `/embed-diagram` or asks to render a Mermaid diagram offline and embed it into a document. |
-| Authority | Reversible local writes: create or overwrite Mermaid source, SVG, PNG, and Excalidraw files in the output directory and edit the target document to embed the render. No remote, credential, VCS, or published mutation. |
+| Authority | Reversible local: writes only Mermaid source, SVG, PNG, and Excalidraw files in the output directory and edits the target document to embed the render; rollback is deleting the written files and reverting the target document edit. No remote mutation. |
 | Side effect | Local SVG or PNG diagram renders written to the output directory and embedded into the target document. |
 | Done | A rendered diagram is embedded in the target document. |
 
@@ -18,7 +18,7 @@ description: 'Use when the user runs /embed-diagram to render a Mermaid diagram 
 
 - A diagram request: an English description of the structure to diagram, or Mermaid source. Required.
 - A target document path. Required. The document must exist and be writable.
-- Output directory. Optional. Default `./diagrams/` when the cwd is a git repo, else `/tmp/gstack-diagrams/`.
+- Output directory. Optional. Default `./diagrams/` when the cwd is a git repo, else `/tmp/odin-diagrams/`.
 - Output slug. Optional. Derived kebab-case from the diagram subject, 40 chars or fewer.
 
 ## Procedure

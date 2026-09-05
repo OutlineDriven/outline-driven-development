@@ -1,6 +1,6 @@
 ---
 name: corroborate-by-independent-reruns
-description: 'Use when a candidate patch or answer needs independent corroboration before it is trusted. Run N isolated sandboxed attempts and return the strict-majority byte-identical patch with its agreement count, or report no consensus. Not for multi-stance investigation — use council.'
+description: 'Use when a candidate patch or answer needs independent corroboration before it is trusted. Not for multi-stance investigation: use council.'
 ---
 
 # Corroborate by independent reruns
@@ -10,7 +10,7 @@ description: 'Use when a candidate patch or answer needs independent corroborati
 | Field | Bound contract |
 |---|---|
 | Trigger | A candidate patch or answer needs independent corroboration before it is trusted |
-| Authority | Reversible local: write only the named corroboration report; discard it if rejected. Each run mutates only its own isolated sandbox, discarded after capture |
+| Authority | Reversible local: writes only the named corroboration report; rollback is discarding it if rejected. No remote mutation. Each run mutates only its own isolated sandbox, discarded after capture. |
 | Side effect | Runs N isolated sandboxed attempts and returns the majority patch plus its agreement count; byte identity is a corroboration signal, not a correctness oracle; no-change runs never carry consensus |
 | Done | Either a strict majority of launched runs produced byte-identical output and it is returned with its count, or no consensus is reported |
 

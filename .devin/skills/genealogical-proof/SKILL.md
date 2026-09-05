@@ -1,6 +1,6 @@
 ---
 name: genealogical-proof
-description: 'Use when a genealogical identity or relationship needs correlation, conflict analysis, and negative-search proof. Applies the Genealogical Proof Standard to classify the proposition as proved, disproved, likely, or possible. Not for non-genealogical identity proof.'
+description: 'Use when a genealogical identity or relationship needs correlation, conflict analysis, and negative-search proof. Not for non-genealogical identity proof.'
 ---
 
 # Genealogical proof
@@ -10,7 +10,7 @@ description: 'Use when a genealogical identity or relationship needs correlation
 | Field | Bound contract |
 |---|---|
 | Trigger | A genealogical identity or relationship needs correlation, conflict analysis, and negative-search proof. |
-| Authority | Read-only genealogical source evaluation. Paid access or living-person data requires start approval: one harness ask/question call before the run starts. |
+| Authority | Human-gated: asks for approval before the run starts when paid access or living-person data is required; otherwise read-only with no file, VCS, credential, published, deployed, or remote mutation. |
 | Side effect | Genealogical proof note with correlation, conflict resolution, and classification. |
 | Done | The identity proposition is classified proved, disproved, likely, or possible with a proof note. |
 | Stop | Unresolved conflicts; blocked access; insufficient evidence. Bound: one proof question, approved repositories, date range, pass cap. |

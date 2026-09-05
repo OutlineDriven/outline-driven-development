@@ -1,6 +1,6 @@
 ---
 name: knowledge-refresh
-description: 'Use when a knowledge artifact needs review before sharing or execution. Runs strategic and data reviewers in parallel, merges P1/P2/P3/Clean findings, and blocks ordinary shipping on P1. Don''t use for tasks that require source or remote-system changes.'
+description: 'Use when a knowledge artifact needs review before sharing or execution. Not for source or remote-system changes.'
 ---
 
 # Knowledge review
@@ -10,7 +10,7 @@ description: 'Use when a knowledge artifact needs review before sharing or execu
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to review or validate a knowledge artifact before sharing or executing it. |
-| Authority | Read-only review: no file, VCS, credential, paid, published, deployed, or remote mutation during the review. Any fix is a separate, explicitly user-authorized edit performed after the review completes. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. Any fix is a separate, explicitly user-authorized edit performed after the review completes. |
 | Side effect | Reads the target and references and emits merged findings. No write occurs during the review. A fix, if the user explicitly authorizes one after the review, is a separate edit outside the review's authority. |
 | Done | Strategic and data reviewers run in parallel; findings merge into P1/P2/P3 plus Clean; external content gets an editorial check; every P1 blocks ordinary shipping and receives explicit next choices. |
 
@@ -72,7 +72,7 @@ If the input is ambiguous, ask the user to supply a file path or paste the conte
 
 5. **Present findings.** Present a grouped review report with P1 (blocks shipping, most critical first), P2 (should fix), P3 (nice to have), and Clean (what passed) sections. Each finding is specific: "Revenue cited as $X but [source] shows $Y as of [date]" rather than "Revenue might be wrong." Done when: the grouped report is presented with specific findings in severity order.
 
-6. **Offer next steps.** Ask: "Review complete. [N] findings ([P1 count] critical, [P2 count] important). What next?" Options: (1) Fix P1/P2 issues now — address findings inline, then re-review; (2) Ship as-is — acknowledge findings and proceed without fixing. Done when: the user is offered the two next-step options.
+6. **Offer next steps.** Ask: "Review complete. [N] findings ([P1 count] critical, [P2 count] important). What next?" Options: (1) Fix P1/P2 issues now: address findings inline, then re-review; (2) Ship as-is: acknowledge findings and proceed without fixing. Done when: the user is offered the two next-step options.
 
 7. **Execute the chosen action only after the review completes.**
    - If the user chooses to fix: the review is complete. The fix is a separate, explicitly user-authorized edit. Make targeted edits, then re-run the review as a new invocation.

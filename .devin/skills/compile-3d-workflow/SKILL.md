@@ -1,6 +1,6 @@
 ---
 name: compile-3d-workflow
-description: 'Use when the user asks for direction and a compilable 3D workflow from an interview. Produces a validated local artifact file combining a DAG topology, ontology groups, and closed control loops. No remote, credential, publish, deploy, or irreversible mutation.'
+description: 'Use when the user asks for direction and a compilable 3D workflow from an interview. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Compile 3D workflow
@@ -10,7 +10,7 @@ description: 'Use when the user asks for direction and a compilable 3D workflow 
 | Field | Bound contract |
 |---|---|
 | Trigger | The user asks for direction and a compilable 3D workflow from an interview. |
-| Authority | Reversible local write: produce and validate a local artifact file. No remote mutation. Rollback is local file deletion. |
+| Authority | Reversible local: writes only the named local 3D workflow artifact file; rollback is deleting that file. No remote mutation. |
 | Side effect | Writes one local 3D workflow artifact file. |
 | Done | A validated local 3D workflow artifact file exists and passes every structural check. |
 

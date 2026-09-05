@@ -1,6 +1,6 @@
 ---
 name: build-program-graph
-description: 'Use when a multi-language program graph is needed for call paths, entrypoints, blast radius, coarse taint reachability, privilege boundaries, or declared cross-system links. Builds the full graph, runs preanalysis, and gates every version-specific query behind a capability probe with bounded security claims. Not for a quick overview; use trailmark-summary. Not for a fixed snapshot payload; use trailmark-structural.'
+description: 'Use when a multi-language program graph is needed for call paths, entrypoints, blast radius, or taint reachability. Not for overview (trailmark-structural) or snapshot (trailmark-structural).'
 ---
 
 # Build a program graph
@@ -12,7 +12,7 @@ A program graph turns a source tree into nodes (functions, methods, types, modul
 | Field | Bound contract |
 |---|---|
 | Trigger | The user needs a multi-language source graph for call paths, attack surface, entrypoints, blast radius, coarse taint reachability, boundaries, types, proxies, or declared cross-system links. |
-| Authority | Reversible local writes only: graph exports, preanalysis subgraphs and annotations, and an optional declared-links file. State the rollback path before writing. The graph tool must already be installed; this skill never installs or upgrades tooling. |
+| Authority | Reversible local: writes only graph exports, preanalysis subgraphs and annotations, and an optional declared-links file; rollback is deleting the written files. No remote mutation. The graph tool must already be installed; this skill never installs or upgrades tooling. |
 | Side effect | Graph export files, preanalysis subgraphs and annotations (in-memory), and an optional declared-links file at the analysis root. Rollback: delete the written files; in-memory annotations vanish when the engine is disposed. |
 | Done | The correct languages are parsed, preanalysis has run, requested queries return evidence with the version and parser limits stated, and no reachability result is presented as data-flow or vulnerability proof. |
 
@@ -72,7 +72,7 @@ A program graph turns a source tree into nodes (functions, methods, types, modul
 ## Failure and recovery
 
 - Tool missing or failing to install: report the gap and stop. No manual-analysis fallback.
-- Import error in snippets: run snippets with the tool's isolated runner (for example `uv run --with <tool> python -`) rather than relying on a bare tool install; this is a resolution step, not a fallback.
+- Import error in snippets: stop and report the missing tool or import; do not use `uv run --with` or any other install step. The graph analyzer must already be installed.
 - Version-gated method unavailable: probe before calling; fall back to the baseline alternative and say so in the report.
 - Language detection failure: report the finding; do not invent a language list.
 - Preanalysis not run: blast radius, taint, and privilege data exist only after preanalysis; run it before retrying any dependent query. Never claim preanalysis results without running it.

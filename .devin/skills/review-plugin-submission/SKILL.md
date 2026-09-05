@@ -1,6 +1,6 @@
 ---
 name: review-plugin-submission
-description: 'Use when asked to review a plugin for marketplace readiness through a read-only audit of every published quality gate. Returns a sectioned pass/fail report with a submission recommendation. Not for reviewing a PR or code diff — use review.'
+description: 'Use when asked to review a plugin for marketplace readiness via a read-only audit of published quality gates. Not for reviewing a PR or code diff: use review.'
 ---
 
 # Review plugin submission
@@ -10,7 +10,7 @@ description: 'Use when asked to review a plugin for marketplace readiness throug
 | Field | Bound contract |
 |---|---|
 | Trigger | Final marketplace-readiness review of an agent plugin. |
-| Authority | No file, VCS, credential, paid, published, deployed, or remote mutation. |
+| Authority | Read-only. No file, VCS, credential, paid, published, deployed, or remote mutation. |
 | Side effect | Chat output only; no file writes, no credential use, no remote calls beyond reads needed for the audit. |
 | Done | Sectioned pass/fail report and submission recommendation returned in chat. |
 

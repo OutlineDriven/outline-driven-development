@@ -1,6 +1,6 @@
 ---
 name: git-branchless
-description: 'Use when asked for multi-commit stack edits, rebases, fixups, or stacked-PR publishing with branchless git idioms and a publish gate. Not for plain-git workflows in repos without branchless; the skill stays inert there. Human-only.'
+description: 'Use when asked for multi-commit stack edits, rebases, fixups, or stacked-PR publishing with branchless git idioms. Not for plain-git workflows in repos without branchless.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | Multi-commit work, stack edits, rebases, fixups, stacked-PR publishing, or mention of branchless, smartlog, git move, or git undo. |
-| Authority | Human-only. Preview the target and consequence before publishing, remote bulk mutation, or any irreversible history change. Never `rebase -i`, `reset --hard`, or force flags. |
+| Authority | Human-gated: previews the target and consequence before publishing, any remote bulk mutation, or any irreversible history change; otherwise reversible local: writes only local git-branchless commits, moves, and restacks; rollback is version control. Never `rebase -i`, `reset --hard`, or force flags. |
 | Side effect | Local git-branchless commits, moves, and restacks; publish paths submit or push remote stack state. Silently inert when branchless is absent. |
 | Done | Branchless idioms applied per the decision rubric with a publish gate, or an explicit not-initialized inert line. |
 
@@ -92,7 +92,7 @@ disable-model-invocation: true
 - Version-gated flag rejected: fall back to the closest documented alternative and tell the user which feature was unavailable. Do not invent an unverified flag.
 - **`git submit --forge github` unsuitable for general use** (upstream arxanas/git-branchless#1184): stack reordering can lose PR ancestry. Prefer the default forge `branch` with `git submit -c @` / `git submit @` for feature stacks; never submit main. Stock `git push -u` is the gated-main path and the submit-denied fallback.
 - Event log is per-repository and per-clone: `git undo` cannot reach state from a different clone or machine. State this when recovery is requested across clones.
-- Speculative-merge skips during  and :c` and `git move`**: silent unless the summary line is read. If a skip is missed, re-run and read the summary before assuming success.
+- Speculative-merge skips during `git sync` and `git move`: silent unless the summary line is read. If a skip is missed, re-run and read the summary before assuming success.
 - Never swallow an error or pretend the done predicate holds. If a command fails, report the exact failure and stop rather than widening scope.
 
 ## Output

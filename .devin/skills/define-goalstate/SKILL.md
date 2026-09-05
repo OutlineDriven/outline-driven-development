@@ -1,6 +1,6 @@
 ---
 name: define-goalstate
-description: 'Use when the user wants the finished-system contract for a piece of work. Authors an approved success-predicate document naming behavior, protocols, allowed states, forbidden states, and impossible states, with a concrete state-space proof and terminal failure behavior.'
+description: 'Use when the user wants the finished-system contract for a piece of work: behavior, protocols, allowed, forbidden, and impossible states with a state-space proof. Not for runtime verification.'
 ---
 
 # Define goalstate
@@ -10,7 +10,7 @@ description: 'Use when the user wants the finished-system contract for a piece o
 | Field | Bound contract |
 |---|---|
 | Trigger | The user wants to write the finished-system contract for a piece of work. |
-| Authority | Write only the named local contract document; revert by deleting or overwriting it. |
+| Authority | Reversible local: writes only the named local contract document; rollback is deleting or overwriting it. No remote mutation. |
 | Side effect | A finished-system contract document describing behavior, protocols, a concrete state-space proof, allowed states, forbidden states, impossible states with their structural invariants, a falsifiable success predicate, and terminal failure behavior. No other file, credential, or remote target is touched. |
 | Done | An approved success-predicate document exists, naming behavior, protocols, allowed states, forbidden states, impossible states, falsifiable success predicate, state-space proof, and terminal failure behavior, structured for consumption by downstream wayfinding. |
 
@@ -33,7 +33,7 @@ The user must supply the intended finished system: what it must do (behavior) an
 5. Build a concrete state-space proof. For each allowed state, show a sequence of protocol steps that reaches it from an initial allowed state. For each forbidden state, show a sequence of allowed steps that could reach it unless the named boundary or terminal failure behavior intervenes; then show the intervention. For each impossible state, demonstrate that no sequence of allowed protocol steps can reach it because of the named invariant or boundary. Done when: the state space is partitioned and the proof is stated in the contract.
 6. Write a falsifiable success predicate: a concrete, checkable condition that holds if and only if the finished system satisfies the contract. Test it mentally against the enumerated states: it must be true for at least one allowed state and false for at least one forbidden state. If it cannot distinguish allowed from forbidden, stop and reject the draft; ask the user to sharpen the predicate. Done when: the success predicate is concrete, checkable, and distinguishes an allowed state from a forbidden state.
 7. Define terminal failure behavior for every forbidden state: an observable action the finished system takes when the forbidden state is encountered, with no ambiguity about whether the system halts, retries, degrades, or rolls back. Done when: every forbidden state has a terminal failure behavior.
-8. Present the complete draft—behavior, protocols, allowed states, forbidden states, impossible states with invariants, state-space proof, success predicate, and terminal failure behavior—to the user for approval. Done when: the complete draft is presented to the user.
+8. Present the complete draft, behavior, protocols, allowed states, forbidden states, impossible states with invariants, state-space proof, success predicate, and terminal failure behavior, to the user for approval. Done when: the complete draft is presented to the user.
 9. On approval, write the contract to a named local document. On rejection, revise per the user's feedback and re-present; do not write an unapproved contract. Done when: the approved contract is written to a named local document.
 
 ## Failure and recovery

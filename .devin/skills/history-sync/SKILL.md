@@ -1,6 +1,6 @@
 ---
 name: history-sync
-description: 'Use when the user requests memory transfer to or from a named peer. Exports redacted static JSONL batches, imports them idempotently, and advances per-peer watermarks. Not for recalling a session — use history-recall; not for store registration — use history-source-registry.'
+description: 'Use when the user requests memory transfer to or from a named peer. Not for recalling a session: use history-recall. Not for store registration: use history-source-registry.'
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 | Field | Bound contract |
 |---|---|
 | Trigger | The user explicitly requests memory transfer to or from their own named peer machine. |
-| Authority | Human-only. Before using credentials or changing either machine, preview the named peer, direction, record range, exclusions, files, watermark changes, and remote consequences. Do not sync an unnamed peer or infer consent. |
+| Authority | Remote: syncs redacted JSONL batches between named peer machines using credentials; requires explicit human invocation. Previews the named peer, direction, record range, exclusions, files, watermark changes, and remote consequences before proceeding. Do not sync an unnamed peer or infer consent. |
 | Side effect | Write only redacted static JSONL batches, import their records, and advance the applicable per-peer watermark after confirmed import. Never expose, copy, mount, or make writable a live remote history database. |
 | Done | Only records newer than the applicable watermark were exported; redaction and exclusions were applied before a batch crossed the machine boundary; import deduplicated records idempotently; imported records cannot be re-exported; a push-only peer yielded an explicit empty pull; stored alias spelling was preserved; and the resulting watermark and counts were confirmed. |
 

@@ -1,6 +1,6 @@
 ---
 name: test-migration-coverage-gate
-description: 'Use when about to delete a test on the claim that a new harness, suite, or scenario already covers it. Requires an independent reviewer to validate the per-assertion coverage table and a tree-wide reference scrub before the deletion commit. Not for tests that catch no real bug: use tests-purge-unneeded; not for untracked data or changes without VCS rollback.'
+description: 'Use when about to delete a test that a new harness, suite, or scenario covers. Not for tests that catch no real bug: use tests-purge-unneeded. Not for untracked data or changes without VCS rollback.'
 ---
 
 # Test migration coverage gate
@@ -10,8 +10,8 @@ description: 'Use when about to delete a test on the claim that a new harness, s
 | Field | Bound contract |
 |---|---|
 | Trigger | About to delete a test on the claim that a new harness, suite, or scenario already covers it. |
-| Authority | vcs-reversible-destructive: restrict changes to VCS-tracked test files, show the exact set before deletion, and use version control as recovery. |
-| Side effect | Deletes only those test files whose every assertion was matched, leaving the rest in place; each deletion carries its coverage receipt in the commit message. |
+| Authority | Reversible local: deletes only VCS-tracked test files and edits only the migration's named VCS-tracked files (the replacement test to cover assertions, live references to deleted paths, and historical annotations); rollback is version control recovery. No remote, VCS-history, credential, paid, published, or deployed mutation. Shows the exact set before deletion. |
+| Side effect | Deletes only those test files whose every assertion was matched, extends the replacement test when needed, updates live references to deleted paths and annotates historical documents, and leaves the rest in place; each deletion carries its coverage receipt in the commit message. |
 | Done | For every deleted test, a per-assertion table validated by an independent reviewer maps each original assertion to a specific check in the replacement; unmatched assertions resulted in either an extended replacement or a kept test; and a tree-wide scrub shows no dangling references to deleted paths, with historical documents annotated rather than rewritten. |
 
 ## Inputs

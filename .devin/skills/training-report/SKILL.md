@@ -1,6 +1,6 @@
 ---
 name: training-report
-description: 'Use when a trainer wants a training session documented as a compte rendu. Runs a structured interview, iterates a Markdown draft under user lead, then generates a .docx once after explicit content confirmation via python-docx. Not for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a trainer wants a training session or workshop documented as a compte rendu with a final .docx. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # Training report
@@ -10,7 +10,7 @@ description: 'Use when a trainer wants a training session documented as a compte
 | Field | Bound contract |
 |---|---|
 | Trigger | User asks to document a training session or workshop (compte rendu) |
-| Authority | Reversible-local: write only the named .md draft and the final .docx in the chosen output directory. Rollback: delete the .md and .docx files; no other artifact is created. |
+| Authority | Reversible local: write only the named .md draft and the final .docx in the chosen output directory. Rollback: delete the .md and .docx files; no other artifact is created. |
 | Side effect | Writes the Markdown draft first, then the .docx once, after explicit content confirmation. No other file is written. |
 | Done | Both .md and .docx files delivered after explicit content confirmation, with a terminal classification distinguishing complete from partial. |
 
@@ -34,7 +34,7 @@ description: 'Use when a trainer wants a training session documented as a compte
 
 ## Procedure
 
-1. Confirm the report language and the primary reader. Apply tone guidance: lead with outcomes for executives; emphasize behavior and evolution for HR; be practical and operational for direct management; be professional and measured for external clients; be comprehensive for internal archives. In French, use formal register with `vous`, active voice, and guillemets. In English, use active voice and concrete nouns. In other languages, apply the equivalent formal register. Done when: language and reader are confirmed with tone guidance applied.
+1. Confirm the report language and the primary reader. Apply tone guidance: lead with outcomes for executives; emphasize behavior and evolution for HR; be practical and operational for direct management; be professional and measured for external clients; be thorough for internal archives. In French, use formal register with `vous`, active voice, and guillemets. In English, use active voice and concrete nouns. In other languages, apply the equivalent formal register. Done when: language and reader are confirmed with tone guidance applied.
 
 2. Ask whether the user has a Word (.docx) template. If yes, request the file and use it as the base at step 9. If no, ask for a brand color; default to `#2E75B6` if none is given. Done when: the template decision and brand color are resolved.
 

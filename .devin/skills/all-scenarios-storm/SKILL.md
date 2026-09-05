@@ -1,6 +1,6 @@
 ---
 name: all-scenarios-storm
-description: 'Use when a user wants to enumerate plausible designs, configurations, scenarios, and paths and diagram the field before choosing. Produces an exhaustive enumerated field and a diagram before any choice. Don''t use for remote, credential, publish, deploy, or irreversible changes.'
+description: 'Use when a user wants to enumerate plausible designs, configurations, scenarios, and paths and diagram the field before choosing. Not for remote, credential, publish, deploy, or irreversible changes.'
 ---
 
 # All scenarios storm
@@ -10,7 +10,7 @@ description: 'Use when a user wants to enumerate plausible designs, configuratio
 | Field | Bound contract |
 |---|---|
 | Trigger | User wants to enumerate plausible designs, configurations, scenarios, and implementation paths and diagram the finished field before choosing. |
-| Authority | Reversible local write only. Produce the enumerated field and diagram as local artifacts. Do not mutate version control, credentials, deployed state, or remote systems. |
+| Authority | Chat-only: no local artifacts are written. No remote, VCS-history, credential, paid, published, or deployed mutation. |
 | Side effect | An exhaustive field of designs/configs/scenarios/paths and a diagram. |
 | Done | An exhaustive field is enumerated and diagrammed before a choice is made. |
 
@@ -36,4 +36,5 @@ description: 'Use when a user wants to enumerate plausible designs, configuratio
 - Partial result: a partial field with incomplete dimensions is deliverable only when every incomplete dimension is explicitly marked. Never present a partial field as exhaustive.
 
 ## Output
-A local artifact containing the exhaustive enumerated field (one-line descriptions and tradeoffs per option, cross-references across dimensions) and a diagram of the full field. No recommendation or chosen path is produced.
+
+An exhaustive enumerated field (one-line descriptions and tradeoffs per option, cross-references across dimensions) and a diagram of the full field, presented in the response. No recommendation or chosen path is produced. No local artifact is created.

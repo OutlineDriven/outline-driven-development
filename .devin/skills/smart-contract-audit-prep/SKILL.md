@@ -1,6 +1,6 @@
 ---
 name: smart-contract-audit-prep
-description: 'Use when a smart-contract project must become review-ready before an audit. Produces a handoff package with frozen commit, build checks, and readiness checklist. Not for workflow — use smart-contract-secure-workflow; not for guidelines — use smart-contract-guidelines-advisor.'
+description: 'Use when a smart-contract project must become review-ready before an audit. Not for workflow: use smart-contract-secure-workflow. Not for guidelines: use smart-contract-guidelines-advisor.'
 ---
 
 # Smart contract audit prep
@@ -8,7 +8,7 @@ description: 'Use when a smart-contract project must become review-ready before 
 ## Refuse first
 
 - Do not fix source findings; record and classify them for the audit handoff.
-- Do not install missing tools or touch remotes, credentials, deployments, or VCS history.
+- Do not install missing tools or touch remotes, credentials, deployments, or history rewrites.
 - Do not declare readiness from prior reports or an untested commit.
 
 ## Contract
@@ -16,8 +16,8 @@ description: 'Use when a smart-contract project must become review-ready before 
 | Field | Bound contract |
 |---|---|
 | Trigger | A smart-contract project needs to become review-ready before an external or internal security audit, typically 1-2 weeks before the audit begins |
-| Authority | Reversible local: write only the named artifacts under `audit/` in the target project plus one local freeze branch and tag; roll back by deleting the `audit/` directory, the branch, and the tag |
-| Side effect | Audit goals, scoped commit, build and test instructions, known-issue notes, architecture material, and readiness checklist; never edits project source, never installs tools, never touches remotes or VCS history |
+| Authority | Reversible local: writes only the named artifacts under `audit/` in the target project plus one local freeze branch and tag; rollback is deleting the `audit/` directory, the branch, and the tag; the freeze branch and tag are the only VCS objects created and no history is rewritten. No remote, credential, paid, published, or deployed mutation. |
+| Side effect | Audit goals, scoped commit, build and test instructions, known-issue notes, architecture material, readiness checklist, plus one local freeze branch and tag; never edits project source, never installs tools, never touches remotes or history rewrites. |
 | Done | Auditors can build, scope, navigate, and begin reviewing the frozen project without avoidable setup ambiguity, confirmed by a fully passing readiness checklist |
 
 ## Inputs
@@ -63,4 +63,4 @@ description: 'Use when a smart-contract project must become review-ready before 
 
 ## Output
 
-**Output contract:** Return `audit/goals.md`, `audit/build-and-test.md`, `audit/known-issues.md`, `audit/architecture.md`, and `audit/readiness-checklist.md`, then the local freeze branch and tag, then READY only if every checklist row passes—otherwise NOT READY with named gaps and evidence pointers.
+**Output contract:** Return `audit/goals.md`, `audit/build-and-test.md`, `audit/known-issues.md`, `audit/architecture.md`, and `audit/readiness-checklist.md`, then the local freeze branch and tag, then READY only if every checklist row passes, otherwise NOT READY with named gaps and evidence pointers.

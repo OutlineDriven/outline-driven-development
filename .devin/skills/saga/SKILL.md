@@ -1,6 +1,6 @@
 ---
 name: saga
-description: 'Use when a user runs saga or asks to autonomously build a sizable feature. Produces a spec tree, delegates to worker subagents in isolated worktrees, validates at each milestone, and gates user acceptance before VCS commit. Not for executing a given plan — use subagent-driven.'
+description: 'Use when a user runs saga or asks to autonomously build a sizable feature. Not for executing a given plan: use subagent-driven.'
 ---
 
 # Saga
@@ -10,7 +10,7 @@ description: 'Use when a user runs saga or asks to autonomously build a sizable 
 | Field | Bound contract |
 |---|---|
 | Trigger | User runs saga or asks to autonomously build a sizable feature. |
-| Authority | Orchestrator writes specs to disk, delegates to workers via run_agents, and validates each task to its criteria before integration and user acceptance gate. All local writes happen in git worktrees (VCS-reversible). Milestone-level validation gates progression. User acceptance is the terminal gate before any VCS commit. |
+| Authority | Reversible local: writes specs and progress artifacts to the saga directory under `~/.sagas/` (rollback is deleting them) and worker artifacts in isolated git worktrees (rollback is version control). No remote mutation except a human-approved branch push or draft PR for remote-worker handoff. Validates each task to its criteria before integration; milestone-level validation gates progression; user acceptance is the terminal gate before integration to the target branch. |
 | Side effect | Creates a saga directory outside the repo and spawns workers in isolated git worktrees. |
 | Done | All tasks meet validation, milestones pass, user accepts. |
 
@@ -19,18 +19,17 @@ description: 'Use when a user runs saga or asks to autonomously build a sizable 
 - Feature request (user-provided prompt or description).
 - Target repository path.
 - Saga directory is confirmed with user before creation.
-- Reference materials (saga-spec-template, validation-strategies, continuing-a-saga) are embedded in this skill and read before drafting specs or resuming.
 
 ## Procedure
 
-### Phase 1 — planning (orchestrator + user)
+### Phase 1: planning (orchestrator + user)
 
 1. **Intake.** Restate the request as a one-paragraph problem statement and the rough shape of the feature. Identify major unknowns. Pick a saga directory name under `~/.sagas/` from a feature slug plus timestamp (e.g. `~/.sagas/dark-mode-20260609-0028/`). Confirm the path with the user before creating anything.
 
 2. **Discover environment.** By inspecting the repo first, determine:
    - Program type (web app, native GUI, TUI, CLI/library, backend service).
    - Whether computer use is available (local, remote only, or not available).
-   - Test runner, build, lint, and typecheck commands — confirm they run.
+   - Test runner, build, lint, and typecheck commands: confirm they run.
    - How the program is launched for manual or interactive verification.
    Record findings in `SAGA.md` under the environment section.
 
@@ -38,11 +37,11 @@ description: 'Use when a user runs saga or asks to autonomously build a sizable 
 
 4. **Write saga exit criteria.** Before decomposing, define the concrete, checkable conditions that mean the feature is complete and correct. These are the Phase 3 contract.
 
-5. **Decompose into milestones and tasks.** Break work into milestones (ordered by dependency, independently meaningful) and tasks (scoped for one worker in one focused effort). For each task, specify its scope, owned files/surfaces, dependencies, validation criteria, and validation method. Use the templates in the Reference files section below. Write the spec tree: milestone index and exit criteria in `SAGA.md`, milestone detail in `MILESTONE.md`, task detail in each task spec.
+5. **Decompose into milestones and tasks.** Break work into milestones (ordered by dependency, independently meaningful) and tasks (scoped for one worker in one focused effort). For each task, specify its scope, owned files/surfaces, dependencies, validation criteria, and validation method. Write the spec tree: milestone index and exit criteria in `SAGA.md`, milestone detail in `MILESTONE.md`, task detail in each task spec.
 
 6. **Get approval.** Present the full spec tree to the user via `ask_user_question`. Do not begin Phase 2 until approved.
 
-### Phase 2 — implementation (worker fleet)
+### Phase 2: implementation (worker fleet)
 
 1. **Launch workers.** Use `run_agents` to delegate tasks. The orchestrator never implements feature code. Immediately record each worker's agent/run ID, task, branch, and worktree in `PROGRESS.md`.
 
@@ -52,15 +51,15 @@ description: 'Use when a user runs saga or asks to autonomously build a sizable 
    ```
    Workers must never share a checkout.
 
-3. **Per-worker contract.** Instruct each worker to: implement only its assigned task; self-validate against the task's criteria using the prescribed method (computer use, interactive CLI, or tests) in a fix→validate loop; create a durable handoff (commit to the task branch for local workers; pushed branch, draft PR, or patch for remote workers); remove the worktree only after the durable handoff exists (`git worktree remove <path> --force`); report branch name, commit hash, changed files, validation evidence, and pass/blocked status.
+3. **Per-worker contract.** Instruct each worker to: implement only its assigned task; self-validate against the task's criteria using the prescribed method (computer use, interactive CLI, or tests) in a fix→validate loop; create a durable handoff (commit to the task branch for local workers; for remote workers, obtain explicit human approval before pushing a branch, opening a draft PR, or sharing a patch); remove the worktree only after the durable handoff exists (`git worktree remove <path> --force`); report branch name, commit hash, changed files, validation evidence, and pass/blocked status.
 
-4. **Collect and act on reports.** Update `PROGRESS.md` with per-task status and evidence. Handle blocked tasks: re-delegate with retained context, adjust the task spec, or escalate to the user via `ask_user_question` with options — only if the blocker is a genuine spec gap or external decision.
+4. **Collect and act on reports.** Update `PROGRESS.md` with per-task status and evidence. Handle blocked tasks: re-delegate with retained context, adjust the task spec, or escalate to the user via `ask_user_question` with options, only if the blocker is a genuine spec gap or external decision.
 
 5. **Integrate each milestone.** Merge the milestone's branches into an integration branch, resolve conflicts, run milestone-level validation, and remove any worktrees left behind before proceeding.
 
 6. **Maintain state.** Update `PROGRESS.md` continuously. Re-read specs and `PROGRESS.md` from disk rather than holding state in context.
 
-### Phase 3 — final validation
+### Phase 3: final validation
 
 1. **Run exit criteria.** Execute all saga-level exit criteria using the strongest available method. Summarize evidence against each criterion.
 
