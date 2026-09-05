@@ -1,6 +1,6 @@
 # ODIN skills (generated mirror)
 
-543 ODIN skills, flattened from the plugin tree of
+701 ODIN skills, flattened from the plugin tree of
 https://github.com/OutlineDriven/odin-claude-plugin at release 2.1.0.
 
 Devin reads every immediate child directory here as a project skill

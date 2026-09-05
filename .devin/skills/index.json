@@ -5,13 +5,28 @@
   "generator": "scripts/sync-outline-skills.mjs",
   "skills": [
     {
+      "slug": "abi-and-calling-conventions",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "abstract-well",
       "plugin": "odin-planning",
       "files": 2
     },
     {
+      "slug": "adc-dac-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "address-sanitizer",
       "plugin": "odin-fuzzing",
+      "files": 2
+    },
+    {
+      "slug": "af-xdp",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -60,6 +75,11 @@
       "files": 2
     },
     {
+      "slug": "apple-silicon",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "architect",
       "plugin": "odin-code",
       "files": 6
@@ -67,6 +87,11 @@
     {
       "slug": "architecture-diagram",
       "plugin": "odin-visual",
+      "files": 2
+    },
+    {
+      "slug": "arm-sve",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -83,6 +108,21 @@
       "slug": "askme",
       "plugin": "odin-planning",
       "files": 2
+    },
+    {
+      "slug": "assembly-arm",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "assembly-riscv",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "assembly-x86",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "ast-grep",
@@ -165,9 +205,29 @@
       "files": 2
     },
     {
+      "slug": "baremetal-startup",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "bazel",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "behavior-validator",
       "plugin": "odin-testing",
       "files": 2
+    },
+    {
+      "slug": "binary-hardening",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "binutils",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "blast-radius",
@@ -180,9 +240,24 @@
       "files": 3
     },
     {
+      "slug": "bootloaders-embedded",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "bounded-model-checking-c",
+      "plugin": "odin-formal",
+      "files": 2
+    },
+    {
       "slug": "brainstorm",
       "plugin": "odin-planning",
       "files": 16
+    },
+    {
+      "slug": "branch-prediction-and-speculation",
+      "plugin": "odin-native",
+      "files": 2
     },
     {
       "slug": "brand-authority",
@@ -210,6 +285,11 @@
       "files": 5
     },
     {
+      "slug": "build-acceleration",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "build-program-graph",
       "plugin": "odin-security",
       "files": 2
@@ -217,6 +297,11 @@
     {
       "slug": "burpsuite-project-parser",
       "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "bus-drivers-i2c-spi",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -232,6 +317,11 @@
     {
       "slug": "buzzword-hijack",
       "plugin": "odin-product",
+      "files": 2
+    },
+    {
+      "slug": "c-hardening-baseline",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -255,9 +345,19 @@
       "files": 2
     },
     {
+      "slug": "carbon-lang",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "cargo-fuzz",
       "plugin": "odin-fuzzing",
       "files": 2
+    },
+    {
+      "slug": "cargo-workflows",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "cascade-dedup",
@@ -305,6 +405,11 @@
       "files": 3
     },
     {
+      "slug": "clang",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "claude-settings-audit",
       "plugin": "odin-agent",
       "files": 2
@@ -335,6 +440,16 @@
       "files": 2
     },
     {
+      "slug": "cmake",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "code-generation-and-backends",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "code-simplification",
       "plugin": "odin-code",
       "files": 2
@@ -350,6 +465,26 @@
       "files": 2
     },
     {
+      "slug": "commit-push",
+      "plugin": "odin-git",
+      "files": 2
+    },
+    {
+      "slug": "commit-push-current",
+      "plugin": "odin-git",
+      "files": 2
+    },
+    {
+      "slug": "commit-push-main",
+      "plugin": "odin-git",
+      "files": 2
+    },
+    {
+      "slug": "commit-push-pr",
+      "plugin": "odin-git",
+      "files": 2
+    },
+    {
       "slug": "competitor-feature-research",
       "plugin": "odin-product",
       "files": 2
@@ -357,6 +492,16 @@
     {
       "slug": "compile-3d-workflow",
       "plugin": "odin-visual",
+      "files": 2
+    },
+    {
+      "slug": "compiler-frontend",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "compiler-optimizations-deep",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -368,6 +513,16 @@
       "slug": "compound",
       "plugin": "odin-knowledge",
       "files": 3
+    },
+    {
+      "slug": "conan-vcpkg",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "concurrency-debugging",
+      "plugin": "odin-native",
+      "files": 2
     },
     {
       "slug": "confirmed-security-review",
@@ -387,6 +542,11 @@
     {
       "slug": "consult-deployment",
       "plugin": "odin-infra",
+      "files": 2
+    },
+    {
+      "slug": "containers-internals",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -430,6 +590,11 @@
       "files": 2
     },
     {
+      "slug": "core-dumps",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "corroborate-by-independent-reruns",
       "plugin": "odin-run",
       "files": 2
@@ -442,6 +607,36 @@
     {
       "slug": "council",
       "plugin": "odin-critique",
+      "files": 2
+    },
+    {
+      "slug": "cpp-coroutines",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "cpp-modules",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "cpp-templates",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "cpu-cache-opt",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "cpu-kernel-authoring",
+      "plugin": "odin-native",
+      "files": 23
+    },
+    {
+      "slug": "cpu-pipelines-and-hazards",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -470,6 +665,11 @@
       "files": 2
     },
     {
+      "slug": "cross-gcc",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "cross-lens-converge",
       "plugin": "odin-critique",
       "files": 2
@@ -483,6 +683,21 @@
       "slug": "crypto-protocol-diagram",
       "plugin": "odin-security",
       "files": 3
+    },
+    {
+      "slug": "cuda",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "cuda-debugging",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "cuda-profiling",
+      "plugin": "odin-native",
+      "files": 2
     },
     {
       "slug": "culture-burnout-detection",
@@ -515,6 +730,11 @@
       "files": 2
     },
     {
+      "slug": "custom-allocators",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "customer-feedback-report",
       "plugin": "odin-product",
       "files": 2
@@ -540,6 +760,11 @@
       "files": 2
     },
     {
+      "slug": "datasheet-and-refmanual-reading",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "dbt-model-index",
       "plugin": "odin-infra",
       "files": 2
@@ -547,6 +772,11 @@
     {
       "slug": "debloat-respect-richness",
       "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "debug-optimized-builds",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -562,6 +792,11 @@
     {
       "slug": "decision-rationale-gaps",
       "plugin": "odin-critique",
+      "files": 2
+    },
+    {
+      "slug": "deductive-verification-with-dafny-and-why3",
+      "plugin": "odin-formal",
       "files": 2
     },
     {
@@ -625,6 +860,16 @@
       "files": 2
     },
     {
+      "slug": "device-drivers",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "device-tree",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "diagnose-loop-health",
       "plugin": "odin-run",
       "files": 2
@@ -662,6 +907,11 @@
     {
       "slug": "django-perf-review",
       "plugin": "odin-python",
+      "files": 2
+    },
+    {
+      "slug": "dma-baremetal",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -710,6 +960,11 @@
       "files": 3
     },
     {
+      "slug": "dpdk",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "drift-detect",
       "plugin": "odin-research",
       "files": 3
@@ -725,6 +980,11 @@
       "files": 3
     },
     {
+      "slug": "dwarf-debug-format",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "dwarf-expert",
       "plugin": "odin-native",
       "files": 2
@@ -735,6 +995,26 @@
       "files": 2
     },
     {
+      "slug": "dynamic-linking",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "ebpf",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "ebpf-rust",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "elf-inspection",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "eligibility-batch-organizer",
       "plugin": "odin-knowledge",
       "files": 2
@@ -743,6 +1023,11 @@
       "slug": "embed-diagram",
       "plugin": "odin-visual",
       "files": 2
+    },
+    {
+      "slug": "embedded-rust",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "enforce-workflow-constraints",
@@ -802,6 +1087,11 @@
     {
       "slug": "extremely-optimize",
       "plugin": "odin-code",
+      "files": 2
+    },
+    {
+      "slug": "f-star-effectful-verification",
+      "plugin": "odin-formal",
       "files": 2
     },
     {
@@ -890,9 +1180,19 @@
       "files": 2
     },
     {
+      "slug": "flamegraphs",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "frame-rate-stability",
       "plugin": "odin-design",
       "files": 2
+    },
+    {
+      "slug": "freertos",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "fresh-reader-review",
@@ -995,6 +1295,11 @@
       "files": 2
     },
     {
+      "slug": "fuzzing",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "fuzzing-coverage-analysis",
       "plugin": "odin-fuzzing",
       "files": 3
@@ -1023,6 +1328,16 @@
       "slug": "gate-proposed-change",
       "plugin": "odin-run",
       "files": 2
+    },
+    {
+      "slug": "gcc",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "gdb",
+      "plugin": "odin-native",
+      "files": 4
     },
     {
       "slug": "genealogical-proof",
@@ -1110,6 +1425,16 @@
       "files": 5
     },
     {
+      "slug": "gpio-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "gpu-memory-model",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "graph-backbone",
       "plugin": "odin-planning",
       "files": 3
@@ -1150,6 +1475,16 @@
       "files": 4
     },
     {
+      "slug": "hardware-counters",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "hare-lang",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "harness-port-guide",
       "plugin": "odin-agent",
       "files": 3
@@ -1157,6 +1492,16 @@
     {
       "slug": "headed-browser-takeover",
       "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "heaptrack",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "hip-rocm",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1210,13 +1555,28 @@
       "files": 2
     },
     {
+      "slug": "hypervisor-internals",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "idea-sparkbox",
       "plugin": "odin-planning",
       "files": 2
     },
     {
+      "slug": "idiomatic-rust",
+      "plugin": "odin-native",
+      "files": 11
+    },
+    {
       "slug": "implement-spec",
       "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "include-what-you-use",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1255,13 +1615,33 @@
       "files": 2
     },
     {
+      "slug": "intel-vtune-amd-uprof",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "interactive-drop-selector",
       "plugin": "odin-git",
       "files": 2
     },
     {
+      "slug": "interpreters",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "interrogate",
       "plugin": "odin-review",
+      "files": 2
+    },
+    {
+      "slug": "interrupts-and-exceptions-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "io-uring",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1292,6 +1672,11 @@
     {
       "slug": "issue-triage",
       "plugin": "odin-git",
+      "files": 2
+    },
+    {
+      "slug": "jit-compilation",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1332,6 +1717,41 @@
     {
       "slug": "keep-why-schema-migration",
       "plugin": "odin-knowledge",
+      "files": 2
+    },
+    {
+      "slug": "kernel-concurrency",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-debugging",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-debugging-advanced",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-internals",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-memory-management",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-security",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "kernel-testing",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1380,6 +1800,36 @@
       "files": 2
     },
     {
+      "slug": "linker-scripts",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "linkers-lto",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "linux-kernel-architecture",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "linux-kernel-modules",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "linux-perf",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "lldb",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "llm-self-loop",
       "plugin": "odin-run",
       "files": 2
@@ -1387,6 +1837,21 @@
     {
       "slug": "llms-visibility",
       "plugin": "odin-web",
+      "files": 2
+    },
+    {
+      "slug": "llvm",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "llvm-ir-and-passes",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "llvm-passes",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1403,6 +1868,16 @@
       "slug": "loop-me",
       "plugin": "odin-planning",
       "files": 2
+    },
+    {
+      "slug": "low-power-embedded",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "make",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "make-bot-ui",
@@ -1440,6 +1915,16 @@
       "files": 5
     },
     {
+      "slug": "memory-hierarchy-and-caches",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "memory-model",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "memory-sanitize",
       "plugin": "odin-knowledge",
       "files": 4
@@ -1460,6 +1945,11 @@
       "files": 2
     },
     {
+      "slug": "meson",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "minimalism-driven",
       "plugin": "odin-code",
       "files": 2
@@ -1468,6 +1958,16 @@
       "slug": "minimap",
       "plugin": "odin-planning",
       "files": 3
+    },
+    {
+      "slug": "mlir",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "mmio-and-bit-manipulation",
+      "plugin": "odin-native",
+      "files": 2
     },
     {
       "slug": "model-challenge",
@@ -1488,6 +1988,16 @@
       "slug": "modern-python",
       "plugin": "odin-python",
       "files": 3
+    },
+    {
+      "slug": "mpi",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "msvc-cl",
+      "plugin": "odin-native",
+      "files": 2
     },
     {
       "slug": "multi-agent-tournament-scorecard",
@@ -1545,6 +2055,11 @@
       "files": 2
     },
     {
+      "slug": "ninja",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "no-comments",
       "plugin": "odin-code",
       "files": 2
@@ -1585,6 +2100,11 @@
       "files": 2
     },
     {
+      "slug": "numa-programming",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "oauth2-flow-implementation",
       "plugin": "odin-security",
       "files": 2
@@ -1615,6 +2135,16 @@
       "files": 2
     },
     {
+      "slug": "openmp",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "openocd-jtag",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "optimise-seo",
       "plugin": "odin-web",
       "files": 2
@@ -1627,6 +2157,11 @@
     {
       "slug": "orchestration-patterns",
       "plugin": "odin-run",
+      "files": 2
+    },
+    {
+      "slug": "os-dev-scratch",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1650,8 +2185,18 @@
       "files": 2
     },
     {
+      "slug": "peripherals-from-datasheet",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "perspective-complete-review",
       "plugin": "odin-review",
+      "files": 2
+    },
+    {
+      "slug": "pgo",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1662,6 +2207,11 @@
     {
       "slug": "plan-review",
       "plugin": "odin-planning",
+      "files": 2
+    },
+    {
+      "slug": "platform-device-model",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1765,6 +2315,11 @@
       "files": 2
     },
     {
+      "slug": "production-go",
+      "plugin": "odin-native",
+      "files": 39
+    },
+    {
       "slug": "prohibit-bad-habits",
       "plugin": "odin-agent",
       "files": 2
@@ -1805,6 +2360,11 @@
       "files": 2
     },
     {
+      "slug": "protocol-analysis",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "prototype",
       "plugin": "odin-design",
       "files": 2
@@ -1822,6 +2382,26 @@
     {
       "slug": "purge-slop-docs",
       "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "qemu-embedded-simulation",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "qemu-for-kernel-development",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "qemu-kvm",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "rdma-verbs",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1925,6 +2505,11 @@
       "files": 10
     },
     {
+      "slug": "resource-optimization-lowend",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "respond-to-slack-thread",
       "plugin": "odin-run",
       "files": 2
@@ -1937,6 +2522,11 @@
     {
       "slug": "retaxonomize-plugins",
       "plugin": "odin-skills",
+      "files": 2
+    },
+    {
+      "slug": "reverse-engineering",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -1975,13 +2565,78 @@
       "files": 2
     },
     {
+      "slug": "riscv-privileged",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "run-smoke-tests",
       "plugin": "odin-testing",
       "files": 2
     },
     {
+      "slug": "rust-async-internals",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "rust-build-times",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "rust-cross",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rust-debugging",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rust-ffi",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rust-formal-verification",
+      "plugin": "odin-formal",
+      "files": 2
+    },
+    {
+      "slug": "rust-no-std",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "rust-profiling",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rust-sanitizers-miri",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rust-security",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "rust-security-review",
       "plugin": "odin-security",
+      "files": 3
+    },
+    {
+      "slug": "rust-unsafe",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "rustc-basics",
+      "plugin": "odin-native",
       "files": 3
     },
     {
@@ -1993,6 +2648,11 @@
       "slug": "saga",
       "plugin": "odin-run",
       "files": 2
+    },
+    {
+      "slug": "sanitizers",
+      "plugin": "odin-native",
+      "files": 4
     },
     {
       "slug": "sarif-parsing",
@@ -2140,6 +2800,11 @@
       "files": 2
     },
     {
+      "slug": "simd-intrinsics",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "simplify",
       "plugin": "odin-code",
       "files": 6
@@ -2200,6 +2865,11 @@
       "files": 2
     },
     {
+      "slug": "smt-solving-with-z3-cvc5",
+      "plugin": "odin-formal",
+      "files": 2
+    },
+    {
       "slug": "snippet-image-rendering",
       "plugin": "odin-visual",
       "files": 2
@@ -2235,6 +2905,11 @@
       "files": 2
     },
     {
+      "slug": "spi-i2c-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "ssotize-audit-fold",
       "plugin": "odin-knowledge",
       "files": 2
@@ -2243,6 +2918,21 @@
       "slug": "state-machine-workflow",
       "plugin": "odin-planning",
       "files": 2
+    },
+    {
+      "slug": "static-analysis",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "stm32-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "strace-ltrace",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "strategy",
@@ -2365,6 +3055,11 @@
       "files": 2
     },
     {
+      "slug": "timers-pwm-baremetal",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "to-greenfield",
       "plugin": "odin-code",
       "files": 2
@@ -2425,6 +3120,11 @@
       "files": 2
     },
     {
+      "slug": "triton-lang",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "type-driven",
       "plugin": "odin-code",
       "files": 5
@@ -2447,6 +3147,11 @@
     {
       "slug": "typography-audit",
       "plugin": "odin-design",
+      "files": 2
+    },
+    {
+      "slug": "uart-serial-baremetal",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -2473,6 +3178,11 @@
       "slug": "unslop",
       "plugin": "odin-writing",
       "files": 4
+    },
+    {
+      "slug": "valgrind",
+      "plugin": "odin-native",
+      "files": 3
     },
     {
       "slug": "validate-changes-match-specs",
@@ -2515,8 +3225,18 @@
       "files": 2
     },
     {
+      "slug": "verilog-basics-for-lowlevel",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "viral-opportunity-scout",
       "plugin": "odin-product",
+      "files": 2
+    },
+    {
+      "slug": "virtual-memory-paging-and-tlb",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -2552,6 +3272,16 @@
     {
       "slug": "walk-with-me",
       "plugin": "odin-learn",
+      "files": 2
+    },
+    {
+      "slug": "wasm-emscripten",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "wasm-wasmtime",
+      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -2680,6 +3410,11 @@
       "files": 2
     },
     {
+      "slug": "writing-char-drivers",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
       "slug": "writing-for-agents",
       "plugin": "odin-skills",
       "files": 5
@@ -2690,13 +3425,28 @@
       "files": 2
     },
     {
+      "slug": "writing-isabelle-proofs",
+      "plugin": "odin-formal",
+      "files": 2
+    },
+    {
       "slug": "writing-lean-proofs",
-      "plugin": "odin-lean",
+      "plugin": "odin-formal",
+      "files": 2
+    },
+    {
+      "slug": "writing-rocq-proofs",
+      "plugin": "odin-formal",
       "files": 2
     },
     {
       "slug": "writing-shape",
       "plugin": "odin-writing",
+      "files": 2
+    },
+    {
+      "slug": "writing-tla-plus-specs",
+      "plugin": "odin-formal",
       "files": 2
     },
     {
@@ -2715,8 +3465,48 @@
       "files": 3
     },
     {
+      "slug": "zephyr",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
       "slug": "zeroize-audit",
       "plugin": "odin-security",
+      "files": 2
+    },
+    {
+      "slug": "zig-build-system",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "zig-cinterop",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "zig-compiler",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "zig-comptime",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "zig-cross",
+      "plugin": "odin-native",
+      "files": 3
+    },
+    {
+      "slug": "zig-debugging",
+      "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "zig-testing",
+      "plugin": "odin-native",
       "files": 2
     }
   ]
