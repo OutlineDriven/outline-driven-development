@@ -1,7 +1,7 @@
 {
   "schema": "odin-devin-skill-mirror/v1",
   "sourceRepository": "https://github.com/OutlineDriven/odin-claude-plugin",
-  "releaseVersion": "2.1.1",
+  "releaseVersion": "2.1.4",
   "generator": "scripts/sync-outline-skills.mjs",
   "skills": [
     {
@@ -875,6 +875,11 @@
       "files": 2
     },
     {
+      "slug": "diagnose-wave-stall",
+      "plugin": "odin-run",
+      "files": 2
+    },
+    {
       "slug": "diagramming-code",
       "plugin": "odin-visual",
       "files": 2
@@ -912,6 +917,11 @@
     {
       "slug": "dma-baremetal",
       "plugin": "odin-native",
+      "files": 2
+    },
+    {
+      "slug": "do-it-now",
+      "plugin": "odin-run",
       "files": 2
     },
     {
@@ -1155,11 +1165,6 @@
       "files": 2
     },
     {
-      "slug": "finish-it-now",
-      "plugin": "odin-run",
-      "files": 2
-    },
-    {
       "slug": "firebase-apk-scanner",
       "plugin": "odin-security",
       "files": 2
@@ -1200,62 +1205,12 @@
       "files": 2
     },
     {
-      "slug": "from-breaking-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-business-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-career-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-codebase-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
       "slug": "from-first-principle",
       "plugin": "odin-planning",
       "files": 2
     },
     {
-      "slug": "from-human-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-impact-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-innovation-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-moat-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-rentseeking-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-skeptic-perspective",
-      "plugin": "odin-critique",
-      "files": 2
-    },
-    {
-      "slug": "from-stability-perspective",
+      "slug": "from-perspective",
       "plugin": "odin-critique",
       "files": 2
     },
@@ -2682,6 +2637,11 @@
     {
       "slug": "scaffold-nextjs",
       "plugin": "odin-typescript",
+      "files": 2
+    },
+    {
+      "slug": "schedule-dependency-waves",
+      "plugin": "odin-run",
       "files": 2
     },
     {

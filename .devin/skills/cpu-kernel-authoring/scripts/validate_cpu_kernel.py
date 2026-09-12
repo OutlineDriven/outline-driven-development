@@ -14,7 +14,10 @@ import re
 import sys
 from pathlib import Path
 
-import tomllib
+if sys.version_info < (3, 14):
+    sys.exit("validate_cpu_kernel.py needs Python 3.14 (tomllib in the standard library)")
+
+import tomllib  # noqa: E402
 
 
 class ValidationError:
@@ -51,9 +54,18 @@ def validate_build_toml(kernel_dir: Path) -> list[ValidationError]:
         errors.append(ValidationError("ERROR", f"build.toml is not valid TOML: {e}", "build.toml"))
         return errors
 
+    kernel_table = data.get("kernel", {})
+    if not isinstance(kernel_table, dict):
+        errors.append(ValidationError(
+            "ERROR",
+            f"build.toml 'kernel' must be a table of [kernel.<name>] sections, got {type(kernel_table).__name__}",
+            "build.toml",
+        ))
+        return errors
+
     sections = {
         f"kernel.{name}": body
-        for name, body in data.get("kernel", {}).items()
+        for name, body in kernel_table.items()
         if isinstance(body, dict)
     }
     cpu_sections = {name: body for name, body in sections.items() if body.get("backend") == "cpu"}
@@ -74,36 +86,42 @@ def validate_build_toml(kernel_dir: Path) -> list[ValidationError]:
                 "build.toml",
             ))
 
-    flags_text = " ".join(
-        " ".join(body.get("flags", [])) if isinstance(body.get("flags"), list) else str(body.get("flags", ""))
-        for body in sections.values()
-    )
+    def _flags(body: dict) -> list[str]:
+        """Extract and normalize compiler flags from a kernel section body."""
+        flags = body.get("cxx-flags", body.get("flags", []))
+        if isinstance(flags, list):
+            return [str(f) for f in flags]
+        return str(flags).split()
 
-    if "-mavx512f" in flags_text:
-        core_flags = ["-mavx512bf16", "-mavx512vl"]
-        for flag in core_flags:
-            if flag not in flags_text:
+    # dq/bw/vbmi are needed only by GEMM byte-shuffle paths; requiring them elsewhere is noise.
+    gemm_indicators = ["gemm", "gptq", "quantiz", "bnb", "bitsandbytes", "megablocks", "moe"]
+
+    # Each [kernel.*] section is its own translation unit, so a flag in one
+    # tier never reaches another; check every AVX512 section on its own.
+    for name, body in sections.items():
+        flags = _flags(body)
+        if "-mavx512f" not in flags:
+            continue
+        is_gemm_kernel = any(ind in name.lower() for ind in gemm_indicators)
+        for flag in ("-mavx512bf16", "-mavx512vl"):
+            if flag not in flags:
                 errors.append(ValidationError(
                     "WARNING",
-                    f"AVX512 section missing core flag: {flag}",
+                    f"AVX512 section [{name}] missing core flag: {flag}",
                     "build.toml",
                 ))
-        # dq/bw/vbmi are needed only by GEMM byte-shuffle paths; requiring them elsewhere is noise.
-        gemm_indicators = ["gemm", "gptq", "quantiz", "bnb", "bitsandbytes", "megablocks", "moe"]
-        is_gemm_kernel = any(ind in flags_text.lower() or ind in " ".join(sections).lower() for ind in gemm_indicators)
         if is_gemm_kernel:
-            gemm_flags = ["-mavx512dq", "-mavx512bw", "-mavx512vbmi"]
-            for flag in gemm_flags:
-                if flag not in flags_text:
+            for flag in ("-mavx512dq", "-mavx512bw", "-mavx512vbmi"):
+                if flag not in flags:
                     errors.append(ValidationError(
                         "INFO",
-                        f"GEMM kernel may benefit from flag: {flag}",
+                        f"GEMM kernel section [{name}] may benefit from flag: {flag}",
                         "build.toml",
                     ))
-        if "-fopenmp" not in flags_text:
+        if "-fopenmp" not in flags:
             errors.append(ValidationError(
                 "WARNING",
-                "AVX512 section missing -fopenmp flag",
+                f"AVX512 section [{name}] missing -fopenmp flag",
                 "build.toml",
             ))
 
