@@ -20,11 +20,6 @@
       "files": 2
     },
     {
-      "slug": "address-sanitizer",
-      "plugin": "odin-fuzzing",
-      "files": 2
-    },
-    {
       "slug": "af-xdp",
       "plugin": "odin-native",
       "files": 2
@@ -55,11 +50,6 @@
       "files": 2
     },
     {
-      "slug": "all-scenarios-storm",
-      "plugin": "odin-planning",
-      "files": 2
-    },
-    {
       "slug": "analysis-artifacts",
       "plugin": "odin-infra",
       "files": 2
@@ -83,11 +73,6 @@
       "slug": "architect",
       "plugin": "odin-code",
       "files": 6
-    },
-    {
-      "slug": "architecture-diagram",
-      "plugin": "odin-visual",
-      "files": 2
     },
     {
       "slug": "arm-sve",
@@ -220,11 +205,6 @@
       "files": 2
     },
     {
-      "slug": "binary-hardening",
-      "plugin": "odin-native",
-      "files": 3
-    },
-    {
       "slug": "binutils",
       "plugin": "odin-native",
       "files": 3
@@ -290,18 +270,8 @@
       "files": 3
     },
     {
-      "slug": "build-program-graph",
-      "plugin": "odin-security",
-      "files": 2
-    },
-    {
       "slug": "burpsuite-project-parser",
       "plugin": "odin-security",
-      "files": 2
-    },
-    {
-      "slug": "bus-drivers-i2c-spi",
-      "plugin": "odin-native",
       "files": 2
     },
     {
@@ -338,11 +308,6 @@
       "slug": "capstone",
       "plugin": "odin-learn",
       "files": 3
-    },
-    {
-      "slug": "capture-isolated-patch",
-      "plugin": "odin-git",
-      "files": 2
     },
     {
       "slug": "carbon-lang",
@@ -465,17 +430,7 @@
       "files": 2
     },
     {
-      "slug": "commit-push",
-      "plugin": "odin-git",
-      "files": 2
-    },
-    {
       "slug": "commit-push-current",
-      "plugin": "odin-git",
-      "files": 2
-    },
-    {
-      "slug": "commit-push-main",
       "plugin": "odin-git",
       "files": 2
     },
@@ -522,11 +477,6 @@
     {
       "slug": "concurrency-debugging",
       "plugin": "odin-native",
-      "files": 2
-    },
-    {
-      "slug": "confirmed-security-review",
-      "plugin": "odin-security",
       "files": 2
     },
     {
@@ -755,16 +705,6 @@
       "files": 2
     },
     {
-      "slug": "dataflow-diagram",
-      "plugin": "odin-visual",
-      "files": 2
-    },
-    {
-      "slug": "datasheet-and-refmanual-reading",
-      "plugin": "odin-native",
-      "files": 2
-    },
-    {
       "slug": "dbt-model-index",
       "plugin": "odin-infra",
       "files": 2
@@ -861,11 +801,6 @@
     },
     {
       "slug": "device-drivers",
-      "plugin": "odin-native",
-      "files": 2
-    },
-    {
-      "slug": "device-tree",
       "plugin": "odin-native",
       "files": 2
     },
@@ -1015,11 +950,6 @@
       "files": 3
     },
     {
-      "slug": "ebpf-rust",
-      "plugin": "odin-native",
-      "files": 2
-    },
-    {
       "slug": "elf-inspection",
       "plugin": "odin-native",
       "files": 3
@@ -1027,11 +957,6 @@
     {
       "slug": "eligibility-batch-organizer",
       "plugin": "odin-knowledge",
-      "files": 2
-    },
-    {
-      "slug": "embed-diagram",
-      "plugin": "odin-visual",
       "files": 2
     },
     {
@@ -1052,11 +977,6 @@
     {
       "slug": "entropy-assisted-planning",
       "plugin": "odin-planning",
-      "files": 2
-    },
-    {
-      "slug": "entry-point-analyzer",
-      "plugin": "odin-security",
       "files": 2
     },
     {
@@ -1095,11 +1015,6 @@
       "files": 2
     },
     {
-      "slug": "extremely-optimize",
-      "plugin": "odin-code",
-      "files": 2
-    },
-    {
       "slug": "f-star-effectful-verification",
       "plugin": "odin-formal",
       "files": 2
@@ -1127,16 +1042,6 @@
     {
       "slug": "fastify-schema-first-service",
       "plugin": "odin-typescript",
-      "files": 2
-    },
-    {
-      "slug": "fastopt",
-      "plugin": "odin-code",
-      "files": 2
-    },
-    {
-      "slug": "fastopt-extreme",
-      "plugin": "odin-code",
       "files": 2
     },
     {
@@ -1395,11 +1300,6 @@
       "files": 3
     },
     {
-      "slug": "graph-evolution",
-      "plugin": "odin-security",
-      "files": 2
-    },
-    {
       "slug": "grill-with-docs",
       "plugin": "odin-knowledge",
       "files": 2
@@ -1428,11 +1328,6 @@
       "slug": "handoff",
       "plugin": "odin-knowledge",
       "files": 4
-    },
-    {
-      "slug": "hardware-counters",
-      "plugin": "odin-native",
-      "files": 2
     },
     {
       "slug": "hare-lang",
@@ -1562,11 +1457,6 @@
     {
       "slug": "instruction-phrasing-microtest",
       "plugin": "odin-skills",
-      "files": 2
-    },
-    {
-      "slug": "instruction-understanding-gate",
-      "plugin": "odin-core",
       "files": 2
     },
     {
@@ -1737,11 +1627,6 @@
     {
       "slug": "libfuzzer",
       "plugin": "odin-fuzzing",
-      "files": 2
-    },
-    {
-      "slug": "lifecycle-diagram",
-      "plugin": "odin-visual",
       "files": 2
     },
     {
@@ -2165,16 +2050,6 @@
       "files": 3
     },
     {
-      "slug": "plan-review",
-      "plugin": "odin-planning",
-      "files": 2
-    },
-    {
-      "slug": "platform-device-model",
-      "plugin": "odin-native",
-      "files": 2
-    },
-    {
       "slug": "polished-web-prototype",
       "plugin": "odin-design",
       "files": 2
@@ -2452,17 +2327,12 @@
     {
       "slug": "resolve",
       "plugin": "odin-git",
-      "files": 2
+      "files": 6
     },
     {
       "slug": "resolve-merge-conflicts",
       "plugin": "odin-git",
       "files": 2
-    },
-    {
-      "slug": "resolve-pr-feedback",
-      "plugin": "odin-git",
-      "files": 10
     },
     {
       "slug": "resource-optimization-lowend",
@@ -2575,11 +2445,6 @@
       "files": 3
     },
     {
-      "slug": "rust-sanitizers-miri",
-      "plugin": "odin-native",
-      "files": 3
-    },
-    {
       "slug": "rust-security",
       "plugin": "odin-native",
       "files": 2
@@ -2622,11 +2487,6 @@
     {
       "slug": "save-md",
       "plugin": "odin-writing",
-      "files": 2
-    },
-    {
-      "slug": "scaffold-cli",
-      "plugin": "odin-typescript",
       "files": 2
     },
     {
@@ -2695,11 +2555,6 @@
       "files": 2
     },
     {
-      "slug": "sequence-diagram",
-      "plugin": "odin-visual",
-      "files": 2
-    },
-    {
       "slug": "session-share",
       "plugin": "odin-knowledge",
       "files": 2
@@ -2715,16 +2570,6 @@
       "files": 2
     },
     {
-      "slug": "setup-gitignore",
-      "plugin": "odin-git",
-      "files": 6
-    },
-    {
-      "slug": "setup-pre-commit",
-      "plugin": "odin-git",
-      "files": 3
-    },
-    {
       "slug": "setup-repo-skills",
       "plugin": "odin-git",
       "files": 2
@@ -2733,11 +2578,6 @@
       "slug": "setup-ts-deep-modules",
       "plugin": "odin-typescript",
       "files": 3
-    },
-    {
-      "slug": "sharp-edges",
-      "plugin": "odin-security",
-      "files": 2
     },
     {
       "slug": "shipping",
@@ -3075,11 +2915,6 @@
       "files": 2
     },
     {
-      "slug": "trailmark-structural",
-      "plugin": "odin-security",
-      "files": 2
-    },
-    {
       "slug": "training-report",
       "plugin": "odin-writing",
       "files": 2
@@ -3165,11 +3000,6 @@
       "files": 6
     },
     {
-      "slug": "variant-hunt",
-      "plugin": "odin-security",
-      "files": 2
-    },
-    {
       "slug": "vector-forge",
       "plugin": "odin-security",
       "files": 2
@@ -3225,11 +3055,6 @@
       "files": 2
     },
     {
-      "slug": "visualise-widget",
-      "plugin": "odin-visual",
-      "files": 2
-    },
-    {
       "slug": "vulnerability-triage-brocards",
       "plugin": "odin-security",
       "files": 2
@@ -3272,11 +3097,6 @@
     {
       "slug": "watch-for-structured",
       "plugin": "odin-run",
-      "files": 2
-    },
-    {
-      "slug": "waterfall-guide",
-      "plugin": "odin-planning",
       "files": 2
     },
     {
@@ -3340,11 +3160,6 @@
       "files": 2
     },
     {
-      "slug": "workflow-diagram",
-      "plugin": "odin-visual",
-      "files": 2
-    },
-    {
       "slug": "workflow-evidence-mining",
       "plugin": "odin-knowledge",
       "files": 2
@@ -3377,11 +3192,6 @@
     {
       "slug": "writing-beats",
       "plugin": "odin-writing",
-      "files": 2
-    },
-    {
-      "slug": "writing-char-drivers",
-      "plugin": "odin-native",
       "files": 2
     },
     {
