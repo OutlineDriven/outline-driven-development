@@ -1,7 +1,7 @@
 {
   "schema": "odin-devin-skill-mirror/v1",
   "sourceRepository": "https://github.com/OutlineDriven/odin-claude-plugin",
-  "releaseVersion": "2.1.4",
+  "releaseVersion": "2.1.5",
   "generator": "scripts/sync-outline-skills.mjs",
   "skills": [
     {
